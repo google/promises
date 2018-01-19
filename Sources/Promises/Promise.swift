@@ -1,0 +1,115 @@
+// Copyright 2018 Google Inc. All rights reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at:
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+import FBLPromises
+
+/// Promises synchronization construct in Swift. Leverages ObjC implementation internally.
+public final class Promise<Value> {
+  public typealias ObjCPromise<Value: AnyObject> = FBLPromise<Value>
+
+  /// Creates a new promise with an existing ObjC promise.
+  public init<Value>(_ objCPromise: ObjCPromise<Value>) {
+    guard let objCPromise = objCPromise as? ObjCPromise<AnyObject> else { preconditionFailure() }
+    self.objCPromise = objCPromise
+  }
+
+  /// Creates a new pending promise.
+  public static func pending() -> Promise<Value> {
+    return Promise<Value>.init(ObjCPromise<AnyObject>.__pending())
+  }
+
+  /// Creates a new promise rejected with the given `error`.
+  public convenience init(_ error: Error) {
+    self.init(ObjCPromise<AnyObject>.__resolved(with: error as NSError))
+  }
+
+  /// Creates a new promise resolved with the result of `work` block.
+  public convenience init(_ work: @autoclosure () throws -> Value) {
+    do {
+      let resolution = try work()
+      switch resolution {
+      case let error as NSError:
+        self.init(error)
+      case let objCPromise as ObjCPromise<AnyObject>:
+        self.init(objCPromise)
+      default:
+        self.init(ObjCPromise<AnyObject>.__resolved(with: Promise<Value>.asAnyObject(resolution)))
+      }
+    } catch let error {
+      self.init(error as NSError)
+    }
+  }
+
+  /// Resolves `self` with the given `resolution`.
+  public func fulfill(_ resolution: Value) {
+    objCPromise.__fulfill(Promise<Value>.asAnyObject(resolution))
+  }
+
+  /// Rejects `self` with the given `error`.
+  public func reject(_ error: Error) {
+    objCPromise.__fulfill(error as NSError)
+  }
+
+  /// Converts `self` into ObjC promise.
+  public func asObjCPromise<Value>() -> ObjCPromise<Value> {
+    guard let objCPromise = objCPromise as? ObjCPromise<Value> else { preconditionFailure() }
+    return objCPromise
+  }
+
+  // MARK: Internal
+
+  /// Underlying ObjC counterpart.
+  let objCPromise: ObjCPromise<AnyObject>
+
+  var isPending: Bool { return objCPromise.__isPending }
+
+  var isFulfilled: Bool { return objCPromise.__isFulfilled }
+
+  var isRejected: Bool { return objCPromise.__isRejected }
+
+  var value: Value? {
+    let objCValue = objCPromise.__value
+    if Promise<AnyObject>.isBridgedNil(objCValue) { return nil }
+    guard let value = objCValue as? Value else { preconditionFailure() }
+    return value
+  }
+
+  var error: Error? { return objCPromise.__error }
+
+  /// Converts generic `Value` to `AnyObject`.
+  static func asAnyObject(_ value: Value) -> AnyObject? {
+    return Promise<Value>.isBridgedNil(value) ? nil : value as AnyObject
+  }
+
+  /// Converts `AnyObject` to generic `Value`.
+  static func asValue(_ value: AnyObject?) -> Value? {
+    // Swift nil becomes NSNull during bridging.
+    return value as? Value ?? NSNull() as AnyObject as? Value
+  }
+
+  // MARK: Private
+
+  /// Checks if generic `Value` is bridged ObjC `nil`.
+  private static func isBridgedNil(_ value: Value?) -> Bool {
+    // Swift nil becomes NSNull during bridging.
+    return !(value is NSNull) && value as AnyObject is NSNull
+  }
+}
+
+extension Promise: CustomStringConvertible {
+  public var description: String {
+    return isFulfilled ? "Fulfilled: \(String(describing: value ?? nil))" :
+        isRejected ? "Rejected: \(String(describing: error ?? nil))" : "Pending: \(Value.self)"
+  }
+}

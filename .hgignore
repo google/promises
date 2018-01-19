@@ -1,0 +1,100 @@
+syntax: glob
+
+# Generic build products
+
+*.[oa]
+[Bb]uild/
+[Pp]re-[Bb]uild/
+[Dd]eliverables/
+[Dd]istribution/
+[Dd]ocumentation/
+[Dd]ocs/
+
+# Swift PM
+
+Packages/
+.build/
+*.xcodeproj
+*.resolved
+
+# Bazel
+
+bazel-*
+
+# Other VCS
+
+.hg
+.svn
+*.prej
+*.mine
+CVS
+
+# OSX
+
+.DS_Store
+.DS_Store?
+._*
+.~*
+~$*
+*.lock
+.AppleDouble
+.LSOverride
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+ehthumbs.db
+Thumbs.db
+.AppleDB
+.AppleDesktop
+.apdisk
+
+# Windows
+
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+# Xcode
+
+DerivedData/
+xcuserdata/
+project.xcworkspace/
+*.mode1
+*.mode1v3
+*.mode2v3
+*.perspective
+*.perspectivev3
+*.pbxuser
+*.xccheckout
+*.moved-aside
+*.xcuserstate
+*.xctimeline
+
+# JetBrains
+
+.idea/
+
+# CocoaPods
+
+!Podfile.lock
+!Pods/Manifest.lock
+Pods/Documentation
+
+#Carthage
+
+Carthage/
+
+# SublimeText
+
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace

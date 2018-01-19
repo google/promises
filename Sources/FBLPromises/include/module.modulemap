@@ -1,0 +1,36 @@
+module FBLPromises {
+    umbrella header "FBLPromises.h"
+
+    export *
+
+    header "FBLPromise+All.h"
+    header "FBLPromise+Always.h"
+    header "FBLPromise+Any.h"
+    header "FBLPromise+Async.h"
+    header "FBLPromise+Catch.h"
+    header "FBLPromise+Do.h"
+    header "FBLPromise+Recover.h"
+    header "FBLPromise+Resolve.h"
+    header "FBLPromise+Testing.h"
+    header "FBLPromise+Then.h"
+    header "FBLPromise+Timeout.h"
+    header "FBLPromise+Validate.h"
+    header "FBLPromise+When.h"
+
+    header "DotSyntax/FBLPromise+DotSyntax.h"
+    header "DotSyntax/FBLPromise+DotSyntax+All.h"
+    header "DotSyntax/FBLPromise+DotSyntax+Always.h"
+    header "DotSyntax/FBLPromise+DotSyntax+Any.h"
+    header "DotSyntax/FBLPromise+DotSyntax+Async.h"
+    header "DotSyntax/FBLPromise+DotSyntax+Catch.h"
+    header "DotSyntax/FBLPromise+DotSyntax+Do.h"
+    header "DotSyntax/FBLPromise+DotSyntax+Recover.h"
+    header "DotSyntax/FBLPromise+DotSyntax+Resolve.h"
+    header "DotSyntax/FBLPromise+DotSyntax+Then.h"
+    header "DotSyntax/FBLPromise+DotSyntax+Timeout.h"
+    header "DotSyntax/FBLPromise+DotSyntax+Validate.h"
+    header "DotSyntax/FBLPromise+DotSyntax+When.h"
+
+    exclude header "FBLPromiseErrorPrivate.h"
+    exclude header "FBLPromisePrivate.h"
+}
