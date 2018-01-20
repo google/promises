@@ -140,7 +140,7 @@ override func viewDidAppear(_ animated: Bool) {
 ## Promises to the rescue
 
 The code sample above, when converted into promises, could look like the
-following (assuming you've got [`-fbl_map`](https://github.com/google/functional-objc/blob/master/README.md#map) 
+following (assuming you've got [`-fbl_map`](https://github.com/google/functional-objc/blob/master/README.md#map)
 method on `NSArray`):
 
 Objective-C:
