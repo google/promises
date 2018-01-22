@@ -366,7 +366,7 @@ on an iPhone 6s iOS 11.2.1 for the popular frameworks:
 
 #### Bazel
 
-In your `BUILD` file add `Promises` deps to corresponding targets:
+In your `BUILD` file, add `Promises` deps to corresponding targets:
 
 ```python
 objc_library(
@@ -388,9 +388,21 @@ swift_library(
 )
 ```
 
+For Swift, import the module:
+
+```swift
+import Promises
+```
+
+For Objective-C, import the umbrella header:
+
+```objectivec
+#import "path/to/Promises/FBLPromises.h"
+```
+
 #### Swift PM
 
-In you `Package.swift` file add `Promises` dependency to corresponding targets:
+In your `Package.swift` file, add `Promises` dependency to corresponding targets:
 
 ```swift
 let package = Package(
@@ -402,15 +414,25 @@ let package = Package(
 )
 ```
 
-### Import
+Import the module as:
 
-Objective-C:
-
-```objectivec
-#import "path/to/Promises/FBLPromises.h"
+```swift
+import Promises
 ```
 
-Or:
+#### CocoaPods
+
+Add the following to your `Podfile`:
+
+    pod `PromisesObjC`, '~> 1.0'
+
+Or, if you would also like to include the tests:
+
+    pod 'PromisesObjC', '~> 1.0', :testspecs => ['Tests', 'PerformanceTests']
+
+Then, run `pod install`.
+
+For Objective-C, import the umbrella header as:
 
 ```objectivec
 #import "<FBLPromises/FBLPromises.h>"
@@ -419,13 +441,13 @@ Or:
 Or:
 
 ```objectivec
-@import FBLPromises;
+#import "FBLPromises.h"
 ```
 
-Swift:
+Or, the module:
 
-```swift
-import Promises
+```objectivec
+@import FBLPromises;
 ```
 
 ### Adopt
