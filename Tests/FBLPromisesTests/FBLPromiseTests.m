@@ -14,8 +14,6 @@
  limitations under the License.
  */
 
-#import "FBLPromise.h"
-
 #import <XCTest/XCTest.h>
 
 #import "FBLPromise+Testing.h"
