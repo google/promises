@@ -14,7 +14,7 @@ Objective-C and Swift to facilitate writing asynchronous code.
 *   [Framework](g3doc/index.md#framework)
     *   [Features](g3doc/index.md#features)
     *   [Benchmark](g3doc/index.md#benchmark)
-*   [Getting started](g3doc/index.md#integration)
+*   [Getting started](g3doc/index.md#getting-started)
     *   [Add dependency](g3doc/index.md#add-dependency)
     *   [Import](g3doc/index.md#import)
     *   [Adopt](g3doc/index.md#adopt)
@@ -31,7 +31,7 @@ Objective-C and Swift to facilitate writing asynchronous code.
     *   [Timeout](g3doc/index.md#timeout)
     *   [Validate](g3doc/index.md#validate)
     *   [When](g3doc/index.md#when)
-*   [Advanced topics](g3doc/index.md#advanced)
+*   [Advanced topics](g3doc/index.md#advanced-topics)
     *   [Ownership and retain
         cycles](g3doc/index.md#ownership-and-retain-cycles)
     *   [Testing](g3doc/index.md#testing)
