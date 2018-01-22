@@ -140,7 +140,7 @@ NS_INLINE void FBLLogTotalTime(NSTimeInterval time) {
       [NSMutableArray arrayWithCapacity:FBLPromisePerformanceTestIterationCount];
   for (NSUInteger i = 0; i < FBLPromisePerformanceTestIterationCount; ++i) {
     dispatch_group_enter(group);
-    void (^block)() = ^{
+    void (^block)(void) = ^{
       dispatch_group_leave(group);
     };
     [blocks addObject:block];

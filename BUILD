@@ -11,6 +11,7 @@ OBJC_COPTS = [
     "-Werror",
     "-Wextra",
     "-Wall",
+    "-Wstrict-prototypes",
     "-Wdocumentation",
 ]
 
