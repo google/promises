@@ -36,7 +36,7 @@ Objective-C and Swift to facilitate writing asynchronous code.
         cycles](g3doc/index.md#ownership-and-retain-cycles)
     *   [Testing](g3doc/index.md#testing)
     *   [Objective-C <-> Swift
-        interoperability](g3doc/index.md#objective-c-swift-interoperability)
+        interoperability](g3doc/index.md#objective-c---swift-interoperability)
     *   [Dot-syntax in Objective-C](g3doc/index.md#dot-syntax-in-objective-c)
 *   [Anti-patterns](g3doc/index.md#anti-patterns)
     *   [Broken chain](g3doc/index.md#broken-chain)
