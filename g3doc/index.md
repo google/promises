@@ -396,7 +396,7 @@ In you `Package.swift` file add `Promises` dependency to corresponding targets:
 let package = Package(
   // ...
   dependencies: [
-    .package(url: "https://github.com/google/promises.git", from: "1.0"),
+    .package(url: "https://github.com/google/promises.git", from: "1.0.0"),
   ],
   // ...
 )
