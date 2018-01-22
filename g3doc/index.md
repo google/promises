@@ -366,7 +366,7 @@ on an iPhone 6s iOS 11.2.1 for the popular frameworks:
 
 #### Bazel
 
-In your `BUILD` file add `Promises` deps to corresponding targets:
+In your `BUILD` file, add `Promises` deps to corresponding targets:
 
 ```python
 objc_library(
@@ -424,11 +424,11 @@ import Promises
 
 Add the following to your `Podfile`:
 
-    pod `PromisesObjC`
+    pod `PromisesObjC`, '~> 1.0'
 
 Or, if you would also like to include the tests:
 
-    pod 'PromisesObjC', :testspecs => ['Tests', 'PerformanceTests']
+    pod 'PromisesObjC', '~> 1.0', :testspecs => ['Tests', 'PerformanceTests']
 
 Then, run `pod install`.
 

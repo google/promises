@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
                            "Sources/#{s.module_name}/include/FBLPromisePrivate.h"
   s.source_files = "Sources/#{s.module_name}/**/*.{h,m}"
   s.xcconfig = {
-     'HEADER_SEARCH_PATHS' => "${PODS_TARGET_SRCROOT}/Sources/#{s.module_name}/include"
+     'HEADER_SEARCH_PATHS' => "\"${PODS_TARGET_SRCROOT}/Sources/#{s.module_name}/include\""
   }
 
   s.test_spec 'Tests' do |ts|
