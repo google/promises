@@ -366,7 +366,7 @@ on an iPhone 6s iOS 11.2.1 for the popular frameworks:
 
 #### Bazel
 
-In your `BUILD` file add `Promises` deps to corresponding targets:
+In your `BUILD` file, add `Promises` deps to corresponding targets:
 
 ```python
 objc_library(
