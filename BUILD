@@ -57,9 +57,6 @@ objc_library(
         "FBLPromises.h",
     ],
     copts = OBJC_COPTS,
-    defines = [
-        "FBL_PROMISES_DOT_SYNTAX_IS_DEPRECATED",
-    ],
     includes = [
         "Sources/FBLPromises/include",
     ],
