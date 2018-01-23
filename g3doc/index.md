@@ -430,7 +430,7 @@ Or, if you would also like to include the tests:
 
     pod 'PromisesObjC', '~> 1.0', :testspecs => ['Tests', 'PerformanceTests']
 
-Then, run `pod install`.
+And don't forget to `use_frameworks!` in your target. Then, run `pod install`.
 
 For Objective-C, import the umbrella header as:
 
