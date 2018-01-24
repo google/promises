@@ -388,19 +388,25 @@ swift_library(
 )
 ```
 
-For Swift, import the module:
-
-```swift
-import Promises
-```
-
 For Objective-C, import the umbrella header:
 
 ```objectivec
 #import "path/to/Promises/FBLPromises.h"
 ```
 
-#### Swift PM
+Or, the module, if `enable_modules = True`:
+
+```objectivec
+@import FBLPromises;
+```
+
+For Swift, import the module:
+
+```swift
+import Promises
+```
+
+#### Swift Package Manager
 
 In your `Package.swift` file, add `Promises` dependency to corresponding targets:
 
@@ -414,7 +420,19 @@ let package = Package(
 )
 ```
 
-Import the module as:
+For Objective-C, import the umbrella header:
+
+```objectivec
+#import "FBLPromises.h"
+```
+
+Or, the module, if `CLANG_ENABLE_MODULES = YES`:
+
+```objectivec
+@import FBLPromises;
+```
+
+For Swift, import the module:
 
 ```swift
 import Promises
@@ -422,7 +440,7 @@ import Promises
 
 #### CocoaPods
 
-Add the following to your `Podfile`:
+To use `Promises` for Objective-C only, add the following to your `Podfile`:
 
     pod `PromisesObjC`, '~> 1.0'
 
@@ -432,22 +450,34 @@ Or, if you would also like to include the tests:
 
 And don't forget to `use_frameworks!` in your target. Then, run `pod install`.
 
-For Objective-C, import the umbrella header as:
+For Objective-C, import the umbrella header:
 
 ```objectivec
-#import "<FBLPromises/FBLPromises.h>"
+#import "FBLPromises.h"
 ```
 
 Or:
 
 ```objectivec
-#import "FBLPromises.h"
+#import "<FBLPromises/FBLPromises.h>"
 ```
 
 Or, the module:
 
 ```objectivec
 @import FBLPromises;
+```
+
+#### Carthage
+
+Sorry, we intentionally don't ship any fixed Xcode project with the framework,
+which seems to be a requirement for `Carthage`. But you can generate one with
+[Tulsi](https://tulsi.bazel.build/). Or just `cd` to `Promises` directory and
+run the following Swift Package Manager command to open the generated Xcode
+project in the workspace we do provide:
+
+```sh
+swift package -Xswiftc -ISources/FBLPromises/include generate-xcodeproj && open Promises.xcworkspace
 ```
 
 ### Adopt
@@ -540,7 +570,7 @@ let promise = Promise<String>(on: .main) { fulfill, reject
 }
 ```
 
-`Promises` use the main dispatch queue by default, so the above code is actually
+Promises use the main dispatch queue by default, so the above code is actually
 equivalent to:
 
 Objective-C:
@@ -1270,6 +1300,19 @@ func testExample() {
 
 Those functions take a timeout arg and return true if all promise blocks have
 completed before the timeout; otherwise, they return false.
+
+To run the test suit for the Promises framework itself it's recommended to use
+Bazel. `cd` to the project directory and run:
+
+```sh
+bazel test Tests
+```
+
+A bit limited set of tests can also be run with Swift Package Manager:
+
+```sh
+swift test
+```
 
 ### Objective-C <-> Swift interoperability
 
