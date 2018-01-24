@@ -17,6 +17,7 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = '9.0'
 
   s.module_name = 'FBLPromises'
+  s.module_map = "Sources/#{s.module_name}/include/module.modulemap"
   s.prefix_header_file = false
   s.header_mappings_dir = "Sources/#{s.module_name}/include/"
   s.public_header_files = "Sources/#{s.module_name}/include/**/*.h"
