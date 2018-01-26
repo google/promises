@@ -1373,7 +1373,7 @@ objc.needsAPromise(providesAPromise(42))
 
 When chaining promises in Objective-C, you can end up having a lot of square
 brackets and other formatting concerns. To help with that, we used a trick which
-lets us pass args into a method via it's return value of block type. For
+lets us pass args into a method via its return value of block type. For
 example, the code in [catch pipeline](#catch-pipeline) written using the
 dot-syntax would look like:
 
