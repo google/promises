@@ -1,8 +1,8 @@
 # Promises
 
 This guide provides an overview of
-[Promises](https://github.com/google/promises) framework for Objective-C and
-Swift.
+[Promises](https://github.com/google/promises) framework for Swift and
+Objective-C.
 
 ## Introduction
 
@@ -238,7 +238,7 @@ that can:
 ## Framework
 
 Promises is a modern framework that implements the aforementioned
-synchronization construct in Objective-C and Swift.
+synchronization construct in Swift and Objective-C.
 
 ### Features
 
@@ -388,6 +388,12 @@ swift_library(
 )
 ```
 
+For Swift, import the module:
+
+```swift
+import Promises
+```
+
 For Objective-C, import the umbrella header:
 
 ```objectivec
@@ -398,12 +404,6 @@ Or, the module, if `enable_modules = True`:
 
 ```objectivec
 @import FBLPromises;
-```
-
-For Swift, import the module:
-
-```swift
-import Promises
 ```
 
 #### Swift Package Manager
@@ -420,6 +420,12 @@ let package = Package(
 )
 ```
 
+For Swift, import the module:
+
+```swift
+import Promises
+```
+
 For Objective-C, import the umbrella header:
 
 ```objectivec
@@ -432,15 +438,9 @@ Or, the module, if `CLANG_ENABLE_MODULES = YES`:
 @import FBLPromises;
 ```
 
-For Swift, import the module:
-
-```swift
-import Promises
-```
-
 #### CocoaPods
 
-To use `Promises` for Objective-C only, add the following to your `Podfile`:
+To use `Promises` for Objective-C, add the following to your `Podfile`:
 
     pod `PromisesObjC`, '~> 1.0'
 
@@ -448,7 +448,7 @@ Or, if you would also like to include the tests:
 
     pod 'PromisesObjC', '~> 1.0', :testspecs => ['Tests', 'PerformanceTests']
 
-And don't forget to `use_frameworks!` in your target. Then, run `pod install`.
+Also, don't forget to `use_frameworks!` in your target. Then, run `pod install`.
 
 For Objective-C, import the umbrella header:
 
@@ -484,30 +484,30 @@ swift package -Xswiftc -ISources/FBLPromises/include generate-xcodeproj && open 
 
 Instead of taking a completion block as the last argument:
 
-Objective-C:
-
-```objectivec
-- (void)getDataAtURL:(NSURL *)anURL completion:^(NSData *data, NSError *error)completion;
-```
-
 Swift:
 
 ```swift
 func data(at url: URL, completion: @escaping (Data?, Error?) -> Void)
 ```
 
-Promises based async routines return a promise object:
-
 Objective-C:
 
 ```objectivec
-- (FBLPromise<NSData *> *)getDataAtURL:(NSURL *)anURL;
+- (void)getDataAtURL:(NSURL *)anURL completion:^(NSData *data, NSError *error)completion;
 ```
+
+Promises based async routines return a promise object:
 
 Swift:
 
 ```swift
 func data(at url: URL) -> Promise<Data>
+```
+
+Objective-C:
+
+```objectivec
+- (FBLPromise<NSData *> *)getDataAtURL:(NSURL *)anURL;
 ```
 
 Some legacy code that cannot be modified directly, can be wrapped with
@@ -538,6 +538,21 @@ Pass a work block to be called asynchronously in the `async` operator and invoke
 `fulfill()` with a value or `reject()` with an error inside that work block when
 ready:
 
+Swift:
+
+```swift
+let promise = Promise<String>(on: .main) { fulfill, reject
+  // Called asynchronously on the dispatch queue specified.
+  if success {
+    // Resolve with a value.
+    fulfill("Hello world.")
+  } else {
+    // Resolve with an error.
+    reject(someError)
+  }
+}
+```
+
 Objective-C:
 
 ```objectivec
@@ -555,23 +570,21 @@ FBLPromise<NSString *> *promise = [FBLPromise onQueue:dispatch_get_main_queue()
 }];
 ```
 
+Promises use the main dispatch queue by default, so the above code is actually
+equivalent to:
+
 Swift:
 
 ```swift
-let promise = Promise<String>(on: .main) { fulfill, reject
-  // Called asynchronously on the dispatch queue specified.
+let promise = Promise<String> { fulfill, reject
+  // Called asynchronously on the main queue by default.
   if success {
-    // Resolve with a value.
     fulfill("Hello world.")
   } else {
-    // Resolve with an error.
     reject(someError)
   }
 }
 ```
-
-Promises use the main dispatch queue by default, so the above code is actually
-equivalent to:
 
 Objective-C:
 
@@ -587,32 +600,10 @@ FBLPromise<NSString *> *promise = [FBLPromise async:^(FBLPromiseFulfillBlock ful
 }];
 ```
 
-Swift:
-
-```swift
-let promise = Promise<String> { fulfill, reject
-  // Called asynchronously on the main queue by default.
-  if success {
-    fulfill("Hello world.")
-  } else {
-    reject(someError)
-  }
-}
-```
-
 ##### Do
 
 We can make the above examples even more concise with `do` operator if the block
 of code inside a promise doesn't require async fulfillment:
-
-Objective-C:
-
-```objectivec
-FBLPromise<NSString *> *promise = [FBLPromise do:^id {
-  // Called asynchronously on the main queue by default.
-  return success ? @"Hello world" : someError;
-}];
-```
 
 Swift:
 
@@ -624,23 +615,21 @@ let promise = Promise<String> {
 }
 ```
 
-##### Pending
-
-And in case you need a pending promise without any async block of work
-associated with it, you can use `pendingPromise` class method in Objective-C or
-`pending()` static func in Swift, and resolve the promise manually later on:
-
 Objective-C:
 
 ```objectivec
-FBLPromise<NSString *> *promise = [FBLPromise pendingPromise];
-// ...
-if (success) {
-  [promise fulfill:@"Hello world"];
-} else {
-  [promise reject:someError];
-}
+FBLPromise<NSString *> *promise = [FBLPromise do:^id {
+  // Called asynchronously on the main queue by default.
+  return success ? @"Hello world" : someError;
+}];
 ```
+
+##### Pending
+
+And in case you need a pending promise without any async block of work
+associated with it, you can use `pending()` static func in Swift or
+`pendingPromise` class method in Objective-C, and resolve the promise manually
+later on:
 
 Swift:
 
@@ -654,6 +643,18 @@ if success {
 }
 ```
 
+Objective-C:
+
+```objectivec
+FBLPromise<NSString *> *promise = [FBLPromise pendingPromise];
+// ...
+if (success) {
+  [promise fulfill:@"Hello world"];
+} else {
+  [promise reject:someError];
+}
+```
+
 Beware, though, that creating such an untethered promise may potentially lead to
 tricky [retain cycles](#ownership-and-retain-cycles).
 
@@ -661,17 +662,6 @@ tricky [retain cycles](#ownership-and-retain-cycles).
 
 Sometimes it's convenient to create an already fulfilled or rejected promise.
 Pass an initial value or error to the promise's constructor for that:
-
-Objective-C:
-
-```objectivec
-- (FBLPromise<NSData *> *)getDataAtURL:(NSURL *)anURL {
-  if (anURL.absoluteString.length == 0) {
-    return [FBLPromise resolvedWith:nil];
-  }
-  return [self loadURL:anURL];
-}
-```
 
 Swift:
 
@@ -681,6 +671,17 @@ func data(at url: URL) -> Promise<Data?> {
     return Promise(nil)
   }
   return load(url)
+}
+```
+
+Objective-C:
+
+```objectivec
+- (FBLPromise<NSData *> *)getDataAtURL:(NSURL *)anURL {
+  if (anURL.absoluteString.length == 0) {
+    return [FBLPromise resolvedWith:nil];
+  }
+  return [self loadURL:anURL];
 }
 ```
 
@@ -710,41 +711,6 @@ promise, a value, or an error to be returned. The operator itself returns
 another promise that will be resolved with the same resolution that the promise
 returned from the block. Any value or error returned from the block is
 considered a resolved promise initialized with that value or error. For example:
-
-Objective-C:
-
-```objectivec
-FBLPromise<NSNumber *> *numberPromise = [FBLPromise resolvedWith:@42];
-
-// Return another promise.
-FBLPromise<NSString *> chainedStringPromise = [numberPromise then:^id(NSNumber *number) {
-  return [self stringFromNumber:number];
-}];
-
-// Return any value.
-FBLPromise<NSString *> chainedStringPromise = [numberPromise then:^id(NSNumber *number) {
-  return [number stringValue];
-}];
-
-// Return or @throw an error.
-FBLPromise<NSString *> chainedStringPromise = [numberPromise then:^id(NSNumber *number) {
-  return [NSError errorWithDomain:@"" code:0 userInfo:nil];
-}];
-
-// Fake void return.
-FBLPromise<NSString *> chainedStringPromise = [numberPromise then:^id(NSNumber *number) {
-  NSLog(@"%@", number);
-  return nil;
-  // OR
-  return number;
-}];
-```
-
-Note: Since Objective-C doesn't support method overloading, we cannot provide a
-version of the `then` operator with `void` return type. Thus, if you have no
-value to return from the `then` block, you can always just return `nil` or, even
-better, the same value as you received. Returning an actual value makes it
-easier to chain on this promise in the future.
 
 Swift:
 
@@ -776,16 +742,43 @@ let chainedStringPromise = numberPromise.then { number in
 Note: `chainedStringPromise` is an example of a `Void` return that is
 effectively similar to returning the incoming value, i.e. `return number`.
 
-By default, the `then` blocks are dispatched on the main thread, but they can be
-easily configured to be dispatched on a custom queue:
-
 Objective-C:
 
 ```objectivec
-[numberPromise onQueue:backgroundQueue then:^id(NSNumber *number) {
-  return number.stringValue;
+FBLPromise<NSNumber *> *numberPromise = [FBLPromise resolvedWith:@42];
+
+// Return another promise.
+FBLPromise<NSString *> chainedStringPromise = [numberPromise then:^id(NSNumber *number) {
+  return [self stringFromNumber:number];
+}];
+
+// Return any value.
+FBLPromise<NSString *> chainedStringPromise = [numberPromise then:^id(NSNumber *number) {
+  return [number stringValue];
+}];
+
+// Return or @throw an error.
+FBLPromise<NSString *> chainedStringPromise = [numberPromise then:^id(NSNumber *number) {
+  return [NSError errorWithDomain:@"" code:0 userInfo:nil];
+}];
+
+// Fake void return.
+FBLPromise<NSString *> chainedStringPromise = [numberPromise then:^id(NSNumber *number) {
+  NSLog(@"%@", number);
+  return nil;
+  // OR
+  return number;
 }];
 ```
+
+Note: Since Objective-C doesn't support method overloading, we cannot provide a
+version of the `then` operator with `void` return type. Thus, if you don't have
+a value to return from the `then` block, you can always just return `nil` or,
+even better, the same value as you received. Returning an actual value makes it
+easier to chain on this promise in the future.
+
+By default, the `then` blocks are dispatched on the main thread, but they can be
+easily configured to be dispatched on a custom queue:
 
 Swift:
 
@@ -795,39 +788,18 @@ numberPromise.then(on: backgroundQueue) { number in
 }
 ```
 
+Objective-C:
+
+```objectivec
+[numberPromise onQueue:backgroundQueue then:^id(NSNumber *number) {
+  return number.stringValue;
+}];
+```
+
 #### `then` pipeline
 
 But the most important thing, of course, is the ability to chain any number of
 promises together into a pipeline to simulate synchronous execution:
-
-Objective-C:
-
-```objectivec
-- (FBLPromise<NSString *> *)work1:(NSString *)string {
-  return [FBLPromise do:^id {
-    return string;
-  }];
-}
-
-- (FBLPromise<NSNumber *>)work2:(NSString *)string {
-  return [FBLPromise do:^id {
-    return @(string.integerValue);
-  }];
-}
-
-- (NSNumber *)work3:(NSNumber *)number {
-  return @(number.integerValue * number.integerValue);
-}
-
-[[[[self work1:@"10"] then:^id(NSString *string) {
-  return [self work2:string];
-}] then:^id(NSNumber *)number {
-  return [self work3:number];
-}] then:^id(NSNumber* number) {
-  NSLog(@"%@", number);  // 100
-  return number;
-}];
-```
 
 Swift:
 
@@ -866,6 +838,35 @@ work1("10").then(work2).then(work3).then { number in
 }
 ```
 
+Objective-C:
+
+```objectivec
+- (FBLPromise<NSString *> *)work1:(NSString *)string {
+  return [FBLPromise do:^id {
+    return string;
+  }];
+}
+
+- (FBLPromise<NSNumber *>)work2:(NSString *)string {
+  return [FBLPromise do:^id {
+    return @(string.integerValue);
+  }];
+}
+
+- (NSNumber *)work3:(NSNumber *)number {
+  return @(number.integerValue * number.integerValue);
+}
+
+[[[[self work1:@"10"] then:^id(NSString *string) {
+  return [self work2:string];
+}] then:^id(NSNumber *)number {
+  return [self work3:number];
+}] then:^id(NSNumber* number) {
+  NSLog(@"%@", number);  // 100
+  return number;
+}];
+```
+
 ### Observing rejection
 
 To get notified when a promise is resolved with an error (i.e. is rejected), use
@@ -892,20 +893,20 @@ argument, the promise is rejected with that error.
 promise was rejected with as an argument. The operator itself implicitly returns
 another promise, that is rejected with the same error.
 
-Objective-C:
-
-```objectivec
-[[self numberFromString:@"abc"] catch:^(NSError *error) {
-  NSLog(@"Cannot convert string to number: %@", error);
-}];
-```
-
 Swift:
 
 ```swift
 number(from: "abc").catch { error in
   print("Cannot convert string to number: \(error)")
 }
+```
+
+Objective-C:
+
+```objectivec
+[[self numberFromString:@"abc"] catch:^(NSError *error) {
+  NSLog(@"Cannot convert string to number: %@", error);
+}];
 ```
 
 #### `catch` pipeline
@@ -916,6 +917,39 @@ promise is propagated down the pipeline automatically, ignoring any remaining
 `then` blocks in the pipeline. Instead, the `catch` operator can be placed
 anywhere in the chain to handle errors. For example, consider the code from
 [then pipeline](#then-pipeline):
+
+Swift:
+
+```swift
+struct CustomError: Error {}
+
+func work1(_ string: String) -> Promise<String> {
+  return Promise {
+    return string
+  }
+}
+
+func work2(_ string: String) -> Promise<Int> {
+  return Promise {
+    guard let number = Int(string), number > 0 else { throw CustomError() }
+    return number
+  }
+}
+
+func work3(_ number: Int) -> Int {
+  return number * number
+}
+
+work1("10").then { string in
+  return work2(string)
+}.then { number in
+  return work3(number)  // Never executed.
+}.then { number in
+  print(number)  // Never executed.
+}.catch { error in
+  print("Cannot convert string to number: \(error)")
+}
+```
 
 Objective-C:
 
@@ -953,39 +987,6 @@ Note: When chaining promises in Objective-C, you can end up having a lot of
 square brackets. One way to solve that is with
 [dot-syntax](#dot-syntax-in-objective-c).
 
-Swift:
-
-```swift
-struct CustomError: Error {}
-
-func work1(_ string: String) -> Promise<String> {
-  return Promise {
-    return string
-  }
-}
-
-func work2(_ string: String) -> Promise<Int> {
-  return Promise {
-    guard let number = Int(string), number > 0 else { throw CustomError() }
-    return number
-  }
-}
-
-func work3(_ number: Int) -> Int {
-  return number * number
-}
-
-work1("10").then { string in
-  return work2(string)
-}.then { number in
-  return work3(number)  // Never executed.
-}.then { number in
-  print(number)  // Never executed.
-}.catch { error in
-  print("Cannot convert string to number: \(error)")
-}
-```
-
 ## Extensions
 
 Having [basic](#basics) operators like [`async`](#async), [`do`](#do),
@@ -999,6 +1000,12 @@ high-level patterns that would also be great to provide out of the box.
 they have, the promise returned form `all` will be fulfilled with the array of
 all fulfilled values.
 
+Swift:
+
+```swift
+all(contacts.map { MyClient.getAvatarFor(contact: $0) }).then(updateAvatars)
+```
+
 Objective-C:
 
 ```objectivec
@@ -1010,12 +1017,6 @@ Objective-C:
 }];
 ```
 
-Swift:
-
-```swift
-all(contacts.map { MyClient.getAvatarFor(contact: $0) }).then(updateAvatars)
-```
-
 Also, see how `all` helps to avoid [nested promises](#nested-promises).
 
 ### Always
@@ -1023,6 +1024,18 @@ Also, see how `all` helps to avoid [nested promises](#nested-promises).
 `always` is handy when we want some piece of code to execute always down the
 promises pipeline, regardless of whether or not the previous promise was
 fulfilled or rejected.
+
+Swift:
+
+```swift
+getCurrentUserContactsAvatars().then { avatars in
+  self.update(avatars)
+}.catch { error in
+  self.showErrorAlert(error)
+}.always {
+  self.label.text = "All done."
+}
+```
 
 Objective-C:
 
@@ -1037,18 +1050,6 @@ Objective-C:
 }];
 ```
 
-Swift:
-
-```swift
-getCurrentUserContactsAvatars().then { avatars in
-  self.update(avatars)
-}.catch { error in
-  self.showErrorAlert(error)
-}.always {
-  self.label.text = "All done."
-}
-```
-
 ### Any
 
 `any` class method is similar to `all`, but the promise that it returns fulfills
@@ -1059,6 +1060,17 @@ given.
 
 `recover` lets us `catch` an error and easily recover from it without breaking
 the rest of the promise chain.
+
+Swift:
+
+```swift
+getCurrentUserContactsAvatars().recover { error in
+  print("Fallback to default avatars due to error: \(error)")
+  return self.getDefaultsAvatars()
+}.then { avatars in
+  self.update(avatars)
+}
+```
 
 Objective-C:
 
@@ -1072,31 +1084,10 @@ Objective-C:
 }];
 ```
 
-Swift:
-
-```swift
-getCurrentUserContactsAvatars().recover { error in
-  print("Fallback to default avatars due to error: \(error)")
-  return self.getDefaultsAvatars()
-}.then { avatars in
-  self.update(avatars)
-}
-```
-
 ### Resolve
 
 `resolve` class method provides a convenient way to convert other methods that
 use common callback patterns (like `^(id, NSError *)`, etc.) into promises.
-
-Objective-C:
-
-```objectivec
-- (FBLPromise<NSData*> *)newAsyncMethodReturningAPromise {
-  return [FBLPromise resolveWithObjectOrErrorWhen:^(FBLPromiseObjectOrErrorCompletion handler) {
-    [MyClient wrappedAsyncMethodWithTypicalCompletion:handler];
-  }];
-}
-```
 
 Swift:
 
@@ -1105,6 +1096,16 @@ func newAsyncMethodReturningAPromise() -> Promise<Data> {
   return Promise.resolve { handler in
     MyClient.wrappedAsyncMethodWithTypical(completion: handler)
   }
+}
+```
+
+Objective-C:
+
+```objectivec
+- (FBLPromise<NSData*> *)newAsyncMethodReturningAPromise {
+  return [FBLPromise resolveWithObjectOrErrorWhen:^(FBLPromiseObjectOrErrorCompletion handler) {
+    [MyClient wrappedAsyncMethodWithTypicalCompletion:handler];
+  }];
 }
 ```
 
@@ -1123,6 +1124,14 @@ value is acceptable. If `validate` returns true, the promise is fulfilled with
 the value. If it's false, the promise is rejected with `NSError` in
 `FBLPromiseErrorDomain` domain with code `FBLPromiseErrorCodeValidationFailure`.
 
+Swift:
+
+```swift
+getAuthToken().validate { !$0.isEmpty }.then(getData).catch { error in
+  print("Failed to get auth token: \(error))
+}
+```
+
 Objective-C:
 
 ```objectivec
@@ -1133,14 +1142,6 @@ Objective-C:
 }] catch:^(NSError *error) {
   NSLog(@"Failed to get auth token: %@", error);
 }];
-```
-
-Swift:
-
-```swift
-getAuthToken().validate { !$0.isEmpty }.then(getData).catch { error in
-  print("Failed to get auth token: \(error))
-}
 ```
 
 ### When
@@ -1173,6 +1174,25 @@ promise in a local var or ivar, especially if you've created a
 cycle won't be broken until the promise gets resolved. Consider the following
 example:
 
+Swift:
+
+```swift
+class MyClass {
+  var promise: Promise<Int>?
+
+  func doSomething() -> Promise<String> {
+    if promise == nil {
+      promise = Promise<Int>.pending()
+    }
+    return promise?.then(doSomethingElse)
+  }
+
+  func doSomethingElse(number: Int) -> String {
+    return String(number)
+  }
+}
+```
+
 Objective-C:
 
 ```objectivec
@@ -1196,37 +1216,10 @@ Objective-C:
 @end
 ```
 
-Swift:
-
-```swift
-class MyClass {
-  var promise: Promise<Int>?
-
-  func doSomething() -> Promise<String> {
-    if promise == nil {
-      promise = Promise<Int>.pending()
-    }
-    return promise?.then(doSomethingElse)
-  }
-
-  func doSomethingElse(number: Int) -> String {
-    return String(number)
-  }
-}
-```
-
 `self` owns the `promise`, and `promise` in turn captures `self` in `then` block
 until it gets eventually resolved, if ever. So we get a retain cycle. We could
 resolve it with a weak reference, of course, since we're aware of code specifics
 in `MyClass`. But that situation can become even more subtle:
-
-Objective-C:
-
-```objectivec
-[[myClass doSomething] then:^id(NSString *string) {
-  [myClass doSomeOtherThing];
-}];
-```
 
 Swift:
 
@@ -1234,6 +1227,14 @@ Swift:
 myClass.doSomething().then { string in
   myClass.doSomeOtherThing()
 }
+```
+
+Objective-C:
+
+```objectivec
+[[myClass doSomething] then:^id(NSString *string) {
+  [myClass doSomeOtherThing];
+}];
 ```
 
 Here we get a promise from one of `MyClass` methods and use it to chain an
@@ -1255,10 +1256,28 @@ can be handled by GCD.
 
 Unit tests are typically run in a single thread of execution. So waiting for a
 bunch of async tasks to finish in a test can be tricky. To facilitate that, all
-promises are dispatched in a common dispatch group (`FBLPromise.dispatchGroup`
-in Objective-C or `DispatchGroup.promises` in Swift) that you can wait on with a
-helper function (`FBLWaitForPromisesWithTimeout()` in Objective-C or
-`waitForPromises()` in Swift):
+promises are dispatched in a common dispatch group (`DispatchGroup.promises` in
+Swift or `FBLPromise.dispatchGroup` in Objective-C) that you can wait on with a
+helper function (`waitForPromises()` in Swift or
+`FBLWaitForPromisesWithTimeout()` in Objective-C):
+
+Swift:
+
+```swift
+import Promises
+
+// ...
+func testExample() {
+  // Arrange & Act.
+  let promise = Promise<Int> { 42 }
+
+  // Assert.
+  XCTAssert(waitForPromises(timeout: 1))
+  XCTAssertEqual(promise.value, 42)
+  XCTAssertNil(promise.error)
+}
+// ...
+```
 
 Objective-C:
 
@@ -1280,28 +1299,10 @@ Objective-C:
 // ...
 ```
 
-Swift:
-
-```swift
-import Promises
-
-// ...
-func testExample() {
-  // Arrange & Act.
-  let promise = Promise<Int> { 42 }
-
-  // Assert.
-  XCTAssert(waitForPromises(timeout: 1))
-  XCTAssertEqual(promise.value, 42)
-  XCTAssertNil(promise.error)
-}
-// ...
-```
-
 Those functions take a timeout arg and return true if all promise blocks have
 completed before the timeout; otherwise, they return false.
 
-To run the test suit for the Promises framework itself it's recommended to use
+To run the test suite for the Promises framework itself it's recommended to use
 Bazel. `cd` to the project directory and run:
 
 ```sh
@@ -1405,6 +1406,16 @@ to avoid.
 
 You have code like:
 
+Swift:
+
+```swift
+func asyncCall() -> Promise<Data> {
+  let promise = doSomethingAsync()
+  promise.then(process)
+  return promise
+}
+```
+
 Objective-C:
 
 ```objectivec
@@ -1417,19 +1428,18 @@ Objective-C:
 }
 ```
 
+The problem here is that if the promise returned from `processData` method is
+rejected, there's no way to `catch` it. Promises are meant to be chained. To
+fix, always return the result of the final `then`:
+
 Swift:
 
 ```swift
 func asyncCall() -> Promise<Data> {
   let promise = doSomethingAsync()
-  promise.then(process)
-  return promise
+  return promise.then(process)
 }
 ```
-
-The problem here is that if the promise returned from `processData` method is
-rejected, there's no way to `catch` it. Promises are meant to be chained. To
-fix, always return the result of the final `then`:
 
 Objective-C:
 
@@ -1442,29 +1452,10 @@ Objective-C:
 }
 ```
 
-Swift:
-
-```swift
-func asyncCall() -> Promise<Data> {
-  let promise = doSomethingAsync()
-  return promise.then(process)
-}
-```
-
 ### Nested promises
 
 Avoid nesting promises, as this is the issue that promises are designed to
 solve:
-
-Objective-C:
-
-```objectivec
-[[self loadSomething] then:^id(NSData *something) {
-  return [[self loadAnother] then:^id(NSData *another) {
-    return [self doSomethingWith:something andAnother:another];
-  }];
-}];
-```
 
 Swift:
 
@@ -1476,18 +1467,20 @@ loadSomething().then { something in
 }
 ```
 
+Objective-C:
+
+```objectivec
+[[self loadSomething] then:^id(NSData *something) {
+  return [[self loadAnother] then:^id(NSData *another) {
+    return [self doSomethingWith:something andAnother:another];
+  }];
+}];
+```
+
 The reason why this issue even appeared is because we need to do something with
 the results of both promises, so we can’t chain them, since the `then` is only
 passed the result of the previous return. Thankfully, there's [`all`](#all)
 operator:
-
-Objective-C:
-
-```objectivec
-[[FBLPromise all:@[ [self loadSomething], [self loadAnother] ]] then:^id(NSArray<NSData *> *result) {
-  return [self doSomethingWith:result.firstObject andAnother:result.lastObject];
-}];
-```
 
 Swift:
 
@@ -1497,22 +1490,16 @@ Promise.all([loadSomething(), loadAnother()]).then { result in
 }
 ```
 
-And if you don't like `all` (an array of heterogeneous values doesn't always
-read well), just move the nested part into a separate method:
-
 Objective-C:
 
 ```objectivec
-[[self loadSomething] then:^id(NSData *something) {
-  return [self loadAnotherWithSomething:something];
+[[FBLPromise all:@[ [self loadSomething], [self loadAnother] ]] then:^id(NSArray<NSData *> *result) {
+  return [self doSomethingWith:result.firstObject andAnother:result.lastObject];
 }];
-
-- (FBLPromise<MyResult *> *)loadAnotherWithSomething:(NSData *)something {
-  return [[self loadAnother] then:^id(NSData *another) {
-    return [self doSomethingWith:something andAnother:another];
-  }];
-}
 ```
+
+And if you don't like `all` (an array of heterogeneous values doesn't always
+read well), just move the nested part into a separate method:
 
 Swift:
 
@@ -1525,5 +1512,19 @@ func loadAnother(with something: Data) -> Promise<MyResult> {
   loadAnother().then { another in
     self.doSomething(with: something, and: another)
   }
+}
+```
+
+Objective-C:
+
+```objectivec
+[[self loadSomething] then:^id(NSData *something) {
+  return [self loadAnotherWithSomething:something];
+}];
+
+- (FBLPromise<MyResult *> *)loadAnotherWithSomething:(NSData *)something {
+  return [[self loadAnother] then:^id(NSData *another) {
+    return [self doSomethingWith:something andAnother:another];
+  }];
 }
 ```
