@@ -940,7 +940,7 @@ func work3(_ number: Int) -> Int {
   return number * number
 }
 
-work1("10").then { string in
+work1("abc").then { string in
   return work2(string)
 }.then { number in
   return work3(number)  // Never executed.
@@ -997,7 +997,7 @@ high-level patterns that would also be great to provide out of the box.
 ### All
 
 `all` class method waits for all the promises you give it to fulfill, and once
-they have, the promise returned form `all` will be fulfilled with the array of
+they have, the promise returned from `all` will be fulfilled with the array of
 all fulfilled values.
 
 Swift:
