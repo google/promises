@@ -541,7 +541,7 @@ ready:
 Swift:
 
 ```swift
-let promise = Promise<String>(on: .main) { fulfill, reject
+let promise = Promise<String>(on: .main) { fulfill, reject in
   // Called asynchronously on the dispatch queue specified.
   if success {
     // Resolve with a value.
@@ -576,7 +576,7 @@ equivalent to:
 Swift:
 
 ```swift
-let promise = Promise<String> { fulfill, reject
+let promise = Promise<String> { fulfill, reject in
   // Called asynchronously on the main queue by default.
   if success {
     fulfill("Hello world.")
