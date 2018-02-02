@@ -442,11 +442,15 @@ Or, the module, if `CLANG_ENABLE_MODULES = YES`:
 
 To use `Promises` for Objective-C, add the following to your `Podfile`:
 
-    pod `PromisesObjC`, '~> 1.0'
+```ruby
+pod `PromisesObjC`, '~> 1.0'
+```
 
 Or, if you would also like to include the tests:
 
-    pod 'PromisesObjC', '~> 1.0', :testspecs => ['Tests', 'PerformanceTests']
+```ruby
+pod 'PromisesObjC', '~> 1.0', :testspecs => ['Tests', 'PerformanceTests']
+```
 
 Also, don't forget to `use_frameworks!` in your target. Then, run `pod install`.
 
