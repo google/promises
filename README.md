@@ -1,7 +1,8 @@
-# Promises
-
 [![Apache
-License](https://img.shields.io/badge/license-Apache%202-lightgrey.svg?style=flat)](LICENSE)
+License](https://img.shields.io/github/license/google/promises.svg)](LICENSE)
+[![Travis](https://img.shields.io/travis/google/promises.svg)](https://travis-ci.org/google/promises)
+
+# Promises
 
 Promises is a modern framework that provides a synchronization construct for
 Objective-C and Swift to facilitate writing asynchronous code.
