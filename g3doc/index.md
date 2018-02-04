@@ -443,7 +443,7 @@ Or, the module, if `CLANG_ENABLE_MODULES = YES`:
 To use `Promises` for Objective-C, add the following to your `Podfile`:
 
 ```ruby
-pod `PromisesObjC`, '~> 1.0'
+pod 'PromisesObjC', '~> 1.0'
 ```
 
 Or, if you would also like to include the tests:
