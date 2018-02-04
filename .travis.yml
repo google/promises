@@ -1,0 +1,7 @@
+language: objective-c
+install: true
+before_install:
+    - brew update
+    - brew install bazel
+script:
+    - bazel --batch test Tests --spawn_strategy=standalone --genrule_strategy=standalone --test_strategy=standalone --noshow_progress --noshow_loading_progress --verbose_failures --test_verbose_timeout_warnings --test_output=errors

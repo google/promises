@@ -84,6 +84,7 @@ objc_library(
 
 ios_unit_test(
     name = "Tests",
+    minimum_os_version = "9.0",
     deps = [
         ":FBLPromisesInteroperabilityTests",
         ":FBLPromisesPerformanceTests",
