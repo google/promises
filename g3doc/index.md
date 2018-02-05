@@ -463,7 +463,7 @@ For Objective-C, import the umbrella header:
 Or:
 
 ```objectivec
-#import "<FBLPromises/FBLPromises.h>"
+#import <FBLPromises/FBLPromises.h>
 ```
 
 Or, the module:
