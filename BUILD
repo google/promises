@@ -85,6 +85,7 @@ objc_library(
 ios_unit_test(
     name = "Tests",
     minimum_os_version = "9.0",
+    test_host = "@build_bazel_rules_apple//apple/testing/default_host/ios",
     deps = [
         ":FBLPromisesInteroperabilityTests",
         ":FBLPromisesPerformanceTests",
