@@ -54,22 +54,6 @@
   XCTAssertNil(promise.value);
 }
 
-- (void)testPromiseAsyncThrow {
-  // Arrange & Act.
-  FBLPromise<NSNumber *> *promise =
-      [FBLPromise async:^(FBLPromiseFulfillBlock __unused _, FBLPromiseRejectBlock __unused __) {
-        @throw [NSException exceptionWithName:@"name" reason:@"reason" userInfo:nil];  // NOLINT
-      }];
-
-  // Assert.
-  XCTAssert(FBLWaitForPromisesWithTimeout(10));
-  XCTAssertEqualObjects(promise.error.domain, FBLPromiseErrorDomain);
-  XCTAssertEqual(promise.error.code, FBLPromiseErrorCodeException);
-  XCTAssertEqualObjects(promise.error.userInfo[FBLPromiseErrorUserInfoExceptionNameKey], @"name");
-  XCTAssertEqualObjects(promise.error.userInfo[FBLPromiseErrorUserInfoExceptionReasonKey],
-                        @"reason");
-}
-
 /**
  Promise created with `async` should not deallocate until it gets resolved.
  */

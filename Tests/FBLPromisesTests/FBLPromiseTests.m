@@ -74,28 +74,6 @@
 }
 
 /**
- New promise resolved with an NSException should have corresponding error set and not be pending or
- have a value.
- */
-- (void)testPromiseConstructorResolvedWithException {
-  // Arrange & Act.
-  NSException *exception = [NSException exceptionWithName:@"name" reason:@"reason" userInfo:nil];
-  FBLPromise *promise = [FBLPromise resolvedWith:exception];
-
-  // Assert.
-  XCTAssertFalse(promise.isPending);
-  XCTAssertFalse(promise.isFulfilled);
-  XCTAssertTrue(promise.isRejected);
-  XCTAssertNil(promise.pendingObjects);
-  XCTAssertNil(promise.value);
-  XCTAssertEqualObjects(promise.error.domain, FBLPromiseErrorDomain);
-  XCTAssertEqual(promise.error.code, FBLPromiseErrorCodeException);
-  XCTAssertEqualObjects(promise.error.userInfo[FBLPromiseErrorUserInfoExceptionNameKey], @"name");
-  XCTAssertEqualObjects(promise.error.userInfo[FBLPromiseErrorUserInfoExceptionReasonKey],
-                        @"reason");
-}
-
-/**
  New promise resolved with another pending promise should have its value set to nil and not be
  pending or have an error.
  */
@@ -211,29 +189,6 @@
 }
 
 /**
- Fulfilling a pending promise with NSException should reject it.
- */
-- (void)testPromiseFulfillWithException {
-  // Arrange.
-  FBLPromise<NSNumber *> *promise = [FBLPromise pendingPromise];
-
-  // Act.
-  [promise fulfill:[NSException exceptionWithName:@"name" reason:@"reason" userInfo:nil]];
-
-  // Assert.
-  XCTAssertFalse(promise.isPending);
-  XCTAssertFalse(promise.isFulfilled);
-  XCTAssertTrue(promise.isRejected);
-  XCTAssertNil(promise.pendingObjects);
-  XCTAssertNil(promise.value);
-  XCTAssertEqualObjects(promise.error.domain, FBLPromiseErrorDomain);
-  XCTAssertEqual(promise.error.code, FBLPromiseErrorCodeException);
-  XCTAssertEqualObjects(promise.error.userInfo[FBLPromiseErrorUserInfoExceptionNameKey], @"name");
-  XCTAssertEqualObjects(promise.error.userInfo[FBLPromiseErrorUserInfoExceptionReasonKey],
-                        @"reason");
-}
-
-/**
  Rejecting a pending promise should set its error and have no value.
  */
 - (void)testPromiseReject {
@@ -251,29 +206,6 @@
   XCTAssertNil(promise.value);
   XCTAssertEqualObjects(promise.error.domain, FBLPromiseErrorDomain);
   XCTAssertEqual(promise.error.code, 42);
-}
-
-/**
- Rejecting a pending promise should with NSException should reject it with a converted error.
- */
-- (void)testPromiseRejectWithException {
-  // Arrange.
-  FBLPromise<NSNumber *> *promise = [FBLPromise pendingPromise];
-
-  // Act.
-  [promise reject:(id)[NSException exceptionWithName:@"name" reason:@"reason" userInfo:nil]];
-
-  // Assert.
-  XCTAssertFalse(promise.isPending);
-  XCTAssertFalse(promise.isFulfilled);
-  XCTAssertTrue(promise.isRejected);
-  XCTAssertNil(promise.pendingObjects);
-  XCTAssertNil(promise.value);
-  XCTAssertEqualObjects(promise.error.domain, FBLPromiseErrorDomain);
-  XCTAssertEqual(promise.error.code, FBLPromiseErrorCodeException);
-  XCTAssertEqualObjects(promise.error.userInfo[FBLPromiseErrorUserInfoExceptionNameKey], @"name");
-  XCTAssertEqualObjects(promise.error.userInfo[FBLPromiseErrorUserInfoExceptionReasonKey],
-                        @"reason");
 }
 
 /**

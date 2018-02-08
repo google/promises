@@ -28,9 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (FBLPromise<Value> *)rejectWithError:(NSError *)error NS_SWIFT_UNAVAILABLE("");
 + (FBLPromise<Value> *)rejectWithError:(NSError *)error
                                  delay:(NSTimeInterval)delay NS_SWIFT_NAME(reject(_:delay:));
-+ (FBLPromise<Value> *)rejectWithException:(NSException *)exception NS_SWIFT_UNAVAILABLE("");
-+ (FBLPromise<Value> *)rejectWithException:(NSException *)exception
-                                     delay:(NSTimeInterval)delay NS_SWIFT_NAME(reject(_:delay:));
 
 @end
 

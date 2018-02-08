@@ -37,14 +37,6 @@
   return [self promiseWithValue:nil error:error delay:delay];
 }
 
-+ (FBLPromise *)rejectWithException:(NSException *)exception {
-  return [self rejectWithException:exception delay:0.0];
-}
-
-+ (FBLPromise *)rejectWithException:(NSException *)exception delay:(NSTimeInterval)delay {
-  return [self promiseThrowException:exception delay:delay];
-}
-
 #pragma mark - Private
 
 /**
@@ -62,15 +54,6 @@
         fulfill(value);
       }
     });
-  }];
-}
-
-+ (FBLPromise *)promiseThrowException:(NSException *__nullable)exception
-                               delay:(NSTimeInterval)delay {
-  return [FBLPromise async:^(FBLPromiseFulfillBlock __unused _, FBLPromiseRejectBlock __unused __) {
-    // Can't use asynchronous FBLDelay because the exception will be caught by GCD in that case.
-    [NSThread sleepForTimeInterval:delay];
-    @throw exception;  // NOLINT
   }];
 }
 

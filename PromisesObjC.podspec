@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = 'PromisesObjC'
-  s.version     = '1.0.0'
+  s.version     = '1.0.1'
   s.authors     = 'Google Inc.'
   s.license     = { :type => 'Apache', :file => 'LICENSE' }
   s.homepage    = 'https://github.com/google/promises'
@@ -20,8 +20,7 @@ Pod::Spec.new do |s|
   s.prefix_header_file = false
   s.header_mappings_dir = "Sources/#{s.module_name}/include/"
   s.public_header_files = "Sources/#{s.module_name}/include/**/*.h"
-  s.private_header_files = "Sources/#{s.module_name}/include/FBLPromiseErrorPrivate.h",
-                           "Sources/#{s.module_name}/include/FBLPromisePrivate.h"
+  s.private_header_files = "Sources/#{s.module_name}/include/FBLPromisePrivate.h"
   s.source_files = "Sources/#{s.module_name}/**/*.{h,m}"
   s.xcconfig = {
     'HEADER_SEARCH_PATHS' => "\"${PODS_TARGET_SRCROOT}/Sources/#{s.module_name}/include\""

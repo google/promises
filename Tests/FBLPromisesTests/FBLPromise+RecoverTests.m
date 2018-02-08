@@ -95,41 +95,6 @@
   XCTAssertNil(promise.error);
 }
 
-- (void)testPromiseRecoverException {
-  // Arrange.
-  NSUInteger __block count = 0;
-  NSUInteger const expectedCount = 3;
-
-  // Act.
-  FBLPromise<NSNumber *> *promise =
-      [[[[FBLPromise async:^(FBLPromiseFulfillBlock __unused _, FBLPromiseRejectBlock __unused __) {
-        @throw [NSException exceptionWithName:@"name" reason:@"reason" userInfo:nil];  // NOLINT
-      }] recover:^id(NSError *error) {
-        XCTAssertEqualObjects(error.domain, FBLPromiseErrorDomain);
-        XCTAssertEqual(error.code, FBLPromiseErrorCodeException);
-        ++count;
-        return
-            [FBLPromise async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock __unused _) {
-              FBLDelay(0.1, ^{
-                ++count;
-                fulfill(@42);
-              });
-            }];
-      }] catch:^(NSError __unused *_) {
-        XCTFail();
-      }] then:^id(NSNumber *value) {
-        XCTAssertEqualObjects(value, @42);
-        ++count;
-        return value;
-      }];
-
-  // Assert.
-  XCTAssert(FBLWaitForPromisesWithTimeout(10));
-  XCTAssertEqual(count, expectedCount);
-  XCTAssertEqualObjects(promise.value, @42);
-  XCTAssertNil(promise.error);
-}
-
 - (void)testPromiseRejectRecover {
   // Arrange.
   NSUInteger __block count = 0;

@@ -33,31 +33,4 @@ class PromiseCatchInteroperabilityTests: XCTestCase {
     XCTAssertTrue(promise.error == Test.Error.code42)
     XCTAssertNil(promise.value)
   }
-
-  func testPromiseRejectNSException() {
-    // Arrange.
-    let nsException = NSException(name: .genericException, reason: "", userInfo: nil)
-    let expectedError = PromiseError(nsException)
-
-    // Act.
-    let promise = Promise(
-      FBLPromisesTestInteroperabilityObjC<AnyObject>.reject(nsException, delay: 0.1)
-    )
-    promise.catch { error in
-      guard let error = PromiseError(error),
-          case let .nsException(name, reason, userInfo, _, _) = error else { XCTFail(); return }
-      let errorWithoutSpecifics = PromiseError.nsException(name, reason, userInfo, [], [])
-      XCTAssertEqual(errorWithoutSpecifics, expectedError)
-    }
-
-    // Assert.
-    XCTAssert(waitForPromises(timeout: 10))
-    XCTAssertTrue(promise.isRejected)
-    guard let promiseError = promise.error else { XCTFail(); return }
-    guard let error = PromiseError(promiseError),
-        case let .nsException(name, reason, userInfo, _, _) = error  else { XCTFail(); return }
-    let errorWithoutSpecifics = PromiseError.nsException(name, reason, userInfo, [], [])
-    XCTAssertEqual(errorWithoutSpecifics, expectedError)
-    XCTAssertNil(promise.value)
-  }
 }

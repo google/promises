@@ -14,23 +14,6 @@
  limitations under the License.
  */
 
-#import "FBLPromiseErrorPrivate.h"
+#import "FBLPromiseError.h"
 
 NSString *const FBLPromiseErrorDomain = @"com.google.FBLPromises.Error";
-NSString *const FBLPromiseErrorUserInfoExceptionNameKey = @"NSExceptionName";
-NSString *const FBLPromiseErrorUserInfoExceptionReasonKey = @"NSExceptionReason";
-NSString *const FBLPromiseErrorUserInfoExceptionUserInfoKey = @"NSExceptionUserInfo";
-NSString *const FBLPromiseErrorUserInfoExceptionReturnAddressesKey = @"NSExceptionReturnAddresses";
-NSString *const FBLPromiseErrorUserInfoExceptionCallStackKey = @"NSExceptionCallStack";
-
-NSError *FBLNSErrorFromNSException(NSException *exception) {
-  NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
-  userInfo[FBLPromiseErrorUserInfoExceptionNameKey] = exception.name;
-  userInfo[FBLPromiseErrorUserInfoExceptionReasonKey] = exception.reason;
-  userInfo[FBLPromiseErrorUserInfoExceptionUserInfoKey] = exception.userInfo;
-  userInfo[FBLPromiseErrorUserInfoExceptionReturnAddressesKey] = exception.callStackReturnAddresses;
-  userInfo[FBLPromiseErrorUserInfoExceptionCallStackKey] = exception.callStackSymbols;
-  return [[NSError alloc] initWithDomain:FBLPromiseErrorDomain
-                                    code:FBLPromiseErrorCodeException
-                                userInfo:userInfo];
-}

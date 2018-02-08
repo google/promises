@@ -143,68 +143,12 @@
   XCTAssertNil(promise.value);
 }
 
-- (void)testPromiseCatchesThrownException {
-  // Act.
-  FBLPromise *promise = [[[[[FBLPromise do:^id {
-    @throw [NSException exceptionWithName:@"name" reason:@"reason" userInfo:nil];  // NOLINT
-  }] then:^id(id __unused _) {
-    XCTFail();
-    return nil;
-  }] then:^id(id __unused _) {
-    XCTFail();
-    return nil;
-  }] then:^id(id __unused _) {
-    XCTFail();
-    return nil;
-  }] catch:^(NSError *error) {
-    XCTAssertEqualObjects(error.domain, FBLPromiseErrorDomain);
-    XCTAssertEqual(error.code, FBLPromiseErrorCodeException);
-  }];
-
-  // Assert.
-  XCTAssert(FBLWaitForPromisesWithTimeout(10));
-  XCTAssertEqualObjects(promise.error.domain, FBLPromiseErrorDomain);
-  XCTAssertEqual(promise.error.code, FBLPromiseErrorCodeException);
-  XCTAssertEqualObjects(promise.error.userInfo[FBLPromiseErrorUserInfoExceptionNameKey], @"name");
-  XCTAssertEqualObjects(promise.error.userInfo[FBLPromiseErrorUserInfoExceptionReasonKey],
-                        @"reason");
-}
-
-- (void)testPromiseCatchesThrownExceptionFromAsync {
-  // Act.
-  FBLPromise *promise = [
-      [[[[FBLPromise async:^(FBLPromiseFulfillBlock __unused _, FBLPromiseRejectBlock __unused __) {
-        @throw [NSException exceptionWithName:@"name" reason:@"reason" userInfo:nil];  // NOLINT
-      }] then:^id(id __unused _) {
-        XCTFail();
-        return nil;
-      }] then:^id(id __unused _) {
-        XCTFail();
-        return nil;
-      }] then:^id(id __unused _) {
-        XCTFail();
-        return nil;
-      }] catch:^(NSError *error) {
-        XCTAssertEqualObjects(error.domain, FBLPromiseErrorDomain);
-        XCTAssertEqual(error.code, FBLPromiseErrorCodeException);
-      }];
-
-  // Assert.
-  XCTAssert(FBLWaitForPromisesWithTimeout(10));
-  XCTAssertEqualObjects(promise.error.domain, FBLPromiseErrorDomain);
-  XCTAssertEqual(promise.error.code, FBLPromiseErrorCodeException);
-  XCTAssertEqualObjects(promise.error.userInfo[FBLPromiseErrorUserInfoExceptionNameKey], @"name");
-  XCTAssertEqualObjects(promise.error.userInfo[FBLPromiseErrorUserInfoExceptionReasonKey],
-                        @"reason");
-}
-
 - (void)testPromiseNoRejectAfterFulfill {
   // Act.
   FBLPromise<NSNumber *> *promise =
       [[[[FBLPromise async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock reject) {
         fulfill(@42);
         reject([NSError errorWithDomain:FBLPromiseErrorDomain code:42 userInfo:nil]);
-        @throw [NSException exceptionWithName:@"name" reason:@"reason" userInfo:nil];  // NOLINT
       }] then:^id(NSNumber *value) {
         XCTAssertEqualObjects(value, @42);
         return value;
@@ -227,7 +171,6 @@
       [[[[[FBLPromise async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock reject) {
         reject([NSError errorWithDomain:FBLPromiseErrorDomain code:42 userInfo:nil]);
         fulfill(@42);
-        @throw [NSException exceptionWithName:@"name" reason:@"reason" userInfo:nil];  // NOLINT
       }] then:^id(id __unused _) {
         XCTFail();
         return nil;

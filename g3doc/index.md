@@ -414,7 +414,7 @@ In your `Package.swift` file, add `Promises` dependency to corresponding targets
 let package = Package(
   // ...
   dependencies: [
-    .package(url: "https://github.com/google/promises.git", from: "1.0.0"),
+    .package(url: "https://github.com/google/promises.git", from: "1.0.1"),
   ],
   // ...
 )
@@ -761,7 +761,7 @@ FBLPromise<NSString *> chainedStringPromise = [numberPromise then:^id(NSNumber *
   return [number stringValue];
 }];
 
-// Return or @throw an error.
+// Return an error.
 FBLPromise<NSString *> chainedStringPromise = [numberPromise then:^id(NSNumber *number) {
   return [NSError errorWithDomain:@"" code:0 userInfo:nil];
 }];
@@ -884,12 +884,6 @@ You can reject a promise in many ways:
 -   return or throw an error from the `then` block
 
 Or, just [create a resolved promise](#create-a-resolved-promise) with an error.
-
-Note: In Objective-C when `@throw` is invoked in `then` block with `NSException`
-argument, the promise is rejected with `NSError` in `FBLPromiseErrorDomain`
-domain with code `FBLPromiseErrorCodeException` and additional info about
-`NSException` in `userInfo` dict. If `@throw` is invoked with `NSError`
-argument, the promise is rejected with that error.
 
 #### Catch
 

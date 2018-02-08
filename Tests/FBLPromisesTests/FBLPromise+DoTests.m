@@ -52,21 +52,6 @@
   XCTAssertNil(promise.value);
 }
 
-- (void)testPromiseDoThrow {
-  // Arrange & Act.
-  FBLPromise<NSNumber *> *promise = [FBLPromise do:^id {
-    @throw [NSException exceptionWithName:@"name" reason:@"reason" userInfo:nil];  // NOLINT
-  }];
-
-  // Assert.
-  XCTAssert(FBLWaitForPromisesWithTimeout(10));
-  XCTAssertEqualObjects(promise.error.domain, FBLPromiseErrorDomain);
-  XCTAssertEqual(promise.error.code, FBLPromiseErrorCodeException);
-  XCTAssertEqualObjects(promise.error.userInfo[FBLPromiseErrorUserInfoExceptionNameKey], @"name");
-  XCTAssertEqualObjects(promise.error.userInfo[FBLPromiseErrorUserInfoExceptionReasonKey],
-                        @"reason");
-}
-
 /**
  Promise created with `do` should not deallocate until it gets resolved.
  */

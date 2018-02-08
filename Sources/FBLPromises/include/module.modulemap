@@ -31,6 +31,5 @@ module FBLPromises {
     header "DotSyntax/FBLPromise+DotSyntax+Validate.h"
     header "DotSyntax/FBLPromise+DotSyntax+When.h"
 
-    exclude header "FBLPromiseErrorPrivate.h"
     exclude header "FBLPromisePrivate.h"
 }

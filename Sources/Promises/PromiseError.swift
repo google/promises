@@ -18,29 +18,16 @@ import FBLPromises
 /// Indirectly conforms to `Swift.Error` through conformance to `Swift.CustomNSError` below.
 /// Not placing it under extension `Promise` for convenience to avoid collisions with `Swift.Error`.
 public enum PromiseError {
-  case nsException(NSExceptionName, String?, [AnyHashable: Any]?, [NSNumber], [String])
   case timedOut
   case validationFailure
 }
 
-/// Downcasting from `Swift.Error` and `NSException`.
+/// Downcasting from `Swift.Error`.
 extension PromiseError {
   public init?(_ error: Error) {
     let error = error as NSError
     if error.domain != __FBLPromiseErrorDomain { return nil }
     switch error.code {
-    case __FBLPromiseErrorCode.exception.rawValue:
-      let errorUserInfo = error.userInfo
-      guard let name = errorUserInfo[__FBLPromiseErrorUserInfoExceptionNameKey] as? NSExceptionName,
-          let returnAddresses: [NSNumber] =
-              errorUserInfo[__FBLPromiseErrorUserInfoExceptionReturnAddressesKey] as? [NSNumber],
-          let callStack: [String] =
-              errorUserInfo[__FBLPromiseErrorUserInfoExceptionCallStackKey] as? [String]
-          else { return nil }
-      let reason = errorUserInfo[__FBLPromiseErrorUserInfoExceptionReasonKey] as? String
-      let userInfo =
-          errorUserInfo[__FBLPromiseErrorUserInfoExceptionUserInfoKey] as? [AnyHashable: Any]
-      self = .nsException(name, reason, userInfo, returnAddresses, callStack)
     case __FBLPromiseErrorCode.timedOut.rawValue:
       self = .timedOut
     case __FBLPromiseErrorCode.validationFailure.rawValue:
@@ -48,14 +35,6 @@ extension PromiseError {
     default:
       return nil
     }
-  }
-
-  public init?(_ nsException: NSException) {
-    self = .nsException(nsException.name,
-                        nsException.reason,
-                        nsException.userInfo,
-                        nsException.callStackReturnAddresses,
-                        nsException.callStackSymbols)
   }
 }
 
@@ -66,8 +45,6 @@ extension PromiseError: CustomNSError {
 
   public var errorCode: Int {
     switch self {
-    case .nsException:
-      return __FBLPromiseErrorCode.exception.rawValue
     case .timedOut:
       return __FBLPromiseErrorCode.timedOut.rawValue
     case .validationFailure:
@@ -76,21 +53,6 @@ extension PromiseError: CustomNSError {
   }
 
   public var errorUserInfo: [String: Any] {
-    if case let .nsException(name, reason, userInfo, returnAddresses, callStack) = self {
-      return [
-        __FBLPromiseErrorUserInfoExceptionNameKey: name,
-        __FBLPromiseErrorUserInfoExceptionReasonKey: reason as Any,
-        __FBLPromiseErrorUserInfoExceptionUserInfoKey: userInfo as Any,
-        __FBLPromiseErrorUserInfoExceptionReturnAddressesKey: returnAddresses,
-        __FBLPromiseErrorUserInfoExceptionCallStackKey: callStack
-      ]
-    }
     return [String: Any]()
-  }
-}
-
-extension PromiseError: Equatable {
-  public static func == (lhs: PromiseError, rhs: PromiseError) -> Bool {
-    return (lhs as NSError).isEqual(rhs as NSError)
   }
 }

@@ -29,11 +29,7 @@
 
   FBLPromise *promise = [[[self class] alloc] initPending];
   dispatch_group_async([self class].dispatchGroup, queue, ^{
-    @try {
-      [promise fulfill:work()];
-    } @catch (id exception) {
-      [promise reject:exception];
-    }
+    [promise fulfill:work()];
   });
   return promise;
 }

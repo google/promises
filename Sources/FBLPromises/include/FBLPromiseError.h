@@ -22,19 +22,12 @@ NS_ASSUME_NONNULL_BEGIN
  Possible error codes in `FBLPromiseErrorDomain`.
  */
 typedef NS_ENUM(NSInteger, FBLPromiseErrorCode) {
-  /** Objective-C exception was thrown. */
-  FBLPromiseErrorCodeException = 1,
   /** Promise failed to resolve in time. */
-  FBLPromiseErrorCodeTimedOut = 2,
+  FBLPromiseErrorCodeTimedOut = 1,
   /** Validation predicate returned false. */
-  FBLPromiseErrorCodeValidationFailure = 3,
+  FBLPromiseErrorCodeValidationFailure = 2,
 } NS_REFINED_FOR_SWIFT;
 
 extern NSString* const FBLPromiseErrorDomain NS_REFINED_FOR_SWIFT;
-extern NSString* const FBLPromiseErrorUserInfoExceptionNameKey NS_REFINED_FOR_SWIFT;
-extern NSString* const FBLPromiseErrorUserInfoExceptionReasonKey NS_REFINED_FOR_SWIFT;
-extern NSString* const FBLPromiseErrorUserInfoExceptionUserInfoKey NS_REFINED_FOR_SWIFT;
-extern NSString* const FBLPromiseErrorUserInfoExceptionReturnAddressesKey NS_REFINED_FOR_SWIFT;
-extern NSString* const FBLPromiseErrorUserInfoExceptionCallStackKey NS_REFINED_FOR_SWIFT;
 
 NS_ASSUME_NONNULL_END

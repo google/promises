@@ -16,8 +16,6 @@
 
 #import "FBLPromisePrivate.h"
 
-#import "FBLPromiseErrorPrivate.h"
-
 /** All states a promise can be in. */
 typedef NS_ENUM(NSInteger, FBLPromiseState) {
   FBLPromiseStatePending = 0,
@@ -68,8 +66,6 @@ typedef void (^FBLPromiseObserver)(FBLPromiseState state, id __nullable resoluti
         }];
   } else if ([value isKindOfClass:[NSError class]]) {
     [self reject:(NSError *)value];
-  } else if ([value isKindOfClass:[NSException class]]) {
-    [self reject:FBLNSErrorFromNSException((NSException *)value)];
   } else {
     @synchronized(self) {
       if (_state == FBLPromiseStatePending) {
@@ -87,9 +83,6 @@ typedef void (^FBLPromiseObserver)(FBLPromiseState state, id __nullable resoluti
 }
 
 - (void)reject:(NSError *)error {
-  if ([error isKindOfClass:[NSException class]]) {
-    error = FBLNSErrorFromNSException((NSException *)error);
-  }
   NSAssert([error isKindOfClass:[NSError class]], @"Invalid error type.");
 
   if (![error isKindOfClass:[NSError class]]) {
@@ -149,9 +142,6 @@ typedef void (^FBLPromiseObserver)(FBLPromiseState state, id __nullable resoluti
     } else if ([resolution isKindOfClass:[NSError class]]) {
       _state = FBLPromiseStateRejected;
       _error = (NSError *)resolution;
-    } else if ([resolution isKindOfClass:[NSException class]]) {
-      _state = FBLPromiseStateRejected;
-      _error = FBLNSErrorFromNSException((NSException *)resolution);
     } else {
       _state = FBLPromiseStateFulfilled;
       _value = resolution;
@@ -253,35 +243,13 @@ typedef void (^FBLPromiseObserver)(FBLPromiseState state, id __nullable resoluti
               chainedFulfill:(FBLPromiseChainedFulfillBlock)chainedFulfill
                chainedReject:(FBLPromiseChainedRejectBlock)chainedReject {
   FBLPromise *promise = [[[self class] alloc] initPending];
-  FBLPromiseOnFulfillBlock onFulfill;
-  if (chainedFulfill) {
-    onFulfill = ^(id __nullable value) {
-      @try {
-        [promise fulfill:chainedFulfill(value)];
-      } @catch (id exception) {
-        [promise reject:exception];
+  [self observeOnQueue:queue
+      fulfill:^(id __nullable value) {
+        [promise fulfill:chainedFulfill ? chainedFulfill(value) : value];
       }
-    };
-  } else {
-    onFulfill = ^(id __nullable value) {
-      [promise fulfill:value];
-    };
-  }
-  FBLPromiseOnRejectBlock onReject;
-  if (chainedReject) {
-    onReject = ^(NSError *error) {
-      @try {
-        [promise fulfill:chainedReject(error)];
-      } @catch (id exception) {
-        [promise reject:exception];
-      }
-    };
-  } else {
-    onReject = ^(NSError *error) {
-      [promise reject:error];
-    };
-  }
-  [self observeOnQueue:queue fulfill:onFulfill reject:onReject];
+      reject:^(NSError *error) {
+        [promise fulfill:chainedReject ? chainedReject(error) : error];
+      }];
   return promise;
 }
 
