@@ -42,4 +42,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/**
+ Convenience dot-syntax wrappers for `FBLPromise` `recover` operators.
+ Usage: promise.recover(^id(NSError *error) {...})
+ */
+@interface FBLPromise<Value>(DotSyntax_RecoverAdditions)
+
+- (FBLPromise * (^)(id __nullable (^)(NSError *)))recover FBL_PROMISES_DOT_SYNTAX
+    NS_SWIFT_UNAVAILABLE("");
+- (FBLPromise * (^)(dispatch_queue_t, id __nullable (^)(NSError *)))recoverOn
+    FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
+
+@end
+
 NS_ASSUME_NONNULL_END

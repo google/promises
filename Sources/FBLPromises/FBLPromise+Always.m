@@ -39,3 +39,19 @@
 }
 
 @end
+
+@implementation FBLPromise (DotSyntax_AlwaysAdditions)
+
+- (FBLPromise* (^)(void (^)(void)))always {
+  return ^(void (^work)(void)) {
+    return [self always:work];
+  };
+}
+
+- (FBLPromise* (^)(dispatch_queue_t, void (^)(void)))alwaysOn {
+  return ^(dispatch_queue_t queue, void (^work)(void)) {
+    return [self onQueue:queue always:work];
+  };
+}
+
+@end

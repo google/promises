@@ -48,11 +48,9 @@ objc_library(
     name = "FBLPromises",
     srcs = glob([
         "Sources/FBLPromises/*.m",
-        "Sources/FBLPromises/DotSyntax/*.m",
     ]),
     hdrs = glob([
         "Sources/FBLPromises/include/*.h",
-        "Sources/FBLPromises/include/DotSyntax/*.h",
     ]) + [
         "FBLPromises.h",
     ],

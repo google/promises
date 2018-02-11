@@ -54,4 +54,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/**
+ Convenience dot-syntax wrappers for `FBLPromise` `when` operators.
+ Usage: promise.when(@[ ... ])
+ */
+@interface FBLPromise<Value>(DotSyntax_WhenAdditions)
+
++ (FBLPromise<NSArray *> * (^)(NSArray *))when FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
++ (FBLPromise<NSArray *> * (^)(dispatch_queue_t, NSArray *))whenOn FBL_PROMISES_DOT_SYNTAX
+    NS_SWIFT_UNAVAILABLE("");
+
+@end
+
 NS_ASSUME_NONNULL_END

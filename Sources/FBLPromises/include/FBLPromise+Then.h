@@ -48,4 +48,16 @@ typedef id __nullable (^FBLPromiseThenWorkBlock)(Value __nullable value) NS_SWIF
 
 @end
 
+/**
+ Convenience dot-syntax wrappers for `FBLPromise` `then` operators.
+ Usage: promise.then(^id(id value) { ... })
+ */
+@interface FBLPromise<Value>(DotSyntax_ThenAdditions)
+
+- (FBLPromise* (^)(FBLPromiseThenWorkBlock))then FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
+- (FBLPromise* (^)(dispatch_queue_t, FBLPromiseThenWorkBlock))thenOn FBL_PROMISES_DOT_SYNTAX
+    NS_SWIFT_UNAVAILABLE("");
+
+@end
+
 NS_ASSUME_NONNULL_END

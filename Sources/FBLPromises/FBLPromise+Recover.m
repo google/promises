@@ -35,3 +35,19 @@
 }
 
 @end
+
+@implementation FBLPromise (DotSyntax_RecoverAdditions)
+
+- (FBLPromise * (^)(id __nullable (^)(NSError *)))recover {
+  return ^(FBLPromise * (^recovery)(NSError *)) {
+    return [self recover:recovery];
+  };
+}
+
+- (FBLPromise * (^)(dispatch_queue_t, id __nullable (^)(NSError *)))recoverOn {
+  return ^(dispatch_queue_t queue, id __nullable (^recovery)(NSError *)) {
+    return [self onQueue:queue recover:recovery];
+  };
+}
+
+@end

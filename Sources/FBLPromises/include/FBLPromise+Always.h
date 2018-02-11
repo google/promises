@@ -35,4 +35,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/**
+ Convenience dot-syntax wrappers for `FBLPromise` `always` operators.
+ Usage: promise.always(^{...})
+ */
+@interface FBLPromise<Value>(DotSyntax_AlwaysAdditions)
+
+- (FBLPromise* (^)(void (^)(void)))always FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
+- (FBLPromise* (^)(dispatch_queue_t, void (^)(void)))alwaysOn FBL_PROMISES_DOT_SYNTAX
+    NS_SWIFT_UNAVAILABLE("");
+
+@end
+
 NS_ASSUME_NONNULL_END

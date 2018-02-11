@@ -177,3 +177,77 @@
 }
 
 @end
+
+@implementation FBLPromise (DotSyntax_ResolveAdditions)
+
++ (FBLPromise * (^)(void (^)(FBLPromiseCompletion)))resolveWhen {
+  return ^(void (^work)(FBLPromiseCompletion)) {
+    return [self resolveWhenCompleted:work];
+  };
+}
+
++ (FBLPromise * (^)(void (^)(FBLPromiseObjectCompletion)))resolveWithObjectWhen {
+  return ^(void (^work)(FBLPromiseObjectCompletion)) {
+    return [self resolveWithObjectWhenCompleted:work];
+  };
+}
+
++ (FBLPromise * (^)(void (^)(FBLPromiseErrorCompletion)))resolveWithErrorWhen {
+  return ^(void (^work)(FBLPromiseErrorCompletion)) {
+    return [self resolveWithErrorWhenCompleted:work];
+  };
+}
+
++ (FBLPromise * (^)(void (^)(FBLPromiseObjectOrErrorCompletion)))resolveWithObjectOrErrorWhen {
+  return ^(void (^work)(FBLPromiseObjectOrErrorCompletion)) {
+    return [self resolveWithObjectOrErrorWhenCompleted:work];
+  };
+}
+
++ (FBLPromise<NSArray *> * (^)(void (^)(FBLPromise2ObjectsOrErrorCompletion)))
+resolveWith2ObjectsOrErrorWhen {
+  return ^(void (^work)(FBLPromise2ObjectsOrErrorCompletion)) {
+    return [self resolveWith2ObjectsOrErrorWhenCompleted:work];
+  };
+}
+
++ (FBLPromise<NSNumber *> * (^)(void (^)(FBLPromiseBoolCompletion)))resolveWithBoolWhen {
+  return ^(void (^work)(FBLPromiseBoolCompletion)) {
+    return [self resolveWithBoolWhenCompleted:work];
+  };
+}
+
++ (FBLPromise<NSNumber *> * (^)(void (^)(FBLPromiseBoolOrErrorCompletion)))
+resolveWithBoolOrErrorWhen {
+  return ^(void (^work)(FBLPromiseBoolOrErrorCompletion)) {
+    return [self resolveWithBoolOrErrorWhenCompleted:work];
+  };
+}
+
++ (FBLPromise<NSNumber *> * (^)(void (^)(FBLPromiseIntegerCompletion)))resolveWithIntegerWhen {
+  return ^(void (^work)(FBLPromiseIntegerCompletion)) {
+    return [self resolveWithIntegerWhenCompleted:work];
+  };
+}
+
++ (FBLPromise<NSNumber *> * (^)(void (^)(FBLPromiseIntegerOrErrorCompletion)))
+resolveWithIntegerOrErrorWhen {
+  return ^(void (^work)(FBLPromiseIntegerOrErrorCompletion)) {
+    return [self resolveWithIntegerOrErrorWhenCompleted:work];
+  };
+}
+
++ (FBLPromise<NSNumber *> * (^)(void (^)(FBLPromiseDoubleCompletion)))resolveWithDoubleWhen {
+  return ^(void (^work)(FBLPromiseDoubleCompletion)) {
+    return [self resolveWithDoubleWhenCompleted:work];
+  };
+}
+
++ (FBLPromise<NSNumber *> * (^)(void (^)(FBLPromiseDoubleOrErrorCompletion)))
+resolveWithDoubleOrErrorWhen {
+  return ^(void (^work)(FBLPromiseDoubleOrErrorCompletion)) {
+    return [self resolveWithDoubleOrErrorWhenCompleted:work];
+  };
+}
+
+@end

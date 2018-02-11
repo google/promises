@@ -41,3 +41,19 @@
 }
 
 @end
+
+@implementation FBLPromise (DotSyntax_AsyncAdditions)
+
++ (FBLPromise* (^)(FBLPromiseAsyncWorkBlock))async {
+  return ^(FBLPromiseAsyncWorkBlock work) {
+    return [self async:work];
+  };
+}
+
++ (FBLPromise* (^)(dispatch_queue_t, FBLPromiseAsyncWorkBlock))asyncOn {
+  return ^(dispatch_queue_t queue, FBLPromiseAsyncWorkBlock work) {
+    return [self onQueue:queue async:work];
+  };
+}
+
+@end

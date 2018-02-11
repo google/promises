@@ -93,3 +93,19 @@ static NSArray *FBLPromiseCombineValuesAndErrors(NSArray<FBLPromise *> *promises
 }
 
 @end
+
+@implementation FBLPromise (DotSyntax_WhenAdditions)
+
++ (FBLPromise<NSArray *> * (^)(NSArray *))when {
+  return ^(NSArray *promises) {
+    return [self when:promises];
+  };
+}
+
++ (FBLPromise<NSArray *> * (^)(dispatch_queue_t, NSArray *))whenOn {
+  return ^(dispatch_queue_t queue, NSArray *promises) {
+    return [self onQueue:queue when:promises];
+  };
+}
+
+@end

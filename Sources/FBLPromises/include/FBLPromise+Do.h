@@ -41,4 +41,15 @@ typedef id __nullable (^FBLPromiseDoWorkBlock)(void) NS_SWIFT_UNAVAILABLE("");
 
 @end
 
+/**
+ Convenience dot-syntax wrappers for `FBLPromise` `do` operators.
+ Usage: FBLPromise.doOn(queue, ^(NSError *error) { ... })
+ */
+@interface FBLPromise<Value>(DotSyntax_DoAdditions)
+
++ (FBLPromise * (^)(dispatch_queue_t, FBLPromiseDoWorkBlock))doOn FBL_PROMISES_DOT_SYNTAX
+    NS_SWIFT_UNAVAILABLE("");
+
+@end
+
 NS_ASSUME_NONNULL_END

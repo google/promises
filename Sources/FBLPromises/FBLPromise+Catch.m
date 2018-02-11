@@ -36,3 +36,19 @@
 }
 
 @end
+
+@implementation FBLPromise (DotSyntax_CatchAdditions)
+
+- (FBLPromise* (^)(FBLPromiseCatchBlock))catch {
+  return ^(FBLPromiseCatchBlock catch) {
+    return [self catch:catch];
+  };
+}
+
+- (FBLPromise* (^)(dispatch_queue_t, FBLPromiseCatchBlock))catchOn {
+  return ^(dispatch_queue_t queue, FBLPromiseCatchBlock catch) {
+    return [self onQueue:queue catch:catch];
+  };
+}
+
+@end

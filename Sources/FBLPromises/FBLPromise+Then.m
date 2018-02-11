@@ -31,3 +31,19 @@
 }
 
 @end
+
+@implementation FBLPromise (DotSyntax_ThenAdditions)
+
+- (FBLPromise* (^)(FBLPromiseThenWorkBlock))then {
+  return ^(FBLPromiseThenWorkBlock work) {
+    return [self then:work];
+  };
+}
+
+- (FBLPromise* (^)(dispatch_queue_t, FBLPromiseThenWorkBlock))thenOn {
+  return ^(dispatch_queue_t queue, FBLPromiseThenWorkBlock work) {
+    return [self onQueue:queue then:work];
+  };
+}
+
+@end

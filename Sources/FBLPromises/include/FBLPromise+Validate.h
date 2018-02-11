@@ -42,4 +42,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/**
+ Convenience dot-syntax wrappers for `FBLPromise` `validate` operators.
+ Usage: promise.validate(^BOOL(id value) { ... })
+ */
+@interface FBLPromise<Value>(DotSyntax_ValidateAdditions)
+
+- (FBLPromise* (^)(BOOL (^)(Value __nullable)))validate FBL_PROMISES_DOT_SYNTAX
+    NS_SWIFT_UNAVAILABLE("");
+- (FBLPromise* (^)(dispatch_queue_t, BOOL (^)(Value __nullable)))validateOn FBL_PROMISES_DOT_SYNTAX
+    NS_SWIFT_UNAVAILABLE("");
+
+@end
+
 NS_ASSUME_NONNULL_END

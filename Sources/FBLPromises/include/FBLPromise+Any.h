@@ -47,4 +47,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/**
+ Convenience dot-syntax wrappers for `FBLPromise` `any` operators.
+ Usage: promise.any(@[ ... ])
+ */
+@interface FBLPromise<Value>(DotSyntax_AnyAdditions)
+
++ (FBLPromise * (^)(NSArray *))any FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
++ (FBLPromise * (^)(dispatch_queue_t, NSArray *))anyOn FBL_PROMISES_DOT_SYNTAX
+    NS_SWIFT_UNAVAILABLE("");
+
+@end
+
 NS_ASSUME_NONNULL_END

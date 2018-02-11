@@ -36,3 +36,19 @@
 }
 
 @end
+
+@implementation FBLPromise (DotSyntax_ValidateAdditions)
+
+- (FBLPromise* (^)(BOOL (^)(id __nullable)))validate {
+  return ^(BOOL (^predicate)(id __nullable)) {
+    return [self validate:predicate];
+  };
+}
+
+- (FBLPromise* (^)(dispatch_queue_t, BOOL (^)(id __nullable)))validateOn {
+  return ^(dispatch_queue_t queue, BOOL (^predicate)(id __nullable)) {
+    return [self onQueue:queue validate:predicate];
+  };
+}
+
+@end

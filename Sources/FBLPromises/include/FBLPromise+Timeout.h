@@ -42,4 +42,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/**
+ Convenience dot-syntax wrappers for `FBLPromise` `timeout` operators.
+ Usage: promise.timeout(...)
+ */
+@interface FBLPromise<Value>(DotSyntax_TimeoutAdditions)
+
+- (FBLPromise* (^)(NSTimeInterval))timeout FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
+- (FBLPromise* (^)(dispatch_queue_t, NSTimeInterval))timeoutOn FBL_PROMISES_DOT_SYNTAX
+    NS_SWIFT_UNAVAILABLE("");
+
+@end
+
 NS_ASSUME_NONNULL_END

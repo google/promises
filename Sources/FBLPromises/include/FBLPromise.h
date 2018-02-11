@@ -55,4 +55,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+#ifdef FBL_PROMISES_DOT_SYNTAX_IS_DEPRECATED
+#define FBL_PROMISES_DOT_SYNTAX __attribute__((deprecated))
+#else
+#define FBL_PROMISES_DOT_SYNTAX
+#endif
+
+@interface FBLPromise<Value>(DotSyntaxAdditions)
+
+/**
+ Convenience dot-syntax wrappers for FBLPromise.
+ Usage: FBLPromise.resolve(value)
+ */
++ (FBLPromise* (^)(id __nullable))resolve FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
+
+@end
+
 NS_ASSUME_NONNULL_END

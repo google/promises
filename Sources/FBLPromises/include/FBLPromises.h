@@ -14,18 +14,6 @@
  limitations under the License.
  */
 
-#import "DotSyntax/FBLPromise+DotSyntax+All.h"
-#import "DotSyntax/FBLPromise+DotSyntax+Always.h"
-#import "DotSyntax/FBLPromise+DotSyntax+Any.h"
-#import "DotSyntax/FBLPromise+DotSyntax+Async.h"
-#import "DotSyntax/FBLPromise+DotSyntax+Catch.h"
-#import "DotSyntax/FBLPromise+DotSyntax+Do.h"
-#import "DotSyntax/FBLPromise+DotSyntax+Recover.h"
-#import "DotSyntax/FBLPromise+DotSyntax+Resolve.h"
-#import "DotSyntax/FBLPromise+DotSyntax+Then.h"
-#import "DotSyntax/FBLPromise+DotSyntax+Timeout.h"
-#import "DotSyntax/FBLPromise+DotSyntax+Validate.h"
-#import "DotSyntax/FBLPromise+DotSyntax+When.h"
 #import "FBLPromise+All.h"
 #import "FBLPromise+Always.h"
 #import "FBLPromise+Any.h"

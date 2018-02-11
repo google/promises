@@ -44,4 +44,16 @@ typedef void (^FBLPromiseCatchBlock)(NSError *error) NS_SWIFT_UNAVAILABLE("");
 
 @end
 
+/**
+ Convenience dot-syntax wrappers for `FBLPromise` `catch` operators.
+ Usage: promise.catch(^(NSError *error) { ... })
+ */
+@interface FBLPromise<Value>(DotSyntax_CatchAdditions)
+
+- (FBLPromise* (^)(FBLPromiseCatchBlock))catch FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
+- (FBLPromise* (^)(dispatch_queue_t, FBLPromiseCatchBlock))catchOn FBL_PROMISES_DOT_SYNTAX
+    NS_SWIFT_UNAVAILABLE("");
+
+@end
+
 NS_ASSUME_NONNULL_END

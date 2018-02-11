@@ -67,3 +67,19 @@
 }
 
 @end
+
+@implementation FBLPromise (DotSyntax_AllAdditions)
+
++ (FBLPromise<NSArray *> * (^)(NSArray *))all {
+  return ^(NSArray<FBLPromise *> *promises) {
+    return [self all:promises];
+  };
+}
+
++ (FBLPromise<NSArray *> * (^)(dispatch_queue_t, NSArray *))allOn {
+  return ^(dispatch_queue_t queue, NSArray<FBLPromise *> *promises) {
+    return [self onQueue:queue all:promises];
+  };
+}
+
+@end

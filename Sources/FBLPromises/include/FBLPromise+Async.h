@@ -45,4 +45,16 @@ typedef void (^FBLPromiseAsyncWorkBlock)(FBLPromiseFulfillBlock fulfill,
 
 @end
 
+/**
+ Convenience dot-syntax wrappers for `FBLPromise` `async` operators.
+ Usage: promise.async(^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock reject) { ... })
+ */
+@interface FBLPromise<Value>(DotSyntax_AsyncAdditions)
+
++ (FBLPromise* (^)(FBLPromiseAsyncWorkBlock))async FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
++ (FBLPromise* (^)(dispatch_queue_t, FBLPromiseAsyncWorkBlock))asyncOn FBL_PROMISES_DOT_SYNTAX
+    NS_SWIFT_UNAVAILABLE("");
+
+@end
+
 NS_ASSUME_NONNULL_END

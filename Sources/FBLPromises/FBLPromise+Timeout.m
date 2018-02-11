@@ -41,3 +41,19 @@
 }
 
 @end
+
+@implementation FBLPromise (DotSyntax_TimeoutAdditions)
+
+- (FBLPromise* (^)(NSTimeInterval))timeout {
+  return ^(NSTimeInterval interval) {
+    return [self timeout:interval];
+  };
+}
+
+- (FBLPromise* (^)(dispatch_queue_t, NSTimeInterval))timeoutOn {
+  return ^(dispatch_queue_t queue, NSTimeInterval interval) {
+    return [self onQueue:queue timeout:interval];
+  };
+}
+
+@end

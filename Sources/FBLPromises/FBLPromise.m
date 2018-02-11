@@ -254,3 +254,13 @@ typedef void (^FBLPromiseObserver)(FBLPromiseState state, id __nullable resoluti
 }
 
 @end
+
+@implementation FBLPromise (DotSyntaxAdditions)
+
++ (FBLPromise* (^)(id __nullable))resolve {
+  return ^(id resolution) {
+    return [self resolvedWith:resolution];
+  };
+}
+
+@end
