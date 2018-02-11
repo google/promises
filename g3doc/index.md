@@ -440,27 +440,27 @@ Or, the module, if `CLANG_ENABLE_MODULES = YES`:
 
 #### CocoaPods
 
-To use `Promises` for Objective-C, add the following to your `Podfile`:
+To use `Promises` for both Swift and Objective-C, add the following to your `Podfile`:
+
+```ruby
+pod 'PromisesSwift', '~> 1.0'
+```
+
+To use `Promises` for Objective-C only, add the following to your `Podfile`:
 
 ```ruby
 pod 'PromisesObjC', '~> 1.0'
 ```
 
-Or, if you would also like to include the tests:
-
-```ruby
-pod 'PromisesObjC', '~> 1.0', :testspecs => ['Tests', 'PerformanceTests']
-```
-
 Also, don't forget to `use_frameworks!` in your target. Then, run `pod install`.
 
-For Objective-C, import the umbrella header:
+For Swift, import the module:
 
-```objectivec
-#import "FBLPromises.h"
+```swift
+import Promises
 ```
 
-Or:
+For Objective-C, import the umbrella header:
 
 ```objectivec
 #import <FBLPromises/FBLPromises.h>
