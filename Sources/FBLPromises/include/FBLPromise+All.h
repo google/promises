@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Convenience dot-syntax wrappers for `FBLPromise` `all` operators.
- Usage: promise.all(@[ ... ])
+ Usage: FBLPromise.all(@[ ... ])
  */
 @interface FBLPromise<Value>(DotSyntax_AllAdditions)
 

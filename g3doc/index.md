@@ -1482,8 +1482,8 @@ operator:
 
 Swift:
 
-```objectivec
-Promise.all([loadSomething(), loadAnother()]).then { result in
+```swift
+all([loadSomething(), loadAnother()]).then { result in
   self.doSomething(with: result.first, and: result.last)
 }
 ```
