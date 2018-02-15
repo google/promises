@@ -65,7 +65,7 @@ Objective-C:
 Swift:
 
 ```swift
-func getCurrentUserContactAvatars(_ completion: ([UIImage]?, Error?) -> Void) {
+func getCurrentUserContactsAvatars(_ completion: ([UIImage]?, Error?) -> Void) {
   MyClient.getCurrentUser() { currentUser, error in
     guard error == nil else {
       completion(nil, error)
