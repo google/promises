@@ -167,10 +167,19 @@ public enum When<Value> {
 }
 
 /// Helper functions that facilitates conversion of `Promise.when` results to the results normally
-/// expected from `ObjCPromise.when`. Usage example:
-/// let objCPromise = when([promise1, promise2, promise3]).then { value in
-///   return value.map { $0.asAnyObject() }
+/// expected from `ObjCPromise.when`.
+///
+/// Convert a promise created with `when` in Swift to Objective-C:
+///
+/// when([promise1, promise2, promise3]).then { arrayOfWhenEnums in
+///   return arrayOfWhenEnums.map { $0.asAnyObject() }
 /// }.asObjCPromise() as Promise<[AnyObject?]>.ObjCPromise<AnyObject>
+///
+/// Convert a promise created with `when` in Objective-C to Swift:
+///
+/// Promise<[AnyObject]>(objCPromise).then { arrayOfAnyObjects in
+///   return arrayOfAnyObjects.map { asWhen($0) as When<SomeValue> }
+/// }
 public extension When {
 
   /// Converts generic `Value` to `AnyObject`.
@@ -245,7 +254,7 @@ public func != <Value: Equatable>(lhs: [When<Value?>], rhs: [When<Value?>]) -> B
 }
 
 /// Helper function to wrap the results of `ObjCPromise.when` with the safe `When` enum.
-fileprivate func asWhen<Value>(_ value: AnyObject) -> When<Value> {
+public func asWhen<Value>(_ value: AnyObject) -> When<Value> {
   switch value {
   case let error as NSError:
     return .error(error)
