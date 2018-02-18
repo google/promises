@@ -19,30 +19,25 @@ import XCTest
 class PromiseAllTests: XCTestCase {
   func testPromiseAll() {
     // Arrange.
-    let expectedValues: [Any?] = [42, "hello world", [42], nil]
-    let promise1 = Promise<Any?> { fulfill, _ in
+    let expectedValues: [Int?] = [42, 13, nil]
+    let promise1 = Promise<Int?> { fulfill, _ in
       Test.delay(0.1) {
         fulfill(42)
       }
     }
-    let promise2 = Promise<Any?> { fulfill, _ in
+    let promise2 = Promise<Int?> { fulfill, _ in
       Test.delay(1) {
-        fulfill("hello world")
+        fulfill(13)
       }
     }
-    let promise3 = Promise<Any?> { fulfill, _ in
+    let promise3 = Promise<Int?> { fulfill, _ in
       Test.delay(2) {
-        fulfill([42])
-      }
-    }
-    let promise4 = Promise<Any?> { fulfill, _ in
-      Test.delay(3) {
         fulfill(nil)
       }
     }
 
     // Act.
-    let combinedPromise = all([promise1, promise2, promise3, promise4]).then { value in
+    let combinedPromise = all([promise1, promise2, promise3]).then { value in
       XCTAssert(value == expectedValues)
     }
 
@@ -140,6 +135,188 @@ class PromiseAllTests: XCTestCase {
     XCTAssertNotNil(weakExtendedPromise2)
 
     promise.fulfill(42)
+    XCTAssert(waitForPromises(timeout: 10))
+
+    XCTAssertNil(weakExtendedPromise1)
+    XCTAssertNil(weakExtendedPromise2)
+  }
+
+  func testPromiseAllHeterogeneous2() {
+    // Arrange.
+    let expectedValues = (42, "hello world")
+    let promise1 = Promise<Int> { fulfill, _ in
+      Test.delay(0.1) {
+        fulfill(42)
+      }
+    }
+    let promise2 = Promise<String> { fulfill, _ in
+      Test.delay(1) {
+        fulfill("hello world")
+      }
+    }
+
+    // Act.
+    let combinedPromise = all(promise1, promise2).then { value in
+      XCTAssert(value == expectedValues)
+    }
+
+    // Assert.
+    XCTAssert(waitForPromises(timeout: 10))
+    guard let value = combinedPromise.value else { XCTFail(); return }
+    XCTAssert(value == expectedValues)
+    XCTAssertNil(combinedPromise.error)
+  }
+
+  func testPromiseAllHeterogeneous2Reject() {
+    // Arrange.
+    let promise1 = Promise<Int> { fulfill, _ in
+      Test.delay(1) {
+        fulfill(42)
+      }
+    }
+    let promise2 = Promise<String> { _, reject in
+      Test.delay(0.1) {
+        reject(Test.Error.code42)
+      }
+    }
+
+    // Act.
+    let combinedPromise = all(promise1, promise2).then { _ in
+      XCTFail()
+    }.catch { error in
+      XCTAssertTrue(error == Test.Error.code42)
+    }
+
+    // Assert.
+    XCTAssert(waitForPromises(timeout: 10))
+    XCTAssertTrue(combinedPromise.error == Test.Error.code42)
+    XCTAssertNil(combinedPromise.value)
+  }
+
+  func testPromiseAllHeterogeneous2NoDeallocUntilResolved() {
+    // Arrange.
+    let promise1 = Promise<Int>.pending()
+    let promise2 = Promise<String>.pending()
+    weak var weakExtendedPromise1: Promise<(Int, String)>?
+    weak var weakExtendedPromise2: Promise<(Int, String)>?
+
+    // Act.
+    autoreleasepool {
+      XCTAssertNil(weakExtendedPromise1)
+      XCTAssertNil(weakExtendedPromise2)
+      let extendedPromise1 = all(promise1, promise2)
+      let extendedPromise2 = all(promise1, promise2)
+      weakExtendedPromise1 = extendedPromise1
+      weakExtendedPromise2 = extendedPromise2
+      XCTAssertNotNil(weakExtendedPromise1)
+      XCTAssertNotNil(weakExtendedPromise2)
+    }
+
+    // Assert.
+    XCTAssertNotNil(weakExtendedPromise1)
+    XCTAssertNotNil(weakExtendedPromise2)
+
+    promise1.fulfill(42)
+    promise2.fulfill("hello world")
+    XCTAssert(waitForPromises(timeout: 10))
+
+    XCTAssertNil(weakExtendedPromise1)
+    XCTAssertNil(weakExtendedPromise2)
+  }
+
+  func testPromiseAllHeterogeneous3() {
+    // Arrange.
+    let expectedValues = (42, "hello world", Int?.none)
+    let promise1 = Promise<Int> { fulfill, _ in
+      Test.delay(0.1) {
+        fulfill(42)
+      }
+    }
+    let promise2 = Promise<String> { fulfill, _ in
+      Test.delay(1) {
+        fulfill("hello world")
+      }
+    }
+    let promise3 = Promise<Int?> { fulfill, _ in
+      Test.delay(2) {
+        fulfill(nil)
+      }
+    }
+
+    // Act.
+    let combinedPromise = all(promise1, promise2, promise3).then { number, string, none in
+      XCTAssert(number == expectedValues.0)
+      XCTAssert(string == expectedValues.1)
+      XCTAssert(none == expectedValues.2)
+    }
+
+    // Assert.
+    XCTAssert(waitForPromises(timeout: 10))
+    guard let value = combinedPromise.value else { XCTFail(); return }
+    XCTAssert(value.0 == expectedValues.0)
+    XCTAssert(value.1 == expectedValues.1)
+    XCTAssert(value.2 == expectedValues.2)
+    XCTAssertNil(combinedPromise.error)
+  }
+
+  func testPromiseAllHeterogeneous3Reject() {
+    // Arrange.
+    let promise1 = Promise { fulfill, _ in
+      Test.delay(0.1) {
+        fulfill(42)
+      }
+    }
+    let promise2 = Promise<String> { _, reject in
+      Test.delay(1) {
+        reject(Test.Error.code42)
+      }
+    }
+    let promise3 = Promise<Int?> { fulfill, _ in
+      Test.delay(2) {
+        fulfill(nil)
+      }
+    }
+
+    // Act.
+    let combinedPromise = all(promise1, promise2, promise3).then { _ in
+      XCTFail()
+    }.catch { error in
+      XCTAssertTrue(error == Test.Error.code42)
+    }
+
+    // Assert.
+    XCTAssert(waitForPromises(timeout: 10))
+    XCTAssertTrue(combinedPromise.error == Test.Error.code42)
+    XCTAssertNil(combinedPromise.value)
+  }
+
+  func testPromiseAllHeterogeneous3NoDeallocUntilResolved() {
+    // Arrange.
+    let promise1 = Promise<Int>.pending()
+    let promise2 = Promise<String>.pending()
+    let promise3 = Promise<Int?>.pending()
+    weak var weakExtendedPromise1: Promise<(Int, String, Int?)>?
+    weak var weakExtendedPromise2: Promise<(Int, String, Int?)>?
+
+    // Act.
+    autoreleasepool {
+      XCTAssertNil(weakExtendedPromise1)
+      XCTAssertNil(weakExtendedPromise2)
+      let extendedPromise1 = all(promise1, promise2, promise3)
+      let extendedPromise2 = all(promise1, promise2, promise3)
+      weakExtendedPromise1 = extendedPromise1
+      weakExtendedPromise2 = extendedPromise2
+      XCTAssertNotNil(weakExtendedPromise1)
+      XCTAssertNotNil(weakExtendedPromise2)
+    }
+
+    // Assert.
+    XCTAssertNotNil(weakExtendedPromise1)
+    XCTAssertNotNil(weakExtendedPromise2)
+
+    promise1.fulfill(42)
+    promise2.fulfill("hello world")
+    promise3.fulfill(nil)
     XCTAssert(waitForPromises(timeout: 10))
 
     XCTAssertNil(weakExtendedPromise1)

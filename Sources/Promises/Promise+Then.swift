@@ -29,8 +29,10 @@ public extension Promise {
   @discardableResult
   public func then<Result>(on queue: DispatchQueue = .main,
                            _ work: @escaping Then<Promise<Result>>) -> Promise<Result> {
-    let promise = Promise<Result>(objCPromise.__onQueue(queue, then: { value in
-      guard let value = Promise<Value>.asValue(value) else { preconditionFailure() }
+    let promise = Promise<Result>(objCPromise.__onQueue(queue, then: { objCValue in
+      guard let value = Promise<Value>.asValue(objCValue) else {
+        preconditionFailure("Cannot cast \(type(of: objCValue)) to \(Value.self)")
+      }
       do {
         return try work(value).objCPromise
       } catch let error {
@@ -52,8 +54,10 @@ public extension Promise {
   @discardableResult
   public func then<Result>(on queue: DispatchQueue = .main,
                            _ work: @escaping Then<Result>) -> Promise<Result> {
-    let promise = Promise<Result>(objCPromise.__onQueue(queue, then: { value in
-      guard let value = Promise<Value>.asValue(value) else { preconditionFailure() }
+    let promise = Promise<Result>(objCPromise.__onQueue(queue, then: { objCValue in
+      guard let value = Promise<Value>.asValue(objCValue) else {
+        preconditionFailure("Cannot cast \(type(of: objCValue)) to \(Value.self)")
+      }
       do {
         let value = try work(value)
         return value as? NSError ?? Promise<Result>.asAnyObject(value)
@@ -75,8 +79,10 @@ public extension Promise {
   /// - returns: A new pending promise to be resolved with the value passed into the `work` block.
   @discardableResult
   public func then(on queue: DispatchQueue = .main, _ work: @escaping Then<Void>) -> Promise {
-    let promise = Promise(objCPromise.__onQueue(queue, then: { value in
-      guard let value = Promise<Value>.asValue(value) else { preconditionFailure() }
+    let promise = Promise(objCPromise.__onQueue(queue, then: { objCValue in
+      guard let value = Promise<Value>.asValue(objCValue) else {
+        preconditionFailure("Cannot cast \(type(of: objCValue)) to \(Value.self)")
+      }
       do {
         try work(value)
         return Promise<Value>.asAnyObject(value)

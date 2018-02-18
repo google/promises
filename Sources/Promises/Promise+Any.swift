@@ -41,12 +41,13 @@ public func any<Value>(
   on queue: DispatchQueue = .main,
   _ promises: [Promise<Value>]
 ) -> Promise<Value> {
+  let promises = promises.map { $0.objCPromise }
   let promise = Promise<Value>(
-    Promise<Value>.ObjCPromise<AnyObject>.__onQueue(queue, any: promises.map { $0.objCPromise })
+    Promise<Value>.ObjCPromise<AnyObject>.__onQueue(queue, any: promises)
   )
   // Keep Swift wrapper alive for chained promises until `ObjCPromise` counterpart is resolved.
   promises.forEach {
-    $0.objCPromise.__pendingObjects?.add(promise)
+    $0.__pendingObjects?.add(promise)
   }
   return promise
 }

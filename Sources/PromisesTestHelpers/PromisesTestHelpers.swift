@@ -46,7 +46,7 @@ public extension Error {
   var userInfo: [AnyHashable: Any] { return (self as NSError).userInfo }
 }
 
-/// Compare two `Error`.
+/// Compare two `Error?`.
 public func == (lhs: Error?, rhs: Error?) -> Bool {
   switch (lhs, rhs) {
   case (nil, nil):
@@ -58,33 +58,17 @@ public func == (lhs: Error?, rhs: Error?) -> Bool {
   }
 }
 
+public func != (lhs: Error?, rhs: Error?) -> Bool {
+  return !(lhs == rhs)
+}
+
 /// Compare two arrays of the same generic type conforming to `Equatable` protocol.
-public func ==<T: Equatable>(lhs: [T?], rhs: [T?]) -> Bool {
+public func == <T: Equatable>(lhs: [T?], rhs: [T?]) -> Bool {
   if lhs.count != rhs.count { return false }
   for (l, r) in zip(lhs, rhs) where l != r { return false }
   return true
 }
 
-/// Compare two arrays of different primitive types.
-public func == (lhs: [Any?], rhs: [Any?]) -> Bool {
-  if lhs.count != rhs.count { return false }
-  for (l, r) in zip(lhs, rhs) {
-    switch (l, r) {
-    case (nil, nil):
-      break
-    case (let l as [Any?], let r as [Any?]):
-      guard l == r else { return false }
-    case (let l as Int, let r as Int):
-      guard l == r else { return false }
-    case (let l as Double, let r as Double):
-      guard l == r else { return false }
-    case (let l as String, let r as String):
-      guard l == r else { return false }
-    case (let l as Error, let r as Error):
-      guard l == r else { return false }
-    default:
-      return false
-    }
-  }
-  return true
+public func != <T: Equatable>(lhs: [T?], rhs: [T?]) -> Bool {
+  return !(lhs == rhs)
 }

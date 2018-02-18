@@ -18,19 +18,17 @@ import Foundation
 /// If all promises are rejected, then the returned promise is rejected with same error
 /// as the last one rejected.
 /// If at least one of the promises is fulfilled, the resulting promise is fulfilled with an array
-/// of values or `Error`s, matching the original order of fulfilled or rejected promises
-/// respectively.
-/// If any other arbitrary value or `Error` appears in the array instead of `Promise`,
-/// it's implicitly considered a pre-fulfilled or pre-rejected `Promise` correspondingly.
+/// of `When` enums containing values or `Error`s, matching the original order of fulfilled or
+/// rejected promises respectively.
 /// - parameters:
 ///   - queue: A queue to dispatch on.
 ///   - promises: Promises to wait for.
-/// - returns: Promise of array containing the values or `Error`s of input promises in their
-///            original order.
+/// - returns: Promise of an array of `When` enums containing the values or `Error`s of input
+///            promises in their original order.
 public func when<Value>(
   on queue: DispatchQueue = .main,
   _ promises: Promise<Value>...
-) -> Promise<[Value]> {
+) -> Promise<[When<Value>]> {
   return when(on: queue, promises)
 }
 
@@ -38,25 +36,221 @@ public func when<Value>(
 /// If all promises are rejected, then the returned promise is rejected with same error
 /// as the last one rejected.
 /// If at least one of the promises is fulfilled, the resulting promise is fulfilled with an array
-/// of values or `Error`s, matching the original order of fulfilled or rejected promises
-/// respectively.
-/// If any other arbitrary value or `Error` appears in the array instead of `Promise`,
-/// it's implicitly considered a pre-fulfilled or pre-rejected `Promise` correspondingly.
+/// of `When` enums containing values or `Error`s, matching the original order of fulfilled or
+/// rejected promises respectively.
 /// - parameters:
 ///   - queue: A queue to dispatch on.
 ///   - promises: Promises to wait for.
-/// - returns: Promise of array containing the values or `Error`s of input promises in their
-///            original order.
+/// - returns: Promise of an array of `When` enums containing the values or `Error`s of input
+///            promises in their original order.
 public func when<Value, Container: Sequence>(
   on queue: DispatchQueue = .main,
   _ promises: Container
-) -> Promise<[Value]> where Container.Iterator.Element == Promise<Value> {
-  let promise = Promise<[Value]>(
-    Promise<[Value]>.ObjCPromise<AnyObject>.__onQueue(queue, when: promises.map { $0.objCPromise })
+) -> Promise<[When<Value>]> where Container.Iterator.Element == Promise<Value> {
+  let promises = promises.map { $0.objCPromise }
+  let promise = Promise<[When<Value>]>(
+    Promise<[When<Value>]>.ObjCPromise<AnyObject>.__onQueue(
+      queue,
+      when: promises
+    ).__onQueue(queue, then: { values in
+      guard let values = values as [AnyObject]? else { preconditionFailure() }
+      return Promise<[When<Value>]>.asAnyObject(values.map { asWhen($0) as When<Value> })
+    })
   )
   // Keep Swift wrapper alive for chained promises until `ObjCPromise` counterpart is resolved.
   promises.forEach {
-    $0.objCPromise.__pendingObjects?.add(promise)
+    $0.__pendingObjects?.add(promise)
   }
   return promise
+}
+
+/// Waits for all of the given promises to be fulfilled or rejected.
+/// If all promises are rejected, then the returned promise is rejected with same error
+/// as the last one rejected.
+/// If at least one of the promises is fulfilled, the resulting promise is fulfilled with a tuple
+/// of `When` enums containing values or `Error`s, matching the original order of fulfilled or
+/// rejected promises respectively.
+/// - parameters:
+///   - queue: A queue to dispatch on.
+///   - promiseA: Promise of type `A`.
+///   - promiseB: Promise of type `B`.
+/// - returns: Promise of a tuple of `When` enums containing the values or `Error`s of input
+///            promises in their original order.
+public func when<A, B>(
+  on queue: DispatchQueue = .main,
+  _ promiseA: Promise<A>,
+  _ promiseB: Promise<B>
+) -> Promise<(When<A>, When<B>)> {
+  let promises = [
+    promiseA.objCPromise,
+    promiseB.objCPromise
+  ]
+  let promise = Promise<(When<A>, When<B>)>(
+    Promise<(When<A>, When<B>)>.ObjCPromise<AnyObject>.__onQueue(
+      queue,
+      when: promises
+    ).__onQueue(queue, then: { objCValues in
+      guard let values = objCValues as [AnyObject]? else { preconditionFailure() }
+      let valueA = asWhen(values[0]) as When<A>
+      let valueB = asWhen(values[1]) as When<B>
+      return (valueA, valueB)
+    })
+  )
+  // Keep Swift wrapper alive for chained promises until `ObjCPromise` counterpart is resolved.
+  promises.forEach {
+    $0.__pendingObjects?.add(promise)
+  }
+  return promise
+}
+
+/// Waits for all of the given promises to be fulfilled or rejected.
+/// If all promises are rejected, then the returned promise is rejected with same error
+/// as the last one rejected.
+/// If at least one of the promises is fulfilled, the resulting promise is fulfilled with a tuple
+/// of `When` enums containing values or `Error`s, matching the original order of fulfilled or
+/// rejected promises respectively.
+/// - parameters:
+///   - queue: A queue to dispatch on.
+///   - promiseA: Promise of type `A`.
+///   - promiseB: Promise of type `B`.
+///   - promiseC: Promise of type `C`.
+/// - returns: Promise of a tuple of `When` enums containing the values or `Error`s of input
+///            promises in their original order.
+public func when<A, B, C>(
+  on queue: DispatchQueue = .main,
+  _ promiseA: Promise<A>,
+  _ promiseB: Promise<B>,
+  _ promiseC: Promise<C>
+) -> Promise<(When<A>, When<B>, When<C>)> {
+  let promises = [
+    promiseA.objCPromise,
+    promiseB.objCPromise,
+    promiseC.objCPromise
+  ]
+  let promise = Promise<(When<A>, When<B>, When<C>)>(
+    Promise<(When<A>, When<B>, When<C>)>.ObjCPromise<AnyObject>.__onQueue(
+      queue,
+      when: promises
+    ).__onQueue(queue, then: { objCValues in
+      guard let values = objCValues as [AnyObject]? else { preconditionFailure() }
+      let valueA = asWhen(values[0]) as When<A>
+      let valueB = asWhen(values[1]) as When<B>
+      let valueC = asWhen(values[2]) as When<C>
+      return (valueA, valueB, valueC)
+    })
+  )
+  // Keep Swift wrapper alive for chained promises until `ObjCPromise` counterpart is resolved.
+  promises.forEach {
+    $0.__pendingObjects?.add(promise)
+  }
+  return promise
+}
+
+/// Wrapper enum for `when` results.
+/// - value: Contains the value that corresponding promise was fulfilled with.
+/// - error: Contains the error that corresponding promise was rejected with.
+public enum When<Value> {
+  case value(Value)
+  case error(Error)
+
+  public init(_ value: Value) { self = .value(value) }
+
+  public init(_ error: Error) { self = .error(error) }
+
+  public var value: Value? {
+    if case .value(let value) = self { return value } else { return nil }
+  }
+
+  public var error: Error? {
+    if case .error(let error) = self { return error } else { return nil }
+  }
+}
+
+/// Helper functions that facilitates conversion of `Promise.when` results to the results normally
+/// expected from `ObjCPromise.when`. Usage example:
+/// let objCPromise = when([promise1, promise2, promise3]).then { value in
+///   return value.map { $0.asAnyObject() }
+/// }.asObjCPromise() as Promise<[AnyObject?]>.ObjCPromise<AnyObject>
+public extension When {
+
+  /// Converts generic `Value` to `AnyObject`.
+  func asAnyObject() -> AnyObject? {
+    switch self {
+    case .value(let value):
+      return Promise<Value>.asAnyObject(value)
+    case .error(let error):
+      return error as NSError
+    }
+  }
+}
+
+/// Equality operators for `When`.
+public extension When where Value: Equatable {
+  static func == (lhs: When<Value>, rhs: When<Value>) -> Bool {
+    switch (lhs, rhs) {
+    case (.value(let lhs), .value(let rhs)):
+      return lhs == rhs
+    case (.error(let lhs), .error(let rhs)):
+      return (lhs as NSError).isEqual(rhs as NSError)
+    case (.value, .error), (.error, .value):
+      return false
+    }
+  }
+
+  static func == (lhs: When<Value?>, rhs: When<Value?>) -> Bool {
+    switch (lhs, rhs) {
+    case (.value(let lhs), .value(let rhs)):
+      switch (lhs, rhs) {
+      case (nil, nil):
+        return true
+      case (nil, _?), (_?, nil):
+        return false
+      case let (lhs?, rhs?):
+        return lhs == rhs
+      }
+    case (.error(let lhs), .error(let rhs)):
+      return (lhs as NSError).isEqual(rhs as NSError)
+    case (.value, .error), (.error, .value):
+      return false
+    }
+  }
+
+  static func != (lhs: When<Value>, rhs: When<Value>) -> Bool {
+    return !(lhs == rhs)
+  }
+
+  static func != (lhs: When<Value?>, rhs: When<Value?>) -> Bool {
+    return !(lhs == rhs)
+  }
+}
+
+public func == <Value: Equatable>(lhs: [When<Value>], rhs: [When<Value>]) -> Bool {
+  if lhs.count != rhs.count { return false }
+  for (l, r) in zip(lhs, rhs) where l != r { return false }
+  return true
+}
+
+public func == <Value: Equatable>(lhs: [When<Value?>], rhs: [When<Value?>]) -> Bool {
+  if lhs.count != rhs.count { return false }
+  for (l, r) in zip(lhs, rhs) where l != r { return false }
+  return true
+}
+
+public func != <Value: Equatable>(lhs: [When<Value>], rhs: [When<Value>]) -> Bool {
+  return !(lhs == rhs)
+}
+
+public func != <Value: Equatable>(lhs: [When<Value?>], rhs: [When<Value?>]) -> Bool {
+  return !(lhs == rhs)
+}
+
+/// Helper function to wrap the results of `ObjCPromise.when` with the safe `When` enum.
+fileprivate func asWhen<Value>(_ value: AnyObject) -> When<Value> {
+  switch value {
+  case let error as NSError:
+    return .error(error)
+  case let value:
+    guard let value = Promise<Value>.asValue(value) else { preconditionFailure() }
+    return .value(value)
+  }
 }

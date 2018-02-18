@@ -414,7 +414,7 @@ In your `Package.swift` file, add `Promises` dependency to corresponding targets
 let package = Package(
   // ...
   dependencies: [
-    .package(url: "https://github.com/google/promises.git", from: "1.0.2"),
+    .package(url: "https://github.com/google/promises.git", from: "1.0.3"),
   ],
   // ...
 )
@@ -996,24 +996,51 @@ high-level patterns that would also be great to provide out of the box.
 
 `all` class method waits for all the promises you give it to fulfill, and once
 they have, the promise returned from `all` will be fulfilled with the array of
-all fulfilled values.
+all fulfilled values. In Swift the `all` operator also allows passing promises
+of heterogeneous types, in which case the resulting promise will be resolved
+with a tuple containing the values of input promises in the same order.
 
 Swift:
 
 ```swift
+// Promises of same type:
 all(contacts.map { MyClient.getAvatarFor(contact: $0) }).then(updateAvatars)
+
+// Promises of different types:
+all(
+  MyClient.getLocationFor(contact: contact),
+  MyClient.getAvatarFor(contact: contact)
+).then { location, avatar in
+  self.updateContact(location, avatar)
+}
 ```
 
 Objective-C:
 
 ```objectivec
-[[FBLPromise all:[contacts map:^id(MyContact *contact) {
+// Promises of same type:
+[[FBLPromise all:[contacts fbl_map:^id(MyContact *contact) {
   return [MyClient getAvatarForContact:contact];
 }]] then:^id(NSArray<UIImage *> *avatars) {
   [self updateAvatars:avatars];
-  return avatars;
+  return nil;
 }];
+
+// Promises of different types:
+[[FBLPromise
+    all:@[ [MyClient getLocationForContact:contact], [MyClient getAvatarForContact:contact] ]]
+    then:^id(NSArray *locationAndAvatar) {
+      [self updateContactLocation:locationAndAvatar.firstObject
+                        andAvatar:locationAndAvatar.lastObject];
+      return nil;
+    }];
 ```
+
+Note: The Objective-C example above used
+[`-fbl_map`](https://github.com/google/functional-objc/blob/master/README.md#map)
+method on `NSArray`, which often comes handy, along with other similar
+[functional operators](https://github.com/google/functional-objc) that
+Objective-C lacks.
 
 Also, see how `all` helps to avoid [nested promises](#nested-promises).
 
@@ -1145,10 +1172,85 @@ Objective-C:
 ### When
 
 `when` is similar to `all`, but it fulfills even if some of the promises in the
-provided array are rejected. The resulting array will have `NSError` objects
-corresponding to the rejected promises. The promise returned from `when` rejects
-only if all promises in the array were rejected with same error as the last one
+provided array are rejected. If all promises in the input array are rejected,
+the returned promise rejects with the same error as the last one that was
 rejected.
+
+In Swift the resulting array will contain `When` enums that have two cases
+`.value` and `.error` with associated data of either values or errors
+corresponding to the resolved promises in same order as they appear in the input
+array. In Objective-C the resulting heterogeneous `NSArray` will contain values
+and errors of resolved input promises as is. In Swift the `when` operator also
+allows passing promises of heterogeneous types, in which case the resulting
+promise will be resolved with a tuple containing the `When` enums wrapping
+values or errors of the input promises in the same order.
+
+Swift:
+
+```swift
+// Promises of same type:
+when(contacts.map { MyClient.getAvatarFor(contact: $0) }).then { avatarsOrErrors in
+  self.updateAvatars(avatarsOrErrors.flatMap { $0.value })
+}
+
+// Promises of different types:
+when(
+  MyClient.getLocationFor(contact: contact),
+  MyClient.getAvatarFor(contact: contact)
+).then { location, avatar in
+  if let location = location.value, let avatar = avatar.value {
+    self.updateContact(location, avatar)
+  } else {  // Optionally handle errors if needed.
+    if let locationError = location.error {
+      self.showErrorAlert(locationError)
+    }
+    if let avatarError = avatar.error {
+      self.showErrorAlert(avatarError)
+    }
+  }
+}
+```
+
+Objective-C:
+
+```objectivec
+// Promises of same type:
+[[FBLPromise when:[contacts fbl_map:^id(MyContact *contact) {
+  return [MyClient getAvatarForContact:contact];
+}]] then:^id(NSArray *avatarsOrErrors) {
+  [self updateAvatars:[avatarsOrErrors fbl_filter:^BOOL(id avatar) {
+    return [avatar isKindOfClass:[UIImage class]];
+  }]];
+  return nil;
+}];
+
+// Promises of different types:
+[[FBLPromise
+    when:@[ [MyClient getLocationForContact:contact], [MyClient getAvatarForContact:contact] ]]
+    then:^id(NSArray *locationAndAvatarOrErrors) {
+      id location = locationAndAvatarOrErrors.firstObject;
+      id avatar = locationAndAvatarOrErrors.lastObject;
+      if ([location isKindOfClass:[CLLocation class]] && [avatar isKindOfClass:[UIImage class]]) {
+        [self updateContactLocation:location andAvatar:avatar];
+      } else {  // Optionally handle errors if needed.
+        if ([location isKindOfClass:[NSError class]]) {
+          [self showErrorAlert:location];
+        }
+        if ([avatar isKindOfClass:[NSError class]]) {
+          [self showErrorAlert:avatar];
+        }
+      }
+      return nil;
+    }];
+```
+
+Note: The Objective-C example above used
+[`-fbl_map`](https://github.com/google/functional-objc/blob/master/README.md#map)
+and
+[`-fbl_filter`](https://github.com/google/functional-objc/blob/master/README.md#filter)
+methods on `NSArray`, which often comes handy, along with other similar
+[functional operators](https://github.com/google/functional-objc) that
+Objective-C lacks.
 
 ## Advanced topics
 

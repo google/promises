@@ -20,7 +20,9 @@ public final class Promise<Value> {
 
   /// Creates a new promise with an existing ObjC promise.
   public init<Value>(_ objCPromise: ObjCPromise<Value>) {
-    guard let objCPromise = objCPromise as? ObjCPromise<AnyObject> else { preconditionFailure() }
+    guard let objCPromise = objCPromise as? ObjCPromise<AnyObject> else {
+      preconditionFailure("Cannot cast \(Value.self) to \(AnyObject.self)")
+    }
     self.objCPromise = objCPromise
   }
 
@@ -63,7 +65,9 @@ public final class Promise<Value> {
 
   /// Converts `self` into ObjC promise.
   public func asObjCPromise<Value>() -> ObjCPromise<Value> {
-    guard let objCPromise = objCPromise as? ObjCPromise<Value> else { preconditionFailure() }
+    guard let objCPromise = objCPromise as? ObjCPromise<Value> else {
+      preconditionFailure("Cannot cast \(AnyObject.self) to \(Value.self)")
+    }
     return objCPromise
   }
 
@@ -81,7 +85,9 @@ public final class Promise<Value> {
   var value: Value? {
     let objCValue = objCPromise.__value
     if Promise<AnyObject>.isBridgedNil(objCValue) { return nil }
-    guard let value = objCValue as? Value else { preconditionFailure() }
+    guard let value = objCValue as? Value else {
+      preconditionFailure("Cannot cast \(type(of: objCValue)) to \(Value.self)")
+    }
     return value
   }
 
@@ -92,7 +98,7 @@ public final class Promise<Value> {
     return Promise<Value>.isBridgedNil(value) ? nil : value as AnyObject
   }
 
-  /// Converts `AnyObject` to generic `Value`.
+  /// Converts `AnyObject` to generic `Value`, or `nil` if the conversion is not possible.
   static func asValue(_ value: AnyObject?) -> Value? {
     // Swift nil becomes NSNull during bridging.
     return value as? Value ?? NSNull() as AnyObject as? Value
