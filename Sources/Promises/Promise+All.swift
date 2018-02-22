@@ -20,7 +20,7 @@ import Dispatch
 /// it's implicitly considered a pre-fulfilled or pre-rejected `Promise` correspondingly.
 /// - parameters:
 ///   - queue: A queue to dispatch on.
-///   - promises: An array of promises to wait for.
+///   - promises: Promises to wait for.
 /// - returns: Promise of an array containing the values of input promises in the same order.
 public func all<Value>(
   on queue: DispatchQueue = .main,
@@ -35,7 +35,7 @@ public func all<Value>(
 /// it's implicitly considered a pre-fulfilled or pre-rejected `Promise` correspondingly.
 /// - parameters:
 ///   - queue: A queue to dispatch on.
-///   - promises: An array of promises to wait for.
+///   - promises: Promises to wait for.
 /// - returns: Promise of an array containing the values of input promises in the same order.
 public func all<Value, Container: Sequence>(
   on queue: DispatchQueue = .main,
