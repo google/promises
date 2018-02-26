@@ -1,5 +1,17 @@
-http_archive(
+git_repository(
+    name = "bazel_skylib",
+    remote = "https://github.com/bazelbuild/bazel-skylib.git",
+    tag = "0.2.0",
+)
+
+git_repository(
     name = "build_bazel_rules_apple",
-    strip_prefix = "rules_apple-0.2.0",
-    urls = ["https://github.com/bazelbuild/rules_apple/archive/0.2.0.tar.gz"],
+    remote = "https://github.com/bazelbuild/rules_apple.git",
+    tag = "0.3.0",
+)
+
+http_file(
+    name = "xctestrunner",
+    executable = 1,
+    url = "https://github.com/google/xctestrunner/releases/download/0.2.1/ios_test_runner.par",
 )
