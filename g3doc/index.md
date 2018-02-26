@@ -1118,7 +1118,7 @@ Swift:
 
 ```swift
 func newAsyncMethodReturningAPromise() -> Promise<Data> {
-  return Promise.resolve { handler in
+  return resolve { handler in
     MyClient.wrappedAsyncMethodWithTypical(completion: handler)
   }
 }
@@ -1445,7 +1445,7 @@ Promise<String>(objc.getString()).then { string in
   print(number)
 }
 
-Promise.resolve { handler in
+resolve { handler in
   objc.async(with: "hello", and: 42, completion: handler)
 }.then { _ in
   print("Success.")
