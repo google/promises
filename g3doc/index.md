@@ -1519,8 +1519,8 @@ func asyncCall() -> Promise<Data> {
 Objective-C:
 
 ```objectivec
-- (FBLPromise<NSData> *)asyncCall {
-  FBLPromise<NSData> *promise = [self doSomethingAsync];
+- (FBLPromise<NSData *> *)asyncCall {
+  FBLPromise<NSData *> *promise = [self doSomethingAsync];
   [promise then:^id(NSData *result) {
     return [self processData:result];
   }];
@@ -1544,8 +1544,8 @@ func asyncCall() -> Promise<Data> {
 Objective-C:
 
 ```objectivec
-- (FBLPromise<NSData> *)asyncCall {
-  FBLPromise<NSData> *promise = [self doSomethingAsync];
+- (FBLPromise<NSData *> *)asyncCall {
+  FBLPromise<NSData *> *promise = [self doSomethingAsync];
   return [promise then:^id(NSData *result) {
     return [self processData:result];
   }];
