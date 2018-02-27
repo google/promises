@@ -47,7 +47,7 @@ typedef void (^FBLPromiseAsyncWorkBlock)(FBLPromiseFulfillBlock fulfill,
 
 /**
  Convenience dot-syntax wrappers for `FBLPromise` `async` operators.
- Usage: promise.async(^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock reject) { ... })
+ Usage: FBLPromise.async(^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock reject) { ... })
  */
 @interface FBLPromise<Value>(DotSyntax_AsyncAdditions)
 
