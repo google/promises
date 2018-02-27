@@ -126,7 +126,7 @@ typedef void (^FBLPromiseDoubleOrErrorCompletion)(double, NSError* __nullable)
 
 /**
  Convenience dot-syntax wrappers for `FBLPromise` `resolve` operators.
- Usage: promise.resolveWhen(^(FBLPromiseCompletion handler) {...})
+ Usage: FBLPromise.resolveWhen(^(FBLPromiseCompletion handler) {...})
  */
 @interface FBLPromise<Value>(DotSyntax_ResolveAdditions)
 
