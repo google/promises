@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Convenience dot-syntax wrappers for `FBLPromise` `timeout` operators.
- Usage: FBLPromise.timeout(...)
+ Usage: promise.timeout(...)
  */
 @interface FBLPromise<Value>(DotSyntax_TimeoutAdditions)
 

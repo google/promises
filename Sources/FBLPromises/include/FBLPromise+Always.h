@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Convenience dot-syntax wrappers for `FBLPromise` `always` operators.
- Usage: FBLPromise.always(^{...})
+ Usage: promise.always(^{...})
  */
 @interface FBLPromise<Value>(DotSyntax_AlwaysAdditions)
 

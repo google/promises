@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Convenience dot-syntax wrappers for `FBLPromise` `validate` operators.
- Usage: FBLPromise.validate(^BOOL(id value) { ... })
+ Usage: promise.validate(^BOOL(id value) { ... })
  */
 @interface FBLPromise<Value>(DotSyntax_ValidateAdditions)
 
