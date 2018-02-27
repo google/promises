@@ -12,7 +12,6 @@
 
 Packages/
 .build/
-*.xcodeproj
 *.resolved
 
 # Bazel

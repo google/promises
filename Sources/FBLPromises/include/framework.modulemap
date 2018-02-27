@@ -1,4 +1,4 @@
-module FBLPromises {
+framework module FBLPromises {
     umbrella header "FBLPromises.h"
 
     header "FBLPromise.h"

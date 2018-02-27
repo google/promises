@@ -414,7 +414,7 @@ In your `Package.swift` file, add `Promises` dependency to corresponding targets
 let package = Package(
   // ...
   dependencies: [
-    .package(url: "https://github.com/google/promises.git", from: "1.0.3"),
+    .package(url: "https://github.com/google/promises.git", from: "1.0.4"),
   ],
   // ...
 )
@@ -474,15 +474,13 @@ Or, the module:
 
 #### Carthage
 
-Sorry, we intentionally don't ship any fixed Xcode project with the framework,
-which seems to be a requirement for `Carthage`. But you can generate one with
-[Tulsi](https://tulsi.bazel.build/). Or just `cd` to `Promises` directory and
-run the following Swift Package Manager command to open the generated Xcode
-project in the workspace we do provide:
+Add the following to your `Cartfile`:
 
-```sh
-swift package -Xswiftc -ISources/FBLPromises/include generate-xcodeproj && open Promises.xcworkspace
 ```
+github "google/promises"
+```
+
+Then, run `carthage update` and follow the [rest of instructions](https://github.com/Carthage/Carthage#getting-started).
 
 ### Adopt
 

@@ -1,0 +1,1785 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		032B80ED204549000097BF12 /* FBLPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204071204547D300D2D16C /* FBLPromise.m */; };
+		032B80EE204549000097BF12 /* FBLPromise+All.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320406F204547D300D2D16C /* FBLPromise+All.m */; };
+		032B80EF204549000097BF12 /* FBLPromise+Always.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320406A204547D300D2D16C /* FBLPromise+Always.m */; };
+		032B80F0204549000097BF12 /* FBLPromise+Any.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204068204547D300D2D16C /* FBLPromise+Any.m */; };
+		032B80F1204549000097BF12 /* FBLPromise+Async.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204069204547D300D2D16C /* FBLPromise+Async.m */; };
+		032B80F2204549000097BF12 /* FBLPromise+Catch.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320406B204547D300D2D16C /* FBLPromise+Catch.m */; };
+		032B80F3204549000097BF12 /* FBLPromise+Do.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320404F204547D300D2D16C /* FBLPromise+Do.m */; };
+		032B80F4204549000097BF12 /* FBLPromise+Recover.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320406E204547D300D2D16C /* FBLPromise+Recover.m */; };
+		032B80F5204549000097BF12 /* FBLPromise+Resolve.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204050204547D300D2D16C /* FBLPromise+Resolve.m */; };
+		032B80F6204549000097BF12 /* FBLPromise+Testing.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320406C204547D300D2D16C /* FBLPromise+Testing.m */; };
+		032B80F7204549000097BF12 /* FBLPromise+Then.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204065204547D300D2D16C /* FBLPromise+Then.m */; };
+		032B80F8204549000097BF12 /* FBLPromise+Timeout.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204067204547D300D2D16C /* FBLPromise+Timeout.m */; };
+		032B80F9204549000097BF12 /* FBLPromise+Validate.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204070204547D300D2D16C /* FBLPromise+Validate.m */; };
+		032B80FA204549000097BF12 /* FBLPromise+When.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320406D204547D300D2D16C /* FBLPromise+When.m */; };
+		032B80FB204549000097BF12 /* FBLPromiseError.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204066204547D300D2D16C /* FBLPromiseError.m */; };
+		032B80FC204549080097BF12 /* FBLPromise.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204058204547D300D2D16C /* FBLPromise.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		032B80FD204549080097BF12 /* FBLPromise+All.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204057204547D300D2D16C /* FBLPromise+All.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		032B80FE204549080097BF12 /* FBLPromise+Always.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204063204547D300D2D16C /* FBLPromise+Always.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		032B80FF204549080097BF12 /* FBLPromise+Any.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204064204547D300D2D16C /* FBLPromise+Any.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		032B8100204549080097BF12 /* FBLPromise+Async.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204062204547D300D2D16C /* FBLPromise+Async.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		032B8101204549080097BF12 /* FBLPromise+Catch.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204053204547D300D2D16C /* FBLPromise+Catch.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		032B8102204549080097BF12 /* FBLPromise+Do.h in Headers */ = {isa = PBXBuildFile; fileRef = 0320405B204547D300D2D16C /* FBLPromise+Do.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		032B8103204549080097BF12 /* FBLPromise+Recover.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204054204547D300D2D16C /* FBLPromise+Recover.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		032B8104204549080097BF12 /* FBLPromise+Resolve.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204061204547D300D2D16C /* FBLPromise+Resolve.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		032B8105204549080097BF12 /* FBLPromise+Testing.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204052204547D300D2D16C /* FBLPromise+Testing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		032B8106204549080097BF12 /* FBLPromise+Then.h in Headers */ = {isa = PBXBuildFile; fileRef = 0320405E204547D300D2D16C /* FBLPromise+Then.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		032B8107204549080097BF12 /* FBLPromise+Timeout.h in Headers */ = {isa = PBXBuildFile; fileRef = 0320405C204547D300D2D16C /* FBLPromise+Timeout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		032B8108204549080097BF12 /* FBLPromise+Validate.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204056204547D300D2D16C /* FBLPromise+Validate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		032B8109204549080097BF12 /* FBLPromise+When.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204055204547D300D2D16C /* FBLPromise+When.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		032B810A204549080097BF12 /* FBLPromiseError.h in Headers */ = {isa = PBXBuildFile; fileRef = 0320405D204547D300D2D16C /* FBLPromiseError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		032B810B204549080097BF12 /* FBLPromisePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0320405A204547D300D2D16C /* FBLPromisePrivate.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		032B810C204549080097BF12 /* FBLPromises.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204059204547D300D2D16C /* FBLPromises.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		032B8110204549300097BF12 /* FBLPromisesTestHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204039204547D300D2D16C /* FBLPromisesTestHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		032B8111204549300097BF12 /* FBLPromisesTestInteroperability.h in Headers */ = {isa = PBXBuildFile; fileRef = 0320403A204547D300D2D16C /* FBLPromisesTestInteroperability.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		032B81122045493A0097BF12 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320404B204547D300D2D16C /* Promise.swift */; };
+		032B81132045493A0097BF12 /* Promise+All.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320404A204547D300D2D16C /* Promise+All.swift */; };
+		032B81142045493A0097BF12 /* Promise+Always.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204047204547D300D2D16C /* Promise+Always.swift */; };
+		032B81152045493A0097BF12 /* Promise+Any.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204045204547D300D2D16C /* Promise+Any.swift */; };
+		032B81162045493A0097BF12 /* Promise+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204044204547D300D2D16C /* Promise+Async.swift */; };
+		032B81172045493A0097BF12 /* Promise+Catch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204042204547D300D2D16C /* Promise+Catch.swift */; };
+		032B81182045493A0097BF12 /* Promise+Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204049204547D300D2D16C /* Promise+Do.swift */; };
+		032B81192045493A0097BF12 /* Promise+Recover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204040204547D300D2D16C /* Promise+Recover.swift */; };
+		032B811A2045493A0097BF12 /* Promise+Resolve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204043204547D300D2D16C /* Promise+Resolve.swift */; };
+		032B811B2045493A0097BF12 /* Promise+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320403F204547D300D2D16C /* Promise+Testing.swift */; };
+		032B811C2045493A0097BF12 /* Promise+Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320404D204547D300D2D16C /* Promise+Then.swift */; };
+		032B811D2045493A0097BF12 /* Promise+Timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204048204547D300D2D16C /* Promise+Timeout.swift */; };
+		032B811E2045493A0097BF12 /* Promise+Validate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320404C204547D300D2D16C /* Promise+Validate.swift */; };
+		032B811F2045493A0097BF12 /* Promise+When.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204041204547D300D2D16C /* Promise+When.swift */; };
+		032B81202045493A0097BF12 /* PromiseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204046204547D300D2D16C /* PromiseError.swift */; };
+		032B8121204549430097BF12 /* PromisesTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204036204547D300D2D16C /* PromisesTestHelpers.swift */; };
+		032B8122204549430097BF12 /* PromisesTestInteroperability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204035204547D300D2D16C /* PromisesTestInteroperability.swift */; };
+		032B81232045494B0097BF12 /* FBLPromise+CatchInteroperabilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204084204547D400D2D16C /* FBLPromise+CatchInteroperabilityTests.m */; };
+		032B81242045494B0097BF12 /* FBLPromise+ThenInteroperabilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204085204547D400D2D16C /* FBLPromise+ThenInteroperabilityTests.m */; };
+		032B8125204549510097BF12 /* FBLPromise+ThenPerformanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204082204547D400D2D16C /* FBLPromise+ThenPerformanceTests.m */; };
+		032B8126204549590097BF12 /* FBLPromise+AllTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204090204547D400D2D16C /* FBLPromise+AllTests.m */; };
+		032B8127204549590097BF12 /* FBLPromise+AlwaysTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320408A204547D400D2D16C /* FBLPromise+AlwaysTests.m */; };
+		032B8128204549590097BF12 /* FBLPromise+AnyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320408D204547D400D2D16C /* FBLPromise+AnyTests.m */; };
+		032B8129204549590097BF12 /* FBLPromise+AsyncTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204093204547D400D2D16C /* FBLPromise+AsyncTests.m */; };
+		032B812A204549590097BF12 /* FBLPromise+CatchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320408F204547D400D2D16C /* FBLPromise+CatchTests.m */; };
+		032B812B204549590097BF12 /* FBLPromise+DoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320408B204547D400D2D16C /* FBLPromise+DoTests.m */; };
+		032B812C204549590097BF12 /* FBLPromise+RecoverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320408E204547D400D2D16C /* FBLPromise+RecoverTests.m */; };
+		032B812D204549590097BF12 /* FBLPromise+ResolveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204091204547D400D2D16C /* FBLPromise+ResolveTests.m */; };
+		032B812E204549590097BF12 /* FBLPromise+ThenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204094204547D400D2D16C /* FBLPromise+ThenTests.m */; };
+		032B812F204549590097BF12 /* FBLPromise+TimeoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204095204547D400D2D16C /* FBLPromise+TimeoutTests.m */; };
+		032B8130204549590097BF12 /* FBLPromise+ValidateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204092204547D400D2D16C /* FBLPromise+ValidateTests.m */; };
+		032B8131204549590097BF12 /* FBLPromise+WhenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204089204547D400D2D16C /* FBLPromise+WhenTests.m */; };
+		032B8132204549590097BF12 /* FBLPromiseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320408C204547D400D2D16C /* FBLPromiseTests.m */; };
+		032B8133204549620097BF12 /* Promise+CatchInteroperabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204098204547D400D2D16C /* Promise+CatchInteroperabilityTests.swift */; };
+		032B8134204549620097BF12 /* Promise+ThenInteroperabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204097204547D400D2D16C /* Promise+ThenInteroperabilityTests.swift */; };
+		032B8135204549680097BF12 /* Promise+ThenPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204087204547D400D2D16C /* Promise+ThenPerformanceTests.swift */; };
+		032B8136204549700097BF12 /* Promise+AllTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204074204547D300D2D16C /* Promise+AllTests.swift */; };
+		032B8137204549700097BF12 /* Promise+AlwaysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320407A204547D300D2D16C /* Promise+AlwaysTests.swift */; };
+		032B8138204549700097BF12 /* Promise+AnyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204075204547D300D2D16C /* Promise+AnyTests.swift */; };
+		032B8139204549700097BF12 /* Promise+AsyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204078204547D300D2D16C /* Promise+AsyncTests.swift */; };
+		032B813A204549700097BF12 /* Promise+CatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204076204547D300D2D16C /* Promise+CatchTests.swift */; };
+		032B813B204549700097BF12 /* Promise+DoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320407B204547D300D2D16C /* Promise+DoTests.swift */; };
+		032B813C204549700097BF12 /* Promise+RecoverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204079204547D300D2D16C /* Promise+RecoverTests.swift */; };
+		032B813D204549700097BF12 /* Promise+ResolveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320407E204547D300D2D16C /* Promise+ResolveTests.swift */; };
+		032B813E204549700097BF12 /* Promise+ThenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320407F204547D400D2D16C /* Promise+ThenTests.swift */; };
+		032B813F204549700097BF12 /* Promise+TimeoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320407D204547D300D2D16C /* Promise+TimeoutTests.swift */; };
+		032B8140204549700097BF12 /* Promise+ValidateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204077204547D300D2D16C /* Promise+ValidateTests.swift */; };
+		032B8141204549700097BF12 /* Promise+WhenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204080204547D400D2D16C /* Promise+WhenTests.swift */; };
+		032B8142204549700097BF12 /* PromiseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320407C204547D300D2D16C /* PromiseTests.swift */; };
+		032B8143204549DC0097BF12 /* FBLPromisesTestInteroperability.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320403D204547D300D2D16C /* FBLPromisesTestInteroperability.m */; };
+		OBJ_134 /* PromisesTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::PromisesTestHelpers::Product" /* PromisesTestHelpers.framework */; };
+		OBJ_135 /* Promises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::Promises::Product" /* Promises.framework */; };
+		OBJ_136 /* FBLPromisesTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::FBLPromisesTestHelpers::Product" /* FBLPromisesTestHelpers.framework */; };
+		OBJ_137 /* FBLPromises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::FBLPromises::Product" /* FBLPromises.framework */; };
+		OBJ_153 /* FBLPromisesTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::FBLPromisesTestHelpers::Product" /* FBLPromisesTestHelpers.framework */; };
+		OBJ_154 /* FBLPromises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::FBLPromises::Product" /* FBLPromises.framework */; };
+		OBJ_176 /* PromisesTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::PromisesTestHelpers::Product" /* PromisesTestHelpers.framework */; };
+		OBJ_177 /* Promises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::Promises::Product" /* Promises.framework */; };
+		OBJ_178 /* FBLPromises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::FBLPromises::Product" /* FBLPromises.framework */; };
+		OBJ_201 /* FBLPromisesTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::FBLPromisesTestHelpers::Product" /* FBLPromisesTestHelpers.framework */; };
+		OBJ_202 /* FBLPromises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::FBLPromises::Product" /* FBLPromises.framework */; };
+		OBJ_212 /* PromisesTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::PromisesTestHelpers::Product" /* PromisesTestHelpers.framework */; };
+		OBJ_213 /* Promises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::Promises::Product" /* Promises.framework */; };
+		OBJ_214 /* FBLPromisesTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::FBLPromisesTestHelpers::Product" /* FBLPromisesTestHelpers.framework */; };
+		OBJ_215 /* FBLPromises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::FBLPromises::Product" /* FBLPromises.framework */; };
+		OBJ_228 /* PromisesTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::PromisesTestHelpers::Product" /* PromisesTestHelpers.framework */; };
+		OBJ_229 /* Promises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::Promises::Product" /* Promises.framework */; };
+		OBJ_230 /* FBLPromisesTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::FBLPromisesTestHelpers::Product" /* FBLPromisesTestHelpers.framework */; };
+		OBJ_231 /* FBLPromises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::FBLPromises::Product" /* FBLPromises.framework */; };
+		OBJ_243 /* Promises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::Promises::Product" /* Promises.framework */; };
+		OBJ_244 /* FBLPromises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::FBLPromises::Product" /* FBLPromises.framework */; };
+		OBJ_267 /* FBLPromises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::FBLPromises::Product" /* FBLPromises.framework */; };
+		OBJ_275 /* FBLPromises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::FBLPromises::Product" /* FBLPromises.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		03C7653E20453420008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::FBLPromises";
+			remoteInfo = FBLPromises;
+		};
+		03C7653F20453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::Promises";
+			remoteInfo = Promises;
+		};
+		03C7654020453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::FBLPromises";
+			remoteInfo = FBLPromises;
+		};
+		03C7654120453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::FBLPromises";
+			remoteInfo = FBLPromises;
+		};
+		03C7654220453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::PromisesTestHelpers";
+			remoteInfo = PromisesTestHelpers;
+		};
+		03C7654320453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::Promises";
+			remoteInfo = Promises;
+		};
+		03C7654420453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::FBLPromisesTestHelpers";
+			remoteInfo = FBLPromisesTestHelpers;
+		};
+		03C7654520453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::FBLPromises";
+			remoteInfo = FBLPromises;
+		};
+		03C7654620453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::FBLPromisesTestHelpers";
+			remoteInfo = FBLPromisesTestHelpers;
+		};
+		03C7654720453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::FBLPromises";
+			remoteInfo = FBLPromises;
+		};
+		03C7654820453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::PromisesTestHelpers";
+			remoteInfo = PromisesTestHelpers;
+		};
+		03C7654920453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::Promises";
+			remoteInfo = Promises;
+		};
+		03C7654A20453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::FBLPromises";
+			remoteInfo = FBLPromises;
+		};
+		03C7654B20453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::FBLPromisesTestHelpers";
+			remoteInfo = FBLPromisesTestHelpers;
+		};
+		03C7654C20453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::FBLPromises";
+			remoteInfo = FBLPromises;
+		};
+		03C7654D20453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::PromisesTestHelpers";
+			remoteInfo = PromisesTestHelpers;
+		};
+		03C7654E20453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::Promises";
+			remoteInfo = Promises;
+		};
+		03C7654F20453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::FBLPromisesTestHelpers";
+			remoteInfo = FBLPromisesTestHelpers;
+		};
+		03C7655020453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::FBLPromises";
+			remoteInfo = FBLPromises;
+		};
+		03C7655120453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::PromisesTestHelpers";
+			remoteInfo = PromisesTestHelpers;
+		};
+		03C7655220453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::Promises";
+			remoteInfo = Promises;
+		};
+		03C7655320453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::FBLPromisesTestHelpers";
+			remoteInfo = FBLPromisesTestHelpers;
+		};
+		03C7655420453421008F08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Promises::FBLPromises";
+			remoteInfo = FBLPromises;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		03204035204547D300D2D16C /* PromisesTestInteroperability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromisesTestInteroperability.swift; sourceTree = "<group>"; };
+		03204036204547D300D2D16C /* PromisesTestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromisesTestHelpers.swift; sourceTree = "<group>"; };
+		03204039204547D300D2D16C /* FBLPromisesTestHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLPromisesTestHelpers.h; sourceTree = "<group>"; };
+		0320403A204547D300D2D16C /* FBLPromisesTestInteroperability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLPromisesTestInteroperability.h; sourceTree = "<group>"; };
+		0320403B204547D300D2D16C /* framework.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = framework.modulemap; sourceTree = "<group>"; };
+		0320403D204547D300D2D16C /* FBLPromisesTestInteroperability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLPromisesTestInteroperability.m; sourceTree = "<group>"; };
+		0320403F204547D300D2D16C /* Promise+Testing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Testing.swift"; sourceTree = "<group>"; };
+		03204040204547D300D2D16C /* Promise+Recover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Recover.swift"; sourceTree = "<group>"; };
+		03204041204547D300D2D16C /* Promise+When.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+When.swift"; sourceTree = "<group>"; };
+		03204042204547D300D2D16C /* Promise+Catch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Catch.swift"; sourceTree = "<group>"; };
+		03204043204547D300D2D16C /* Promise+Resolve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Resolve.swift"; sourceTree = "<group>"; };
+		03204044204547D300D2D16C /* Promise+Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Async.swift"; sourceTree = "<group>"; };
+		03204045204547D300D2D16C /* Promise+Any.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Any.swift"; sourceTree = "<group>"; };
+		03204046204547D300D2D16C /* PromiseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseError.swift; sourceTree = "<group>"; };
+		03204047204547D300D2D16C /* Promise+Always.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Always.swift"; sourceTree = "<group>"; };
+		03204048204547D300D2D16C /* Promise+Timeout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Timeout.swift"; sourceTree = "<group>"; };
+		03204049204547D300D2D16C /* Promise+Do.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Do.swift"; sourceTree = "<group>"; };
+		0320404A204547D300D2D16C /* Promise+All.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+All.swift"; sourceTree = "<group>"; };
+		0320404B204547D300D2D16C /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
+		0320404C204547D300D2D16C /* Promise+Validate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Validate.swift"; sourceTree = "<group>"; };
+		0320404D204547D300D2D16C /* Promise+Then.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Then.swift"; sourceTree = "<group>"; };
+		0320404F204547D300D2D16C /* FBLPromise+Do.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Do.m"; sourceTree = "<group>"; };
+		03204050204547D300D2D16C /* FBLPromise+Resolve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Resolve.m"; sourceTree = "<group>"; };
+		03204052204547D300D2D16C /* FBLPromise+Testing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Testing.h"; sourceTree = "<group>"; };
+		03204053204547D300D2D16C /* FBLPromise+Catch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Catch.h"; sourceTree = "<group>"; };
+		03204054204547D300D2D16C /* FBLPromise+Recover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Recover.h"; sourceTree = "<group>"; };
+		03204055204547D300D2D16C /* FBLPromise+When.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+When.h"; sourceTree = "<group>"; };
+		03204056204547D300D2D16C /* FBLPromise+Validate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Validate.h"; sourceTree = "<group>"; };
+		03204057204547D300D2D16C /* FBLPromise+All.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+All.h"; sourceTree = "<group>"; };
+		03204058204547D300D2D16C /* FBLPromise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLPromise.h; sourceTree = "<group>"; };
+		03204059204547D300D2D16C /* FBLPromises.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLPromises.h; sourceTree = "<group>"; };
+		0320405A204547D300D2D16C /* FBLPromisePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLPromisePrivate.h; sourceTree = "<group>"; };
+		0320405B204547D300D2D16C /* FBLPromise+Do.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Do.h"; sourceTree = "<group>"; };
+		0320405C204547D300D2D16C /* FBLPromise+Timeout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Timeout.h"; sourceTree = "<group>"; };
+		0320405D204547D300D2D16C /* FBLPromiseError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLPromiseError.h; sourceTree = "<group>"; };
+		0320405E204547D300D2D16C /* FBLPromise+Then.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Then.h"; sourceTree = "<group>"; };
+		0320405F204547D300D2D16C /* framework.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = framework.modulemap; sourceTree = "<group>"; };
+		03204061204547D300D2D16C /* FBLPromise+Resolve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Resolve.h"; sourceTree = "<group>"; };
+		03204062204547D300D2D16C /* FBLPromise+Async.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Async.h"; sourceTree = "<group>"; };
+		03204063204547D300D2D16C /* FBLPromise+Always.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Always.h"; sourceTree = "<group>"; };
+		03204064204547D300D2D16C /* FBLPromise+Any.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Any.h"; sourceTree = "<group>"; };
+		03204065204547D300D2D16C /* FBLPromise+Then.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Then.m"; sourceTree = "<group>"; };
+		03204066204547D300D2D16C /* FBLPromiseError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLPromiseError.m; sourceTree = "<group>"; };
+		03204067204547D300D2D16C /* FBLPromise+Timeout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Timeout.m"; sourceTree = "<group>"; };
+		03204068204547D300D2D16C /* FBLPromise+Any.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Any.m"; sourceTree = "<group>"; };
+		03204069204547D300D2D16C /* FBLPromise+Async.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Async.m"; sourceTree = "<group>"; };
+		0320406A204547D300D2D16C /* FBLPromise+Always.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Always.m"; sourceTree = "<group>"; };
+		0320406B204547D300D2D16C /* FBLPromise+Catch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Catch.m"; sourceTree = "<group>"; };
+		0320406C204547D300D2D16C /* FBLPromise+Testing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Testing.m"; sourceTree = "<group>"; };
+		0320406D204547D300D2D16C /* FBLPromise+When.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+When.m"; sourceTree = "<group>"; };
+		0320406E204547D300D2D16C /* FBLPromise+Recover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Recover.m"; sourceTree = "<group>"; };
+		0320406F204547D300D2D16C /* FBLPromise+All.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+All.m"; sourceTree = "<group>"; };
+		03204070204547D300D2D16C /* FBLPromise+Validate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Validate.m"; sourceTree = "<group>"; };
+		03204071204547D300D2D16C /* FBLPromise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLPromise.m; sourceTree = "<group>"; };
+		03204074204547D300D2D16C /* Promise+AllTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+AllTests.swift"; sourceTree = "<group>"; };
+		03204075204547D300D2D16C /* Promise+AnyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+AnyTests.swift"; sourceTree = "<group>"; };
+		03204076204547D300D2D16C /* Promise+CatchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+CatchTests.swift"; sourceTree = "<group>"; };
+		03204077204547D300D2D16C /* Promise+ValidateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+ValidateTests.swift"; sourceTree = "<group>"; };
+		03204078204547D300D2D16C /* Promise+AsyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+AsyncTests.swift"; sourceTree = "<group>"; };
+		03204079204547D300D2D16C /* Promise+RecoverTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+RecoverTests.swift"; sourceTree = "<group>"; };
+		0320407A204547D300D2D16C /* Promise+AlwaysTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+AlwaysTests.swift"; sourceTree = "<group>"; };
+		0320407B204547D300D2D16C /* Promise+DoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+DoTests.swift"; sourceTree = "<group>"; };
+		0320407C204547D300D2D16C /* PromiseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseTests.swift; sourceTree = "<group>"; };
+		0320407D204547D300D2D16C /* Promise+TimeoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+TimeoutTests.swift"; sourceTree = "<group>"; };
+		0320407E204547D300D2D16C /* Promise+ResolveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+ResolveTests.swift"; sourceTree = "<group>"; };
+		0320407F204547D400D2D16C /* Promise+ThenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+ThenTests.swift"; sourceTree = "<group>"; };
+		03204080204547D400D2D16C /* Promise+WhenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+WhenTests.swift"; sourceTree = "<group>"; };
+		03204082204547D400D2D16C /* FBLPromise+ThenPerformanceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+ThenPerformanceTests.m"; sourceTree = "<group>"; };
+		03204084204547D400D2D16C /* FBLPromise+CatchInteroperabilityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+CatchInteroperabilityTests.m"; sourceTree = "<group>"; };
+		03204085204547D400D2D16C /* FBLPromise+ThenInteroperabilityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+ThenInteroperabilityTests.m"; sourceTree = "<group>"; };
+		03204087204547D400D2D16C /* Promise+ThenPerformanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+ThenPerformanceTests.swift"; sourceTree = "<group>"; };
+		03204089204547D400D2D16C /* FBLPromise+WhenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+WhenTests.m"; sourceTree = "<group>"; };
+		0320408A204547D400D2D16C /* FBLPromise+AlwaysTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+AlwaysTests.m"; sourceTree = "<group>"; };
+		0320408B204547D400D2D16C /* FBLPromise+DoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+DoTests.m"; sourceTree = "<group>"; };
+		0320408C204547D400D2D16C /* FBLPromiseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLPromiseTests.m; sourceTree = "<group>"; };
+		0320408D204547D400D2D16C /* FBLPromise+AnyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+AnyTests.m"; sourceTree = "<group>"; };
+		0320408E204547D400D2D16C /* FBLPromise+RecoverTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+RecoverTests.m"; sourceTree = "<group>"; };
+		0320408F204547D400D2D16C /* FBLPromise+CatchTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+CatchTests.m"; sourceTree = "<group>"; };
+		03204090204547D400D2D16C /* FBLPromise+AllTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+AllTests.m"; sourceTree = "<group>"; };
+		03204091204547D400D2D16C /* FBLPromise+ResolveTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+ResolveTests.m"; sourceTree = "<group>"; };
+		03204092204547D400D2D16C /* FBLPromise+ValidateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+ValidateTests.m"; sourceTree = "<group>"; };
+		03204093204547D400D2D16C /* FBLPromise+AsyncTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+AsyncTests.m"; sourceTree = "<group>"; };
+		03204094204547D400D2D16C /* FBLPromise+ThenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+ThenTests.m"; sourceTree = "<group>"; };
+		03204095204547D400D2D16C /* FBLPromise+TimeoutTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+TimeoutTests.m"; sourceTree = "<group>"; };
+		03204097204547D400D2D16C /* Promise+ThenInteroperabilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+ThenInteroperabilityTests.swift"; sourceTree = "<group>"; };
+		03204098204547D400D2D16C /* Promise+CatchInteroperabilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+CatchInteroperabilityTests.swift"; sourceTree = "<group>"; };
+		"Promises::FBLPromises::Product" /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Promises::FBLPromisesInteroperabilityTests::Product" /* FBLPromisesInteroperabilityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = FBLPromisesInteroperabilityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Promises::FBLPromisesPerformanceTests::Product" /* FBLPromisesPerformanceTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = FBLPromisesPerformanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Promises::FBLPromisesTestHelpers::Product" /* FBLPromisesTestHelpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBLPromisesTestHelpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Promises::FBLPromisesTests::Product" /* FBLPromisesTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = FBLPromisesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Promises::Promises::Product" /* Promises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Promises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Promises::PromisesInteroperabilityTests::Product" /* PromisesInteroperabilityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = PromisesInteroperabilityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Promises::PromisesPerformanceTests::Product" /* PromisesPerformanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = PromisesPerformanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Promises::PromisesTestHelpers::Product" /* PromisesTestHelpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PromisesTestHelpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Promises::PromisesTests::Product" /* PromisesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = PromisesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		OBJ_133 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_134 /* PromisesTestHelpers.framework in Frameworks */,
+				OBJ_135 /* Promises.framework in Frameworks */,
+				OBJ_136 /* FBLPromisesTestHelpers.framework in Frameworks */,
+				OBJ_137 /* FBLPromises.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_152 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_153 /* FBLPromisesTestHelpers.framework in Frameworks */,
+				OBJ_154 /* FBLPromises.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_175 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_176 /* PromisesTestHelpers.framework in Frameworks */,
+				OBJ_177 /* Promises.framework in Frameworks */,
+				OBJ_178 /* FBLPromises.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_200 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_201 /* FBLPromisesTestHelpers.framework in Frameworks */,
+				OBJ_202 /* FBLPromises.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_211 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_212 /* PromisesTestHelpers.framework in Frameworks */,
+				OBJ_213 /* Promises.framework in Frameworks */,
+				OBJ_214 /* FBLPromisesTestHelpers.framework in Frameworks */,
+				OBJ_215 /* FBLPromises.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_227 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_228 /* PromisesTestHelpers.framework in Frameworks */,
+				OBJ_229 /* Promises.framework in Frameworks */,
+				OBJ_230 /* FBLPromisesTestHelpers.framework in Frameworks */,
+				OBJ_231 /* FBLPromises.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_242 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_243 /* Promises.framework in Frameworks */,
+				OBJ_244 /* FBLPromises.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_266 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_267 /* FBLPromises.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_274 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_275 /* FBLPromises.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_296 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		03204033204547D300D2D16C /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				0320404E204547D300D2D16C /* FBLPromises */,
+				03204037204547D300D2D16C /* FBLPromisesTestHelpers */,
+				0320403E204547D300D2D16C /* Promises */,
+				03204034204547D300D2D16C /* PromisesTestHelpers */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		03204034204547D300D2D16C /* PromisesTestHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				03204036204547D300D2D16C /* PromisesTestHelpers.swift */,
+				03204035204547D300D2D16C /* PromisesTestInteroperability.swift */,
+			);
+			path = PromisesTestHelpers;
+			sourceTree = "<group>";
+		};
+		03204037204547D300D2D16C /* FBLPromisesTestHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				0320403D204547D300D2D16C /* FBLPromisesTestInteroperability.m */,
+				03204038204547D300D2D16C /* include */,
+			);
+			path = FBLPromisesTestHelpers;
+			sourceTree = "<group>";
+		};
+		03204038204547D300D2D16C /* include */ = {
+			isa = PBXGroup;
+			children = (
+				03204039204547D300D2D16C /* FBLPromisesTestHelpers.h */,
+				0320403A204547D300D2D16C /* FBLPromisesTestInteroperability.h */,
+				0320403B204547D300D2D16C /* framework.modulemap */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		0320403E204547D300D2D16C /* Promises */ = {
+			isa = PBXGroup;
+			children = (
+				0320404B204547D300D2D16C /* Promise.swift */,
+				0320404A204547D300D2D16C /* Promise+All.swift */,
+				03204047204547D300D2D16C /* Promise+Always.swift */,
+				03204045204547D300D2D16C /* Promise+Any.swift */,
+				03204044204547D300D2D16C /* Promise+Async.swift */,
+				03204042204547D300D2D16C /* Promise+Catch.swift */,
+				03204049204547D300D2D16C /* Promise+Do.swift */,
+				03204040204547D300D2D16C /* Promise+Recover.swift */,
+				03204043204547D300D2D16C /* Promise+Resolve.swift */,
+				0320403F204547D300D2D16C /* Promise+Testing.swift */,
+				0320404D204547D300D2D16C /* Promise+Then.swift */,
+				03204048204547D300D2D16C /* Promise+Timeout.swift */,
+				0320404C204547D300D2D16C /* Promise+Validate.swift */,
+				03204041204547D300D2D16C /* Promise+When.swift */,
+				03204046204547D300D2D16C /* PromiseError.swift */,
+			);
+			path = Promises;
+			sourceTree = "<group>";
+		};
+		0320404E204547D300D2D16C /* FBLPromises */ = {
+			isa = PBXGroup;
+			children = (
+				03204071204547D300D2D16C /* FBLPromise.m */,
+				0320406F204547D300D2D16C /* FBLPromise+All.m */,
+				0320406A204547D300D2D16C /* FBLPromise+Always.m */,
+				03204068204547D300D2D16C /* FBLPromise+Any.m */,
+				03204069204547D300D2D16C /* FBLPromise+Async.m */,
+				0320406B204547D300D2D16C /* FBLPromise+Catch.m */,
+				0320404F204547D300D2D16C /* FBLPromise+Do.m */,
+				0320406E204547D300D2D16C /* FBLPromise+Recover.m */,
+				03204050204547D300D2D16C /* FBLPromise+Resolve.m */,
+				0320406C204547D300D2D16C /* FBLPromise+Testing.m */,
+				03204065204547D300D2D16C /* FBLPromise+Then.m */,
+				03204067204547D300D2D16C /* FBLPromise+Timeout.m */,
+				03204070204547D300D2D16C /* FBLPromise+Validate.m */,
+				0320406D204547D300D2D16C /* FBLPromise+When.m */,
+				03204066204547D300D2D16C /* FBLPromiseError.m */,
+				03204051204547D300D2D16C /* include */,
+			);
+			path = FBLPromises;
+			sourceTree = "<group>";
+		};
+		03204051204547D300D2D16C /* include */ = {
+			isa = PBXGroup;
+			children = (
+				03204058204547D300D2D16C /* FBLPromise.h */,
+				03204057204547D300D2D16C /* FBLPromise+All.h */,
+				03204063204547D300D2D16C /* FBLPromise+Always.h */,
+				03204064204547D300D2D16C /* FBLPromise+Any.h */,
+				03204062204547D300D2D16C /* FBLPromise+Async.h */,
+				03204053204547D300D2D16C /* FBLPromise+Catch.h */,
+				0320405B204547D300D2D16C /* FBLPromise+Do.h */,
+				03204054204547D300D2D16C /* FBLPromise+Recover.h */,
+				03204061204547D300D2D16C /* FBLPromise+Resolve.h */,
+				03204052204547D300D2D16C /* FBLPromise+Testing.h */,
+				0320405E204547D300D2D16C /* FBLPromise+Then.h */,
+				0320405C204547D300D2D16C /* FBLPromise+Timeout.h */,
+				03204056204547D300D2D16C /* FBLPromise+Validate.h */,
+				03204055204547D300D2D16C /* FBLPromise+When.h */,
+				0320405D204547D300D2D16C /* FBLPromiseError.h */,
+				0320405A204547D300D2D16C /* FBLPromisePrivate.h */,
+				03204059204547D300D2D16C /* FBLPromises.h */,
+				0320405F204547D300D2D16C /* framework.modulemap */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		03204072204547D300D2D16C /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				03204083204547D400D2D16C /* FBLPromisesInteroperabilityTests */,
+				03204081204547D400D2D16C /* FBLPromisesPerformanceTests */,
+				03204088204547D400D2D16C /* FBLPromisesTests */,
+				03204096204547D400D2D16C /* PromisesInteroperabilityTests */,
+				03204086204547D400D2D16C /* PromisesPerformanceTests */,
+				03204073204547D300D2D16C /* PromisesTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		03204073204547D300D2D16C /* PromisesTests */ = {
+			isa = PBXGroup;
+			children = (
+				03204074204547D300D2D16C /* Promise+AllTests.swift */,
+				0320407A204547D300D2D16C /* Promise+AlwaysTests.swift */,
+				03204075204547D300D2D16C /* Promise+AnyTests.swift */,
+				03204078204547D300D2D16C /* Promise+AsyncTests.swift */,
+				03204076204547D300D2D16C /* Promise+CatchTests.swift */,
+				0320407B204547D300D2D16C /* Promise+DoTests.swift */,
+				03204079204547D300D2D16C /* Promise+RecoverTests.swift */,
+				0320407E204547D300D2D16C /* Promise+ResolveTests.swift */,
+				0320407F204547D400D2D16C /* Promise+ThenTests.swift */,
+				0320407D204547D300D2D16C /* Promise+TimeoutTests.swift */,
+				03204077204547D300D2D16C /* Promise+ValidateTests.swift */,
+				03204080204547D400D2D16C /* Promise+WhenTests.swift */,
+				0320407C204547D300D2D16C /* PromiseTests.swift */,
+			);
+			path = PromisesTests;
+			sourceTree = "<group>";
+		};
+		03204081204547D400D2D16C /* FBLPromisesPerformanceTests */ = {
+			isa = PBXGroup;
+			children = (
+				03204082204547D400D2D16C /* FBLPromise+ThenPerformanceTests.m */,
+			);
+			path = FBLPromisesPerformanceTests;
+			sourceTree = "<group>";
+		};
+		03204083204547D400D2D16C /* FBLPromisesInteroperabilityTests */ = {
+			isa = PBXGroup;
+			children = (
+				03204084204547D400D2D16C /* FBLPromise+CatchInteroperabilityTests.m */,
+				03204085204547D400D2D16C /* FBLPromise+ThenInteroperabilityTests.m */,
+			);
+			path = FBLPromisesInteroperabilityTests;
+			sourceTree = "<group>";
+		};
+		03204086204547D400D2D16C /* PromisesPerformanceTests */ = {
+			isa = PBXGroup;
+			children = (
+				03204087204547D400D2D16C /* Promise+ThenPerformanceTests.swift */,
+			);
+			path = PromisesPerformanceTests;
+			sourceTree = "<group>";
+		};
+		03204088204547D400D2D16C /* FBLPromisesTests */ = {
+			isa = PBXGroup;
+			children = (
+				03204090204547D400D2D16C /* FBLPromise+AllTests.m */,
+				0320408A204547D400D2D16C /* FBLPromise+AlwaysTests.m */,
+				0320408D204547D400D2D16C /* FBLPromise+AnyTests.m */,
+				03204093204547D400D2D16C /* FBLPromise+AsyncTests.m */,
+				0320408F204547D400D2D16C /* FBLPromise+CatchTests.m */,
+				0320408B204547D400D2D16C /* FBLPromise+DoTests.m */,
+				0320408E204547D400D2D16C /* FBLPromise+RecoverTests.m */,
+				03204091204547D400D2D16C /* FBLPromise+ResolveTests.m */,
+				03204094204547D400D2D16C /* FBLPromise+ThenTests.m */,
+				03204095204547D400D2D16C /* FBLPromise+TimeoutTests.m */,
+				03204092204547D400D2D16C /* FBLPromise+ValidateTests.m */,
+				03204089204547D400D2D16C /* FBLPromise+WhenTests.m */,
+				0320408C204547D400D2D16C /* FBLPromiseTests.m */,
+			);
+			path = FBLPromisesTests;
+			sourceTree = "<group>";
+		};
+		03204096204547D400D2D16C /* PromisesInteroperabilityTests */ = {
+			isa = PBXGroup;
+			children = (
+				03204098204547D400D2D16C /* Promise+CatchInteroperabilityTests.swift */,
+				03204097204547D400D2D16C /* Promise+ThenInteroperabilityTests.swift */,
+			);
+			path = PromisesInteroperabilityTests;
+			sourceTree = "<group>";
+		};
+		OBJ_109 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				"Promises::FBLPromisesInteroperabilityTests::Product" /* FBLPromisesInteroperabilityTests.xctest */,
+				"Promises::FBLPromisesPerformanceTests::Product" /* FBLPromisesPerformanceTests.xctest */,
+				"Promises::PromisesTests::Product" /* PromisesTests.xctest */,
+				"Promises::FBLPromisesTests::Product" /* FBLPromisesTests.xctest */,
+				"Promises::PromisesPerformanceTests::Product" /* PromisesPerformanceTests.xctest */,
+				"Promises::PromisesInteroperabilityTests::Product" /* PromisesInteroperabilityTests.xctest */,
+				"Promises::PromisesTestHelpers::Product" /* PromisesTestHelpers.framework */,
+				"Promises::Promises::Product" /* Promises.framework */,
+				"Promises::FBLPromisesTestHelpers::Product" /* FBLPromisesTestHelpers.framework */,
+				"Promises::FBLPromises::Product" /* FBLPromises.framework */,
+			);
+			name = Products;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		OBJ_5 = {
+			isa = PBXGroup;
+			children = (
+				03204033204547D300D2D16C /* Sources */,
+				03204072204547D300D2D16C /* Tests */,
+				OBJ_109 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		03C7655B20453515008F08C9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				032B80FF204549080097BF12 /* FBLPromise+Any.h in Headers */,
+				032B8109204549080097BF12 /* FBLPromise+When.h in Headers */,
+				032B8102204549080097BF12 /* FBLPromise+Do.h in Headers */,
+				032B8100204549080097BF12 /* FBLPromise+Async.h in Headers */,
+				032B80FC204549080097BF12 /* FBLPromise.h in Headers */,
+				032B8106204549080097BF12 /* FBLPromise+Then.h in Headers */,
+				032B8108204549080097BF12 /* FBLPromise+Validate.h in Headers */,
+				032B810B204549080097BF12 /* FBLPromisePrivate.h in Headers */,
+				032B80FE204549080097BF12 /* FBLPromise+Always.h in Headers */,
+				032B80FD204549080097BF12 /* FBLPromise+All.h in Headers */,
+				032B8105204549080097BF12 /* FBLPromise+Testing.h in Headers */,
+				032B8104204549080097BF12 /* FBLPromise+Resolve.h in Headers */,
+				032B8103204549080097BF12 /* FBLPromise+Recover.h in Headers */,
+				032B810A204549080097BF12 /* FBLPromiseError.h in Headers */,
+				032B8101204549080097BF12 /* FBLPromise+Catch.h in Headers */,
+				032B8107204549080097BF12 /* FBLPromise+Timeout.h in Headers */,
+				032B810C204549080097BF12 /* FBLPromises.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03C7656F20453981008F08C9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				032B8110204549300097BF12 /* FBLPromisesTestHelpers.h in Headers */,
+				032B8111204549300097BF12 /* FBLPromisesTestInteroperability.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		"Promises::FBLPromises" /* FBLPromises */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_277 /* Build configuration list for PBXNativeTarget "FBLPromises" */;
+			buildPhases = (
+				OBJ_280 /* Sources */,
+				OBJ_296 /* Frameworks */,
+				03C7655B20453515008F08C9 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FBLPromises;
+			productName = FBLPromises;
+			productReference = "Promises::FBLPromises::Product" /* FBLPromises.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"Promises::FBLPromisesInteroperabilityTests" /* FBLPromisesInteroperabilityTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_127 /* Build configuration list for PBXNativeTarget "FBLPromisesInteroperabilityTests" */;
+			buildPhases = (
+				OBJ_130 /* Sources */,
+				OBJ_133 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_138 /* PBXTargetDependency */,
+				OBJ_140 /* PBXTargetDependency */,
+				OBJ_142 /* PBXTargetDependency */,
+				OBJ_144 /* PBXTargetDependency */,
+			);
+			name = FBLPromisesInteroperabilityTests;
+			productName = FBLPromisesInteroperabilityTests;
+			productReference = "Promises::FBLPromisesInteroperabilityTests::Product" /* FBLPromisesInteroperabilityTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"Promises::FBLPromisesPerformanceTests" /* FBLPromisesPerformanceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_147 /* Build configuration list for PBXNativeTarget "FBLPromisesPerformanceTests" */;
+			buildPhases = (
+				OBJ_150 /* Sources */,
+				OBJ_152 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_155 /* PBXTargetDependency */,
+				OBJ_156 /* PBXTargetDependency */,
+			);
+			name = FBLPromisesPerformanceTests;
+			productName = FBLPromisesPerformanceTests;
+			productReference = "Promises::FBLPromisesPerformanceTests::Product" /* FBLPromisesPerformanceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"Promises::FBLPromisesTestHelpers" /* FBLPromisesTestHelpers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_269 /* Build configuration list for PBXNativeTarget "FBLPromisesTestHelpers" */;
+			buildPhases = (
+				OBJ_272 /* Sources */,
+				OBJ_274 /* Frameworks */,
+				03C7656F20453981008F08C9 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_276 /* PBXTargetDependency */,
+			);
+			name = FBLPromisesTestHelpers;
+			productName = FBLPromisesTestHelpers;
+			productReference = "Promises::FBLPromisesTestHelpers::Product" /* FBLPromisesTestHelpers.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"Promises::FBLPromisesTests" /* FBLPromisesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_183 /* Build configuration list for PBXNativeTarget "FBLPromisesTests" */;
+			buildPhases = (
+				OBJ_186 /* Sources */,
+				OBJ_200 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_203 /* PBXTargetDependency */,
+				OBJ_204 /* PBXTargetDependency */,
+			);
+			name = FBLPromisesTests;
+			productName = FBLPromisesTests;
+			productReference = "Promises::FBLPromisesTests::Product" /* FBLPromisesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"Promises::Promises" /* Promises */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_247 /* Build configuration list for PBXNativeTarget "Promises" */;
+			buildPhases = (
+				OBJ_250 /* Sources */,
+				OBJ_266 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_268 /* PBXTargetDependency */,
+			);
+			name = Promises;
+			productName = Promises;
+			productReference = "Promises::Promises::Product" /* Promises.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"Promises::PromisesInteroperabilityTests" /* PromisesInteroperabilityTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_221 /* Build configuration list for PBXNativeTarget "PromisesInteroperabilityTests" */;
+			buildPhases = (
+				OBJ_224 /* Sources */,
+				OBJ_227 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_232 /* PBXTargetDependency */,
+				OBJ_233 /* PBXTargetDependency */,
+				OBJ_234 /* PBXTargetDependency */,
+				OBJ_235 /* PBXTargetDependency */,
+			);
+			name = PromisesInteroperabilityTests;
+			productName = PromisesInteroperabilityTests;
+			productReference = "Promises::PromisesInteroperabilityTests::Product" /* PromisesInteroperabilityTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"Promises::PromisesPerformanceTests" /* PromisesPerformanceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_206 /* Build configuration list for PBXNativeTarget "PromisesPerformanceTests" */;
+			buildPhases = (
+				OBJ_209 /* Sources */,
+				OBJ_211 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_216 /* PBXTargetDependency */,
+				OBJ_217 /* PBXTargetDependency */,
+				OBJ_218 /* PBXTargetDependency */,
+				OBJ_219 /* PBXTargetDependency */,
+			);
+			name = PromisesPerformanceTests;
+			productName = PromisesPerformanceTests;
+			productReference = "Promises::PromisesPerformanceTests::Product" /* PromisesPerformanceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"Promises::PromisesTestHelpers" /* PromisesTestHelpers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_236 /* Build configuration list for PBXNativeTarget "PromisesTestHelpers" */;
+			buildPhases = (
+				OBJ_239 /* Sources */,
+				OBJ_242 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_245 /* PBXTargetDependency */,
+				OBJ_246 /* PBXTargetDependency */,
+			);
+			name = PromisesTestHelpers;
+			productName = PromisesTestHelpers;
+			productReference = "Promises::PromisesTestHelpers::Product" /* PromisesTestHelpers.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"Promises::PromisesTests" /* PromisesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_158 /* Build configuration list for PBXNativeTarget "PromisesTests" */;
+			buildPhases = (
+				OBJ_161 /* Sources */,
+				OBJ_175 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_179 /* PBXTargetDependency */,
+				OBJ_180 /* PBXTargetDependency */,
+				OBJ_181 /* PBXTargetDependency */,
+			);
+			name = PromisesTests;
+			productName = PromisesTests;
+			productReference = "Promises::PromisesTests::Product" /* PromisesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		OBJ_1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 9999;
+			};
+			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "Promises" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = OBJ_5;
+			productRefGroup = OBJ_109 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				"Promises::FBLPromisesInteroperabilityTests" /* FBLPromisesInteroperabilityTests */,
+				"Promises::FBLPromisesPerformanceTests" /* FBLPromisesPerformanceTests */,
+				"Promises::PromisesTests" /* PromisesTests */,
+				"Promises::FBLPromisesTests" /* FBLPromisesTests */,
+				"Promises::PromisesPerformanceTests" /* PromisesPerformanceTests */,
+				"Promises::PromisesInteroperabilityTests" /* PromisesInteroperabilityTests */,
+				"Promises::PromisesTestHelpers" /* PromisesTestHelpers */,
+				"Promises::Promises" /* Promises */,
+				"Promises::FBLPromisesTestHelpers" /* FBLPromisesTestHelpers */,
+				"Promises::FBLPromises" /* FBLPromises */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		OBJ_130 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				032B81242045494B0097BF12 /* FBLPromise+ThenInteroperabilityTests.m in Sources */,
+				032B81232045494B0097BF12 /* FBLPromise+CatchInteroperabilityTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_150 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				032B8125204549510097BF12 /* FBLPromise+ThenPerformanceTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_161 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				032B813B204549700097BF12 /* Promise+DoTests.swift in Sources */,
+				032B8141204549700097BF12 /* Promise+WhenTests.swift in Sources */,
+				032B813A204549700097BF12 /* Promise+CatchTests.swift in Sources */,
+				032B813E204549700097BF12 /* Promise+ThenTests.swift in Sources */,
+				032B813F204549700097BF12 /* Promise+TimeoutTests.swift in Sources */,
+				032B813D204549700097BF12 /* Promise+ResolveTests.swift in Sources */,
+				032B8142204549700097BF12 /* PromiseTests.swift in Sources */,
+				032B813C204549700097BF12 /* Promise+RecoverTests.swift in Sources */,
+				032B8137204549700097BF12 /* Promise+AlwaysTests.swift in Sources */,
+				032B8136204549700097BF12 /* Promise+AllTests.swift in Sources */,
+				032B8139204549700097BF12 /* Promise+AsyncTests.swift in Sources */,
+				032B8140204549700097BF12 /* Promise+ValidateTests.swift in Sources */,
+				032B8138204549700097BF12 /* Promise+AnyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_186 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				032B812C204549590097BF12 /* FBLPromise+RecoverTests.m in Sources */,
+				032B8126204549590097BF12 /* FBLPromise+AllTests.m in Sources */,
+				032B8129204549590097BF12 /* FBLPromise+AsyncTests.m in Sources */,
+				032B8128204549590097BF12 /* FBLPromise+AnyTests.m in Sources */,
+				032B812F204549590097BF12 /* FBLPromise+TimeoutTests.m in Sources */,
+				032B812B204549590097BF12 /* FBLPromise+DoTests.m in Sources */,
+				032B812D204549590097BF12 /* FBLPromise+ResolveTests.m in Sources */,
+				032B8127204549590097BF12 /* FBLPromise+AlwaysTests.m in Sources */,
+				032B8131204549590097BF12 /* FBLPromise+WhenTests.m in Sources */,
+				032B812E204549590097BF12 /* FBLPromise+ThenTests.m in Sources */,
+				032B812A204549590097BF12 /* FBLPromise+CatchTests.m in Sources */,
+				032B8132204549590097BF12 /* FBLPromiseTests.m in Sources */,
+				032B8130204549590097BF12 /* FBLPromise+ValidateTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_209 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				032B8135204549680097BF12 /* Promise+ThenPerformanceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_224 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				032B8134204549620097BF12 /* Promise+ThenInteroperabilityTests.swift in Sources */,
+				032B8133204549620097BF12 /* Promise+CatchInteroperabilityTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_239 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				032B8122204549430097BF12 /* PromisesTestInteroperability.swift in Sources */,
+				032B8121204549430097BF12 /* PromisesTestHelpers.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_250 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				032B811A2045493A0097BF12 /* Promise+Resolve.swift in Sources */,
+				032B811D2045493A0097BF12 /* Promise+Timeout.swift in Sources */,
+				032B81192045493A0097BF12 /* Promise+Recover.swift in Sources */,
+				032B81202045493A0097BF12 /* PromiseError.swift in Sources */,
+				032B811F2045493A0097BF12 /* Promise+When.swift in Sources */,
+				032B81122045493A0097BF12 /* Promise.swift in Sources */,
+				032B81132045493A0097BF12 /* Promise+All.swift in Sources */,
+				032B811E2045493A0097BF12 /* Promise+Validate.swift in Sources */,
+				032B811C2045493A0097BF12 /* Promise+Then.swift in Sources */,
+				032B81162045493A0097BF12 /* Promise+Async.swift in Sources */,
+				032B81182045493A0097BF12 /* Promise+Do.swift in Sources */,
+				032B81152045493A0097BF12 /* Promise+Any.swift in Sources */,
+				032B81142045493A0097BF12 /* Promise+Always.swift in Sources */,
+				032B811B2045493A0097BF12 /* Promise+Testing.swift in Sources */,
+				032B81172045493A0097BF12 /* Promise+Catch.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_272 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				032B8143204549DC0097BF12 /* FBLPromisesTestInteroperability.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_280 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				032B80F8204549000097BF12 /* FBLPromise+Timeout.m in Sources */,
+				032B80F7204549000097BF12 /* FBLPromise+Then.m in Sources */,
+				032B80F2204549000097BF12 /* FBLPromise+Catch.m in Sources */,
+				032B80F6204549000097BF12 /* FBLPromise+Testing.m in Sources */,
+				032B80EE204549000097BF12 /* FBLPromise+All.m in Sources */,
+				032B80F1204549000097BF12 /* FBLPromise+Async.m in Sources */,
+				032B80F4204549000097BF12 /* FBLPromise+Recover.m in Sources */,
+				032B80F5204549000097BF12 /* FBLPromise+Resolve.m in Sources */,
+				032B80F0204549000097BF12 /* FBLPromise+Any.m in Sources */,
+				032B80F9204549000097BF12 /* FBLPromise+Validate.m in Sources */,
+				032B80F3204549000097BF12 /* FBLPromise+Do.m in Sources */,
+				032B80EF204549000097BF12 /* FBLPromise+Always.m in Sources */,
+				032B80FB204549000097BF12 /* FBLPromiseError.m in Sources */,
+				032B80FA204549000097BF12 /* FBLPromise+When.m in Sources */,
+				032B80ED204549000097BF12 /* FBLPromise.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		OBJ_138 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::PromisesTestHelpers" /* PromisesTestHelpers */;
+			targetProxy = 03C7654220453421008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_140 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::Promises" /* Promises */;
+			targetProxy = 03C7654320453421008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_142 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::FBLPromisesTestHelpers" /* FBLPromisesTestHelpers */;
+			targetProxy = 03C7654420453421008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_144 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::FBLPromises" /* FBLPromises */;
+			targetProxy = 03C7654520453421008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_155 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::FBLPromisesTestHelpers" /* FBLPromisesTestHelpers */;
+			targetProxy = 03C7654620453421008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_156 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::FBLPromises" /* FBLPromises */;
+			targetProxy = 03C7654720453421008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_179 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::PromisesTestHelpers" /* PromisesTestHelpers */;
+			targetProxy = 03C7654820453421008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_180 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::Promises" /* Promises */;
+			targetProxy = 03C7654920453421008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_181 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::FBLPromises" /* FBLPromises */;
+			targetProxy = 03C7654A20453421008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_203 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::FBLPromisesTestHelpers" /* FBLPromisesTestHelpers */;
+			targetProxy = 03C7654B20453421008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_204 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::FBLPromises" /* FBLPromises */;
+			targetProxy = 03C7654C20453421008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_216 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::PromisesTestHelpers" /* PromisesTestHelpers */;
+			targetProxy = 03C7654D20453421008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_217 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::Promises" /* Promises */;
+			targetProxy = 03C7654E20453421008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_218 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::FBLPromisesTestHelpers" /* FBLPromisesTestHelpers */;
+			targetProxy = 03C7654F20453421008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_219 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::FBLPromises" /* FBLPromises */;
+			targetProxy = 03C7655020453421008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_232 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::PromisesTestHelpers" /* PromisesTestHelpers */;
+			targetProxy = 03C7655120453421008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_233 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::Promises" /* Promises */;
+			targetProxy = 03C7655220453421008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_234 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::FBLPromisesTestHelpers" /* FBLPromisesTestHelpers */;
+			targetProxy = 03C7655320453421008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_235 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::FBLPromises" /* FBLPromises */;
+			targetProxy = 03C7655420453421008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_245 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::Promises" /* Promises */;
+			targetProxy = 03C7653F20453421008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_246 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::FBLPromises" /* FBLPromises */;
+			targetProxy = 03C7654020453421008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_268 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::FBLPromises" /* FBLPromises */;
+			targetProxy = 03C7653E20453420008F08C9 /* PBXContainerItemProxy */;
+		};
+		OBJ_276 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Promises::FBLPromises" /* FBLPromises */;
+			targetProxy = 03C7654120453421008F08C9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		OBJ_128 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Tests/FBLPromisesInteroperabilityTests/include",
+					"$(SRCROOT)/Sources/FBLPromisesTestHelpers/include",
+					"$(SRCROOT)/Sources/FBLPromises/include",
+					"$(BUILT_PRODUCTS_DIR)/PromisesTestHelpers.framework/Headers",
+				);
+				INFOPLIST_FILE = Promises.xcodeproj/FBLPromisesInteroperabilityTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = FBLPromisesInteroperabilityTests;
+			};
+			name = Debug;
+		};
+		OBJ_129 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Tests/FBLPromisesInteroperabilityTests/include",
+					"$(SRCROOT)/Sources/FBLPromisesTestHelpers/include",
+					"$(SRCROOT)/Sources/FBLPromises/include",
+					"$(BUILT_PRODUCTS_DIR)/PromisesTestHelpers.framework/Headers",
+				);
+				INFOPLIST_FILE = Promises.xcodeproj/FBLPromisesInteroperabilityTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = FBLPromisesInteroperabilityTests;
+			};
+			name = Release;
+		};
+		OBJ_148 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Tests/FBLPromisesPerformanceTests/include",
+					"$(SRCROOT)/Sources/FBLPromisesTestHelpers/include",
+					"$(SRCROOT)/Sources/FBLPromises/include",
+				);
+				INFOPLIST_FILE = Promises.xcodeproj/FBLPromisesPerformanceTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				TARGET_NAME = FBLPromisesPerformanceTests;
+			};
+			name = Debug;
+		};
+		OBJ_149 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Tests/FBLPromisesPerformanceTests/include",
+					"$(SRCROOT)/Sources/FBLPromisesTestHelpers/include",
+					"$(SRCROOT)/Sources/FBLPromises/include",
+				);
+				INFOPLIST_FILE = Promises.xcodeproj/FBLPromisesPerformanceTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				TARGET_NAME = FBLPromisesPerformanceTests;
+			};
+			name = Release;
+		};
+		OBJ_159 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				INFOPLIST_FILE = Promises.xcodeproj/PromisesTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = PromisesTests;
+			};
+			name = Debug;
+		};
+		OBJ_160 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				INFOPLIST_FILE = Promises.xcodeproj/PromisesTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = PromisesTests;
+			};
+			name = Release;
+		};
+		OBJ_184 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Tests/FBLPromisesTests/include",
+					"$(SRCROOT)/Sources/FBLPromisesTestHelpers/include",
+					"$(SRCROOT)/Sources/FBLPromises/include",
+				);
+				INFOPLIST_FILE = Promises.xcodeproj/FBLPromisesTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				TARGET_NAME = FBLPromisesTests;
+			};
+			name = Debug;
+		};
+		OBJ_185 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Tests/FBLPromisesTests/include",
+					"$(SRCROOT)/Sources/FBLPromisesTestHelpers/include",
+					"$(SRCROOT)/Sources/FBLPromises/include",
+				);
+				INFOPLIST_FILE = Promises.xcodeproj/FBLPromisesTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				TARGET_NAME = FBLPromisesTests;
+			};
+			name = Release;
+		};
+		OBJ_207 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				INFOPLIST_FILE = Promises.xcodeproj/PromisesPerformanceTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = PromisesPerformanceTests;
+			};
+			name = Debug;
+		};
+		OBJ_208 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				INFOPLIST_FILE = Promises.xcodeproj/PromisesPerformanceTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = PromisesPerformanceTests;
+			};
+			name = Release;
+		};
+		OBJ_222 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				INFOPLIST_FILE = Promises.xcodeproj/PromisesInteroperabilityTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = PromisesInteroperabilityTests;
+			};
+			name = Debug;
+		};
+		OBJ_223 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				INFOPLIST_FILE = Promises.xcodeproj/PromisesInteroperabilityTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = PromisesInteroperabilityTests;
+			};
+			name = Release;
+		};
+		OBJ_237 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				INFOPLIST_FILE = Promises.xcodeproj/PromisesTestHelpers_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = PromisesTestHelpers;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = PromisesTestHelpers;
+			};
+			name = Debug;
+		};
+		OBJ_238 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				INFOPLIST_FILE = Promises.xcodeproj/PromisesTestHelpers_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = PromisesTestHelpers;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = PromisesTestHelpers;
+			};
+			name = Release;
+		};
+		OBJ_248 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				INFOPLIST_FILE = Promises.xcodeproj/Promises_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Promises;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = Promises;
+			};
+			name = Debug;
+		};
+		OBJ_249 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				INFOPLIST_FILE = Promises.xcodeproj/Promises_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Promises;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = Promises;
+			};
+			name = Release;
+		};
+		OBJ_270 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Sources/FBLPromisesTestHelpers/include",
+					"$(SRCROOT)/Sources/FBLPromises/include",
+				);
+				INFOPLIST_FILE = Promises.xcodeproj/FBLPromisesTestHelpers_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MODULEMAP_FILE = "$(SRCROOT)/Sources/FBLPromisesTestHelpers/include/framework.modulemap";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = FBLPromisesTestHelpers;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGET_NAME = FBLPromisesTestHelpers;
+			};
+			name = Debug;
+		};
+		OBJ_271 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Sources/FBLPromisesTestHelpers/include",
+					"$(SRCROOT)/Sources/FBLPromises/include",
+				);
+				INFOPLIST_FILE = Promises.xcodeproj/FBLPromisesTestHelpers_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MODULEMAP_FILE = "$(SRCROOT)/Sources/FBLPromisesTestHelpers/include/framework.modulemap";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = FBLPromisesTestHelpers;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGET_NAME = FBLPromisesTestHelpers;
+			};
+			name = Release;
+		};
+		OBJ_278 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Sources/FBLPromises/include",
+				);
+				INFOPLIST_FILE = Promises.xcodeproj/FBLPromises_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MODULEMAP_FILE = "$(SRCROOT)/Sources/FBLPromises/include/framework.modulemap";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = FBLPromises;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGET_NAME = FBLPromises;
+			};
+			name = Debug;
+		};
+		OBJ_279 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Sources/FBLPromises/include",
+				);
+				INFOPLIST_FILE = Promises.xcodeproj/FBLPromises_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MODULEMAP_FILE = "$(SRCROOT)/Sources/FBLPromises/include/framework.modulemap";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = FBLPromises;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGET_NAME = FBLPromises;
+			};
+			name = Release;
+		};
+		OBJ_3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				USE_HEADERMAP = NO;
+			};
+			name = Debug;
+		};
+		OBJ_4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_OPTIMIZATION_LEVEL = s;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				USE_HEADERMAP = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		OBJ_127 /* Build configuration list for PBXNativeTarget "FBLPromisesInteroperabilityTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_128 /* Debug */,
+				OBJ_129 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		OBJ_147 /* Build configuration list for PBXNativeTarget "FBLPromisesPerformanceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_148 /* Debug */,
+				OBJ_149 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		OBJ_158 /* Build configuration list for PBXNativeTarget "PromisesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_159 /* Debug */,
+				OBJ_160 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		OBJ_183 /* Build configuration list for PBXNativeTarget "FBLPromisesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_184 /* Debug */,
+				OBJ_185 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		OBJ_2 /* Build configuration list for PBXProject "Promises" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_3 /* Debug */,
+				OBJ_4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		OBJ_206 /* Build configuration list for PBXNativeTarget "PromisesPerformanceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_207 /* Debug */,
+				OBJ_208 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		OBJ_221 /* Build configuration list for PBXNativeTarget "PromisesInteroperabilityTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_222 /* Debug */,
+				OBJ_223 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		OBJ_236 /* Build configuration list for PBXNativeTarget "PromisesTestHelpers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_237 /* Debug */,
+				OBJ_238 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		OBJ_247 /* Build configuration list for PBXNativeTarget "Promises" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_248 /* Debug */,
+				OBJ_249 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		OBJ_269 /* Build configuration list for PBXNativeTarget "FBLPromisesTestHelpers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_270 /* Debug */,
+				OBJ_271 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		OBJ_277 /* Build configuration list for PBXNativeTarget "FBLPromises" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_278 /* Debug */,
+				OBJ_279 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = OBJ_1 /* Project object */;
+}

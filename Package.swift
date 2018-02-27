@@ -65,17 +65,13 @@ let package = Package(
         "FBLPromisesTestHelpers",
       ]
     ),
-    // Swift Package Manager doesn't support importing Swift in ObjC just yet.
-    // To work around uncomment the rule below, generate Xcode project and set
-    // CLANG_ENABLE_MODULES = YES for FBLPromisesInteroperabilityTests target
-    // to @import PromisesTestHelpers; instead of #import "PromisesTestHelpers-Swift.h".
-    // .testTarget(
-    //   name: "FBLPromisesInteroperabilityTests",
-    //   dependencies: [
-    //     "FBLPromisesTestHelpers",
-    //     "PromisesTestHelpers",
-    //   ]
-    // ),
+    .testTarget(
+      name: "FBLPromisesInteroperabilityTests",
+      dependencies: [
+        "FBLPromisesTestHelpers",
+        "PromisesTestHelpers",
+      ]
+    ),
     .testTarget(
       name: "FBLPromisesPerformanceTests",
       dependencies: [
