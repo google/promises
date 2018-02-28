@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = 'PromisesObjC'
-  s.version     = '1.0.4'
+  s.version     = '1.0.5'
   s.authors     = 'Google Inc.'
   s.license     = { :type => 'Apache', :file => 'LICENSE' }
   s.homepage    = 'https://github.com/google/promises'
@@ -12,9 +12,10 @@ Pod::Spec.new do |s|
   Objective-C to facilitate writing asynchronous code.
                      DESC
 
-  s.ios.deployment_target  = '9.0'
+  s.ios.deployment_target  = '8.0'
   s.osx.deployment_target  = '10.10'
   s.tvos.deployment_target = '9.0'
+  s.watchos.deployment_target = '2.0'
 
   s.module_name = 'FBLPromises'
   s.prefix_header_file = false
