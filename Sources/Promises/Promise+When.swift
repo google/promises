@@ -166,6 +166,8 @@ public enum When<Value> {
   }
 }
 
+// MARK: - Conversion
+
 /// Helper functions that facilitates conversion of `Promise.when` results to the results normally
 /// expected from `ObjCPromise.when`.
 ///
@@ -192,6 +194,19 @@ public extension When {
     }
   }
 }
+
+/// Helper function to wrap the results of `ObjCPromise.when` with the safe `When` enum.
+public func asWhen<Value>(_ value: AnyObject) -> When<Value> {
+  switch value {
+  case let error as NSError:
+    return .error(error)
+  case let value:
+    guard let value = Promise<Value>.asValue(value) else { preconditionFailure() }
+    return .value(value)
+  }
+}
+
+// MARK: - Equatable
 
 /// Equality operators for `When`.
 #if !swift(>=4.1)
@@ -260,14 +275,3 @@ public func != <Value: Equatable>(lhs: [When<Value?>], rhs: [When<Value?>]) -> B
 }
 
 #endif  // !swift(>=4.1)
-
-/// Helper function to wrap the results of `ObjCPromise.when` with the safe `When` enum.
-public func asWhen<Value>(_ value: AnyObject) -> When<Value> {
-  switch value {
-  case let error as NSError:
-    return .error(error)
-  case let value:
-    guard let value = Promise<Value>.asValue(value) else { preconditionFailure() }
-    return .value(value)
-  }
-}
