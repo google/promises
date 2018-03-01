@@ -225,13 +225,13 @@ typedef void (^FBLPromiseObserver)(FBLPromiseState state, id __nullable resoluti
       }
       case FBLPromiseStateFulfilled: {
         dispatch_group_async(dispatchGroup, queue, ^{
-          onFulfill(_value);
+          onFulfill(self->_value);
         });
         break;
       }
       case FBLPromiseStateRejected: {
         dispatch_group_async(dispatchGroup, queue, ^{
-          onReject(_error);
+          onReject(self->_error);
         });
         break;
       }

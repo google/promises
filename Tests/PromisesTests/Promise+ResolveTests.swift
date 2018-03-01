@@ -71,8 +71,7 @@ class PromiseResolveTests: XCTestCase {
   func testPromiseResolveWithErrorCompletionRejectsOnErrorReturned() {
     // Act.
     let promise = resolve { handler in
-      Harness.async(error: Test.Error.code42,
-                      completion: handler)
+      Harness.async(error: Test.Error.code42, completion: handler)
     }.then { _ in
       XCTFail()
     }.catch { error in
@@ -161,7 +160,7 @@ class PromiseResolveTests: XCTestCase {
     let expectation = self.expectation(description: "")
 
     // Act.
-    let promise = resolve { handler in
+    let promise = resolve { (handler: @escaping (Error?, Int) -> Void) in
       Harness.async(error: nil, value: 42, completion: handler)
     }.catch { _ in
       XCTFail()
@@ -215,7 +214,7 @@ class PromiseResolveTests: XCTestCase {
 
   func testPromiseResolveWithObjectOrErrorCompletionRejectsOnValueAndErrorReturned() {
     // Act.
-    let promise = resolve { handler in
+    let promise = resolve { (handler: @escaping (Int, Error?) -> Void) in
       Harness.async(value: 42, error: Test.Error.code42, completion: handler)
     }.then { _ in
       XCTFail()
@@ -234,7 +233,7 @@ class PromiseResolveTests: XCTestCase {
     let expectation = self.expectation(description: "")
 
     // Act.
-    let promise = resolve { handler in
+    let promise = resolve { (handler: @escaping (Error?, Int) -> Void) in
       Harness.async(error: Test.Error.code42, value: 42, completion: handler)
     }.then { _ in
       XCTFail()
@@ -251,7 +250,7 @@ class PromiseResolveTests: XCTestCase {
 
   func testPromiseResolveWith2ObjectsOrErrorCompletionFulfillsOnValueReturned() {
     // Act.
-    let promise = resolve { handler in
+    let promise = resolve { (handler: @escaping (Int?, String?, Error?) -> Void) in
       Harness.async(value: 42, value: "hello", error: nil, completion: handler)
     }
 
@@ -279,7 +278,7 @@ class PromiseResolveTests: XCTestCase {
 
   func testPromiseResolveWith2ObjectsOrErrorCompletionRejectsOnValueAndErrorReturned() {
     // Act.
-    let promise = resolve { handler in
+    let promise = resolve { (handler: @escaping (Int?, Int?, Error?) -> Void) in
       Harness.async(
         value: 42, value: 13, error: Test.Error.code42, completion: handler
       )
@@ -297,6 +296,12 @@ class PromiseResolveTests: XCTestCase {
     static func async(completion: @escaping () -> Void) {
       Test.delay(0.1) {
         completion()
+      }
+    }
+
+    static func async<Value>(value: Value, completion: @escaping (Value) -> Void) {
+      Test.delay(0.1) {
+        completion(value)
       }
     }
 
