@@ -22,7 +22,7 @@
 @implementation FBLPromise (AnyAdditions)
 
 + (instancetype)any:(NSArray *)promises {
-  return [self onQueue:dispatch_get_main_queue() any:promises];
+  return [self onQueue:self.defaultDispatchQueue any:promises];
 }
 
 + (instancetype)onQueue:(dispatch_queue_t)queue any:(NSArray *)anyPromises {

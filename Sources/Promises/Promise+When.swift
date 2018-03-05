@@ -26,7 +26,7 @@ import Foundation
 /// - returns: Promise of an array of `When` enums containing the values or `Error`s of input
 ///            promises in their original order.
 public func when<Value>(
-  on queue: DispatchQueue = .main,
+  on queue: DispatchQueue = .promises,
   _ promises: Promise<Value>...
 ) -> Promise<[When<Value>]> {
   return when(on: queue, promises)
@@ -44,7 +44,7 @@ public func when<Value>(
 /// - returns: Promise of an array of `When` enums containing the values or `Error`s of input
 ///            promises in their original order.
 public func when<Value, Container: Sequence>(
-  on queue: DispatchQueue = .main,
+  on queue: DispatchQueue = .promises,
   _ promises: Container
 ) -> Promise<[When<Value>]> where Container.Iterator.Element == Promise<Value> {
   let promises = promises.map { $0.objCPromise }
@@ -77,7 +77,7 @@ public func when<Value, Container: Sequence>(
 /// - returns: Promise of a tuple of `When` enums containing the values or `Error`s of input
 ///            promises in their original order.
 public func when<A, B>(
-  on queue: DispatchQueue = .main,
+  on queue: DispatchQueue = .promises,
   _ promiseA: Promise<A>,
   _ promiseB: Promise<B>
 ) -> Promise<(When<A>, When<B>)> {
@@ -117,7 +117,7 @@ public func when<A, B>(
 /// - returns: Promise of a tuple of `When` enums containing the values or `Error`s of input
 ///            promises in their original order.
 public func when<A, B, C>(
-  on queue: DispatchQueue = .main,
+  on queue: DispatchQueue = .promises,
   _ promiseA: Promise<A>,
   _ promiseB: Promise<B>,
   _ promiseC: Promise<C>

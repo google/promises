@@ -21,7 +21,7 @@
 @implementation FBLPromise (TimeoutAdditions)
 
 - (FBLPromise *)timeout:(NSTimeInterval)interval {
-  return [self onQueue:dispatch_get_main_queue() timeout:interval];
+  return [self onQueue:[self class].defaultDispatchQueue timeout:interval];
 }
 
 - (FBLPromise *)onQueue:(dispatch_queue_t)queue timeout:(NSTimeInterval)interval {

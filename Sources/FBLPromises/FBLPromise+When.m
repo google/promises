@@ -38,7 +38,7 @@ static NSArray *FBLPromiseCombineValuesAndErrors(NSArray<FBLPromise *> *promises
 @implementation FBLPromise (WhenAdditions)
 
 + (FBLPromise<NSArray *> *)when:(NSArray *)promises {
-  return [self onQueue:dispatch_get_main_queue() when:promises];
+  return [self onQueue:[self class].defaultDispatchQueue when:promises];
 }
 
 + (FBLPromise<NSArray *> *)onQueue:(dispatch_queue_t)queue when:(NSArray *)whenPromises {

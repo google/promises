@@ -23,7 +23,7 @@ public extension Promise {
   /// - parameters:
   ///   - queue: A queue to invoke the `work` block on.
   ///   - work: A block to perform any operations needed to resolve the promise.
-  public convenience init(on queue: DispatchQueue = .main, _ work: @escaping AsyncWork) {
+  public convenience init(on queue: DispatchQueue = .promises, _ work: @escaping AsyncWork) {
     let objCPromise = ObjCPromise<AnyObject>.__onQueue(queue) { fulfill, reject in
       do {
         try work({ value in

@@ -23,7 +23,7 @@ public extension Promise {
   /// - returns: A new pending promise that gets either resolved with same resolution as `self` or
   ///            rejected with `PromiseError.timedOut` error.
   @discardableResult
-  public func timeout(on queue: DispatchQueue = .main, _ interval: TimeInterval) -> Promise {
+  public func timeout(on queue: DispatchQueue = .promises, _ interval: TimeInterval) -> Promise {
     let promise = Promise(objCPromise.__onQueue(queue, timeout: interval))
     // Keep Swift wrapper alive for chained promise until `ObjCPromise` counterpart is resolved.
     objCPromise.__pendingObjects?.add(promise)

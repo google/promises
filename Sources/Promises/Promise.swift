@@ -119,3 +119,11 @@ extension Promise: CustomStringConvertible {
         isRejected ? "Rejected: \(String(describing: error ?? nil))" : "Pending: \(Value.self)"
   }
 }
+
+public extension DispatchQueue {
+  /// Default dispatch queue used for `Promise`, if other is not specified. Main queue initially.
+  static var promises: DispatchQueue {
+    get { return Promise<Any>.ObjCPromise<AnyObject>.__defaultDispatchQueue }
+    set { Promise<Any>.ObjCPromise<AnyObject>.__defaultDispatchQueue = newValue }
+  }
+}

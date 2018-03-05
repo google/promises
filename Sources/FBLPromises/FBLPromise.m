@@ -25,6 +25,8 @@ typedef NS_ENUM(NSInteger, FBLPromiseState) {
 
 typedef void (^FBLPromiseObserver)(FBLPromiseState state, id __nullable resolution);
 
+static dispatch_queue_t gDefaultDispatchQueue;
+
 @implementation FBLPromise {
   /** Current state of the promise. */
   FBLPromiseState _state;
@@ -47,6 +49,24 @@ typedef void (^FBLPromiseObserver)(FBLPromiseState state, id __nullable resoluti
   NSMutableArray<FBLPromiseObserver> *_observers;
 }
 
++ (void)initialize {
+  if (self == [FBLPromise class]) {
+    gDefaultDispatchQueue = dispatch_get_main_queue();
+  }
+}
+
++ (dispatch_queue_t)defaultDispatchQueue {
+  @synchronized(self) {
+    return gDefaultDispatchQueue;
+  }
+}
+
++ (void)setDefaultDispatchQueue:(dispatch_queue_t)defaultDispatchQueue {
+  @synchronized(self) {
+    gDefaultDispatchQueue = defaultDispatchQueue;
+  }
+}
+
 + (instancetype)pendingPromise {
   return [[self alloc] initPending];
 }
@@ -57,7 +77,7 @@ typedef void (^FBLPromiseObserver)(FBLPromiseState state, id __nullable resoluti
 
 - (void)fulfill:(nullable id)value {
   if ([value isKindOfClass:[self class]]) {
-    [(FBLPromise *)value observeOnQueue:dispatch_get_main_queue()
+    [(FBLPromise *)value observeOnQueue:[self class].defaultDispatchQueue
         fulfill:^(id __nullable value) {
           [self fulfill:value];
         }

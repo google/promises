@@ -21,7 +21,7 @@
 @implementation FBLPromise (DoAdditions)
 
 + (instancetype)do:(FBLPromiseDoWorkBlock)work {
-  return [self onQueue:dispatch_get_main_queue() do:work];
+  return [self onQueue:self.defaultDispatchQueue do:work];
 }
 
 + (instancetype)onQueue:(dispatch_queue_t)queue do:(FBLPromiseDoWorkBlock)work {

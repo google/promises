@@ -23,7 +23,7 @@ import Dispatch
 ///   - promises: Promises to wait for.
 /// - returns: First promise, among the given ones, which was fulfilled.
 public func any<Value>(
-  on queue: DispatchQueue = .main,
+  on queue: DispatchQueue = .promises,
   _ promises: Promise<Value>...
 ) -> Promise<Value> {
   return any(on: queue, promises)
@@ -38,7 +38,7 @@ public func any<Value>(
 ///   - promises: Promises to wait for.
 /// - returns: First promise, among the given ones, which was fulfilled.
 public func any<Value>(
-  on queue: DispatchQueue = .main,
+  on queue: DispatchQueue = .promises,
   _ promises: [Promise<Value>]
 ) -> Promise<Value> {
   let promises = promises.map { $0.objCPromise }

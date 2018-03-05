@@ -21,7 +21,7 @@
 @implementation FBLPromise (ValidateAdditions)
 
 - (FBLPromise *)validate:(BOOL (^)(id __nullable))predicate {
-  return [self onQueue:dispatch_get_main_queue() validate:predicate];
+  return [self onQueue:[self class].defaultDispatchQueue validate:predicate];
 }
 
 - (FBLPromise *)onQueue:(dispatch_queue_t)queue validate:(BOOL (^)(id __nullable))predicate {
