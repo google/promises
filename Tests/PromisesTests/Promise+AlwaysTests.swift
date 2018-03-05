@@ -77,10 +77,8 @@ class PromiseAlwaysTests: XCTestCase {
     autoreleasepool {
       XCTAssertNil(weakExtendedPromise1)
       XCTAssertNil(weakExtendedPromise2)
-      let extendedPromise1 = promise.always {}
-      let extendedPromise2 = promise.always {}
-      weakExtendedPromise1 = extendedPromise1
-      weakExtendedPromise2 = extendedPromise2
+      weakExtendedPromise1 = promise.always {}
+      weakExtendedPromise2 = promise.always {}
       XCTAssertNotNil(weakExtendedPromise1)
       XCTAssertNotNil(weakExtendedPromise2)
     }

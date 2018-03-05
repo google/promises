@@ -287,10 +287,8 @@ class PromiseCatchTests: XCTestCase {
     autoreleasepool {
       XCTAssertNil(weakExtendedPromise1)
       XCTAssertNil(weakExtendedPromise2)
-      let extendedPromise1 = promise.catch { _ in }
-      let extendedPromise2 = promise.catch { _ in }
-      weakExtendedPromise1 = extendedPromise1
-      weakExtendedPromise2 = extendedPromise2
+      weakExtendedPromise1 = promise.catch { _ in }
+      weakExtendedPromise2 = promise.catch { _ in }
       XCTAssertNotNil(weakExtendedPromise1)
       XCTAssertNotNil(weakExtendedPromise2)
     }

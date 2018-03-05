@@ -278,8 +278,7 @@
 
   @autoreleasepool {
     XCTAssertNil(weakPromise);
-    FBLPromise *promise = [FBLPromise pendingPromise];
-    weakPromise = promise;
+    weakPromise = [FBLPromise pendingPromise];
     XCTAssertNotNil(weakPromise);
   }
   XCTAssertNil(weakPromise);

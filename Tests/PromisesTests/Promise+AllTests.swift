@@ -122,10 +122,8 @@ class PromiseAllTests: XCTestCase {
     autoreleasepool {
       XCTAssertNil(weakExtendedPromise1)
       XCTAssertNil(weakExtendedPromise2)
-      let extendedPromise1 = all([promise])
-      let extendedPromise2 = all([promise])
-      weakExtendedPromise1 = extendedPromise1
-      weakExtendedPromise2 = extendedPromise2
+      weakExtendedPromise1 = all([promise])
+      weakExtendedPromise2 = all([promise])
       XCTAssertNotNil(weakExtendedPromise1)
       XCTAssertNotNil(weakExtendedPromise2)
     }
@@ -204,10 +202,8 @@ class PromiseAllTests: XCTestCase {
     autoreleasepool {
       XCTAssertNil(weakExtendedPromise1)
       XCTAssertNil(weakExtendedPromise2)
-      let extendedPromise1 = all(promise1, promise2)
-      let extendedPromise2 = all(promise1, promise2)
-      weakExtendedPromise1 = extendedPromise1
-      weakExtendedPromise2 = extendedPromise2
+      weakExtendedPromise1 = all(promise1, promise2)
+      weakExtendedPromise2 = all(promise1, promise2)
       XCTAssertNotNil(weakExtendedPromise1)
       XCTAssertNotNil(weakExtendedPromise2)
     }
@@ -302,10 +298,8 @@ class PromiseAllTests: XCTestCase {
     autoreleasepool {
       XCTAssertNil(weakExtendedPromise1)
       XCTAssertNil(weakExtendedPromise2)
-      let extendedPromise1 = all(promise1, promise2, promise3)
-      let extendedPromise2 = all(promise1, promise2, promise3)
-      weakExtendedPromise1 = extendedPromise1
-      weakExtendedPromise2 = extendedPromise2
+      weakExtendedPromise1 = all(promise1, promise2, promise3)
+      weakExtendedPromise2 = all(promise1, promise2, promise3)
       XCTAssertNotNil(weakExtendedPromise1)
       XCTAssertNotNil(weakExtendedPromise2)
     }

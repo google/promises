@@ -88,14 +88,12 @@
   @autoreleasepool {
     XCTAssertNil(weakExtendedPromise1);
     XCTAssertNil(weakExtendedPromise2);
-    FBLPromise *extendedPromise1 = [promise validate:^BOOL(id __unused _) {
+    weakExtendedPromise1 = [promise validate:^BOOL(id __unused _) {
       return YES;
     }];
-    FBLPromise *extendedPromise2 = [promise validate:^BOOL(id __unused _) {
+    weakExtendedPromise2 = [promise validate:^BOOL(id __unused _) {
       return YES;
     }];
-    weakExtendedPromise1 = extendedPromise1;
-    weakExtendedPromise2 = extendedPromise2;
     XCTAssertNotNil(weakExtendedPromise1);
     XCTAssertNotNil(weakExtendedPromise2);
   }

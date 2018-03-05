@@ -97,10 +97,8 @@
   @autoreleasepool {
     XCTAssertNil(weakExtendedPromise1);
     XCTAssertNil(weakExtendedPromise2);
-    FBLPromise *extendedPromise1 = [promise always:^{}];
-    FBLPromise *extendedPromise2 = [promise always:^{}];
-    weakExtendedPromise1 = extendedPromise1;
-    weakExtendedPromise2 = extendedPromise2;
+    weakExtendedPromise1 = [promise always:^{}];
+    weakExtendedPromise2 = [promise always:^{}];
     XCTAssertNotNil(weakExtendedPromise1);
     XCTAssertNotNil(weakExtendedPromise2);
   }

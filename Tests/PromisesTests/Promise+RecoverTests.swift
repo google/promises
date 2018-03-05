@@ -175,10 +175,8 @@ class PromiseRecoverTests: XCTestCase {
     autoreleasepool {
       XCTAssertNil(weakExtendedPromise1)
       XCTAssertNil(weakExtendedPromise2)
-      let extendedPromise1 = promise.recover { _ in 42 }
-      let extendedPromise2 = promise.recover { _ in 42 }
-      weakExtendedPromise1 = extendedPromise1
-      weakExtendedPromise2 = extendedPromise2
+      weakExtendedPromise1 = promise.recover { _ in 42 }
+      weakExtendedPromise2 = promise.recover { _ in 42 }
       XCTAssertNotNil(weakExtendedPromise1)
       XCTAssertNotNil(weakExtendedPromise2)
     }

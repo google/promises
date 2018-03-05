@@ -55,30 +55,28 @@ class PromiseAsyncTests: XCTestCase {
 
   func testPromiseAsyncNoDeallocUntilFulfilled() {
     // Arrange.
-    weak var weakExtendedPromise1: Promise<Int>?
-    weak var weakExtendedPromise2: Promise<Int>?
+    weak var weakPromise1: Promise<Int>?
+    weak var weakPromise2: Promise<Int>?
 
     // Act.
     autoreleasepool {
-      XCTAssertNil(weakExtendedPromise1)
-      XCTAssertNil(weakExtendedPromise2)
-      let promise1 = Promise<Int> { fulfill, _ in
+      XCTAssertNil(weakPromise1)
+      XCTAssertNil(weakPromise2)
+      weakPromise1 = Promise<Int> { fulfill, _ in
         fulfill(42)
       }
-      let promise2 = Promise<Int> { fulfill, _ in
+      weakPromise2 = Promise<Int> { fulfill, _ in
         fulfill(42)
       }
-      weakExtendedPromise1 = promise1
-      weakExtendedPromise2 = promise2
-      XCTAssertNotNil(weakExtendedPromise1)
-      XCTAssertNotNil(weakExtendedPromise2)
+      XCTAssertNotNil(weakPromise1)
+      XCTAssertNotNil(weakPromise2)
     }
 
     // Assert.
-    XCTAssertNotNil(weakExtendedPromise1)
-    XCTAssertNotNil(weakExtendedPromise2)
+    XCTAssertNotNil(weakPromise1)
+    XCTAssertNotNil(weakPromise2)
     XCTAssert(waitForPromises(timeout: 10))
-    XCTAssertNil(weakExtendedPromise1)
-    XCTAssertNil(weakExtendedPromise2)
+    XCTAssertNil(weakPromise1)
+    XCTAssertNil(weakPromise2)
   }
 }

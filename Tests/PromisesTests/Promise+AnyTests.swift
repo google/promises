@@ -111,10 +111,8 @@ class PromiseAnyTests: XCTestCase {
     autoreleasepool {
       XCTAssertNil(weakExtendedPromise1)
       XCTAssertNil(weakExtendedPromise2)
-      let extendedPromise1 = any([promise])
-      let extendedPromise2 = any([promise])
-      weakExtendedPromise1 = extendedPromise1
-      weakExtendedPromise2 = extendedPromise2
+      weakExtendedPromise1 = any([promise])
+      weakExtendedPromise2 = any([promise])
       XCTAssertNotNil(weakExtendedPromise1)
       XCTAssertNotNil(weakExtendedPromise2)
     }

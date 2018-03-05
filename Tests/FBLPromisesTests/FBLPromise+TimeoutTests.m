@@ -84,10 +84,8 @@
   @autoreleasepool {
     XCTAssertNil(weakExtendedPromise1);
     XCTAssertNil(weakExtendedPromise2);
-    FBLPromise *extendedPromise1 = [promise timeout:1];
-    FBLPromise *extendedPromise2 = [promise timeout:1];
-    weakExtendedPromise1 = extendedPromise1;
-    weakExtendedPromise2 = extendedPromise2;
+    weakExtendedPromise1 = [promise timeout:1];
+    weakExtendedPromise2 = [promise timeout:1];
     XCTAssertNotNil(weakExtendedPromise1);
     XCTAssertNotNil(weakExtendedPromise2);
   }

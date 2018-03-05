@@ -144,14 +144,12 @@
   @autoreleasepool {
     XCTAssertNil(weakExtendedPromise1);
     XCTAssertNil(weakExtendedPromise2);
-    FBLPromise *extendedPromise1 = [promise recover:^id(NSError __unused * _) {
+    weakExtendedPromise1 = [promise recover:^id(NSError __unused * _) {
       return @42;
     }];
-    FBLPromise *extendedPromise2 = [promise recover:^id(NSError __unused * _) {
+    weakExtendedPromise2 = [promise recover:^id(NSError __unused * _) {
       return @42;
     }];
-    weakExtendedPromise1 = extendedPromise1;
-    weakExtendedPromise2 = extendedPromise2;
     XCTAssertNotNil(weakExtendedPromise1);
     XCTAssertNotNil(weakExtendedPromise2);
   }
