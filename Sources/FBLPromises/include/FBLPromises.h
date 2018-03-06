@@ -22,7 +22,6 @@
 #import "FBLPromise+Do.h"
 #import "FBLPromise+Recover.h"
 #import "FBLPromise+Resolve.h"
-#import "FBLPromise+Testing.h"
 #import "FBLPromise+Then.h"
 #import "FBLPromise+Timeout.h"
 #import "FBLPromise+Validate.h"
