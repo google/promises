@@ -37,6 +37,7 @@ Objective-C and Swift to facilitate writing asynchronous code.
     *   [Validate](g3doc/index.md#validate)
     *   [When](g3doc/index.md#when)
 *   [Advanced topics](g3doc/index.md#advanced-topics)
+    *   [Default dispatch queue](g3doc/index.md#default-dispatch-queue)
     *   [Ownership and retain
         cycles](g3doc/index.md#ownership-and-retain-cycles)
     *   [Testing](g3doc/index.md#testing)
