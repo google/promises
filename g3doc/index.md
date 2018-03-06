@@ -1384,7 +1384,7 @@ helper function (`waitForPromises()` in Swift or
 Swift:
 
 ```swift
-import Promises
+@testable import Promises
 
 // ...
 func testExample() {
@@ -1402,7 +1402,7 @@ func testExample() {
 Objective-C:
 
 ```objectivec
-#import "path/to/Promises/FBLPromises.h"
+#import "path/to/Promises/FBLPromise+Testing.h"
 
 // ...
 - (void)testExample {
@@ -1423,7 +1423,9 @@ Those functions take a timeout arg and return true if all promise blocks have
 completed before the timeout; otherwise, they return false.
 
 To run the test suite for the Promises framework itself it's recommended to use
-Bazel. `cd` to the project directory and run:
+the Xcode project: select `FBLPromises` or `Promises` target and hit ⌘+U.
+
+To test with Bazel, `cd` to the project directory and run:
 
 ```sh
 bazel test Tests
