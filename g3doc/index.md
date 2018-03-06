@@ -572,8 +572,8 @@ FBLPromise<NSString *> *promise = [FBLPromise onQueue:dispatch_get_main_queue()
 }];
 ```
 
-Promises use the main dispatch queue by default, so the above code is actually
-equivalent to:
+Promises use the main dispatch queue [by default](#default-dispatch-queue),
+so the above code is actually equivalent to:
 
 Swift:
 
@@ -779,8 +779,8 @@ a value to return from the `then` block, you can always just return `nil` or,
 even better, the same value as you received. Returning an actual value makes it
 easier to chain on this promise in the future.
 
-By default, the `then` blocks are dispatched on the main thread, but they can be
-easily configured to be dispatched on a custom queue:
+[By default](#default-dispatch-queue), the `then` blocks are dispatched on the
+main thread, but they can be easily configured to be dispatched on a custom queue:
 
 Swift:
 
@@ -1252,18 +1252,40 @@ Objective-C lacks.
 
 ## Advanced topics
 
-### Ownership and retain cycles
+### Default dispatch queue
 
 Promises use [GCD](https://developer.apple.com/documentation/dispatch)
-internally and make all APIs provide a way to specify on which dispatch queue
-each block of work should be dispatched on. Main queue is the default if one
-isn't specified. When chaining [fulfillment](#observing-fulfillment) or
-[rejection](#observing-rejection) observers, or any other convenience
-[extensions](#extensions), the returned promise has a strong reference to the
-chained work block. Once the promise gets resolved it removes any references to
-observer blocks that were chained on it and schedules them on GCD. Thus, GCD is
-the one which owns all blocks and everything captured in them until those blocks
-are eventually executed.
+internally and make all APIs provide a way to specify which dispatch queue
+each block of work should be dispatched on. Main queue is the default, if one
+isn't specified. Setting the default dispatch queue to any other than the main
+is normally needed when the main one is busy serving some custom event run
+loop, but not the standard for Apple platforms `CFRunLoop`. That situation is
+pretty common for different server-side frameworks, that similarly to
+AppKit/UIKit, also implement the [inversion of control](https://en.wikipedia.org/wiki/Inversion_of_control)
+design principle. To specify the default dispatch queue, add the following
+line somewhere at the beginning of your program:
+
+Swift:
+
+```swift
+DispatchQueue.promises = .global()
+```
+
+Objective-C:
+
+```objectivec
+FBLPromise.defaultDispatchQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+```
+
+### Ownership and retain cycles
+
+You rarely need to care about retain cycles with Promises. When chaining
+[fulfillment](#observing-fulfillment) or [rejection](#observing-rejection)
+observers, or any other convenience [extensions](#extensions), the returned
+promise has a strong reference to the chained work block. But once the promise
+gets resolved it removes any references to observer blocks that were chained on
+it and schedules them on GCD. Thus, GCD is the one which owns all blocks and
+everything captured in them until those blocks are eventually executed.
 
 Nevertheless, beware that you can create a retain cycle if you use a promise
 object inside a block chained on it. That's possible if you've stored the
