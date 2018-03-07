@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef id __nullable (^FBLPromiseDoWorkBlock)(void) NS_SWIFT_UNAVAILABLE("");
 
 /**
- Creates a pending promise and executes `work` block asynchronously on the main queue.
+ Creates a pending promise and executes `work` block asynchronously.
 
  @param work A block that returns a value or an error used to resolve the promise.
  @return A new pending promise.

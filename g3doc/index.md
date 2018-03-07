@@ -1255,15 +1255,15 @@ Objective-C lacks.
 ### Default dispatch queue
 
 Promises use [GCD](https://developer.apple.com/documentation/dispatch)
-internally and make all APIs provide a way to specify which dispatch queue
-each block of work should be dispatched on. Main queue is the default, if one
-isn't specified. Setting the default dispatch queue to any other than the main
-is normally needed when the main one is busy serving some custom event run
-loop, but not the standard for Apple platforms `CFRunLoop`. That situation is
-pretty common for different server-side frameworks, that similarly to
-AppKit/UIKit, also implement the [inversion of control](https://en.wikipedia.org/wiki/Inversion_of_control)
-design principle. To specify the default dispatch queue, add the following
-line somewhere at the beginning of your program:
+internally and make all APIs provide a way to specify which dispatch queue each
+block of work should be dispatched on. Main queue is the default, if one isn't
+specified. Setting the default dispatch queue to any other than the main is
+normally needed when the main one is busy serving some custom event run loop,
+but not the standard for Apple platforms `CFRunLoop`. That situation is pretty
+common for different server-side frameworks, that similarly to AppKit/UIKit,
+also implement the [inversion of control](https://en.wikipedia.org/wiki/Inversion_of_control)
+design principle and park the main thread in a custom run loop. To specify the
+default dispatch queue, add the following line to the beginning of your program:
 
 Swift:
 

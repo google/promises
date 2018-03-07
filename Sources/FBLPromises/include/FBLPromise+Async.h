@@ -26,7 +26,7 @@ typedef void (^FBLPromiseAsyncWorkBlock)(FBLPromiseFulfillBlock fulfill,
                                          FBLPromiseRejectBlock reject) NS_SWIFT_UNAVAILABLE("");
 
 /**
- Creates a pending promise and executes `work` block asynchronously on the main queue.
+ Creates a pending promise and executes `work` block asynchronously.
 
  @param work A block to perform any operations needed to resolve the promise.
  @return A new pending promise.

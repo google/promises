@@ -19,7 +19,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- Executes the given work block on the main queue after time interval.
+ Executes the given work block asynchronously after time interval.
  */
 static inline void FBLDelay(NSTimeInterval interval, void (^work)(void)) {
   int64_t const timeToWait = (int64_t)(interval * NSEC_PER_SEC);

@@ -24,9 +24,9 @@ typedef id __nullable (^FBLPromiseThenWorkBlock)(Value __nullable value) NS_SWIF
 
 /**
  Creates a pending promise which eventually gets resolved with resolution returned from `work`
- block: either value, error or another promise. The `work` block is executed asynchronously on the
- main queue only when the receiver is fulfilled. If receiver is rejected, the returned promise is
- also rejected with the same error.
+ block: either value, error or another promise. The `work` block is executed asynchronously only
+ when the receiver is fulfilled. If receiver is rejected, the returned promise is also rejected with
+ the same error.
 
  @param work A block to handle the value that receiver was fulfilled with.
  @return A new pending promise to be resolved with resolution returned from the `work` block.
@@ -35,9 +35,9 @@ typedef id __nullable (^FBLPromiseThenWorkBlock)(Value __nullable value) NS_SWIF
 
 /**
  Creates a pending promise which eventually gets resolved with resolution returned from `work`
- block: either value, error or another promise. The `work` block is executed asynchronously on the
- main queue only when the receiver is fulfilled. If receiver is rejected, the returned promise is
- also rejected with the same error.
+ block: either value, error or another promise. The `work` block is executed asynchronously when the
+ receiver is fulfilled. If receiver is rejected, the returned promise is also rejected with the same
+ error.
 
  @param queue A queue to invoke the `work` block on.
  @param work A block to handle the value that receiver was fulfilled with.

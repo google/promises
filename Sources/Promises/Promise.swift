@@ -121,7 +121,7 @@ extension Promise: CustomStringConvertible {
 }
 
 public extension DispatchQueue {
-  /// Default dispatch queue used for `Promise`, if other is not specified. Main queue initially.
+  /// Default dispatch queue used for `Promise`, which is `main` if a queue is not specified.
   static var promises: DispatchQueue {
     get { return Promise<Any>.ObjCPromise<AnyObject>.__defaultDispatchQueue }
     set { Promise<Any>.ObjCPromise<AnyObject>.__defaultDispatchQueue = newValue }

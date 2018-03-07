@@ -24,7 +24,7 @@ typedef void (^FBLPromiseCatchBlock)(NSError *error) NS_SWIFT_UNAVAILABLE("");
 
 /**
  Creates a pending promise which eventually gets resolved with same resolution as the receiver.
- If receiver is rejected, then `reject` block is executed asynchronously on the main queue.
+ If receiver is rejected, then `reject` block is executed asynchronously.
 
  @param reject A block to handle the error that receiver was rejected with.
  @return A new pending promise.

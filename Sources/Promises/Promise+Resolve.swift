@@ -15,7 +15,7 @@
 /// Provides a convenient way to convert methods that use common callback patterns into `Promise`s.
 
 /// Creates a new promise to be resolved when completion handler gets invoked.
-/// - parameter work: A block to execute on the main queue to invoke some API that requires
+/// - parameter work: A block to execute asynchronously to invoke some API that requires
 ///                   a completion handler with no arguments.
 /// - returns: A new pending promise to be resolved with `nil` when completion handler finishes.
 public func resolve(_ work: @escaping (@escaping () -> Void) throws -> Void) -> Promise<Any?> {
@@ -25,7 +25,7 @@ public func resolve(_ work: @escaping (@escaping () -> Void) throws -> Void) -> 
 }
 
 /// Creates a new promise to be resolved when completion handler gets invoked.
-/// - parameter work: A block to execute on the main queue to invoke some API that requires
+/// - parameter work: A block to execute asynchronously to invoke some API that requires
 ///                   a completion handler with one argument of generic `Value` type.
 /// - returns: A new pending promise to be resolved with the value provided by completion handler
 ///            when it finishes.
@@ -38,7 +38,7 @@ public func resolve<Value>(
 }
 
 /// Creates a new promise to be resolved when completion handler gets invoked.
-/// - parameter work: A block to execute on the main queue to invoke some API that requires
+/// - parameter work: A block to execute asynchronously to invoke some API that requires
 ///                   a completion handler with one argument of optional generic `Value` type.
 /// - returns: A new pending promise to be resolved with the value or error provided by completion
 ///            handler when it finishes.
@@ -51,7 +51,7 @@ public func resolve<Value>(
 }
 
 /// Creates a new promise to be resolved when completion handler gets invoked.
-/// - parameter work: A block to execute on the main queue to invoke some API that requires
+/// - parameter work: A block to execute asynchronously to invoke some API that requires
 ///                   a completion handler with two arguments: a generic of `Value` type and
 ///                   an optional `Error`.
 /// - returns: A new pending promise to be resolved with the value or error provided by completion
@@ -71,7 +71,7 @@ public func resolve<Value>(
 }
 
 /// Creates a new promise to be resolved when completion handler gets invoked.
-/// - parameter work: A block to execute on the main queue to invoke some API that requires
+/// - parameter work: A block to execute asynchronously to invoke some API that requires
 ///                   a completion handler with two arguments: an optional `Error` and a generic of
 ///                   `Value` type.
 /// - returns: A new pending promise to be resolved with the error or value provided by completion
@@ -91,7 +91,7 @@ public func resolve<Value>(
 }
 
 /// Creates a new promise to be resolved when completion handler gets invoked.
-/// - parameter work: A block to execute on the main queue to invoke some API that requires
+/// - parameter work: A block to execute asynchronously to invoke some API that requires
 ///                   a completion handler with two arguments: an optional generic of `Value` type
 ///                   and an optional `Error`.
 /// - returns: A new pending promise to be resolved with the value or error provided by completion
@@ -111,7 +111,7 @@ public func resolve<Value>(
 }
 
 /// Creates a new promise to be resolved when completion handler gets invoked.
-/// - parameter work: A block to execute on the main queue to invoke some API that requires
+/// - parameter work: A block to execute asynchronously to invoke some API that requires
 ///                   a completion handler with two arguments: an optional `Error` and an optional
 ///                   generic of `Value` type.
 /// - returns: A new pending promise to be resolved with the error or value provided by completion
@@ -131,7 +131,7 @@ public func resolve<Value>(
 }
 
 /// Creates a new promise to be resolved when completion handler gets invoked.
-/// - parameter work: A block to execute on the main queue to invoke some API that requires
+/// - parameter work: A block to execute asynchronously to invoke some API that requires
 ///                   a completion handler with three arguments: two optionals of `Any` type
 ///                   and an optional `Error`.
 /// - returns: A new pending promise to be resolved with a tuple of optional values or an error
