@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, FBLPromiseState) {
 
 typedef void (^FBLPromiseObserver)(FBLPromiseState state, id __nullable resolution);
 
-static dispatch_queue_t gDefaultDispatchQueue;
+static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
 
 @implementation FBLPromise {
   /** Current state of the promise. */
@@ -51,19 +51,19 @@ static dispatch_queue_t gDefaultDispatchQueue;
 
 + (void)initialize {
   if (self == [FBLPromise class]) {
-    gDefaultDispatchQueue = dispatch_get_main_queue();
+    gFBLPromiseDefaultDispatchQueue = dispatch_get_main_queue();
   }
 }
 
 + (dispatch_queue_t)defaultDispatchQueue {
   @synchronized(self) {
-    return gDefaultDispatchQueue;
+    return gFBLPromiseDefaultDispatchQueue;
   }
 }
 
 + (void)setDefaultDispatchQueue:(dispatch_queue_t)defaultDispatchQueue {
   @synchronized(self) {
-    gDefaultDispatchQueue = defaultDispatchQueue;
+    gFBLPromiseDefaultDispatchQueue = defaultDispatchQueue;
   }
 }
 
