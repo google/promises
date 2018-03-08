@@ -1533,7 +1533,7 @@ Swift:
 ```swift
 func asyncCall() -> Promise<Data> {
   let promise = doSomethingAsync()
-  promise.then(process)
+  promise.then(processData)
   return promise
 }
 ```
@@ -1559,7 +1559,7 @@ Swift:
 ```swift
 func asyncCall() -> Promise<Data> {
   let promise = doSomethingAsync()
-  return promise.then(process)
+  return promise.then(processData)
 }
 ```
 
