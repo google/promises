@@ -1402,7 +1402,7 @@ func testExample() {
 Objective-C:
 
 ```objectivec
-#import "path/to/Promises/FBLPromises/include/FBLPromise+Testing.h"
+#import "path/to/Promises/Sources/FBLPromises/include/FBLPromise+Testing.h"
 
 // ...
 - (void)testExample {
