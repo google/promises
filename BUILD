@@ -53,6 +53,7 @@ objc_library(
         "Sources/FBLPromises/include/*.h",
     ]) + [
         "FBLPromises.h",
+        "FBLPromise+Testing.h",
     ],
     copts = OBJC_COPTS,
     includes = [
