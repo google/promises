@@ -25,6 +25,7 @@
 }
 
 - (FBLPromise *)onQueue:(dispatch_queue_t)queue validate:(BOOL (^)(id __nullable))predicate {
+  NSParameterAssert(queue);
   NSParameterAssert(predicate);
 
   FBLPromiseChainedFulfillBlock chainedFulfill = ^id(id value) {

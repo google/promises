@@ -26,6 +26,7 @@
 }
 
 + (instancetype)onQueue:(dispatch_queue_t)queue any:(NSArray *)anyPromises {
+  NSParameterAssert(queue);
   NSAssert(anyPromises.count > 0, @"No promises to observe");
 
   NSArray *promises = [anyPromises copy];

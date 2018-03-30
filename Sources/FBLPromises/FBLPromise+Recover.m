@@ -25,6 +25,7 @@
 }
 
 - (FBLPromise *)onQueue:(dispatch_queue_t)queue recover:(nullable id (^)(NSError *))recovery {
+  NSParameterAssert(queue);
   NSParameterAssert(recovery);
 
   return [self chainOnQueue:queue

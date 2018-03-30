@@ -61,9 +61,11 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
   }
 }
 
-+ (void)setDefaultDispatchQueue:(dispatch_queue_t)defaultDispatchQueue {
++ (void)setDefaultDispatchQueue:(dispatch_queue_t)queue {
+  NSParameterAssert(queue);
+
   @synchronized(self) {
-    gFBLPromiseDefaultDispatchQueue = defaultDispatchQueue;
+    gFBLPromiseDefaultDispatchQueue = queue;
   }
 }
 
@@ -203,6 +205,10 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
 - (void)observeOnQueue:(dispatch_queue_t)queue
                fulfill:(FBLPromiseOnFulfillBlock)onFulfill
                 reject:(FBLPromiseOnRejectBlock)onReject {
+  NSParameterAssert(queue);
+  NSParameterAssert(onFulfill);
+  NSParameterAssert(onReject);
+
   @synchronized(self) {
     switch (_state) {
       case FBLPromiseStatePending: {
@@ -244,6 +250,8 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
 - (FBLPromise *)chainOnQueue:(dispatch_queue_t)queue
               chainedFulfill:(FBLPromiseChainedFulfillBlock)chainedFulfill
                chainedReject:(FBLPromiseChainedRejectBlock)chainedReject {
+  NSParameterAssert(queue);
+
   FBLPromise *promise = [[FBLPromise alloc] initPending];
   [self observeOnQueue:queue
       fulfill:^(id __nullable value) {

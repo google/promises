@@ -23,9 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface FBLPromise<Value>()
 
-typedef void (^__nullable FBLPromiseOnFulfillBlock)(Value __nullable value)
-    NS_SWIFT_UNAVAILABLE("");
-typedef void (^__nullable FBLPromiseOnRejectBlock)(NSError *error) NS_SWIFT_UNAVAILABLE("");
+typedef void (^FBLPromiseOnFulfillBlock)(Value __nullable value) NS_SWIFT_UNAVAILABLE("");
+typedef void (^FBLPromiseOnRejectBlock)(NSError *error) NS_SWIFT_UNAVAILABLE("");
 typedef id __nullable (^__nullable FBLPromiseChainedFulfillBlock)(Value __nullable value)
     NS_SWIFT_UNAVAILABLE("");
 typedef id __nullable (^__nullable FBLPromiseChainedRejectBlock)(NSError *error)

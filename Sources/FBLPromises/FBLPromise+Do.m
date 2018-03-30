@@ -25,6 +25,7 @@
 }
 
 + (instancetype)onQueue:(dispatch_queue_t)queue do:(FBLPromiseDoWorkBlock)work {
+  NSParameterAssert(queue);
   NSParameterAssert(work);
 
   FBLPromise *promise = [[FBLPromise alloc] initPending];

@@ -26,6 +26,7 @@
 }
 
 + (FBLPromise<NSArray *> *)onQueue:(dispatch_queue_t)queue all:(NSArray *)allPromises {
+  NSParameterAssert(queue);
   NSParameterAssert(allPromises);
 
   if (allPromises.count == 0) {

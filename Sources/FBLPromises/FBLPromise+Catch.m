@@ -25,6 +25,7 @@
 }
 
 - (FBLPromise *)onQueue:(dispatch_queue_t)queue catch:(FBLPromiseCatchBlock)reject {
+  NSParameterAssert(queue);
   NSParameterAssert(reject);
 
   return [self chainOnQueue:queue

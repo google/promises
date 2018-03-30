@@ -25,6 +25,7 @@
 }
 
 - (FBLPromise *)onQueue:(dispatch_queue_t)queue always:(void (^)(void))work {
+  NSParameterAssert(queue);
   NSParameterAssert(work);
 
   return [self chainOnQueue:queue

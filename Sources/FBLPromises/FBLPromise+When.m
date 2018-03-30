@@ -42,6 +42,7 @@ static NSArray *FBLPromiseCombineValuesAndErrors(NSArray<FBLPromise *> *promises
 }
 
 + (FBLPromise<NSArray *> *)onQueue:(dispatch_queue_t)queue when:(NSArray *)whenPromises {
+  NSParameterAssert(queue);
   NSParameterAssert(whenPromises);
 
   if (whenPromises.count == 0) {
