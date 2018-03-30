@@ -21,7 +21,7 @@
 @implementation FBLPromise (AlwaysAdditions)
 
 - (FBLPromise *)always:(void (^)(void))work {
-  return [self onQueue:[self class].defaultDispatchQueue always:work];
+  return [self onQueue:FBLPromise.defaultDispatchQueue always:work];
 }
 
 - (FBLPromise *)onQueue:(dispatch_queue_t)queue always:(void (^)(void))work {

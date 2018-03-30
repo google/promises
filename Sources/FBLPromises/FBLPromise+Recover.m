@@ -21,7 +21,7 @@
 @implementation FBLPromise (RecoverAdditions)
 
 - (FBLPromise *)recover:(nullable id (^)(NSError *))recovery {
-  return [self onQueue:[self class].defaultDispatchQueue recover:recovery];
+  return [self onQueue:FBLPromise.defaultDispatchQueue recover:recovery];
 }
 
 - (FBLPromise *)onQueue:(dispatch_queue_t)queue recover:(nullable id (^)(NSError *))recovery {

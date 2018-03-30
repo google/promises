@@ -21,7 +21,7 @@
 @implementation FBLPromise (ThenAdditions)
 
 - (FBLPromise *)then:(FBLPromiseThenWorkBlock)work {
-  return [self onQueue:[self class].defaultDispatchQueue then:work];
+  return [self onQueue:FBLPromise.defaultDispatchQueue then:work];
 }
 
 - (FBLPromise *)onQueue:(dispatch_queue_t)queue then:(FBLPromiseThenWorkBlock)work {

@@ -27,8 +27,8 @@
 + (instancetype)onQueue:(dispatch_queue_t)queue do:(FBLPromiseDoWorkBlock)work {
   NSParameterAssert(work);
 
-  FBLPromise *promise = [[[self class] alloc] initPending];
-  dispatch_group_async([self class].dispatchGroup, queue, ^{
+  FBLPromise *promise = [[FBLPromise alloc] initPending];
+  dispatch_group_async(FBLPromise.dispatchGroup, queue, ^{
     [promise fulfill:work()];
   });
   return promise;

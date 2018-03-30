@@ -21,7 +21,7 @@
 @implementation FBLPromise (CatchAdditions)
 
 - (FBLPromise *)catch:(FBLPromiseCatchBlock)reject {
-  return [self onQueue:[self class].defaultDispatchQueue catch:reject];
+  return [self onQueue:FBLPromise.defaultDispatchQueue catch:reject];
 }
 
 - (FBLPromise *)onQueue:(dispatch_queue_t)queue catch:(FBLPromiseCatchBlock)reject {

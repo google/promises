@@ -27,8 +27,8 @@
 + (instancetype)onQueue:(dispatch_queue_t)queue async:(FBLPromiseAsyncWorkBlock)work {
   NSParameterAssert(work);
 
-  FBLPromise *promise = [[[self class] alloc] initPending];
-  dispatch_group_async([self class].dispatchGroup, queue, ^{
+  FBLPromise *promise = [[FBLPromise alloc] initPending];
+  dispatch_group_async(FBLPromise.dispatchGroup, queue, ^{
     work(
         ^(id __nullable value) {
           [promise fulfill:value];

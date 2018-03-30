@@ -38,14 +38,14 @@ static NSArray *FBLPromiseCombineValuesAndErrors(NSArray<FBLPromise *> *promises
 @implementation FBLPromise (WhenAdditions)
 
 + (FBLPromise<NSArray *> *)when:(NSArray *)promises {
-  return [self onQueue:[self class].defaultDispatchQueue when:promises];
+  return [self onQueue:FBLPromise.defaultDispatchQueue when:promises];
 }
 
 + (FBLPromise<NSArray *> *)onQueue:(dispatch_queue_t)queue when:(NSArray *)whenPromises {
   NSParameterAssert(whenPromises);
 
   if (whenPromises.count == 0) {
-    return [[[self class] alloc] initWithResolution:@[]];
+    return [[FBLPromise alloc] initWithResolution:@[]];
   }
   NSMutableArray *promises = [whenPromises mutableCopy];
   return [FBLPromise
@@ -57,7 +57,7 @@ static NSArray *FBLPromiseCombineValuesAndErrors(NSArray<FBLPromise *> *promises
               continue;
             } else {
               [promises replaceObjectAtIndex:i
-                                  withObject:[[[self class] alloc] initWithResolution:promise]];
+                                  withObject:[[FBLPromise alloc] initWithResolution:promise]];
             }
           }
           for (FBLPromise *promise in promises) {

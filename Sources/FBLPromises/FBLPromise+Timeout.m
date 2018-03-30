@@ -21,14 +21,18 @@
 @implementation FBLPromise (TimeoutAdditions)
 
 - (FBLPromise *)timeout:(NSTimeInterval)interval {
-  return [self onQueue:[self class].defaultDispatchQueue timeout:interval];
+  return [self onQueue:FBLPromise.defaultDispatchQueue timeout:interval];
 }
 
 - (FBLPromise *)onQueue:(dispatch_queue_t)queue timeout:(NSTimeInterval)interval {
-  FBLPromise *promise = [[[self class] alloc] initPending];
-  dispatch_group_async([self class].dispatchGroup, queue, ^{
-    [promise fulfill:self];
-  });
+  FBLPromise *promise = [[FBLPromise alloc] initPending];
+  [self observeOnQueue:queue
+      fulfill:^(id __nullable value) {
+        [promise fulfill:value];
+      }
+      reject:^(NSError *error) {
+        [promise reject:error];
+      }];
   int64_t const timeToWait = (int64_t)(interval * NSEC_PER_SEC);
   FBLPromise __weak *weakPromise = promise;
   dispatch_after(dispatch_time(0, timeToWait), queue, ^{

@@ -76,15 +76,7 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
 }
 
 - (void)fulfill:(nullable id)value {
-  if ([value isKindOfClass:[self class]]) {
-    [(FBLPromise *)value observeOnQueue:[self class].defaultDispatchQueue
-        fulfill:^(id __nullable value) {
-          [self fulfill:value];
-        }
-        reject:^(NSError *error) {
-          [self reject:error];
-        }];
-  } else if ([value isKindOfClass:[NSError class]]) {
+  if ([value isKindOfClass:[NSError class]]) {
     [self reject:(NSError *)value];
   } else {
     @synchronized(self) {
@@ -96,7 +88,7 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
           observer(_state, _value);
         }
         _observers = nil;
-        dispatch_group_leave([self class].dispatchGroup);
+        dispatch_group_leave(FBLPromise.dispatchGroup);
       }
     }
   }
@@ -118,7 +110,7 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
         observer(_state, _error);
       }
       _observers = nil;
-      dispatch_group_leave([self class].dispatchGroup);
+      dispatch_group_leave(FBLPromise.dispatchGroup);
     }
   }
 }
@@ -142,7 +134,7 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
 - (instancetype)initPending {
   self = [super init];
   if (self) {
-    dispatch_group_enter([self class].dispatchGroup);
+    dispatch_group_enter(FBLPromise.dispatchGroup);
   }
   return self;
 }
@@ -150,16 +142,7 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
 - (instancetype)initWithResolution:(nullable id)resolution {
   self = [super init];
   if (self) {
-    if ([resolution isKindOfClass:[self class]]) {
-      FBLPromise *anotherPromise = (FBLPromise *)resolution;
-      if (anotherPromise.isRejected) {
-        _state = FBLPromiseStateRejected;
-        _error = anotherPromise.error;
-      } else {
-        _state = FBLPromiseStateFulfilled;
-        _value = anotherPromise.value;
-      }
-    } else if ([resolution isKindOfClass:[NSError class]]) {
+    if ([resolution isKindOfClass:[NSError class]]) {
       _state = FBLPromiseStateRejected;
       _error = (NSError *)resolution;
     } else {
@@ -172,7 +155,7 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
 
 - (void)dealloc {
   if (_state == FBLPromiseStatePending) {
-    dispatch_group_leave([self class].dispatchGroup);
+    dispatch_group_leave(FBLPromise.dispatchGroup);
   }
 }
 
@@ -220,7 +203,6 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
 - (void)observeOnQueue:(dispatch_queue_t)queue
                fulfill:(FBLPromiseOnFulfillBlock)onFulfill
                 reject:(FBLPromiseOnRejectBlock)onReject {
-  dispatch_group_t dispatchGroup = [self class].dispatchGroup;
   @synchronized(self) {
     switch (_state) {
       case FBLPromiseStatePending: {
@@ -228,7 +210,7 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
           _observers = [[NSMutableArray alloc] init];
         }
         [_observers addObject:^(FBLPromiseState state, id __nullable resolution) {
-          dispatch_group_async(dispatchGroup, queue, ^{
+          dispatch_group_async(FBLPromise.dispatchGroup, queue, ^{
             switch (state) {
               case FBLPromiseStatePending:
                 break;
@@ -244,13 +226,13 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
         break;
       }
       case FBLPromiseStateFulfilled: {
-        dispatch_group_async(dispatchGroup, queue, ^{
+        dispatch_group_async(FBLPromise.dispatchGroup, queue, ^{
           onFulfill(self->_value);
         });
         break;
       }
       case FBLPromiseStateRejected: {
-        dispatch_group_async(dispatchGroup, queue, ^{
+        dispatch_group_async(FBLPromise.dispatchGroup, queue, ^{
           onReject(self->_error);
         });
         break;
@@ -262,13 +244,35 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
 - (FBLPromise *)chainOnQueue:(dispatch_queue_t)queue
               chainedFulfill:(FBLPromiseChainedFulfillBlock)chainedFulfill
                chainedReject:(FBLPromiseChainedRejectBlock)chainedReject {
-  FBLPromise *promise = [[[self class] alloc] initPending];
+  FBLPromise *promise = [[FBLPromise alloc] initPending];
   [self observeOnQueue:queue
       fulfill:^(id __nullable value) {
-        [promise fulfill:chainedFulfill ? chainedFulfill(value) : value];
+        value = chainedFulfill ? chainedFulfill(value) : value;
+        if ([value isKindOfClass:[FBLPromise class]]) {
+          [(FBLPromise *)value observeOnQueue:queue
+              fulfill:^(id __nullable value) {
+                [promise fulfill:value];
+              }
+              reject:^(NSError *error) {
+                [promise reject:error];
+              }];
+        } else {
+          [promise fulfill:value];
+        }
       }
       reject:^(NSError *error) {
-        [promise fulfill:chainedReject ? chainedReject(error) : error];
+        id value = chainedReject ? chainedReject(error) : error;
+        if ([value isKindOfClass:[FBLPromise class]]) {
+          [(FBLPromise *)value observeOnQueue:queue
+              fulfill:^(id __nullable value) {
+                [promise fulfill:value];
+              }
+              reject:^(NSError *error) {
+                [promise reject:error];
+              }];
+        } else {
+          [promise fulfill:value];
+        }
       }];
   return promise;
 }
