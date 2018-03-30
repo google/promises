@@ -17,8 +17,6 @@
 #import "FBLPromise+Testing.h"
 
 BOOL FBLWaitForPromisesWithTimeout(NSTimeInterval timeout) {
-  assert(timeout > 0);
-
   BOOL isTimedOut = NO;
   NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:timeout];
   static NSTimeInterval const minimalTimeout = 0.01;
