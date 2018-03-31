@@ -15,14 +15,14 @@
 import Foundation
 
 public extension Promise {
-  public typealias Work = () throws -> Value
+  public typealias Do = () throws -> Value
 
   /// Creates a pending promise to be resolved with the return value of `work` block which is
   /// executed asynchronously on the given `queue`.
   /// - parameters:
   ///   - queue: A queue to invoke the `work` block on.
   ///   - work: A block to perform any operations needed to resolve the promise.
-  public convenience init(on queue: DispatchQueue = .promises, _ work: @escaping Work) {
+  public convenience init(on queue: DispatchQueue = .promises, _ work: @escaping Do) {
     let objCPromise = ObjCPromise<AnyObject>.__onQueue(queue) {
       do {
         let resolution = try work()

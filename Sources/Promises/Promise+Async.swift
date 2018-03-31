@@ -15,15 +15,13 @@
 import Foundation
 
 public extension Promise {
-  public typealias Fulfill = (Value) -> Void
-  public typealias Reject = (Error) -> Void
-  public typealias AsyncWork = (@escaping Fulfill, @escaping Reject) throws -> Void
+  public typealias Async = (@escaping (Value) -> Void, @escaping (Error) -> Void) throws -> Void
 
   /// Creates a pending promise and executes `work` block asynchronously on the given `queue`.
   /// - parameters:
   ///   - queue: A queue to invoke the `work` block on.
   ///   - work: A block to perform any operations needed to resolve the promise.
-  public convenience init(on queue: DispatchQueue = .promises, _ work: @escaping AsyncWork) {
+  public convenience init(on queue: DispatchQueue = .promises, _ work: @escaping Async) {
     let objCPromise = ObjCPromise<AnyObject>.__onQueue(queue) { fulfill, reject in
       do {
         try work({ value in

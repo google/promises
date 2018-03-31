@@ -115,8 +115,16 @@ public final class Promise<Value> {
 
 extension Promise: CustomStringConvertible {
   public var description: String {
-    return isFulfilled ? "Fulfilled: \(String(describing: value ?? nil))" :
-        isRejected ? "Rejected: \(String(describing: error ?? nil))" : "Pending: \(Value.self)"
+    var description = "nil"
+    if isFulfilled {
+      if let value = value { description = String(describing: value) }
+      return "Fulfilled: \(description)"
+    }
+    if isRejected {
+      if let error = error { description = String(describing: error) }
+      return "Rejected: \(description)"
+    }
+    return "Pending: \(Value.self)"
   }
 }
 
