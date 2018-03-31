@@ -253,34 +253,27 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
   NSParameterAssert(queue);
 
   FBLPromise *promise = [[FBLPromise alloc] initPending];
+  __auto_type resolver = ^(id __nullable value) {
+    if ([value isKindOfClass:[FBLPromise class]]) {
+      [(FBLPromise *)value observeOnQueue:queue
+          fulfill:^(id __nullable value) {
+            [promise fulfill:value];
+          }
+          reject:^(NSError *error) {
+            [promise reject:error];
+          }];
+    } else {
+      [promise fulfill:value];
+    }
+  };
   [self observeOnQueue:queue
       fulfill:^(id __nullable value) {
         value = chainedFulfill ? chainedFulfill(value) : value;
-        if ([value isKindOfClass:[FBLPromise class]]) {
-          [(FBLPromise *)value observeOnQueue:queue
-              fulfill:^(id __nullable value) {
-                [promise fulfill:value];
-              }
-              reject:^(NSError *error) {
-                [promise reject:error];
-              }];
-        } else {
-          [promise fulfill:value];
-        }
+        resolver(value);
       }
       reject:^(NSError *error) {
         id value = chainedReject ? chainedReject(error) : error;
-        if ([value isKindOfClass:[FBLPromise class]]) {
-          [(FBLPromise *)value observeOnQueue:queue
-              fulfill:^(id __nullable value) {
-                [promise fulfill:value];
-              }
-              reject:^(NSError *error) {
-                [promise reject:error];
-              }];
-        } else {
-          [promise fulfill:value];
-        }
+        resolver(value);
       }];
   return promise;
 }

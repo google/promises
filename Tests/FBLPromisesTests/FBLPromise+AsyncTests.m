@@ -40,6 +40,19 @@
   XCTAssertNil(promise.error);
 }
 
+- (void)testPromiseAsyncFulfillWithPromise {
+  // Arrange & Act.
+  FBLPromise<NSNumber *> *promise =
+      [FBLPromise async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock __unused _) {
+        fulfill([FBLPromise resolvedWith:@42]);
+      }];
+
+  // Assert.
+  XCTAssert(FBLWaitForPromisesWithTimeout(10));
+  XCTAssertEqualObjects(promise.value, @42);
+  XCTAssertNil(promise.error);
+}
+
 - (void)testPromiseAsyncReject {
   // Arrange & Act.
   FBLPromise<NSNumber *> *promise =

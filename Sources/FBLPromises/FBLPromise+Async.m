@@ -32,7 +32,17 @@
   dispatch_group_async(FBLPromise.dispatchGroup, queue, ^{
     work(
         ^(id __nullable value) {
-          [promise fulfill:value];
+          if ([value isKindOfClass:[FBLPromise class]]) {
+            [(FBLPromise *)value observeOnQueue:queue
+                fulfill:^(id __nullable value) {
+                  [promise fulfill:value];
+                }
+                reject:^(NSError *error) {
+                  [promise reject:error];
+                }];
+          } else {
+            [promise fulfill:value];
+          }
         },
         ^(NSError *error) {
           [promise reject:error];

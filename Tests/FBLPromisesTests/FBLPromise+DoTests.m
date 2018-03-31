@@ -39,6 +39,18 @@
   XCTAssertNil(promise.error);
 }
 
+- (void)testPromiseDoReturnPromise {
+  // Arrange & Act.
+  FBLPromise<NSNumber *> *promise = [FBLPromise do:^id {
+    return [FBLPromise resolvedWith:@42];
+  }];
+
+  // Assert.
+  XCTAssert(FBLWaitForPromisesWithTimeout(10));
+  XCTAssertEqualObjects(promise.value, @42);
+  XCTAssertNil(promise.error);
+}
+
 - (void)testPromiseDoReject {
   // Arrange & Act.
   FBLPromise<NSNumber *> *promise = [FBLPromise do:^id {

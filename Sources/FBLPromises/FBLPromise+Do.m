@@ -30,7 +30,18 @@
 
   FBLPromise *promise = [[FBLPromise alloc] initPending];
   dispatch_group_async(FBLPromise.dispatchGroup, queue, ^{
-    [promise fulfill:work()];
+    id value = work();
+    if ([value isKindOfClass:[FBLPromise class]]) {
+      [(FBLPromise *)value observeOnQueue:queue
+          fulfill:^(id __nullable value) {
+            [promise fulfill:value];
+          }
+          reject:^(NSError *error) {
+            [promise reject:error];
+          }];
+    } else {
+      [promise fulfill:value];
+    }
   });
   return promise;
 }
