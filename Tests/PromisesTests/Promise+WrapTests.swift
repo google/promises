@@ -17,9 +17,9 @@ import XCTest
 @testable import Promises
 
 class PromiseResolveTests: XCTestCase {
-  func testPromiseResolveWithVoidCompletionFulfillsWithNilValue() {
+  func testPromiseWrapVoidCompletionFulfillsWithNilValue() {
     // Act.
-    let promise = resolve { handler in
+    let promise = wrap { handler in
       Harness.async(completion: handler)
     }.catch { _ in
       XCTFail()
@@ -34,9 +34,9 @@ class PromiseResolveTests: XCTestCase {
     XCTAssertNil(promise.error)
   }
 
-  func testPromiseResolveWithObjectCompletionFulfillsOnValueReturned() {
+  func testPromiseWrapObjectCompletionFulfillsOnValueReturned() {
     // Act.
-    let promise = resolve { handler in
+    let promise = wrap { handler in
       Harness.async(value: 42, completion: handler)
     }.catch { _ in
       XCTFail()
@@ -51,9 +51,9 @@ class PromiseResolveTests: XCTestCase {
     XCTAssertNil(promise.error)
   }
 
-  func testPromiseResolveWithObjectCompletionFulfillsWithNilValue() {
+  func testPromiseWrapObjectCompletionFulfillsWithNilValue() {
     // Act.
-    let promise = resolve { (handler: @escaping (Any?) -> Void) in
+    let promise = wrap { (handler: @escaping (Any?) -> Void) in
       Harness.async(value: nil, completion: handler)
     }.catch { _ in
       XCTFail()
@@ -68,9 +68,9 @@ class PromiseResolveTests: XCTestCase {
     XCTAssertNil(promise.error)
   }
 
-  func testPromiseResolveWithErrorCompletionRejectsOnErrorReturned() {
+  func testPromiseWrapErrorCompletionRejectsOnErrorReturned() {
     // Act.
-    let promise = resolve { handler in
+    let promise = wrap { handler in
       Harness.async(error: Test.Error.code42, completion: handler)
     }.then { _ in
       XCTFail()
@@ -84,9 +84,9 @@ class PromiseResolveTests: XCTestCase {
     XCTAssert(promise.value == nil)
   }
 
-  func testPromiseResolveWithErrorCompletionFulfillsWithNilValue() {
+  func testPromiseWrapErrorCompletionFulfillsWithNilValue() {
     // Act.
-    let promise = resolve { handler in
+    let promise = wrap { handler in
       Harness.async(error: nil, completion: handler)
     }.catch { _ in
       XCTFail()
@@ -101,9 +101,9 @@ class PromiseResolveTests: XCTestCase {
     XCTAssertNil(promise.error)
   }
 
-  func testPromiseResolveWithObjectOrErrorCompletionFulfillsWithNilValue() {
+  func testPromiseWrapObjectOrErrorCompletionFulfillsWithNilValue() {
     // Act.
-    let promise = resolve { (handler: @escaping (Any?, Error?) -> Void) in
+    let promise = wrap { (handler: @escaping (Any?, Error?) -> Void) in
       Harness.async(value: nil, error: nil, completion: handler)
     }.catch { _ in
       XCTFail()
@@ -117,12 +117,12 @@ class PromiseResolveTests: XCTestCase {
     XCTAssertNil(promise.error)
   }
 
-  func testPromiseResolveWithErrorOrObjectCompletionFulfillsWithNilValue() {
+  func testPromiseWrapErrorOrObjectCompletionFulfillsWithNilValue() {
     // Arrange.
     let expectation = self.expectation(description: "")
 
     // Act.
-    let promise = resolve { (handler: @escaping (Error?, Any?) -> Void) in
+    let promise = wrap { (handler: @escaping (Error?, Any?) -> Void) in
       Harness.async(error: nil, value: nil, completion: handler)
     }.catch { _ in
       XCTFail()
@@ -138,9 +138,9 @@ class PromiseResolveTests: XCTestCase {
     XCTAssertNil(promise.error)
   }
 
-  func testPromiseResolveWithObjectOrErrorCompletionFulfillsOnValueReturned() {
+  func testPromiseWrapObjectOrErrorCompletionFulfillsOnValueReturned() {
     // Act.
-    let promise = resolve { handler in
+    let promise = wrap { handler in
       Harness.async(value: 42, error: nil, completion: handler)
     }.catch { _ in
       XCTFail()
@@ -155,12 +155,12 @@ class PromiseResolveTests: XCTestCase {
     XCTAssertNil(promise.error)
   }
 
-  func testPromiseResolveWithErrorOrObjectCompletionFulfillsOnValueReturned() {
+  func testPromiseWrapErrorOrObjectCompletionFulfillsOnValueReturned() {
     // Arrange.
     let expectation = self.expectation(description: "")
 
     // Act.
-    let promise = resolve { (handler: @escaping (Error?, Int) -> Void) in
+    let promise = wrap { (handler: @escaping (Error?, Int) -> Void) in
       Harness.async(error: nil, value: 42, completion: handler)
     }.catch { _ in
       XCTFail()
@@ -176,9 +176,9 @@ class PromiseResolveTests: XCTestCase {
     XCTAssertNil(promise.error)
   }
 
-  func testPromiseResolveWithObjectOrErrorCompletionRejectsOnErrorReturned() {
+  func testPromiseWrapObjectOrErrorCompletionRejectsOnErrorReturned() {
     // Act.
-    let promise = resolve { (handler: @escaping (Any?, Error?) -> Void) in
+    let promise = wrap { (handler: @escaping (Any?, Error?) -> Void) in
       Harness.async(value: nil, error: Test.Error.code42, completion: handler)
     }.then { _ in
       XCTFail()
@@ -192,12 +192,12 @@ class PromiseResolveTests: XCTestCase {
     XCTAssert(promise.value == nil)
   }
 
-  func testPromiseResolveWithErrorOrObjectCompletionRejectsOnErrorReturned() {
+  func testPromiseWrapErrorOrObjectCompletionRejectsOnErrorReturned() {
     // Arrange.
     let expectation = self.expectation(description: "")
 
     // Act.
-    let promise = resolve { (handler: @escaping (Error?, Any?) -> Void) in
+    let promise = wrap { (handler: @escaping (Error?, Any?) -> Void) in
       Harness.async(error: Test.Error.code42, value: nil, completion: handler)
     }.then { _ in
       XCTFail()
@@ -212,9 +212,9 @@ class PromiseResolveTests: XCTestCase {
     XCTAssert(promise.value == nil)
   }
 
-  func testPromiseResolveWithObjectOrErrorCompletionRejectsOnValueAndErrorReturned() {
+  func testPromiseWrapObjectOrErrorCompletionRejectsOnValueAndErrorReturned() {
     // Act.
-    let promise = resolve { (handler: @escaping (Int, Error?) -> Void) in
+    let promise = wrap { (handler: @escaping (Int, Error?) -> Void) in
       Harness.async(value: 42, error: Test.Error.code42, completion: handler)
     }.then { _ in
       XCTFail()
@@ -228,12 +228,12 @@ class PromiseResolveTests: XCTestCase {
     XCTAssertNil(promise.value)
   }
 
-  func testPromiseResolveWithErrorOrObjectCompletionRejectsOnValueAndErrorReturned() {
+  func testPromiseWrapErrorOrObjectCompletionRejectsOnValueAndErrorReturned() {
     // Arrange.
     let expectation = self.expectation(description: "")
 
     // Act.
-    let promise = resolve { (handler: @escaping (Error?, Int) -> Void) in
+    let promise = wrap { (handler: @escaping (Error?, Int) -> Void) in
       Harness.async(error: Test.Error.code42, value: 42, completion: handler)
     }.then { _ in
       XCTFail()
@@ -248,9 +248,9 @@ class PromiseResolveTests: XCTestCase {
     XCTAssertNil(promise.value)
   }
 
-  func testPromiseResolveWith2ObjectsOrErrorCompletionFulfillsOnValueReturned() {
+  func testPromiseWrap2ObjectsOrErrorCompletionFulfillsOnValueReturned() {
     // Act.
-    let promise = resolve { (handler: @escaping (Int?, String?, Error?) -> Void) in
+    let promise = wrap { (handler: @escaping (Int?, String?, Error?) -> Void) in
       Harness.async(value: 42, value: "hello", error: nil, completion: handler)
     }
 
@@ -262,9 +262,9 @@ class PromiseResolveTests: XCTestCase {
     XCTAssertNil(promise.error)
   }
 
-  func testPromiseResolveWith2ObjectsOrErrorCompletionRejectsOnErrorReturned() {
+  func testPromiseWrap2ObjectsOrErrorCompletionRejectsOnErrorReturned() {
     // Act.
-    let promise = resolve { (handler: @escaping (Int?, String?, Error?) -> Void) in
+    let promise = wrap { (handler: @escaping (Int?, String?, Error?) -> Void) in
       Harness.async(
         value: nil, value: nil, error: Test.Error.code42, completion: handler
       )
@@ -276,9 +276,9 @@ class PromiseResolveTests: XCTestCase {
     XCTAssertNil(promise.value)
   }
 
-  func testPromiseResolveWith2ObjectsOrErrorCompletionRejectsOnValueAndErrorReturned() {
+  func testPromiseWrap2ObjectsOrErrorCompletionRejectsOnValueAndErrorReturned() {
     // Act.
-    let promise = resolve { (handler: @escaping (Int?, Int?, Error?) -> Void) in
+    let promise = wrap { (handler: @escaping (Int?, Int?, Error?) -> Void) in
       Harness.async(
         value: 42, value: 13, error: Test.Error.code42, completion: handler
       )

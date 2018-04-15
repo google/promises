@@ -12,14 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Dispatch
+
 /// Provides a convenient way to convert methods that use common callback patterns into `Promise`s.
 
 /// Creates a new promise to be resolved when completion handler gets invoked.
 /// - parameter work: A block to execute asynchronously to invoke some API that requires
 ///                   a completion handler with no arguments.
 /// - returns: A new pending promise to be resolved with `nil` when completion handler finishes.
-public func resolve(_ work: @escaping (@escaping () -> Void) throws -> Void) -> Promise<Any?> {
-  return Promise<Any?> { fulfill, _ in
+public func wrap(
+  on queue: DispatchQueue = .promises,
+  _ work: @escaping (@escaping () -> Void) throws -> Void
+) -> Promise<Any?> {
+  return Promise<Any?>(on: queue) { fulfill, _ in
     try work { fulfill(nil) }
   }
 }
@@ -29,10 +34,11 @@ public func resolve(_ work: @escaping (@escaping () -> Void) throws -> Void) -> 
 ///                   a completion handler with one argument of generic `Value` type.
 /// - returns: A new pending promise to be resolved with the value provided by completion handler
 ///            when it finishes.
-public func resolve<Value>(
+public func wrap<Value>(
+  on queue: DispatchQueue = .promises,
   _ work: @escaping (@escaping (Value) -> Void) throws -> Void
 ) -> Promise<Value> {
-  return Promise<Value> { fulfill, _ in
+  return Promise<Value>(on: queue) { fulfill, _ in
     try work { fulfill($0) }
   }
 }
@@ -42,10 +48,11 @@ public func resolve<Value>(
 ///                   a completion handler with one argument of optional generic `Value` type.
 /// - returns: A new pending promise to be resolved with the value or error provided by completion
 ///            handler when it finishes.
-public func resolve<Value>(
+public func wrap<Value>(
+  on queue: DispatchQueue = .promises,
   _ work: @escaping (@escaping (Value?) -> Void) throws -> Void
 ) -> Promise<Value?> {
-  return Promise<Value?> { fulfill, _ in
+  return Promise<Value?>(on: queue) { fulfill, _ in
     try work { fulfill($0) }
   }
 }
@@ -56,10 +63,11 @@ public func resolve<Value>(
 ///                   an optional `Error`.
 /// - returns: A new pending promise to be resolved with the value or error provided by completion
 ///            handler when it finishes.
-public func resolve<Value>(
+public func wrap<Value>(
+  on queue: DispatchQueue = .promises,
   _ work: @escaping (@escaping (Value, Error?) -> Void) throws -> Void
 ) -> Promise<Value> {
-  return Promise<Value> { fulfill, reject in
+  return Promise<Value>(on: queue) { fulfill, reject in
     try work { value, error in
       if let error = error {
         reject(error)
@@ -76,10 +84,11 @@ public func resolve<Value>(
 ///                   `Value` type.
 /// - returns: A new pending promise to be resolved with the error or value provided by completion
 ///            handler when it finishes.
-public func resolve<Value>(
+public func wrap<Value>(
+  on queue: DispatchQueue = .promises,
   _ work: @escaping (@escaping (Error?, Value) -> Void) throws -> Void
 ) -> Promise<Value> {
-  return Promise<Value> { fulfill, reject in
+  return Promise<Value>(on: queue) { fulfill, reject in
     try work { error, value in
       if let error = error {
         reject(error)
@@ -96,10 +105,11 @@ public func resolve<Value>(
 ///                   and an optional `Error`.
 /// - returns: A new pending promise to be resolved with the value or error provided by completion
 ///            handler when it finishes.
-public func resolve<Value>(
+public func wrap<Value>(
+  on queue: DispatchQueue = .promises,
   _ work: @escaping (@escaping (Value?, Error?) -> Void) throws -> Void
 ) -> Promise<Value?> {
-  return Promise<Value?> { fulfill, reject in
+  return Promise<Value?>(on: queue) { fulfill, reject in
     try work { value, error in
       if let error = error {
         reject(error)
@@ -116,10 +126,11 @@ public func resolve<Value>(
 ///                   generic of `Value` type.
 /// - returns: A new pending promise to be resolved with the error or value provided by completion
 ///            handler when it finishes.
-public func resolve<Value>(
+public func wrap<Value>(
+  on queue: DispatchQueue = .promises,
   _ work: @escaping (@escaping (Error?, Value?) -> Void) throws -> Void
 ) -> Promise<Value?> {
-  return Promise<Value?> { fulfill, reject in
+  return Promise<Value?>(on: queue) { fulfill, reject in
     try work { error, value in
       if let error = error {
         reject(error)
@@ -136,10 +147,11 @@ public func resolve<Value>(
 ///                   and an optional `Error`.
 /// - returns: A new pending promise to be resolved with a tuple of optional values or an error
 ///            provided by completion handler when it finishes.
-public func resolve<Value1, Value2>(
+public func wrap<Value1, Value2>(
+  on queue: DispatchQueue = .promises,
   _ work: @escaping (@escaping (Value1?, Value2?, Error?) -> Void) throws -> Void
 ) -> Promise<(Value1?, Value2?)> {
-  return Promise<(Value1?, Value2?)> { fulfill, reject in
+  return Promise<(Value1?, Value2?)>(on: queue) { fulfill, reject in
     try work { value1, value2, error in
       if let error = error {
         reject(error)

@@ -10,12 +10,12 @@ framework module FBLPromises {
     header "FBLPromise+Catch.h"
     header "FBLPromise+Do.h"
     header "FBLPromise+Recover.h"
-    header "FBLPromise+Resolve.h"
     header "FBLPromise+Testing.h"
     header "FBLPromise+Then.h"
     header "FBLPromise+Timeout.h"
     header "FBLPromise+Validate.h"
     header "FBLPromise+When.h"
+    header "FBLPromise+Wrap.h"
 
     exclude header "FBLPromisePrivate.h"
 

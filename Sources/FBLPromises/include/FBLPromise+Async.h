@@ -36,7 +36,7 @@ typedef void (^FBLPromiseAsyncWorkBlock)(FBLPromiseFulfillBlock fulfill,
 /**
  Creates a pending promise and executes `work` block asynchronously on the given queue.
 
- @param queue A queue to invoke the work block on.
+ @param queue A queue to invoke the `work` block on.
  @param work A block to perform any operations needed to resolve the promise.
  @return A new pending promise.
  */

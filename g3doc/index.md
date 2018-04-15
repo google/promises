@@ -513,7 +513,7 @@ Objective-C:
 ```
 
 Some legacy code that cannot be modified directly, can be wrapped with
-[`resolve`](#resolve) operator to return a promise.
+[`wrap`](#wrap) operator to return a promise.
 
 Also, read more on [Objective-C and Swift
 interoperability](#objective-c-swift-interoperability) specifics.
@@ -1107,31 +1107,6 @@ Objective-C:
 }];
 ```
 
-### Resolve
-
-`resolve` class method provides a convenient way to convert other methods that
-use common callback patterns (like `^(id, NSError *)`, etc.) into promises.
-
-Swift:
-
-```swift
-func newAsyncMethodReturningAPromise() -> Promise<Data> {
-  return resolve { handler in
-    MyClient.wrappedAsyncMethodWithTypical(completion: handler)
-  }
-}
-```
-
-Objective-C:
-
-```objectivec
-- (FBLPromise<NSData*> *)newAsyncMethodReturningAPromise {
-  return [FBLPromise resolveWithObjectOrErrorWhen:^(FBLPromiseObjectOrErrorCompletion handler) {
-    [MyClient wrappedAsyncMethodWithTypicalCompletion:handler];
-  }];
-}
-```
-
 ### Timeout
 
 `timeout` allows us to wait for a promise for a time interval or reject it, if
@@ -1249,6 +1224,31 @@ and
 methods on `NSArray`, which often comes handy, along with other similar
 [functional operators](https://github.com/google/functional-objc) that
 Objective-C lacks.
+
+### Wrap
+
+`wrap` class method provides a convenient way to convert other methods that
+use common callback patterns (like `^(id, NSError *)`, etc.) into promises.
+
+Swift:
+
+```swift
+func newAsyncMethodReturningAPromise() -> Promise<Data> {
+  return wrap { handler in
+    MyClient.wrappedAsyncMethodWithTypical(completion: handler)
+  }
+}
+```
+
+Objective-C:
+
+```objectivec
+- (FBLPromise<NSData*> *)newAsyncMethodReturningAPromise {
+  return [FBLPromise wrapObjectOrErrorCompletion:^(FBLPromiseObjectOrErrorCompletion handler) {
+    [MyClient wrappedAsyncMethodWithTypicalCompletion:handler];
+  }];
+}
+```
 
 ## Advanced topics
 
@@ -1467,7 +1467,7 @@ Promise<String>(objc.getString()).then { string in
   print(number)
 }
 
-resolve { handler in
+wrap { handler in
   objc.async(with: "hello", and: 42, completion: handler)
 }.then { _ in
   print("Success.")

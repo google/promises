@@ -15,7 +15,7 @@
 		032B80F2204549000097BF12 /* FBLPromise+Catch.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320406B204547D300D2D16C /* FBLPromise+Catch.m */; };
 		032B80F3204549000097BF12 /* FBLPromise+Do.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320404F204547D300D2D16C /* FBLPromise+Do.m */; };
 		032B80F4204549000097BF12 /* FBLPromise+Recover.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320406E204547D300D2D16C /* FBLPromise+Recover.m */; };
-		032B80F5204549000097BF12 /* FBLPromise+Resolve.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204050204547D300D2D16C /* FBLPromise+Resolve.m */; };
+		032B80F5204549000097BF12 /* FBLPromise+Wrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204050204547D300D2D16C /* FBLPromise+Wrap.m */; };
 		032B80F6204549000097BF12 /* FBLPromise+Testing.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320406C204547D300D2D16C /* FBLPromise+Testing.m */; };
 		032B80F7204549000097BF12 /* FBLPromise+Then.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204065204547D300D2D16C /* FBLPromise+Then.m */; };
 		032B80F8204549000097BF12 /* FBLPromise+Timeout.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204067204547D300D2D16C /* FBLPromise+Timeout.m */; };
@@ -30,7 +30,7 @@
 		032B8101204549080097BF12 /* FBLPromise+Catch.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204053204547D300D2D16C /* FBLPromise+Catch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		032B8102204549080097BF12 /* FBLPromise+Do.h in Headers */ = {isa = PBXBuildFile; fileRef = 0320405B204547D300D2D16C /* FBLPromise+Do.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		032B8103204549080097BF12 /* FBLPromise+Recover.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204054204547D300D2D16C /* FBLPromise+Recover.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		032B8104204549080097BF12 /* FBLPromise+Resolve.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204061204547D300D2D16C /* FBLPromise+Resolve.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		032B8104204549080097BF12 /* FBLPromise+Wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204061204547D300D2D16C /* FBLPromise+Wrap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		032B8105204549080097BF12 /* FBLPromise+Testing.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204052204547D300D2D16C /* FBLPromise+Testing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		032B8106204549080097BF12 /* FBLPromise+Then.h in Headers */ = {isa = PBXBuildFile; fileRef = 0320405E204547D300D2D16C /* FBLPromise+Then.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		032B8107204549080097BF12 /* FBLPromise+Timeout.h in Headers */ = {isa = PBXBuildFile; fileRef = 0320405C204547D300D2D16C /* FBLPromise+Timeout.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -49,7 +49,7 @@
 		032B81172045493A0097BF12 /* Promise+Catch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204042204547D300D2D16C /* Promise+Catch.swift */; };
 		032B81182045493A0097BF12 /* Promise+Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204049204547D300D2D16C /* Promise+Do.swift */; };
 		032B81192045493A0097BF12 /* Promise+Recover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204040204547D300D2D16C /* Promise+Recover.swift */; };
-		032B811A2045493A0097BF12 /* Promise+Resolve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204043204547D300D2D16C /* Promise+Resolve.swift */; };
+		032B811A2045493A0097BF12 /* Promise+Wrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204043204547D300D2D16C /* Promise+Wrap.swift */; };
 		032B811B2045493A0097BF12 /* Promise+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320403F204547D300D2D16C /* Promise+Testing.swift */; };
 		032B811C2045493A0097BF12 /* Promise+Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320404D204547D300D2D16C /* Promise+Then.swift */; };
 		032B811D2045493A0097BF12 /* Promise+Timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204048204547D300D2D16C /* Promise+Timeout.swift */; };
@@ -68,7 +68,7 @@
 		032B812A204549590097BF12 /* FBLPromise+CatchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320408F204547D400D2D16C /* FBLPromise+CatchTests.m */; };
 		032B812B204549590097BF12 /* FBLPromise+DoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320408B204547D400D2D16C /* FBLPromise+DoTests.m */; };
 		032B812C204549590097BF12 /* FBLPromise+RecoverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320408E204547D400D2D16C /* FBLPromise+RecoverTests.m */; };
-		032B812D204549590097BF12 /* FBLPromise+ResolveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204091204547D400D2D16C /* FBLPromise+ResolveTests.m */; };
+		032B812D204549590097BF12 /* FBLPromise+WrapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204091204547D400D2D16C /* FBLPromise+WrapTests.m */; };
 		032B812E204549590097BF12 /* FBLPromise+ThenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204094204547D400D2D16C /* FBLPromise+ThenTests.m */; };
 		032B812F204549590097BF12 /* FBLPromise+TimeoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204095204547D400D2D16C /* FBLPromise+TimeoutTests.m */; };
 		032B8130204549590097BF12 /* FBLPromise+ValidateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204092204547D400D2D16C /* FBLPromise+ValidateTests.m */; };
@@ -84,7 +84,7 @@
 		032B813A204549700097BF12 /* Promise+CatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204076204547D300D2D16C /* Promise+CatchTests.swift */; };
 		032B813B204549700097BF12 /* Promise+DoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320407B204547D300D2D16C /* Promise+DoTests.swift */; };
 		032B813C204549700097BF12 /* Promise+RecoverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204079204547D300D2D16C /* Promise+RecoverTests.swift */; };
-		032B813D204549700097BF12 /* Promise+ResolveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320407E204547D300D2D16C /* Promise+ResolveTests.swift */; };
+		032B813D204549700097BF12 /* Promise+WrapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320407E204547D300D2D16C /* Promise+WrapTests.swift */; };
 		032B813E204549700097BF12 /* Promise+ThenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320407F204547D400D2D16C /* Promise+ThenTests.swift */; };
 		032B813F204549700097BF12 /* Promise+TimeoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320407D204547D300D2D16C /* Promise+TimeoutTests.swift */; };
 		032B8140204549700097BF12 /* Promise+ValidateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204077204547D300D2D16C /* Promise+ValidateTests.swift */; };
@@ -291,7 +291,7 @@
 		03204040204547D300D2D16C /* Promise+Recover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Recover.swift"; sourceTree = "<group>"; };
 		03204041204547D300D2D16C /* Promise+When.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+When.swift"; sourceTree = "<group>"; };
 		03204042204547D300D2D16C /* Promise+Catch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Catch.swift"; sourceTree = "<group>"; };
-		03204043204547D300D2D16C /* Promise+Resolve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Resolve.swift"; sourceTree = "<group>"; };
+		03204043204547D300D2D16C /* Promise+Wrap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Wrap.swift"; sourceTree = "<group>"; };
 		03204044204547D300D2D16C /* Promise+Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Async.swift"; sourceTree = "<group>"; };
 		03204045204547D300D2D16C /* Promise+Any.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Any.swift"; sourceTree = "<group>"; };
 		03204046204547D300D2D16C /* PromiseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseError.swift; sourceTree = "<group>"; };
@@ -303,7 +303,7 @@
 		0320404C204547D300D2D16C /* Promise+Validate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Validate.swift"; sourceTree = "<group>"; };
 		0320404D204547D300D2D16C /* Promise+Then.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Then.swift"; sourceTree = "<group>"; };
 		0320404F204547D300D2D16C /* FBLPromise+Do.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Do.m"; sourceTree = "<group>"; };
-		03204050204547D300D2D16C /* FBLPromise+Resolve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Resolve.m"; sourceTree = "<group>"; };
+		03204050204547D300D2D16C /* FBLPromise+Wrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Wrap.m"; sourceTree = "<group>"; };
 		03204052204547D300D2D16C /* FBLPromise+Testing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Testing.h"; sourceTree = "<group>"; };
 		03204053204547D300D2D16C /* FBLPromise+Catch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Catch.h"; sourceTree = "<group>"; };
 		03204054204547D300D2D16C /* FBLPromise+Recover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Recover.h"; sourceTree = "<group>"; };
@@ -318,7 +318,7 @@
 		0320405D204547D300D2D16C /* FBLPromiseError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLPromiseError.h; sourceTree = "<group>"; };
 		0320405E204547D300D2D16C /* FBLPromise+Then.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Then.h"; sourceTree = "<group>"; };
 		0320405F204547D300D2D16C /* framework.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = framework.modulemap; sourceTree = "<group>"; };
-		03204061204547D300D2D16C /* FBLPromise+Resolve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Resolve.h"; sourceTree = "<group>"; };
+		03204061204547D300D2D16C /* FBLPromise+Wrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Wrap.h"; sourceTree = "<group>"; };
 		03204062204547D300D2D16C /* FBLPromise+Async.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Async.h"; sourceTree = "<group>"; };
 		03204063204547D300D2D16C /* FBLPromise+Always.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Always.h"; sourceTree = "<group>"; };
 		03204064204547D300D2D16C /* FBLPromise+Any.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Any.h"; sourceTree = "<group>"; };
@@ -345,7 +345,7 @@
 		0320407B204547D300D2D16C /* Promise+DoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+DoTests.swift"; sourceTree = "<group>"; };
 		0320407C204547D300D2D16C /* PromiseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseTests.swift; sourceTree = "<group>"; };
 		0320407D204547D300D2D16C /* Promise+TimeoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+TimeoutTests.swift"; sourceTree = "<group>"; };
-		0320407E204547D300D2D16C /* Promise+ResolveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+ResolveTests.swift"; sourceTree = "<group>"; };
+		0320407E204547D300D2D16C /* Promise+WrapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+WrapTests.swift"; sourceTree = "<group>"; };
 		0320407F204547D400D2D16C /* Promise+ThenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+ThenTests.swift"; sourceTree = "<group>"; };
 		03204080204547D400D2D16C /* Promise+WhenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+WhenTests.swift"; sourceTree = "<group>"; };
 		03204082204547D400D2D16C /* FBLPromise+ThenPerformanceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+ThenPerformanceTests.m"; sourceTree = "<group>"; };
@@ -360,7 +360,7 @@
 		0320408E204547D400D2D16C /* FBLPromise+RecoverTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+RecoverTests.m"; sourceTree = "<group>"; };
 		0320408F204547D400D2D16C /* FBLPromise+CatchTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+CatchTests.m"; sourceTree = "<group>"; };
 		03204090204547D400D2D16C /* FBLPromise+AllTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+AllTests.m"; sourceTree = "<group>"; };
-		03204091204547D400D2D16C /* FBLPromise+ResolveTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+ResolveTests.m"; sourceTree = "<group>"; };
+		03204091204547D400D2D16C /* FBLPromise+WrapTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+WrapTests.m"; sourceTree = "<group>"; };
 		03204092204547D400D2D16C /* FBLPromise+ValidateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+ValidateTests.m"; sourceTree = "<group>"; };
 		03204093204547D400D2D16C /* FBLPromise+AsyncTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+AsyncTests.m"; sourceTree = "<group>"; };
 		03204094204547D400D2D16C /* FBLPromise+ThenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+ThenTests.m"; sourceTree = "<group>"; };
@@ -526,12 +526,12 @@
 				03204042204547D300D2D16C /* Promise+Catch.swift */,
 				03204049204547D300D2D16C /* Promise+Do.swift */,
 				03204040204547D300D2D16C /* Promise+Recover.swift */,
-				03204043204547D300D2D16C /* Promise+Resolve.swift */,
 				0320403F204547D300D2D16C /* Promise+Testing.swift */,
 				0320404D204547D300D2D16C /* Promise+Then.swift */,
 				03204048204547D300D2D16C /* Promise+Timeout.swift */,
 				0320404C204547D300D2D16C /* Promise+Validate.swift */,
 				03204041204547D300D2D16C /* Promise+When.swift */,
+				03204043204547D300D2D16C /* Promise+Wrap.swift */,
 				03204046204547D300D2D16C /* PromiseError.swift */,
 			);
 			path = Promises;
@@ -548,12 +548,12 @@
 				0320406B204547D300D2D16C /* FBLPromise+Catch.m */,
 				0320404F204547D300D2D16C /* FBLPromise+Do.m */,
 				0320406E204547D300D2D16C /* FBLPromise+Recover.m */,
-				03204050204547D300D2D16C /* FBLPromise+Resolve.m */,
 				0320406C204547D300D2D16C /* FBLPromise+Testing.m */,
 				03204065204547D300D2D16C /* FBLPromise+Then.m */,
 				03204067204547D300D2D16C /* FBLPromise+Timeout.m */,
 				03204070204547D300D2D16C /* FBLPromise+Validate.m */,
 				0320406D204547D300D2D16C /* FBLPromise+When.m */,
+				03204050204547D300D2D16C /* FBLPromise+Wrap.m */,
 				03204066204547D300D2D16C /* FBLPromiseError.m */,
 				03204051204547D300D2D16C /* include */,
 			);
@@ -571,12 +571,12 @@
 				03204053204547D300D2D16C /* FBLPromise+Catch.h */,
 				0320405B204547D300D2D16C /* FBLPromise+Do.h */,
 				03204054204547D300D2D16C /* FBLPromise+Recover.h */,
-				03204061204547D300D2D16C /* FBLPromise+Resolve.h */,
 				03204052204547D300D2D16C /* FBLPromise+Testing.h */,
 				0320405E204547D300D2D16C /* FBLPromise+Then.h */,
 				0320405C204547D300D2D16C /* FBLPromise+Timeout.h */,
 				03204056204547D300D2D16C /* FBLPromise+Validate.h */,
 				03204055204547D300D2D16C /* FBLPromise+When.h */,
+				03204061204547D300D2D16C /* FBLPromise+Wrap.h */,
 				0320405D204547D300D2D16C /* FBLPromiseError.h */,
 				0320405A204547D300D2D16C /* FBLPromisePrivate.h */,
 				03204059204547D300D2D16C /* FBLPromises.h */,
@@ -608,11 +608,11 @@
 				03204076204547D300D2D16C /* Promise+CatchTests.swift */,
 				0320407B204547D300D2D16C /* Promise+DoTests.swift */,
 				03204079204547D300D2D16C /* Promise+RecoverTests.swift */,
-				0320407E204547D300D2D16C /* Promise+ResolveTests.swift */,
 				0320407F204547D400D2D16C /* Promise+ThenTests.swift */,
 				0320407D204547D300D2D16C /* Promise+TimeoutTests.swift */,
 				03204077204547D300D2D16C /* Promise+ValidateTests.swift */,
 				03204080204547D400D2D16C /* Promise+WhenTests.swift */,
+				0320407E204547D300D2D16C /* Promise+WrapTests.swift */,
 				0320407C204547D300D2D16C /* PromiseTests.swift */,
 			);
 			path = PromisesTests;
@@ -653,11 +653,11 @@
 				0320408F204547D400D2D16C /* FBLPromise+CatchTests.m */,
 				0320408B204547D400D2D16C /* FBLPromise+DoTests.m */,
 				0320408E204547D400D2D16C /* FBLPromise+RecoverTests.m */,
-				03204091204547D400D2D16C /* FBLPromise+ResolveTests.m */,
 				03204094204547D400D2D16C /* FBLPromise+ThenTests.m */,
 				03204095204547D400D2D16C /* FBLPromise+TimeoutTests.m */,
 				03204092204547D400D2D16C /* FBLPromise+ValidateTests.m */,
 				03204089204547D400D2D16C /* FBLPromise+WhenTests.m */,
+				03204091204547D400D2D16C /* FBLPromise+WrapTests.m */,
 				0320408C204547D400D2D16C /* FBLPromiseTests.m */,
 			);
 			path = FBLPromisesTests;
@@ -716,7 +716,7 @@
 				032B80FE204549080097BF12 /* FBLPromise+Always.h in Headers */,
 				032B80FD204549080097BF12 /* FBLPromise+All.h in Headers */,
 				032B8105204549080097BF12 /* FBLPromise+Testing.h in Headers */,
-				032B8104204549080097BF12 /* FBLPromise+Resolve.h in Headers */,
+				032B8104204549080097BF12 /* FBLPromise+Wrap.h in Headers */,
 				032B8103204549080097BF12 /* FBLPromise+Recover.h in Headers */,
 				032B810A204549080097BF12 /* FBLPromiseError.h in Headers */,
 				032B8101204549080097BF12 /* FBLPromise+Catch.h in Headers */,
@@ -983,7 +983,7 @@
 				032B813A204549700097BF12 /* Promise+CatchTests.swift in Sources */,
 				032B813E204549700097BF12 /* Promise+ThenTests.swift in Sources */,
 				032B813F204549700097BF12 /* Promise+TimeoutTests.swift in Sources */,
-				032B813D204549700097BF12 /* Promise+ResolveTests.swift in Sources */,
+				032B813D204549700097BF12 /* Promise+WrapTests.swift in Sources */,
 				032B8142204549700097BF12 /* PromiseTests.swift in Sources */,
 				032B813C204549700097BF12 /* Promise+RecoverTests.swift in Sources */,
 				032B8137204549700097BF12 /* Promise+AlwaysTests.swift in Sources */,
@@ -1004,7 +1004,7 @@
 				032B8128204549590097BF12 /* FBLPromise+AnyTests.m in Sources */,
 				032B812F204549590097BF12 /* FBLPromise+TimeoutTests.m in Sources */,
 				032B812B204549590097BF12 /* FBLPromise+DoTests.m in Sources */,
-				032B812D204549590097BF12 /* FBLPromise+ResolveTests.m in Sources */,
+				032B812D204549590097BF12 /* FBLPromise+WrapTests.m in Sources */,
 				032B8127204549590097BF12 /* FBLPromise+AlwaysTests.m in Sources */,
 				032B8131204549590097BF12 /* FBLPromise+WhenTests.m in Sources */,
 				032B812E204549590097BF12 /* FBLPromise+ThenTests.m in Sources */,
@@ -1044,7 +1044,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				032B811A2045493A0097BF12 /* Promise+Resolve.swift in Sources */,
+				032B811A2045493A0097BF12 /* Promise+Wrap.swift in Sources */,
 				032B811D2045493A0097BF12 /* Promise+Timeout.swift in Sources */,
 				032B81192045493A0097BF12 /* Promise+Recover.swift in Sources */,
 				032B81202045493A0097BF12 /* PromiseError.swift in Sources */,
@@ -1081,7 +1081,7 @@
 				032B80EE204549000097BF12 /* FBLPromise+All.m in Sources */,
 				032B80F1204549000097BF12 /* FBLPromise+Async.m in Sources */,
 				032B80F4204549000097BF12 /* FBLPromise+Recover.m in Sources */,
-				032B80F5204549000097BF12 /* FBLPromise+Resolve.m in Sources */,
+				032B80F5204549000097BF12 /* FBLPromise+Wrap.m in Sources */,
 				032B80F0204549000097BF12 /* FBLPromise+Any.m in Sources */,
 				032B80F9204549000097BF12 /* FBLPromise+Validate.m in Sources */,
 				032B80F3204549000097BF12 /* FBLPromise+Do.m in Sources */,
