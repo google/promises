@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FBLPromise<Value>(ValidateAdditions)
 
+typedef BOOL (^FBLPromiseValidateWorkBlock)(Value __nullable value) NS_SWIFT_UNAVAILABLE("");
+
 /**
  Validates a fulfilled value or rejects the value if it can not be validated.
 
@@ -27,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return A new pending promise that gets either resolved with same resolution as the receiver or
          rejected with `FBLPromiseErrorCodeValidationFailure` error code in `FBLPromiseErrorDomain`.
  */
-- (FBLPromise *)validate:(BOOL (^)(Value __nullable))predicate NS_SWIFT_UNAVAILABLE("");
+- (FBLPromise *)validate:(FBLPromiseValidateWorkBlock)predicate NS_SWIFT_UNAVAILABLE("");
 
 /**
  Validates a fulfilled value or rejects the value if it can not be validated.
@@ -38,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
          rejected with `FBLPromiseErrorCodeValidationFailure` error code in `FBLPromiseErrorDomain`.
  */
 - (FBLPromise *)onQueue:(dispatch_queue_t)queue
-               validate:(BOOL (^)(Value __nullable))predicate NS_REFINED_FOR_SWIFT;
+               validate:(FBLPromiseValidateWorkBlock)predicate NS_REFINED_FOR_SWIFT;
 
 @end
 
@@ -48,9 +50,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface FBLPromise<Value>(DotSyntax_ValidateAdditions)
 
-- (FBLPromise* (^)(BOOL (^)(Value __nullable)))validate FBL_PROMISES_DOT_SYNTAX
+- (FBLPromise* (^)(FBLPromiseValidateWorkBlock))validate FBL_PROMISES_DOT_SYNTAX
     NS_SWIFT_UNAVAILABLE("");
-- (FBLPromise* (^)(dispatch_queue_t, BOOL (^)(Value __nullable)))validateOn FBL_PROMISES_DOT_SYNTAX
+- (FBLPromise* (^)(dispatch_queue_t, FBLPromiseValidateWorkBlock))validateOn FBL_PROMISES_DOT_SYNTAX
     NS_SWIFT_UNAVAILABLE("");
 
 @end

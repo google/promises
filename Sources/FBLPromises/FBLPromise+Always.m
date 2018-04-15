@@ -20,11 +20,11 @@
 
 @implementation FBLPromise (AlwaysAdditions)
 
-- (FBLPromise *)always:(void (^)(void))work {
+- (FBLPromise *)always:(FBLPromiseAlwaysWorkBlock)work {
   return [self onQueue:FBLPromise.defaultDispatchQueue always:work];
 }
 
-- (FBLPromise *)onQueue:(dispatch_queue_t)queue always:(void (^)(void))work {
+- (FBLPromise *)onQueue:(dispatch_queue_t)queue always:(FBLPromiseAlwaysWorkBlock)work {
   NSParameterAssert(queue);
   NSParameterAssert(work);
 
@@ -43,14 +43,14 @@
 
 @implementation FBLPromise (DotSyntax_AlwaysAdditions)
 
-- (FBLPromise* (^)(void (^)(void)))always {
-  return ^(void (^work)(void)) {
+- (FBLPromise* (^)(FBLPromiseAlwaysWorkBlock))always {
+  return ^(FBLPromiseAlwaysWorkBlock work) {
     return [self always:work];
   };
 }
 
-- (FBLPromise* (^)(dispatch_queue_t, void (^)(void)))alwaysOn {
-  return ^(dispatch_queue_t queue, void (^work)(void)) {
+- (FBLPromise* (^)(dispatch_queue_t, FBLPromiseAlwaysWorkBlock))alwaysOn {
+  return ^(dispatch_queue_t queue, FBLPromiseAlwaysWorkBlock work) {
     return [self onQueue:queue always:work];
   };
 }

@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 typedef void (^FBLPromiseCompletion)(void) NS_SWIFT_UNAVAILABLE("");
 typedef void (^FBLPromiseObjectCompletion)(id __nullable) NS_SWIFT_UNAVAILABLE("");
-typedef void (^FBLPromiseErrorCompletion)(NSError* __nullable error) NS_SWIFT_UNAVAILABLE("");
+typedef void (^FBLPromiseErrorCompletion)(NSError* __nullable) NS_SWIFT_UNAVAILABLE("");
 typedef void (^FBLPromiseObjectOrErrorCompletion)(id __nullable, NSError* __nullable)
     NS_SWIFT_UNAVAILABLE("");
 typedef void (^FBLPromiseErrorOrObjectCompletion)(NSError* __nullable, id __nullable)

@@ -40,7 +40,7 @@ public func all<Value>(
 public func all<Value, Container: Sequence>(
   on queue: DispatchQueue = .promises,
   _ promises: Container
-) -> Promise<[Value]> where Container.Iterator.Element == Promise<Value> {
+) -> Promise<[Value]> where Container.Element == Promise<Value> {
   let promises = promises.map { $0.objCPromise }
   let promise = Promise<[Value]>(
     Promise<[Value]>.ObjCPromise<AnyObject>.__onQueue(queue, all: promises)

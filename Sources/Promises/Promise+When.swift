@@ -46,7 +46,7 @@ public func when<Value>(
 public func when<Value, Container: Sequence>(
   on queue: DispatchQueue = .promises,
   _ promises: Container
-) -> Promise<[When<Value>]> where Container.Iterator.Element == Promise<Value> {
+) -> Promise<[When<Value>]> where Container.Element == Promise<Value> {
   let promises = promises.map { $0.objCPromise }
   let promise = Promise<[When<Value>]>(
     Promise<[When<Value>]>.ObjCPromise<AnyObject>.__onQueue(
