@@ -23,8 +23,10 @@ public extension Promise {
   /// - returns: A new pending promise that gets either resolved with same resolution as `self` or
   ///            rejected with `PromiseError.validationFailure` error.
   @discardableResult
-  public func validate(on queue: DispatchQueue = .promises,
-                       _ predicate: @escaping (Value) -> Bool) -> Promise {
+  public func validate(
+    on queue: DispatchQueue = .promises,
+    _ predicate: @escaping (Value) -> Bool
+  ) -> Promise {
     return then { (value: Value) -> Value in
       guard predicate(value) else { throw PromiseError.validationFailure }
       return value

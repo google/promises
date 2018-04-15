@@ -27,8 +27,10 @@ public extension Promise {
   /// - returns: A new pending promise to be resolved with the same resolution as the promise
   ///            returned from the `work` block.
   @discardableResult
-  public func then<Result>(on queue: DispatchQueue = .promises,
-                           _ work: @escaping Then<Promise<Result>>) -> Promise<Result> {
+  public func then<Result>(
+    on queue: DispatchQueue = .promises,
+    _ work: @escaping Then<Promise<Result>>
+  ) -> Promise<Result> {
     let promise = Promise<Result>(objCPromise.__onQueue(queue, then: { objCValue in
       guard let value = Promise<Value>.asValue(objCValue) else {
         preconditionFailure("Cannot cast \(type(of: objCValue)) to \(Value.self)")
@@ -52,8 +54,10 @@ public extension Promise {
   ///   - work:  A block to handle the value that `self` was fulfilled with.
   /// - returns: A new pending promise to be resolved with the value returned from the `work` block.
   @discardableResult
-  public func then<Result>(on queue: DispatchQueue = .promises,
-                           _ work: @escaping Then<Result>) -> Promise<Result> {
+  public func then<Result>(
+    on queue: DispatchQueue = .promises,
+    _ work: @escaping Then<Result>
+  ) -> Promise<Result> {
     let promise = Promise<Result>(objCPromise.__onQueue(queue, then: { objCValue in
       guard let value = Promise<Value>.asValue(objCValue) else {
         preconditionFailure("Cannot cast \(type(of: objCValue)) to \(Value.self)")

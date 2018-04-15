@@ -19,28 +19,32 @@ import Promises
 public class Interoperability: NSObject {
   @objc
   public static func fulfill(
-    _ object: Any?, delay: TimeInterval
+    _ object: Any?,
+    delay: TimeInterval
   ) -> Promise<Any?>.ObjCPromise<AnyObject> {
     return promise(object, error: nil, delay: delay).asObjCPromise()
   }
 
   @objc
   public static func fulfill(
-    number: NSNumber?, delay: TimeInterval
+    number: NSNumber?,
+    delay: TimeInterval
   ) -> Promise<NSNumber?>.ObjCPromise<NSNumber> {
     return promise(number, error: nil, delay: delay).asObjCPromise()
   }
 
   @objc
   public static func reject(
-    _ error: Error, delay: TimeInterval
+    _ error: Error,
+    delay: TimeInterval
   ) -> Promise<Any?>.ObjCPromise<AnyObject> {
     return (promise(nil, error: error, delay: delay) as Promise<Any?>).asObjCPromise()
   }
 
   @objc
   public static func `throw`(
-    _ error: Error, delay: TimeInterval
+    _ error: Error,
+    delay: TimeInterval
   ) -> Promise<Any?>.ObjCPromise<AnyObject> {
     return (
       promise(nil, error: error, shouldThrow: true, delay: delay) as Promise<Any?>
@@ -50,7 +54,10 @@ public class Interoperability: NSObject {
   // MARK: Internal
 
   static func promise<T>(
-    _ value: T, error: Error? = nil, shouldThrow: Bool = false, delay: TimeInterval = 0.0
+    _ value: T,
+    error: Error? = nil,
+    shouldThrow: Bool = false,
+    delay: TimeInterval = 0.0
   ) -> Promise<T> {
     return Promise { fulfill, reject in
       if let error = error, shouldThrow {
