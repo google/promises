@@ -10,6 +10,7 @@ framework module FBLPromises {
     header "FBLPromise+Catch.h"
     header "FBLPromise+Do.h"
     header "FBLPromise+Recover.h"
+    header "FBLPromise+Reduce.h"
     header "FBLPromise+Testing.h"
     header "FBLPromise+Then.h"
     header "FBLPromise+Timeout.h"

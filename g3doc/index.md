@@ -1107,6 +1107,10 @@ Objective-C:
 }];
 ```
 
+### Reduce
+
+
+
 ### Timeout
 
 `timeout` allows us to wait for a promise for a time interval or reject it, if
