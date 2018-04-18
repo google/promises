@@ -16,8 +16,8 @@ import PromisesTestHelpers
 import XCTest
 @testable import Promises
 
-class PromiseAnyTests: XCTestCase {
-  func testPromiseAny() {
+class PromiseRaceTests: XCTestCase {
+  func testPromiseRace() {
     // Arrange.
     let promise1 = Promise<Any?> { fulfill, _ in
       Test.delay(0.1) {
@@ -41,7 +41,7 @@ class PromiseAnyTests: XCTestCase {
     }
 
     // Act.
-    let fastestPromise = any([promise1, promise2, promise3, promise4]).then { value in
+    let fastestPromise = race([promise1, promise2, promise3, promise4]).then { value in
       XCTAssertEqual(value as? Int, 42)
     }
 
@@ -51,7 +51,7 @@ class PromiseAnyTests: XCTestCase {
     XCTAssertNil(fastestPromise.error)
   }
 
-  func testPromiseAnyRejectFirst() {
+  func testPromiseRaceRejectFirst() {
     // Arrange.
     let promise1 = Promise { fulfill, _ in
       Test.delay(1) {
@@ -65,7 +65,7 @@ class PromiseAnyTests: XCTestCase {
     }
 
     // Act.
-    let fastestPromise = any([promise1, promise2]).then { _ in
+    let fastestPromise = race([promise1, promise2]).then { _ in
       XCTFail()
     }.catch { error in
       XCTAssertTrue(error == Test.Error.code42)
@@ -77,7 +77,7 @@ class PromiseAnyTests: XCTestCase {
     XCTAssertNil(fastestPromise.value)
   }
 
-  func testPromiseAnyRejectLast() {
+  func testPromiseRaceRejectLast() {
     // Arrange.
     let promise1 = Promise { fulfill, _ in
       Test.delay(0.1) {
@@ -91,7 +91,7 @@ class PromiseAnyTests: XCTestCase {
     }
 
     // Act.
-    let fastestPromise = any([promise1, promise2]).then { value in
+    let fastestPromise = race([promise1, promise2]).then { value in
       XCTAssertEqual(value, 42)
     }
 
@@ -101,7 +101,7 @@ class PromiseAnyTests: XCTestCase {
     XCTAssertNil(fastestPromise.error)
   }
 
-  func testPromiseAnyNoDeallocUntilResolved() {
+  func testPromiseRaceNoDeallocUntilResolved() {
     // Arrange.
     let promise = Promise<Int>.pending()
     weak var weakExtendedPromise1: Promise<Int>?
@@ -111,8 +111,8 @@ class PromiseAnyTests: XCTestCase {
     autoreleasepool {
       XCTAssertNil(weakExtendedPromise1)
       XCTAssertNil(weakExtendedPromise2)
-      weakExtendedPromise1 = any([promise])
-      weakExtendedPromise2 = any([promise])
+      weakExtendedPromise1 = race([promise])
+      weakExtendedPromise2 = race([promise])
       XCTAssertNotNil(weakExtendedPromise1)
       XCTAssertNotNil(weakExtendedPromise2)
     }

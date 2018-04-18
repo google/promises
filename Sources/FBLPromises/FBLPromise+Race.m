@@ -14,22 +14,22 @@
  limitations under the License.
  */
 
-#import "FBLPromise+Any.h"
+#import "FBLPromise+Race.h"
 
 #import "FBLPromise+Async.h"
 #import "FBLPromisePrivate.h"
 
-@implementation FBLPromise (AnyAdditions)
+@implementation FBLPromise (RaceAdditions)
 
-+ (instancetype)any:(NSArray *)promises {
-  return [self onQueue:self.defaultDispatchQueue any:promises];
++ (instancetype)race:(NSArray *)promises {
+  return [self onQueue:self.defaultDispatchQueue race:promises];
 }
 
-+ (instancetype)onQueue:(dispatch_queue_t)queue any:(NSArray *)anyPromises {
++ (instancetype)onQueue:(dispatch_queue_t)queue race:(NSArray *)racePromises {
   NSParameterAssert(queue);
-  NSAssert(anyPromises.count > 0, @"No promises to observe");
+  NSAssert(racePromises.count > 0, @"No promises to observe");
 
-  NSArray *promises = [anyPromises copy];
+  NSArray *promises = [racePromises copy];
   return [FBLPromise onQueue:queue
                        async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock reject) {
                          for (id promise in promises) {
@@ -48,17 +48,17 @@
 
 @end
 
-@implementation FBLPromise (DotSyntax_AnyAdditions)
+@implementation FBLPromise (DotSyntax_RaceAdditions)
 
-+ (FBLPromise * (^)(NSArray *))any {
++ (FBLPromise * (^)(NSArray *))race {
   return ^(NSArray *promises) {
-    return [self any:promises];
+    return [self race:promises];
   };
 }
 
-+ (FBLPromise * (^)(dispatch_queue_t, NSArray *))anyOn {
++ (FBLPromise * (^)(dispatch_queue_t, NSArray *))raceOn {
   return ^(dispatch_queue_t queue, NSArray *promises) {
-    return [self onQueue:queue any:promises];
+    return [self onQueue:queue race:promises];
   };
 }
 

@@ -10,7 +10,7 @@
 		032B80ED204549000097BF12 /* FBLPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204071204547D300D2D16C /* FBLPromise.m */; };
 		032B80EE204549000097BF12 /* FBLPromise+All.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320406F204547D300D2D16C /* FBLPromise+All.m */; };
 		032B80EF204549000097BF12 /* FBLPromise+Always.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320406A204547D300D2D16C /* FBLPromise+Always.m */; };
-		032B80F0204549000097BF12 /* FBLPromise+Any.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204068204547D300D2D16C /* FBLPromise+Any.m */; };
+		032B80F0204549000097BF12 /* FBLPromise+Race.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204068204547D300D2D16C /* FBLPromise+Race.m */; };
 		032B80F1204549000097BF12 /* FBLPromise+Async.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204069204547D300D2D16C /* FBLPromise+Async.m */; };
 		032B80F2204549000097BF12 /* FBLPromise+Catch.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320406B204547D300D2D16C /* FBLPromise+Catch.m */; };
 		032B80F3204549000097BF12 /* FBLPromise+Do.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320404F204547D300D2D16C /* FBLPromise+Do.m */; };
@@ -25,7 +25,7 @@
 		032B80FC204549080097BF12 /* FBLPromise.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204058204547D300D2D16C /* FBLPromise.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		032B80FD204549080097BF12 /* FBLPromise+All.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204057204547D300D2D16C /* FBLPromise+All.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		032B80FE204549080097BF12 /* FBLPromise+Always.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204063204547D300D2D16C /* FBLPromise+Always.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		032B80FF204549080097BF12 /* FBLPromise+Any.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204064204547D300D2D16C /* FBLPromise+Any.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		032B80FF204549080097BF12 /* FBLPromise+Race.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204064204547D300D2D16C /* FBLPromise+Race.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		032B8100204549080097BF12 /* FBLPromise+Async.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204062204547D300D2D16C /* FBLPromise+Async.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		032B8101204549080097BF12 /* FBLPromise+Catch.h in Headers */ = {isa = PBXBuildFile; fileRef = 03204053204547D300D2D16C /* FBLPromise+Catch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		032B8102204549080097BF12 /* FBLPromise+Do.h in Headers */ = {isa = PBXBuildFile; fileRef = 0320405B204547D300D2D16C /* FBLPromise+Do.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -44,7 +44,7 @@
 		032B81122045493A0097BF12 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320404B204547D300D2D16C /* Promise.swift */; };
 		032B81132045493A0097BF12 /* Promise+All.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320404A204547D300D2D16C /* Promise+All.swift */; };
 		032B81142045493A0097BF12 /* Promise+Always.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204047204547D300D2D16C /* Promise+Always.swift */; };
-		032B81152045493A0097BF12 /* Promise+Any.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204045204547D300D2D16C /* Promise+Any.swift */; };
+		032B81152045493A0097BF12 /* Promise+Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204045204547D300D2D16C /* Promise+Race.swift */; };
 		032B81162045493A0097BF12 /* Promise+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204044204547D300D2D16C /* Promise+Async.swift */; };
 		032B81172045493A0097BF12 /* Promise+Catch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204042204547D300D2D16C /* Promise+Catch.swift */; };
 		032B81182045493A0097BF12 /* Promise+Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204049204547D300D2D16C /* Promise+Do.swift */; };
@@ -63,7 +63,7 @@
 		032B8125204549510097BF12 /* FBLPromise+ThenPerformanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204082204547D400D2D16C /* FBLPromise+ThenPerformanceTests.m */; };
 		032B8126204549590097BF12 /* FBLPromise+AllTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204090204547D400D2D16C /* FBLPromise+AllTests.m */; };
 		032B8127204549590097BF12 /* FBLPromise+AlwaysTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320408A204547D400D2D16C /* FBLPromise+AlwaysTests.m */; };
-		032B8128204549590097BF12 /* FBLPromise+AnyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320408D204547D400D2D16C /* FBLPromise+AnyTests.m */; };
+		032B8128204549590097BF12 /* FBLPromise+RaceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320408D204547D400D2D16C /* FBLPromise+RaceTests.m */; };
 		032B8129204549590097BF12 /* FBLPromise+AsyncTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03204093204547D400D2D16C /* FBLPromise+AsyncTests.m */; };
 		032B812A204549590097BF12 /* FBLPromise+CatchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320408F204547D400D2D16C /* FBLPromise+CatchTests.m */; };
 		032B812B204549590097BF12 /* FBLPromise+DoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0320408B204547D400D2D16C /* FBLPromise+DoTests.m */; };
@@ -79,7 +79,7 @@
 		032B8135204549680097BF12 /* Promise+ThenPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204087204547D400D2D16C /* Promise+ThenPerformanceTests.swift */; };
 		032B8136204549700097BF12 /* Promise+AllTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204074204547D300D2D16C /* Promise+AllTests.swift */; };
 		032B8137204549700097BF12 /* Promise+AlwaysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320407A204547D300D2D16C /* Promise+AlwaysTests.swift */; };
-		032B8138204549700097BF12 /* Promise+AnyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204075204547D300D2D16C /* Promise+AnyTests.swift */; };
+		032B8138204549700097BF12 /* Promise+RaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204075204547D300D2D16C /* Promise+RaceTests.swift */; };
 		032B8139204549700097BF12 /* Promise+AsyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204078204547D300D2D16C /* Promise+AsyncTests.swift */; };
 		032B813A204549700097BF12 /* Promise+CatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03204076204547D300D2D16C /* Promise+CatchTests.swift */; };
 		032B813B204549700097BF12 /* Promise+DoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320407B204547D300D2D16C /* Promise+DoTests.swift */; };
@@ -298,7 +298,7 @@
 		03204042204547D300D2D16C /* Promise+Catch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Catch.swift"; sourceTree = "<group>"; };
 		03204043204547D300D2D16C /* Promise+Wrap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Wrap.swift"; sourceTree = "<group>"; };
 		03204044204547D300D2D16C /* Promise+Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Async.swift"; sourceTree = "<group>"; };
-		03204045204547D300D2D16C /* Promise+Any.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Any.swift"; sourceTree = "<group>"; };
+		03204045204547D300D2D16C /* Promise+Race.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Race.swift"; sourceTree = "<group>"; };
 		03204046204547D300D2D16C /* PromiseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseError.swift; sourceTree = "<group>"; };
 		03204047204547D300D2D16C /* Promise+Always.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Always.swift"; sourceTree = "<group>"; };
 		03204048204547D300D2D16C /* Promise+Timeout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Timeout.swift"; sourceTree = "<group>"; };
@@ -326,11 +326,11 @@
 		03204061204547D300D2D16C /* FBLPromise+Wrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Wrap.h"; sourceTree = "<group>"; };
 		03204062204547D300D2D16C /* FBLPromise+Async.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Async.h"; sourceTree = "<group>"; };
 		03204063204547D300D2D16C /* FBLPromise+Always.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Always.h"; sourceTree = "<group>"; };
-		03204064204547D300D2D16C /* FBLPromise+Any.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Any.h"; sourceTree = "<group>"; };
+		03204064204547D300D2D16C /* FBLPromise+Race.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Race.h"; sourceTree = "<group>"; };
 		03204065204547D300D2D16C /* FBLPromise+Then.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Then.m"; sourceTree = "<group>"; };
 		03204066204547D300D2D16C /* FBLPromiseError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLPromiseError.m; sourceTree = "<group>"; };
 		03204067204547D300D2D16C /* FBLPromise+Timeout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Timeout.m"; sourceTree = "<group>"; };
-		03204068204547D300D2D16C /* FBLPromise+Any.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Any.m"; sourceTree = "<group>"; };
+		03204068204547D300D2D16C /* FBLPromise+Race.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Race.m"; sourceTree = "<group>"; };
 		03204069204547D300D2D16C /* FBLPromise+Async.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Async.m"; sourceTree = "<group>"; };
 		0320406A204547D300D2D16C /* FBLPromise+Always.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Always.m"; sourceTree = "<group>"; };
 		0320406B204547D300D2D16C /* FBLPromise+Catch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Catch.m"; sourceTree = "<group>"; };
@@ -341,7 +341,7 @@
 		03204070204547D300D2D16C /* FBLPromise+Validate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Validate.m"; sourceTree = "<group>"; };
 		03204071204547D300D2D16C /* FBLPromise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLPromise.m; sourceTree = "<group>"; };
 		03204074204547D300D2D16C /* Promise+AllTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+AllTests.swift"; sourceTree = "<group>"; };
-		03204075204547D300D2D16C /* Promise+AnyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+AnyTests.swift"; sourceTree = "<group>"; };
+		03204075204547D300D2D16C /* Promise+RaceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+RaceTests.swift"; sourceTree = "<group>"; };
 		03204076204547D300D2D16C /* Promise+CatchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+CatchTests.swift"; sourceTree = "<group>"; };
 		03204077204547D300D2D16C /* Promise+ValidateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+ValidateTests.swift"; sourceTree = "<group>"; };
 		03204078204547D300D2D16C /* Promise+AsyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+AsyncTests.swift"; sourceTree = "<group>"; };
@@ -361,7 +361,7 @@
 		0320408A204547D400D2D16C /* FBLPromise+AlwaysTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+AlwaysTests.m"; sourceTree = "<group>"; };
 		0320408B204547D400D2D16C /* FBLPromise+DoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+DoTests.m"; sourceTree = "<group>"; };
 		0320408C204547D400D2D16C /* FBLPromiseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLPromiseTests.m; sourceTree = "<group>"; };
-		0320408D204547D400D2D16C /* FBLPromise+AnyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+AnyTests.m"; sourceTree = "<group>"; };
+		0320408D204547D400D2D16C /* FBLPromise+RaceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+RaceTests.m"; sourceTree = "<group>"; };
 		0320408E204547D400D2D16C /* FBLPromise+RecoverTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+RecoverTests.m"; sourceTree = "<group>"; };
 		0320408F204547D400D2D16C /* FBLPromise+CatchTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+CatchTests.m"; sourceTree = "<group>"; };
 		03204090204547D400D2D16C /* FBLPromise+AllTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+AllTests.m"; sourceTree = "<group>"; };
@@ -531,10 +531,10 @@
 				0320404B204547D300D2D16C /* Promise.swift */,
 				0320404A204547D300D2D16C /* Promise+All.swift */,
 				03204047204547D300D2D16C /* Promise+Always.swift */,
-				03204045204547D300D2D16C /* Promise+Any.swift */,
 				03204044204547D300D2D16C /* Promise+Async.swift */,
 				03204042204547D300D2D16C /* Promise+Catch.swift */,
 				03204049204547D300D2D16C /* Promise+Do.swift */,
+				03204045204547D300D2D16C /* Promise+Race.swift */,
 				03204040204547D300D2D16C /* Promise+Recover.swift */,
 				03326C2B20838CD200872827 /* Promise+Reduce.swift */,
 				0320403F204547D300D2D16C /* Promise+Testing.swift */,
@@ -554,10 +554,10 @@
 				03204071204547D300D2D16C /* FBLPromise.m */,
 				0320406F204547D300D2D16C /* FBLPromise+All.m */,
 				0320406A204547D300D2D16C /* FBLPromise+Always.m */,
-				03204068204547D300D2D16C /* FBLPromise+Any.m */,
 				03204069204547D300D2D16C /* FBLPromise+Async.m */,
 				0320406B204547D300D2D16C /* FBLPromise+Catch.m */,
 				0320404F204547D300D2D16C /* FBLPromise+Do.m */,
+				03204068204547D300D2D16C /* FBLPromise+Race.m */,
 				0320406E204547D300D2D16C /* FBLPromise+Recover.m */,
 				03326C312084642000872827 /* FBLPromise+Reduce.m */,
 				0320406C204547D300D2D16C /* FBLPromise+Testing.m */,
@@ -578,10 +578,10 @@
 				03204058204547D300D2D16C /* FBLPromise.h */,
 				03204057204547D300D2D16C /* FBLPromise+All.h */,
 				03204063204547D300D2D16C /* FBLPromise+Always.h */,
-				03204064204547D300D2D16C /* FBLPromise+Any.h */,
 				03204062204547D300D2D16C /* FBLPromise+Async.h */,
 				03204053204547D300D2D16C /* FBLPromise+Catch.h */,
 				0320405B204547D300D2D16C /* FBLPromise+Do.h */,
+				03204064204547D300D2D16C /* FBLPromise+Race.h */,
 				03204054204547D300D2D16C /* FBLPromise+Recover.h */,
 				03326C342084643600872827 /* FBLPromise+Reduce.h */,
 				03204052204547D300D2D16C /* FBLPromise+Testing.h */,
@@ -616,10 +616,10 @@
 			children = (
 				03204074204547D300D2D16C /* Promise+AllTests.swift */,
 				0320407A204547D300D2D16C /* Promise+AlwaysTests.swift */,
-				03204075204547D300D2D16C /* Promise+AnyTests.swift */,
 				03204078204547D300D2D16C /* Promise+AsyncTests.swift */,
 				03204076204547D300D2D16C /* Promise+CatchTests.swift */,
 				0320407B204547D300D2D16C /* Promise+DoTests.swift */,
+				03204075204547D300D2D16C /* Promise+RaceTests.swift */,
 				03204079204547D300D2D16C /* Promise+RecoverTests.swift */,
 				03326C2E20841E0300872827 /* Promise+ReduceTests.swift */,
 				0320407F204547D400D2D16C /* Promise+ThenTests.swift */,
@@ -662,10 +662,10 @@
 			children = (
 				03204090204547D400D2D16C /* FBLPromise+AllTests.m */,
 				0320408A204547D400D2D16C /* FBLPromise+AlwaysTests.m */,
-				0320408D204547D400D2D16C /* FBLPromise+AnyTests.m */,
 				03204093204547D400D2D16C /* FBLPromise+AsyncTests.m */,
 				0320408F204547D400D2D16C /* FBLPromise+CatchTests.m */,
 				0320408B204547D400D2D16C /* FBLPromise+DoTests.m */,
+				0320408D204547D400D2D16C /* FBLPromise+RaceTests.m */,
 				0320408E204547D400D2D16C /* FBLPromise+RecoverTests.m */,
 				03326C36208464C100872827 /* FBLPromise+ReduceTests.m */,
 				03204094204547D400D2D16C /* FBLPromise+ThenTests.m */,
@@ -720,7 +720,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				032B80FF204549080097BF12 /* FBLPromise+Any.h in Headers */,
+				032B80FF204549080097BF12 /* FBLPromise+Race.h in Headers */,
 				032B8109204549080097BF12 /* FBLPromise+When.h in Headers */,
 				032B8102204549080097BF12 /* FBLPromise+Do.h in Headers */,
 				032B8100204549080097BF12 /* FBLPromise+Async.h in Headers */,
@@ -1007,7 +1007,7 @@
 				032B8136204549700097BF12 /* Promise+AllTests.swift in Sources */,
 				032B8139204549700097BF12 /* Promise+AsyncTests.swift in Sources */,
 				032B8140204549700097BF12 /* Promise+ValidateTests.swift in Sources */,
-				032B8138204549700097BF12 /* Promise+AnyTests.swift in Sources */,
+				032B8138204549700097BF12 /* Promise+RaceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1018,7 +1018,7 @@
 				032B812C204549590097BF12 /* FBLPromise+RecoverTests.m in Sources */,
 				032B8126204549590097BF12 /* FBLPromise+AllTests.m in Sources */,
 				032B8129204549590097BF12 /* FBLPromise+AsyncTests.m in Sources */,
-				032B8128204549590097BF12 /* FBLPromise+AnyTests.m in Sources */,
+				032B8128204549590097BF12 /* FBLPromise+RaceTests.m in Sources */,
 				032B812F204549590097BF12 /* FBLPromise+TimeoutTests.m in Sources */,
 				032B812B204549590097BF12 /* FBLPromise+DoTests.m in Sources */,
 				032B812D204549590097BF12 /* FBLPromise+WrapTests.m in Sources */,
@@ -1074,7 +1074,7 @@
 				032B811C2045493A0097BF12 /* Promise+Then.swift in Sources */,
 				032B81162045493A0097BF12 /* Promise+Async.swift in Sources */,
 				032B81182045493A0097BF12 /* Promise+Do.swift in Sources */,
-				032B81152045493A0097BF12 /* Promise+Any.swift in Sources */,
+				032B81152045493A0097BF12 /* Promise+Race.swift in Sources */,
 				032B81142045493A0097BF12 /* Promise+Always.swift in Sources */,
 				032B811B2045493A0097BF12 /* Promise+Testing.swift in Sources */,
 				032B81172045493A0097BF12 /* Promise+Catch.swift in Sources */,
@@ -1102,7 +1102,7 @@
 				032B80F1204549000097BF12 /* FBLPromise+Async.m in Sources */,
 				032B80F4204549000097BF12 /* FBLPromise+Recover.m in Sources */,
 				032B80F5204549000097BF12 /* FBLPromise+Wrap.m in Sources */,
-				032B80F0204549000097BF12 /* FBLPromise+Any.m in Sources */,
+				032B80F0204549000097BF12 /* FBLPromise+Race.m in Sources */,
 				032B80F9204549000097BF12 /* FBLPromise+Validate.m in Sources */,
 				032B80F3204549000097BF12 /* FBLPromise+Do.m in Sources */,
 				032B80EF204549000097BF12 /* FBLPromise+Always.m in Sources */,

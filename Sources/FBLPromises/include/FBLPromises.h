@@ -16,10 +16,10 @@
 
 #import "FBLPromise+All.h"
 #import "FBLPromise+Always.h"
-#import "FBLPromise+Any.h"
 #import "FBLPromise+Async.h"
 #import "FBLPromise+Catch.h"
 #import "FBLPromise+Do.h"
+#import "FBLPromise+Race.h"
 #import "FBLPromise+Recover.h"
 #import "FBLPromise+Then.h"
 #import "FBLPromise+Timeout.h"

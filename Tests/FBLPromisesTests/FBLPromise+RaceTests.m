@@ -14,7 +14,7 @@
  limitations under the License.
  */
 
-#import "FBLPromise+Any.h"
+#import "FBLPromise+Race.h"
 
 #import <XCTest/XCTest.h>
 
@@ -24,12 +24,12 @@
 #import "FBLPromise+Then.h"
 #import "FBLPromisesTestHelpers.h"
 
-@interface FBLPromiseAnyTests : XCTestCase
+@interface FBLPromiseRaceTests : XCTestCase
 @end
 
-@implementation FBLPromiseAnyTests
+@implementation FBLPromiseRaceTests
 
-- (void)testPromiseAny {
+- (void)testPromiseRace {
   // Arrange.
   FBLPromise<NSNumber *> *promise1 =
       [FBLPromise async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock __unused _) {
@@ -58,7 +58,7 @@
 
   // Act.
   FBLPromise *fastestPromise =
-      [[FBLPromise any:@[ promise1, promise2, promise3, promise4 ]] then:^id(NSNumber *value) {
+      [[FBLPromise race:@[ promise1, promise2, promise3, promise4 ]] then:^id(NSNumber *value) {
         XCTAssertEqualObjects(value, @42);
         return value;
       }];
@@ -69,7 +69,7 @@
   XCTAssertNil(fastestPromise.error);
 }
 
-- (void)testPromiseAnyRejectFirst {
+- (void)testPromiseRaceRejectFirst {
   // Arrange.
   FBLPromise<NSNumber *> *promise1 =
       [FBLPromise async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock __unused _) {
@@ -85,7 +85,7 @@
       }];
 
   // Act.
-  FBLPromise *fastestPromise = [[[FBLPromise any:@[ promise1, promise2 ]] then:^id(id __unused _) {
+  FBLPromise *fastestPromise = [[[FBLPromise race:@[ promise1, promise2 ]] then:^id(id __unused _) {
     XCTFail();
     return nil;
   }] catch:^(NSError *error) {
@@ -98,7 +98,7 @@
   XCTAssertNil(fastestPromise.value);
 }
 
-- (void)testPromiseAnyRejectLast {
+- (void)testPromiseRaceRejectLast {
   // Arrange.
   FBLPromise<NSNumber *> *promise1 =
       [FBLPromise async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock __unused _) {
@@ -114,29 +114,8 @@
       }];
 
   // Act.
-  FBLPromise *fastestPromise = [[FBLPromise any:@[ promise1, promise2 ]] then:^id(NSNumber *value) {
-    XCTAssertEqualObjects(value, @42);
-    return value;
-  }];
-
-  // Assert.
-  XCTAssert(FBLWaitForPromisesWithTimeout(10));
-  XCTAssertEqualObjects(fastestPromise.value, @42);
-  XCTAssertNil(fastestPromise.error);
-}
-
-- (void)testPromiseAnyWithValues {
-  // Arrange.
-  FBLPromise<NSArray<NSNumber *> *> *promise =
-      [FBLPromise async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock __unused _) {
-        FBLDelay(0.1, ^{
-          fulfill(@[ @42 ]);
-        });
-      }];
-
-  // Act.
   FBLPromise *fastestPromise =
-      [[FBLPromise any:@[ @42, @"hello world", promise ]] then:^id(NSNumber *value) {
+      [[FBLPromise race:@[ promise1, promise2 ]] then:^id(NSNumber *value) {
         XCTAssertEqualObjects(value, @42);
         return value;
       }];
@@ -147,9 +126,8 @@
   XCTAssertNil(fastestPromise.error);
 }
 
-- (void)testPromiseAnyWithErrorFirst {
+- (void)testPromiseRaceWithValues {
   // Arrange.
-  NSError *error = [NSError errorWithDomain:FBLPromiseErrorDomain code:42 userInfo:nil];
   FBLPromise<NSArray<NSNumber *> *> *promise =
       [FBLPromise async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock __unused _) {
         FBLDelay(0.1, ^{
@@ -158,20 +136,19 @@
       }];
 
   // Act.
-  FBLPromise *fastestPromise = [[[FBLPromise any:@[ promise, error, @42 ]] then:^id(id __unused _) {
-    XCTFail();
-    return nil;
-  }] catch:^(NSError *error) {
-    XCTAssertEqual(error.code, 42);
-  }];
+  FBLPromise *fastestPromise =
+      [[FBLPromise race:@[ @42, @"hello world", promise ]] then:^id(NSNumber *value) {
+        XCTAssertEqualObjects(value, @42);
+        return value;
+      }];
 
   // Assert.
   XCTAssert(FBLWaitForPromisesWithTimeout(10));
-  XCTAssertEqual(fastestPromise.error.code, 42);
-  XCTAssertNil(fastestPromise.value);
+  XCTAssertEqualObjects(fastestPromise.value, @42);
+  XCTAssertNil(fastestPromise.error);
 }
 
-- (void)testPromiseAnyWithErrorLast {
+- (void)testPromiseRaceWithErrorFirst {
   // Arrange.
   NSError *error = [NSError errorWithDomain:FBLPromiseErrorDomain code:42 userInfo:nil];
   FBLPromise<NSArray<NSNumber *> *> *promise =
@@ -183,7 +160,32 @@
 
   // Act.
   FBLPromise *fastestPromise =
-      [[FBLPromise any:@[ promise, @42, error ]] then:^id(NSNumber *value) {
+      [[[FBLPromise race:@[ promise, error, @42 ]] then:^id(id __unused _) {
+        XCTFail();
+        return nil;
+      }] catch:^(NSError *error) {
+        XCTAssertEqual(error.code, 42);
+      }];
+
+  // Assert.
+  XCTAssert(FBLWaitForPromisesWithTimeout(10));
+  XCTAssertEqual(fastestPromise.error.code, 42);
+  XCTAssertNil(fastestPromise.value);
+}
+
+- (void)testPromiseRaceWithErrorLast {
+  // Arrange.
+  NSError *error = [NSError errorWithDomain:FBLPromiseErrorDomain code:42 userInfo:nil];
+  FBLPromise<NSArray<NSNumber *> *> *promise =
+      [FBLPromise async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock __unused _) {
+        FBLDelay(0.1, ^{
+          fulfill(@[ @42 ]);
+        });
+      }];
+
+  // Act.
+  FBLPromise *fastestPromise =
+      [[FBLPromise race:@[ promise, @42, error ]] then:^id(NSNumber *value) {
         XCTAssertEqualObjects(value, @42);
         return value;
       }];
@@ -195,9 +197,9 @@
 }
 
 /**
- Promise created with `any` should not deallocate until it gets resolved.
+ Promise created with `race` should not deallocate until it gets resolved.
  */
-- (void)testPromiseAnyNoDeallocUntilResolved {
+- (void)testPromiseRaceNoDeallocUntilResolved {
   // Arrange.
   FBLPromise *promise = [FBLPromise pendingPromise];
   FBLPromise __weak *weakExtendedPromise1;
@@ -207,8 +209,8 @@
   @autoreleasepool {
     XCTAssertNil(weakExtendedPromise1);
     XCTAssertNil(weakExtendedPromise2);
-    weakExtendedPromise1 = [FBLPromise any:@[ promise ]];
-    weakExtendedPromise2 = [FBLPromise any:@[ promise ]];
+    weakExtendedPromise1 = [FBLPromise race:@[ promise ]];
+    weakExtendedPromise2 = [FBLPromise race:@[ promise ]];
     XCTAssertNotNil(weakExtendedPromise1);
     XCTAssertNotNil(weakExtendedPromise2);
   }

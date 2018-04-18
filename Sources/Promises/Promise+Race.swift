@@ -22,11 +22,11 @@ import Dispatch
 ///   - queue: A queue to dispatch on.
 ///   - promises: Promises to wait for.
 /// - returns: First promise, among the given ones, which was fulfilled.
-public func any<Value>(
+public func race<Value>(
   on queue: DispatchQueue = .promises,
   _ promises: Promise<Value>...
 ) -> Promise<Value> {
-  return any(on: queue, promises)
+  return race(on: queue, promises)
 }
 
 /// Wait until any of the given promises are fulfilled.
@@ -37,13 +37,13 @@ public func any<Value>(
 ///   - queue: A queue to dispatch on.
 ///   - promises: Promises to wait for.
 /// - returns: First promise, among the given ones, which was fulfilled.
-public func any<Value>(
+public func race<Value>(
   on queue: DispatchQueue = .promises,
   _ promises: [Promise<Value>]
 ) -> Promise<Value> {
   let promises = promises.map { $0.objCPromise }
   let promise = Promise<Value>(
-    Promise<Value>.ObjCPromise<AnyObject>.__onQueue(queue, any: promises)
+    Promise<Value>.ObjCPromise<AnyObject>.__onQueue(queue, race: promises)
   )
   // Keep Swift wrapper alive for chained promises until `ObjCPromise` counterpart is resolved.
   promises.forEach {

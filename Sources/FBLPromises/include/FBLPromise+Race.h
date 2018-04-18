@@ -18,7 +18,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FBLPromise<Value>(AnyAdditions)
+@interface FBLPromise<Value>(RaceAdditions)
 
 /**
  Wait until any of the given promises are fulfilled.
@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return A new pending promise to be resolved with the same resolution as the first promise, among
          the given ones, which was resolved.
  */
-+ (instancetype)any:(NSArray *)promises NS_SWIFT_UNAVAILABLE("");
++ (instancetype)race:(NSArray *)promises NS_SWIFT_UNAVAILABLE("");
 
 /**
  Wait until any of the given promises are fulfilled.
@@ -43,18 +43,18 @@ NS_ASSUME_NONNULL_BEGIN
  @return A new pending promise to be resolved with the same resolution as the first promise, among
          the given ones, which was resolved.
  */
-+ (instancetype)onQueue:(dispatch_queue_t)queue any:(NSArray *)promises NS_REFINED_FOR_SWIFT;
++ (instancetype)onQueue:(dispatch_queue_t)queue race:(NSArray *)promises NS_REFINED_FOR_SWIFT;
 
 @end
 
 /**
- Convenience dot-syntax wrappers for `FBLPromise` `any` operators.
- Usage: FBLPromise.any(@[ ... ])
+ Convenience dot-syntax wrappers for `FBLPromise` `race` operators.
+ Usage: FBLPromise.race(@[ ... ])
  */
-@interface FBLPromise<Value>(DotSyntax_AnyAdditions)
+@interface FBLPromise<Value>(DotSyntax_RaceAdditions)
 
-+ (FBLPromise * (^)(NSArray *))any FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
-+ (FBLPromise * (^)(dispatch_queue_t, NSArray *))anyOn FBL_PROMISES_DOT_SYNTAX
++ (FBLPromise * (^)(NSArray *))race FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
++ (FBLPromise * (^)(dispatch_queue_t, NSArray *))raceOn FBL_PROMISES_DOT_SYNTAX
     NS_SWIFT_UNAVAILABLE("");
 
 @end

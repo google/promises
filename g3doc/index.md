@@ -1073,9 +1073,9 @@ Objective-C:
 }];
 ```
 
-### Any
+### Race
 
-`any` class method is similar to `all`, but the promise that it returns fulfills
+`race` class method is similar to `all`, but the promise that it returns fulfills
 or rejects with the same resolution as the first promise that resolves among the
 given.
 
