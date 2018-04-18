@@ -1073,6 +1073,89 @@ Objective-C:
 }];
 ```
 
+### Any
+
+`any` is similar to `all`, but it fulfills even if some of the promises in the
+provided array are rejected. If all promises in the input array are rejected,
+the returned promise rejects with the same error as the last one that was
+rejected.
+
+In Swift the resulting array will contain `Maybe` enums that have two cases
+`.value` and `.error` with associated data of either values or errors
+corresponding to the resolved promises in same order as they appear in the input
+array. In Objective-C the resulting heterogeneous `NSArray` will contain values
+and errors of resolved input promises as is. In Swift the `any` operator also
+allows passing promises of heterogeneous types, in which case the resulting
+promise will be resolved with a tuple containing the `Maybe` enums wrapping
+values or errors of the input promises in the same order.
+
+Swift:
+
+```swift
+// Promises of same type:
+any(contacts.map { MyClient.getAvatarFor(contact: $0) }).then { avatarsOrErrors in
+  self.updateAvatars(avatarsOrErrors.flatMap { $0.value })
+}
+
+// Promises of different types:
+any(
+  MyClient.getLocationFor(contact: contact),
+  MyClient.getAvatarFor(contact: contact)
+).then { location, avatar in
+  if let location = location.value, let avatar = avatar.value {
+    self.updateContact(location, avatar)
+  } else {  // Optionally handle errors if needed.
+    if let locationError = location.error {
+      self.showErrorAlert(locationError)
+    }
+    if let avatarError = avatar.error {
+      self.showErrorAlert(avatarError)
+    }
+  }
+}
+```
+
+Objective-C:
+
+```objectivec
+// Promises of same type:
+[[FBLPromise any:[contacts fbl_map:^id(MyContact *contact) {
+  return [MyClient getAvatarForContact:contact];
+}]] then:^id(NSArray *avatarsOrErrors) {
+  [self updateAvatars:[avatarsOrErrors fbl_filter:^BOOL(id avatar) {
+    return [avatar isKindOfClass:[UIImage class]];
+  }]];
+  return nil;
+}];
+
+// Promises of different types:
+[[FBLPromise
+    any:@[ [MyClient getLocationForContact:contact], [MyClient getAvatarForContact:contact] ]]
+    then:^id(NSArray *locationAndAvatarOrErrors) {
+      id location = locationAndAvatarOrErrors.firstObject;
+      id avatar = locationAndAvatarOrErrors.lastObject;
+      if ([location isKindOfClass:[CLLocation class]] && [avatar isKindOfClass:[UIImage class]]) {
+        [self updateContactLocation:location andAvatar:avatar];
+      } else {  // Optionally handle errors if needed.
+        if ([location isKindOfClass:[NSError class]]) {
+          [self showErrorAlert:location];
+        }
+        if ([avatar isKindOfClass:[NSError class]]) {
+          [self showErrorAlert:avatar];
+        }
+      }
+      return nil;
+    }];
+```
+
+Note: The Objective-C example above used
+[`-fbl_map`](https://github.com/google/functional-objc/blob/master/README.md#map)
+and
+[`-fbl_filter`](https://github.com/google/functional-objc/blob/master/README.md#filter)
+methods on `NSArray`, which often comes handy, along with other similar
+[functional operators](https://github.com/google/functional-objc) that
+Objective-C lacks.
+
 ### Race
 
 `race` class method is similar to `all`, but the promise that it returns fulfills
@@ -1145,89 +1228,6 @@ Objective-C:
   NSLog(@"Failed to get auth token: %@", error);
 }];
 ```
-
-### When
-
-`when` is similar to `all`, but it fulfills even if some of the promises in the
-provided array are rejected. If all promises in the input array are rejected,
-the returned promise rejects with the same error as the last one that was
-rejected.
-
-In Swift the resulting array will contain `When` enums that have two cases
-`.value` and `.error` with associated data of either values or errors
-corresponding to the resolved promises in same order as they appear in the input
-array. In Objective-C the resulting heterogeneous `NSArray` will contain values
-and errors of resolved input promises as is. In Swift the `when` operator also
-allows passing promises of heterogeneous types, in which case the resulting
-promise will be resolved with a tuple containing the `When` enums wrapping
-values or errors of the input promises in the same order.
-
-Swift:
-
-```swift
-// Promises of same type:
-when(contacts.map { MyClient.getAvatarFor(contact: $0) }).then { avatarsOrErrors in
-  self.updateAvatars(avatarsOrErrors.flatMap { $0.value })
-}
-
-// Promises of different types:
-when(
-  MyClient.getLocationFor(contact: contact),
-  MyClient.getAvatarFor(contact: contact)
-).then { location, avatar in
-  if let location = location.value, let avatar = avatar.value {
-    self.updateContact(location, avatar)
-  } else {  // Optionally handle errors if needed.
-    if let locationError = location.error {
-      self.showErrorAlert(locationError)
-    }
-    if let avatarError = avatar.error {
-      self.showErrorAlert(avatarError)
-    }
-  }
-}
-```
-
-Objective-C:
-
-```objectivec
-// Promises of same type:
-[[FBLPromise when:[contacts fbl_map:^id(MyContact *contact) {
-  return [MyClient getAvatarForContact:contact];
-}]] then:^id(NSArray *avatarsOrErrors) {
-  [self updateAvatars:[avatarsOrErrors fbl_filter:^BOOL(id avatar) {
-    return [avatar isKindOfClass:[UIImage class]];
-  }]];
-  return nil;
-}];
-
-// Promises of different types:
-[[FBLPromise
-    when:@[ [MyClient getLocationForContact:contact], [MyClient getAvatarForContact:contact] ]]
-    then:^id(NSArray *locationAndAvatarOrErrors) {
-      id location = locationAndAvatarOrErrors.firstObject;
-      id avatar = locationAndAvatarOrErrors.lastObject;
-      if ([location isKindOfClass:[CLLocation class]] && [avatar isKindOfClass:[UIImage class]]) {
-        [self updateContactLocation:location andAvatar:avatar];
-      } else {  // Optionally handle errors if needed.
-        if ([location isKindOfClass:[NSError class]]) {
-          [self showErrorAlert:location];
-        }
-        if ([avatar isKindOfClass:[NSError class]]) {
-          [self showErrorAlert:avatar];
-        }
-      }
-      return nil;
-    }];
-```
-
-Note: The Objective-C example above used
-[`-fbl_map`](https://github.com/google/functional-objc/blob/master/README.md#map)
-and
-[`-fbl_filter`](https://github.com/google/functional-objc/blob/master/README.md#filter)
-methods on `NSArray`, which often comes handy, along with other similar
-[functional operators](https://github.com/google/functional-objc) that
-Objective-C lacks.
 
 ### Wrap
 

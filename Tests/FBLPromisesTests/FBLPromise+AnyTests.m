@@ -14,7 +14,7 @@
  limitations under the License.
  */
 
-#import "FBLPromise+When.h"
+#import "FBLPromise+Any.h"
 
 #import <XCTest/XCTest.h>
 
@@ -24,12 +24,12 @@
 #import "FBLPromise+Then.h"
 #import "FBLPromisesTestHelpers.h"
 
-@interface FBLPromiseWhenTests : XCTestCase
+@interface FBLPromiseAnyTests : XCTestCase
 @end
 
-@implementation FBLPromiseWhenTests
+@implementation FBLPromiseAnyTests
 
-- (void)testPromiseWhen {
+- (void)testPromiseAny {
   // Arrange.
   NSArray *expectedValues = @[ @42, @"hello world", @[ @42 ], [NSNull null] ];
   FBLPromise<NSNumber *> *promise1 =
@@ -59,7 +59,7 @@
 
   // Act.
   FBLPromise<NSArray *> *combinedPromise =
-      [[FBLPromise when:@[ promise1, promise2, promise3, promise4 ]] then:^id(NSArray *value) {
+      [[FBLPromise any:@[ promise1, promise2, promise3, promise4 ]] then:^id(NSArray *value) {
         XCTAssertEqualObjects(value, expectedValues);
         return value;
       }];
@@ -70,9 +70,9 @@
   XCTAssertNil(combinedPromise.error);
 }
 
-- (void)testPromiseWhenEmpty {
+- (void)testPromiseAnyEmpty {
   // Act.
-  FBLPromise<NSArray *> *promise = [[FBLPromise when:@[]] then:^id(NSArray *value) {
+  FBLPromise<NSArray *> *promise = [[FBLPromise any:@[]] then:^id(NSArray *value) {
     XCTAssertEqualObjects(value, @[]);
     return value;
   }];
@@ -83,7 +83,7 @@
   XCTAssertNil(promise.error);
 }
 
-- (void)testPromiseWhenRejectFirst {
+- (void)testPromiseAnyRejectFirst {
   // Arrange.
   NSError *expectedError = [NSError errorWithDomain:FBLPromiseErrorDomain code:42 userInfo:nil];
   NSArray *expectedValuesAndErrors = @[ @42, expectedError ];
@@ -102,7 +102,7 @@
 
   // Act.
   FBLPromise<NSArray *> *combinedPromise =
-      [[FBLPromise when:@[ promise1, promise2 ]] then:^id(NSArray *value) {
+      [[FBLPromise any:@[ promise1, promise2 ]] then:^id(NSArray *value) {
         XCTAssertEqualObjects(value, expectedValuesAndErrors);
         return value;
       }];
@@ -113,7 +113,7 @@
   XCTAssertNil(combinedPromise.error);
 }
 
-- (void)testPromiseWhenRejectLast {
+- (void)testPromiseAnyRejectLast {
   // Arrange.
   NSError *expectedError = [NSError errorWithDomain:FBLPromiseErrorDomain code:42 userInfo:nil];
   NSArray *expectedValuesAndErrors = @[ @42, expectedError ];
@@ -132,7 +132,7 @@
 
   // Act.
   FBLPromise<NSArray *> *combinedPromise =
-      [[FBLPromise when:@[ promise1, promise2 ]] then:^id(NSArray *value) {
+      [[FBLPromise any:@[ promise1, promise2 ]] then:^id(NSArray *value) {
         XCTAssertEqualObjects(value, expectedValuesAndErrors);
         return value;
       }];
@@ -143,7 +143,7 @@
   XCTAssertNil(combinedPromise.error);
 }
 
-- (void)testPromiseWhenRejectAll {
+- (void)testPromiseAnyRejectAll {
   // Arrange.
   FBLPromise<NSNumber *> *promise1 =
       [FBLPromise async:^(FBLPromiseFulfillBlock __unused _, FBLPromiseRejectBlock reject) {
@@ -160,7 +160,7 @@
 
   // Act.
   FBLPromise<NSArray *> *combinedPromise =
-      [[[FBLPromise when:@[ promise1, promise2 ]] then:^id(id __unused _) {
+      [[[FBLPromise any:@[ promise1, promise2 ]] then:^id(id __unused _) {
         XCTFail();
         return nil;
       }] catch:^(NSError *error) {
@@ -173,7 +173,7 @@
   XCTAssertNil(combinedPromise.value);
 }
 
-- (void)testPromiseWhenWithValuesAndErrors {
+- (void)testPromiseAnyWithValuesAndErrors {
   // Arrange.
   NSError *expectedError = [NSError errorWithDomain:FBLPromiseErrorDomain code:42 userInfo:nil];
   NSArray *expectedValues = @[ @42, expectedError, @[ @42 ] ];
@@ -187,7 +187,7 @@
   // Act.
   NSError *error = [NSError errorWithDomain:FBLPromiseErrorDomain code:42 userInfo:nil];
   FBLPromise<NSArray *> *combinedPromise =
-      [[FBLPromise when:@[ @42, error, promise ]] then:^id(NSArray *value) {
+      [[FBLPromise any:@[ @42, error, promise ]] then:^id(NSArray *value) {
         XCTAssertEqualObjects(value, expectedValues);
         return value;
       }];
@@ -199,9 +199,9 @@
 }
 
 /**
- Promise created with `when` should not deallocate until it gets resolved.
+ Promise created with `any` should not deallocate until it gets resolved.
  */
-- (void)testPromiseWhenNoDeallocUntilResolved {
+- (void)testPromiseAnyNoDeallocUntilResolved {
   // Arrange.
   FBLPromise *promise = [FBLPromise pendingPromise];
   FBLPromise __weak *weakExtendedPromise1;
@@ -211,8 +211,8 @@
   @autoreleasepool {
     XCTAssertNil(weakExtendedPromise1);
     XCTAssertNil(weakExtendedPromise2);
-    weakExtendedPromise1 = [FBLPromise when:@[ promise ]];
-    weakExtendedPromise2 = [FBLPromise when:@[ promise ]];
+    weakExtendedPromise1 = [FBLPromise any:@[ promise ]];
+    weakExtendedPromise2 = [FBLPromise any:@[ promise ]];
     XCTAssertNotNil(weakExtendedPromise1);
     XCTAssertNotNil(weakExtendedPromise2);
   }

@@ -18,43 +18,43 @@ import Foundation
 /// If all promises are rejected, then the returned promise is rejected with same error
 /// as the last one rejected.
 /// If at least one of the promises is fulfilled, the resulting promise is fulfilled with an array
-/// of `When` enums containing values or `Error`s, matching the original order of fulfilled or
+/// of `Maybe` enums containing values or `Error`s, matching the original order of fulfilled or
 /// rejected promises respectively.
 /// - parameters:
 ///   - queue: A queue to dispatch on.
 ///   - promises: Promises to wait for.
-/// - returns: Promise of an array of `When` enums containing the values or `Error`s of input
+/// - returns: Promise of an array of `Maybe` enums containing the values or `Error`s of input
 ///            promises in their original order.
-public func when<Value>(
+public func any<Value>(
   on queue: DispatchQueue = .promises,
   _ promises: Promise<Value>...
-) -> Promise<[When<Value>]> {
-  return when(on: queue, promises)
+) -> Promise<[Maybe<Value>]> {
+  return any(on: queue, promises)
 }
 
 /// Waits for all of the given promises to be fulfilled or rejected.
 /// If all promises are rejected, then the returned promise is rejected with same error
 /// as the last one rejected.
 /// If at least one of the promises is fulfilled, the resulting promise is fulfilled with an array
-/// of `When` enums containing values or `Error`s, matching the original order of fulfilled or
+/// of `Maybe` enums containing values or `Error`s, matching the original order of fulfilled or
 /// rejected promises respectively.
 /// - parameters:
 ///   - queue: A queue to dispatch on.
 ///   - promises: Promises to wait for.
-/// - returns: Promise of an array of `When` enums containing the values or `Error`s of input
+/// - returns: Promise of an array of `Maybe` enums containing the values or `Error`s of input
 ///            promises in their original order.
-public func when<Value, Container: Sequence>(
+public func any<Value, Container: Sequence>(
   on queue: DispatchQueue = .promises,
   _ promises: Container
-) -> Promise<[When<Value>]> where Container.Element == Promise<Value> {
+) -> Promise<[Maybe<Value>]> where Container.Element == Promise<Value> {
   let promises = promises.map { $0.objCPromise }
-  let promise = Promise<[When<Value>]>(
-    Promise<[When<Value>]>.ObjCPromise<AnyObject>.__onQueue(
+  let promise = Promise<[Maybe<Value>]>(
+    Promise<[Maybe<Value>]>.ObjCPromise<AnyObject>.__onQueue(
       queue,
-      when: promises
+      any: promises
     ).__onQueue(queue, then: { values in
       guard let values = values as [AnyObject]? else { preconditionFailure() }
-      return Promise<[When<Value>]>.asAnyObject(values.map { asWhen($0) as When<Value> })
+      return Promise<[Maybe<Value>]>.asAnyObject(values.map { asMaybe($0) as Maybe<Value> })
     })
   )
   // Keep Swift wrapper alive for chained promises until `ObjCPromise` counterpart is resolved.
@@ -68,31 +68,31 @@ public func when<Value, Container: Sequence>(
 /// If all promises are rejected, then the returned promise is rejected with same error
 /// as the last one rejected.
 /// If at least one of the promises is fulfilled, the resulting promise is fulfilled with a tuple
-/// of `When` enums containing values or `Error`s, matching the original order of fulfilled or
+/// of `Maybe` enums containing values or `Error`s, matching the original order of fulfilled or
 /// rejected promises respectively.
 /// - parameters:
 ///   - queue: A queue to dispatch on.
 ///   - promiseA: Promise of type `A`.
 ///   - promiseB: Promise of type `B`.
-/// - returns: Promise of a tuple of `When` enums containing the values or `Error`s of input
+/// - returns: Promise of a tuple of `Maybe` enums containing the values or `Error`s of input
 ///            promises in their original order.
-public func when<A, B>(
+public func any<A, B>(
   on queue: DispatchQueue = .promises,
   _ promiseA: Promise<A>,
   _ promiseB: Promise<B>
-) -> Promise<(When<A>, When<B>)> {
+) -> Promise<(Maybe<A>, Maybe<B>)> {
   let promises = [
     promiseA.objCPromise,
     promiseB.objCPromise
   ]
-  let promise = Promise<(When<A>, When<B>)>(
-    Promise<(When<A>, When<B>)>.ObjCPromise<AnyObject>.__onQueue(
+  let promise = Promise<(Maybe<A>, Maybe<B>)>(
+    Promise<(Maybe<A>, Maybe<B>)>.ObjCPromise<AnyObject>.__onQueue(
       queue,
-      when: promises
+      any: promises
     ).__onQueue(queue, then: { objCValues in
       guard let values = objCValues as [AnyObject]? else { preconditionFailure() }
-      let valueA = asWhen(values[0]) as When<A>
-      let valueB = asWhen(values[1]) as When<B>
+      let valueA = asMaybe(values[0]) as Maybe<A>
+      let valueB = asMaybe(values[1]) as Maybe<B>
       return (valueA, valueB)
     })
   )
@@ -107,35 +107,35 @@ public func when<A, B>(
 /// If all promises are rejected, then the returned promise is rejected with same error
 /// as the last one rejected.
 /// If at least one of the promises is fulfilled, the resulting promise is fulfilled with a tuple
-/// of `When` enums containing values or `Error`s, matching the original order of fulfilled or
+/// of `Maybe` enums containing values or `Error`s, matching the original order of fulfilled or
 /// rejected promises respectively.
 /// - parameters:
 ///   - queue: A queue to dispatch on.
 ///   - promiseA: Promise of type `A`.
 ///   - promiseB: Promise of type `B`.
 ///   - promiseC: Promise of type `C`.
-/// - returns: Promise of a tuple of `When` enums containing the values or `Error`s of input
+/// - returns: Promise of a tuple of `Maybe` enums containing the values or `Error`s of input
 ///            promises in their original order.
-public func when<A, B, C>(
+public func any<A, B, C>(
   on queue: DispatchQueue = .promises,
   _ promiseA: Promise<A>,
   _ promiseB: Promise<B>,
   _ promiseC: Promise<C>
-) -> Promise<(When<A>, When<B>, When<C>)> {
+) -> Promise<(Maybe<A>, Maybe<B>, Maybe<C>)> {
   let promises = [
     promiseA.objCPromise,
     promiseB.objCPromise,
     promiseC.objCPromise
   ]
-  let promise = Promise<(When<A>, When<B>, When<C>)>(
-    Promise<(When<A>, When<B>, When<C>)>.ObjCPromise<AnyObject>.__onQueue(
+  let promise = Promise<(Maybe<A>, Maybe<B>, Maybe<C>)>(
+    Promise<(Maybe<A>, Maybe<B>, Maybe<C>)>.ObjCPromise<AnyObject>.__onQueue(
       queue,
-      when: promises
+      any: promises
     ).__onQueue(queue, then: { objCValues in
       guard let values = objCValues as [AnyObject]? else { preconditionFailure() }
-      let valueA = asWhen(values[0]) as When<A>
-      let valueB = asWhen(values[1]) as When<B>
-      let valueC = asWhen(values[2]) as When<C>
+      let valueA = asMaybe(values[0]) as Maybe<A>
+      let valueB = asMaybe(values[1]) as Maybe<B>
+      let valueC = asMaybe(values[2]) as Maybe<C>
       return (valueA, valueB, valueC)
     })
   )
@@ -146,10 +146,10 @@ public func when<A, B, C>(
   return promise
 }
 
-/// Wrapper enum for `when` results.
+/// Wrapper enum for `any` results.
 /// - value: Contains the value that corresponding promise was fulfilled with.
 /// - error: Contains the error that corresponding promise was rejected with.
-public enum When<Value> {
+public enum Maybe<Value> {
   case value(Value)
   case error(Error)
 
@@ -168,21 +168,21 @@ public enum When<Value> {
 
 // MARK: - Conversion
 
-/// Helper functions that facilitates conversion of `Promise.when` results to the results normally
-/// expected from `ObjCPromise.when`.
+/// Helper functions that facilitates conversion of `Promise.any` results to the results normally
+/// expected from `ObjCPromise.any`.
 ///
-/// Convert a promise created with `when` in Swift to Objective-C:
+/// Convert a promise created with `any` in Swift to Objective-C:
 ///
-/// when([promise1, promise2, promise3]).then { arrayOfWhenEnums in
-///   return arrayOfWhenEnums.map { $0.asAnyObject() }
+/// any([promise1, promise2, promise3]).then { arrayOfMaybeEnums in
+///   return arrayOfMaybeEnums.map { $0.asAnyObject() }
 /// }.asObjCPromise() as Promise<[AnyObject?]>.ObjCPromise<AnyObject>
 ///
-/// Convert a promise created with `when` in Objective-C to Swift:
+/// Convert a promise created with `any` in Objective-C to Swift:
 ///
 /// Promise<[AnyObject]>(objCPromise).then { arrayOfAnyObjects in
-///   return arrayOfAnyObjects.map { asWhen($0) as When<SomeValue> }
+///   return arrayOfAnyObjects.map { asMaybe($0) as Maybe<SomeValue> }
 /// }
-public extension When {
+public extension Maybe {
 
   /// Converts generic `Value` to `AnyObject`.
   func asAnyObject() -> AnyObject? {
@@ -195,8 +195,8 @@ public extension When {
   }
 }
 
-/// Helper function to wrap the results of `ObjCPromise.when` with the safe `When` enum.
-public func asWhen<Value>(_ value: AnyObject) -> When<Value> {
+/// Helper function to wrap the results of `ObjCPromise.any` with the safe `Maybe` enum.
+public func asMaybe<Value>(_ value: AnyObject) -> Maybe<Value> {
   switch value {
   case let error as NSError:
     return .error(error)
@@ -208,14 +208,14 @@ public func asWhen<Value>(_ value: AnyObject) -> When<Value> {
 
 // MARK: - Equatable
 
-/// Equality operators for `When`.
+/// Equality operators for `Maybe`.
 #if !swift(>=4.1)
-extension When where Value: Equatable {}
+extension Maybe where Value: Equatable {}
 #else
-extension When: Equatable where Value: Equatable {}
+extension Maybe: Equatable where Value: Equatable {}
 #endif  // !swift(>=4.1)
 
-public func == <Value: Equatable>(lhs: When<Value>, rhs: When<Value>) -> Bool {
+public func == <Value: Equatable>(lhs: Maybe<Value>, rhs: Maybe<Value>) -> Bool {
   switch (lhs, rhs) {
   case (.value(let lhs), .value(let rhs)):
     return lhs == rhs
@@ -226,13 +226,13 @@ public func == <Value: Equatable>(lhs: When<Value>, rhs: When<Value>) -> Bool {
   }
 }
 
-public func != <Value: Equatable>(lhs: When<Value>, rhs: When<Value>) -> Bool {
+public func != <Value: Equatable>(lhs: Maybe<Value>, rhs: Maybe<Value>) -> Bool {
   return !(lhs == rhs)
 }
 
 #if !swift(>=4.1)
 
-public func == <Value: Equatable>(lhs: When<Value?>, rhs: When<Value?>) -> Bool {
+public func == <Value: Equatable>(lhs: Maybe<Value?>, rhs: Maybe<Value?>) -> Bool {
   switch (lhs, rhs) {
   case (.value(let lhs), .value(let rhs)):
     switch (lhs, rhs) {
@@ -250,27 +250,27 @@ public func == <Value: Equatable>(lhs: When<Value?>, rhs: When<Value?>) -> Bool 
   }
 }
 
-public func != <Value: Equatable>(lhs: When<Value?>, rhs: When<Value?>) -> Bool {
+public func != <Value: Equatable>(lhs: Maybe<Value?>, rhs: Maybe<Value?>) -> Bool {
   return !(lhs == rhs)
 }
 
-public func == <Value: Equatable>(lhs: [When<Value>], rhs: [When<Value>]) -> Bool {
+public func == <Value: Equatable>(lhs: [Maybe<Value>], rhs: [Maybe<Value>]) -> Bool {
   if lhs.count != rhs.count { return false }
   for (l, r) in zip(lhs, rhs) where l != r { return false }
   return true
 }
 
-public func != <Value: Equatable>(lhs: [When<Value>], rhs: [When<Value>]) -> Bool {
+public func != <Value: Equatable>(lhs: [Maybe<Value>], rhs: [Maybe<Value>]) -> Bool {
   return !(lhs == rhs)
 }
 
-public func == <Value: Equatable>(lhs: [When<Value?>], rhs: [When<Value?>]) -> Bool {
+public func == <Value: Equatable>(lhs: [Maybe<Value?>], rhs: [Maybe<Value?>]) -> Bool {
   if lhs.count != rhs.count { return false }
   for (l, r) in zip(lhs, rhs) where l != r { return false }
   return true
 }
 
-public func != <Value: Equatable>(lhs: [When<Value?>], rhs: [When<Value?>]) -> Bool {
+public func != <Value: Equatable>(lhs: [Maybe<Value?>], rhs: [Maybe<Value?>]) -> Bool {
   return !(lhs == rhs)
 }
 

@@ -14,7 +14,7 @@
  limitations under the License.
  */
 
-#import "FBLPromise+When.h"
+#import "FBLPromise+Any.h"
 
 #import "FBLPromise+Async.h"
 #import "FBLPromisePrivate.h"
@@ -35,20 +35,20 @@ static NSArray *FBLPromiseCombineValuesAndErrors(NSArray<FBLPromise *> *promises
   return combinedValuesAndErrors;
 }
 
-@implementation FBLPromise (WhenAdditions)
+@implementation FBLPromise (AnyAdditions)
 
-+ (FBLPromise<NSArray *> *)when:(NSArray *)promises {
-  return [self onQueue:FBLPromise.defaultDispatchQueue when:promises];
++ (FBLPromise<NSArray *> *)any:(NSArray *)promises {
+  return [self onQueue:FBLPromise.defaultDispatchQueue any:promises];
 }
 
-+ (FBLPromise<NSArray *> *)onQueue:(dispatch_queue_t)queue when:(NSArray *)whenPromises {
++ (FBLPromise<NSArray *> *)onQueue:(dispatch_queue_t)queue any:(NSArray *)anyPromises {
   NSParameterAssert(queue);
-  NSParameterAssert(whenPromises);
+  NSParameterAssert(anyPromises);
 
-  if (whenPromises.count == 0) {
+  if (anyPromises.count == 0) {
     return [[FBLPromise alloc] initWithResolution:@[]];
   }
-  NSMutableArray *promises = [whenPromises mutableCopy];
+  NSMutableArray *promises = [anyPromises mutableCopy];
   return [FBLPromise
       onQueue:queue
         async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock reject) {
@@ -95,17 +95,17 @@ static NSArray *FBLPromiseCombineValuesAndErrors(NSArray<FBLPromise *> *promises
 
 @end
 
-@implementation FBLPromise (DotSyntax_WhenAdditions)
+@implementation FBLPromise (DotSyntax_AnyAdditions)
 
-+ (FBLPromise<NSArray *> * (^)(NSArray *))when {
++ (FBLPromise<NSArray *> * (^)(NSArray *))any {
   return ^(NSArray *promises) {
-    return [self when:promises];
+    return [self any:promises];
   };
 }
 
-+ (FBLPromise<NSArray *> * (^)(dispatch_queue_t, NSArray *))whenOn {
++ (FBLPromise<NSArray *> * (^)(dispatch_queue_t, NSArray *))anyOn {
   return ^(dispatch_queue_t queue, NSArray *promises) {
-    return [self onQueue:queue when:promises];
+    return [self onQueue:queue any:promises];
   };
 }
 

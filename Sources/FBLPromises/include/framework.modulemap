@@ -5,6 +5,7 @@ framework module FBLPromises {
     header "FBLPromiseError.h"
     header "FBLPromise+All.h"
     header "FBLPromise+Always.h"
+    header "FBLPromise+Any.h"
     header "FBLPromise+Async.h"
     header "FBLPromise+Catch.h"
     header "FBLPromise+Do.h"
@@ -15,7 +16,6 @@ framework module FBLPromises {
     header "FBLPromise+Then.h"
     header "FBLPromise+Timeout.h"
     header "FBLPromise+Validate.h"
-    header "FBLPromise+When.h"
     header "FBLPromise+Wrap.h"
 
     exclude header "FBLPromisePrivate.h"

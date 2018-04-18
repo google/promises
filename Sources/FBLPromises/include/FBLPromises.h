@@ -16,6 +16,7 @@
 
 #import "FBLPromise+All.h"
 #import "FBLPromise+Always.h"
+#import "FBLPromise+Any.h"
 #import "FBLPromise+Async.h"
 #import "FBLPromise+Catch.h"
 #import "FBLPromise+Do.h"
@@ -24,5 +25,4 @@
 #import "FBLPromise+Then.h"
 #import "FBLPromise+Timeout.h"
 #import "FBLPromise+Validate.h"
-#import "FBLPromise+When.h"
 #import "FBLPromise+Wrap.h"

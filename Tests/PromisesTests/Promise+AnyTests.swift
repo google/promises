@@ -16,10 +16,10 @@ import PromisesTestHelpers
 import XCTest
 @testable import Promises
 
-class PromiseWhenTests: XCTestCase {
-  func testPromiseWhen() {
+class PromiseAnyTests: XCTestCase {
+  func testPromiseAny() {
     // Arrange.
-    let expectedValues = [When(42), When(13), When<Int?>(nil)]
+    let expectedValues = [Maybe(42), Maybe(13), Maybe<Int?>(nil)]
     let promise1 = Promise<Int?> { fulfill, _ in
       Test.delay(0.1) {
         fulfill(42)
@@ -37,7 +37,7 @@ class PromiseWhenTests: XCTestCase {
     }
 
     // Act.
-    let combinedPromise = when([promise1, promise2, promise3]).then { value in
+    let combinedPromise = any([promise1, promise2, promise3]).then { value in
       XCTAssert(value == expectedValues)
     }
 
@@ -48,9 +48,9 @@ class PromiseWhenTests: XCTestCase {
     XCTAssertNil(combinedPromise.error)
   }
 
-  func testPromiseWhenEmpty() {
+  func testPromiseAnyEmpty() {
     // Act.
-    let promise = when([Promise<Any>]()).then { value in
+    let promise = any([Promise<Any>]()).then { value in
       XCTAssert(value.isEmpty)
     }
 
@@ -60,9 +60,9 @@ class PromiseWhenTests: XCTestCase {
     XCTAssertNil(promise.error)
   }
 
-  func testPromiseWhenRejectFirst() {
+  func testPromiseAnyRejectFirst() {
     // Arrange.
-    let expectedValuesAndErrors = [When(42), When(Test.Error.code42)]
+    let expectedValuesAndErrors = [Maybe(42), Maybe(Test.Error.code42)]
     let promise1 = Promise<Int> { fulfill, _ in
       Test.delay(1) {
         fulfill(42)
@@ -75,7 +75,7 @@ class PromiseWhenTests: XCTestCase {
     }
 
     // Act.
-    let combinedPromise = when([promise1, promise2]).then { value in
+    let combinedPromise = any([promise1, promise2]).then { value in
       XCTAssert(value == expectedValuesAndErrors)
     }
 
@@ -86,9 +86,9 @@ class PromiseWhenTests: XCTestCase {
     XCTAssertNil(combinedPromise.error)
   }
 
-  func testPromiseWhenRejectLast() {
+  func testPromiseAnyRejectLast() {
     // Arrange.
-    let expectedValuesAndErrors = [When(42), When(Test.Error.code42)]
+    let expectedValuesAndErrors = [Maybe(42), Maybe(Test.Error.code42)]
     let promise1 = Promise<Int> { fulfill, _ in
       Test.delay(0.1) {
         fulfill(42)
@@ -101,7 +101,7 @@ class PromiseWhenTests: XCTestCase {
     }
 
     // Act.
-    let combinedPromise = when([promise1, promise2]).then { value in
+    let combinedPromise = any([promise1, promise2]).then { value in
       XCTAssert(value == expectedValuesAndErrors)
     }
 
@@ -112,7 +112,7 @@ class PromiseWhenTests: XCTestCase {
     XCTAssertNil(combinedPromise.error)
   }
 
-  func testPromiseWhenRejectAll() {
+  func testPromiseAnyRejectAll() {
     // Arrange.
     let promise1 = Promise<Void> { _, reject in
       Test.delay(0.1) {
@@ -126,7 +126,7 @@ class PromiseWhenTests: XCTestCase {
     }
 
     // Act.
-    let combinedPromise = when([promise1, promise2]).then { _ in
+    let combinedPromise = any([promise1, promise2]).then { _ in
       XCTFail()
     }.catch { error in
       XCTAssertTrue(error == Test.Error.code42)
@@ -138,18 +138,18 @@ class PromiseWhenTests: XCTestCase {
     XCTAssertNil(combinedPromise.value)
   }
 
-  func testPromiseWhenNoDeallocUntilResolved() {
+  func testPromiseAnyNoDeallocUntilResolved() {
     // Arrange.
     let promise = Promise<Int>.pending()
-    weak var weakExtendedPromise1: Promise<[When<Int>]>?
-    weak var weakExtendedPromise2: Promise<[When<Int>]>?
+    weak var weakExtendedPromise1: Promise<[Maybe<Int>]>?
+    weak var weakExtendedPromise2: Promise<[Maybe<Int>]>?
 
     // Act.
     autoreleasepool {
       XCTAssertNil(weakExtendedPromise1)
       XCTAssertNil(weakExtendedPromise2)
-      weakExtendedPromise1 = when([promise])
-      weakExtendedPromise2 = when([promise])
+      weakExtendedPromise1 = any([promise])
+      weakExtendedPromise2 = any([promise])
       XCTAssertNotNil(weakExtendedPromise1)
       XCTAssertNotNil(weakExtendedPromise2)
     }
@@ -165,9 +165,9 @@ class PromiseWhenTests: XCTestCase {
     XCTAssertNil(weakExtendedPromise2)
   }
 
-  func testPromiseWhenHeterogeneous2() {
+  func testPromiseAnyHeterogeneous2() {
     // Arrange.
-    let expectedValues = (When(42), When("hello world"))
+    let expectedValues = (Maybe(42), Maybe("hello world"))
     let promise1 = Promise<Int> { fulfill, _ in
       Test.delay(0.1) {
         fulfill(42)
@@ -180,7 +180,7 @@ class PromiseWhenTests: XCTestCase {
     }
 
     // Act.
-    let combinedPromise = when(promise1, promise2).then { value in
+    let combinedPromise = any(promise1, promise2).then { value in
       XCTAssert(value.0 == expectedValues.0)
       XCTAssert(value.1 == expectedValues.1)
     }
@@ -193,9 +193,9 @@ class PromiseWhenTests: XCTestCase {
     XCTAssertNil(combinedPromise.error)
   }
 
-  func testPromiseWhenHeterogeneous2Reject() {
+  func testPromiseAnyHeterogeneous2Reject() {
     // Arrange.
-    let expectedValuesAndErrors = (When(42), When<String>(Test.Error.code42))
+    let expectedValuesAndErrors = (Maybe(42), Maybe<String>(Test.Error.code42))
     let promise1 = Promise<Int> { fulfill, _ in
       Test.delay(0.1) {
         fulfill(42)
@@ -208,7 +208,7 @@ class PromiseWhenTests: XCTestCase {
     }
 
     // Act.
-    let combinedPromise = when(promise1, promise2).then { number, error in
+    let combinedPromise = any(promise1, promise2).then { number, error in
       XCTAssert(number == expectedValuesAndErrors.0)
       XCTAssert(error == expectedValuesAndErrors.1)
     }
@@ -221,7 +221,7 @@ class PromiseWhenTests: XCTestCase {
     XCTAssertNil(combinedPromise.error)
   }
 
-  func testPromiseWhenHeterogeneous2RejectAll() {
+  func testPromiseAnyHeterogeneous2RejectAll() {
     // Arrange.
     let promise1 = Promise<Int> { _, reject in
       Test.delay(0.1) {
@@ -235,7 +235,7 @@ class PromiseWhenTests: XCTestCase {
     }
 
     // Act.
-    let combinedPromise = when(promise1, promise2).then { _, _ in
+    let combinedPromise = any(promise1, promise2).then { _, _ in
       XCTFail()
     }.catch { error in
       XCTAssertTrue(error == Test.Error.code42)
@@ -247,19 +247,19 @@ class PromiseWhenTests: XCTestCase {
     XCTAssertNil(combinedPromise.value)
   }
 
-  func testPromiseWhenHeterogeneous2NoDeallocUntilResolved() {
+  func testPromiseAnyHeterogeneous2NoDeallocUntilResolved() {
     // Arrange.
     let promise1 = Promise<Int>.pending()
     let promise2 = Promise<String>.pending()
-    weak var weakExtendedPromise1: Promise<(When<Int>, When<String>)>?
-    weak var weakExtendedPromise2: Promise<(When<Int>, When<String>)>?
+    weak var weakExtendedPromise1: Promise<(Maybe<Int>, Maybe<String>)>?
+    weak var weakExtendedPromise2: Promise<(Maybe<Int>, Maybe<String>)>?
 
     // Act.
     autoreleasepool {
       XCTAssertNil(weakExtendedPromise1)
       XCTAssertNil(weakExtendedPromise2)
-      weakExtendedPromise1 = when(promise1, promise2)
-      weakExtendedPromise2 = when(promise1, promise2)
+      weakExtendedPromise1 = any(promise1, promise2)
+      weakExtendedPromise2 = any(promise1, promise2)
       XCTAssertNotNil(weakExtendedPromise1)
       XCTAssertNotNil(weakExtendedPromise2)
     }
@@ -276,9 +276,9 @@ class PromiseWhenTests: XCTestCase {
     XCTAssertNil(weakExtendedPromise2)
   }
 
-  func testPromiseWhenHeterogeneous3() {
+  func testPromiseAnyHeterogeneous3() {
     // Arrange.
-    let expectedValues = (When(42), When("hello world"), When(Int?.none))
+    let expectedValues = (Maybe(42), Maybe("hello world"), Maybe(Int?.none))
     let promise1 = Promise<Int> { fulfill, _ in
       Test.delay(0.1) {
         fulfill(42)
@@ -296,7 +296,7 @@ class PromiseWhenTests: XCTestCase {
     }
 
     // Act.
-    let combinedPromise = when(promise1, promise2, promise3).then { number, string, none in
+    let combinedPromise = any(promise1, promise2, promise3).then { number, string, none in
       XCTAssert(number == expectedValues.0)
       XCTAssert(string == expectedValues.1)
       XCTAssert(none == expectedValues.2)
@@ -311,9 +311,9 @@ class PromiseWhenTests: XCTestCase {
     XCTAssertNil(combinedPromise.error)
   }
 
-  func testPromiseWhenHeterogeneous3Reject() {
+  func testPromiseAnyHeterogeneous3Reject() {
     // Arrange.
-    let expectedValuesAndErrors = (When(42), When<String>(Test.Error.code42), When(Int?.none))
+    let expectedValuesAndErrors = (Maybe(42), Maybe<String>(Test.Error.code42), Maybe(Int?.none))
     let promise1 = Promise { fulfill, _ in
       Test.delay(0.1) {
         fulfill(42)
@@ -331,7 +331,7 @@ class PromiseWhenTests: XCTestCase {
     }
 
     // Act.
-    let combinedPromise = when(promise1, promise2, promise3).then { number, error, none in
+    let combinedPromise = any(promise1, promise2, promise3).then { number, error, none in
       XCTAssert(number == expectedValuesAndErrors.0)
       XCTAssert(error == expectedValuesAndErrors.1)
       XCTAssert(none == expectedValuesAndErrors.2)
@@ -346,7 +346,7 @@ class PromiseWhenTests: XCTestCase {
     XCTAssertNil(combinedPromise.error)
   }
 
-  func testPromiseWhenHeterogeneous3RejectAll() {
+  func testPromiseAnyHeterogeneous3RejectAll() {
     // Arrange.
     let promise1 = Promise<Int> { _, reject in
       Test.delay(0.1) {
@@ -365,7 +365,7 @@ class PromiseWhenTests: XCTestCase {
     }
 
     // Act.
-    let combinedPromise = when(promise1, promise2, promise3).then { _, _, _ in
+    let combinedPromise = any(promise1, promise2, promise3).then { _, _, _ in
       XCTFail()
     }.catch { error in
       XCTAssertTrue(error == Test.Error.code42)
@@ -377,20 +377,20 @@ class PromiseWhenTests: XCTestCase {
     XCTAssertNil(combinedPromise.value)
   }
 
-  func testPromiseWhenHeterogeneous3NoDeallocUntilResolved() {
+  func testPromiseAnyHeterogeneous3NoDeallocUntilResolved() {
     // Arrange.
     let promise1 = Promise<Int>.pending()
     let promise2 = Promise<String>.pending()
     let promise3 = Promise<Int?>.pending()
-    weak var weakExtendedPromise1: Promise<(When<Int>, When<String>, When<Int?>)>?
-    weak var weakExtendedPromise2: Promise<(When<Int>, When<String>, When<Int?>)>?
+    weak var weakExtendedPromise1: Promise<(Maybe<Int>, Maybe<String>, Maybe<Int?>)>?
+    weak var weakExtendedPromise2: Promise<(Maybe<Int>, Maybe<String>, Maybe<Int?>)>?
 
     // Act.
     autoreleasepool {
       XCTAssertNil(weakExtendedPromise1)
       XCTAssertNil(weakExtendedPromise2)
-      weakExtendedPromise1 = when(promise1, promise2, promise3)
-      weakExtendedPromise2 = when(promise1, promise2, promise3)
+      weakExtendedPromise1 = any(promise1, promise2, promise3)
+      weakExtendedPromise2 = any(promise1, promise2, promise3)
       XCTAssertNotNil(weakExtendedPromise1)
       XCTAssertNotNil(weakExtendedPromise2)
     }
