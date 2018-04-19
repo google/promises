@@ -1192,7 +1192,39 @@ Objective-C:
 
 ### Reduce
 
+`reduce` makes it easy to produce a single value from a collection of promises
+using a given closure or block. A benefit of using `Promise.reduce` over the
+Swift library's [`reduce(_:_:)`](https://developer.apple.com/documentation/swift/array/2298686-reduce),
+is that `Promise.reduce` resolves the promise with the partial value for you
+so you don't have to chain on that promise inside the closure in order to get
+its value. Here's a simple example of how to reduce an array of numbers to a
+single string:
 
+Swift:
+
+```swift
+let numbers = [1, 2, 3]
+Promise("0").reduce(numbers) { partialString, nextNumber in
+  Promise(partialString + ", " + String(nextNumber))
+}.then { string in
+  // Final result = 0, 1, 2, 3
+  print("Final result = \(string)")
+}
+```
+
+Objective-C:
+
+```objectivec
+NSArray<NSNumber *> *numbers = @[ @1, @2, @3 ];
+[[[FBLPromise resolvedWith:@"0"] reduce:numbers
+                                combine:^id(NSString *partialString, NSNumber *nextNumber) {
+  return [NSString stringWithFormat:@"%@, %@", partialString, nextNumber.stringValue];
+}] then:^id(NSString *string) {
+  // Final result = 0, 1, 2, 3
+  NSLog(@"Final result = %@", string);
+  return nil;
+}];
+```
 
 ### Timeout
 
