@@ -17,15 +17,6 @@ import XCTest
 @testable import Promises
 
 class PromiseReduceTests: XCTestCase {
-  func test() {
-    Promise("").reduce(1, 2, 3) { partialString, nextNumber in
-      return Promise(partialString + String(nextNumber))
-    }.then { string in
-      print(string)
-    }
-    XCTAssert(waitForPromises(timeout: 10))
-  }
-
   func testPromiseReduce() {
     // Arrange.
     let numbers = [1, 2, 3]
@@ -34,7 +25,11 @@ class PromiseReduceTests: XCTestCase {
     // Act.
     Promise("").reduce(numbers) { partialString, nextNumber in
       count += 1
-      return Promise(partialString + String(nextNumber))
+      return Promise { fulfill, _ in
+        Test.delay(0.1) {
+          fulfill(partialString + String(nextNumber))
+        }
+      }
     }.then { string in
       XCTAssertEqual(string, numbers.map(String.init).reduce("", +))
       count += 1

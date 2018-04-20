@@ -23,9 +23,32 @@ NS_ASSUME_NONNULL_BEGIN
 typedef id __nullable (^FBLPromiseReducerBlock)(Value __nullable partial, id next)
     NS_SWIFT_UNAVAILABLE("");
 
+/**
+ Sequentially reduces a collection of values to a single promise using a given combining block
+ and the value `self` resolves with as initial value.
+
+ @param items An array of values to process in order.
+ @param reducer A block to combine an accumulating value and an element of the sequence into
+                the new accumulating value or a promise resolved with it, to be used in the next
+                call of the `reducer` or returned to the caller.
+ @return A new pending promise returned from the last `reducer` invocation.
+         Or `self` if `items` is empty.
+ */
 - (FBLPromise *)reduce:(NSArray *)items
                combine:(FBLPromiseReducerBlock)reducer NS_SWIFT_UNAVAILABLE("");
 
+/**
+ Sequentially reduces a collection of values to a single promise using a given combining block
+ and the value `self` resolves with as initial value.
+
+ @param queue A queue to dispatch on.
+ @param items An array of values to process in order.
+ @param reducer A block to combine an accumulating value and an element of the sequence into
+                the new accumulating value or a promise resolved with it, to be used in the next
+                call of the `reducer` or returned to the caller.
+ @return A new pending promise returned from the last `reducer` invocation.
+         Or `self` if `items` is empty.
+ */
 - (FBLPromise *)onQueue:(dispatch_queue_t)queue
                  reduce:(NSArray *)items
                 combine:(FBLPromiseReducerBlock)reducer NS_SWIFT_UNAVAILABLE("");

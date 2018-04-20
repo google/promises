@@ -15,21 +15,42 @@
 import Dispatch
 
 public extension Promise {
+  public typealias Reducer<Element> = (Value, Element) throws -> Promise<Value>
 
+  /// Sequentially reduces a collection of values to a single promise using a given combining block
+  /// and the value `self` resolves with as initial value.
+  /// - parameters:
+  ///   - queue: A queue to execute `reducer` block on.
+  ///   - items: A sequence of values to process in order.
+  ///   - reducer: A block to combine an accumulating value and an element of the sequence into
+  ///              a promise resolved with the new accumulating value, to be used in the next call
+  ///              of the `reducer` or returned to the caller.
+  /// - returns: A new pending promise returned from the last `reducer` invocation.
+  ///            Or `self` if `items` is empty.
   @discardableResult
   public func reduce<Element>(
     on queue: DispatchQueue = .promises,
     _ items: Element...,
-    combine reducer: @escaping (Value, Element) throws -> Promise<Value>
+    combine reducer: @escaping Reducer<Element>
   ) -> Promise<Value> {
     return reduce(on: queue, items, reducer)
   }
 
+  /// Sequentially reduces a collection of values to a single promise using a given combining block
+  /// and the value `self` resolves with as initial value.
+  /// - parameters:
+  ///   - queue: A queue to execute `reducer` block on.
+  ///   - items: A sequence of values to process in order.
+  ///   - reducer: A block to combine an accumulating value and an element of the sequence into
+  ///              a promise resolved with the new accumulating value, to be used in the next call
+  ///              of the `reducer` or returned to the caller.
+  /// - returns: A new pending promise returned from the last `reducer` invocation.
+  ///            Or `self` if `items` is empty.
   @discardableResult
   public func reduce<Container: Sequence>(
     on queue: DispatchQueue = .promises,
     _ items: Container,
-    _ reducer: @escaping (Value, Container.Element) throws -> Promise<Value>
+    _ reducer: @escaping Reducer<Container.Element>
   ) -> Promise<Value> {
     return items.reduce(self) { promise, item in
       promise.then { value in
