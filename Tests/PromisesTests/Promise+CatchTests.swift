@@ -302,4 +302,36 @@ class PromiseCatchTests: XCTestCase {
     XCTAssertNil(weakExtendedPromise1)
     XCTAssertNil(weakExtendedPromise2)
   }
+    
+  func testPromiseCallsGenericCatchWithDefaultCatchAfterReject() {
+    enum CustomError: Error {}
+    
+    // Arrange.
+    var count = 0
+  
+    // Act.
+    let promise = Promise<AnyObject> {
+      return Test.Error.code42 as AnyObject
+    }.then { _ in
+      XCTFail()
+    }.catch { error in
+      XCTAssertEqual(error.code, 42)
+      count += 1
+    }.catch { (error: Test.Error) in
+      XCTAssertEqual(error.code, 42)
+      count += 1
+    }.catch { (error: CustomError) in
+      XCTAssertEqual(error.code, 42)
+      count += 1
+    }.catch { (error: Error) in
+      XCTAssertEqual(error.code, 42)
+      count += 1
+    }
+
+    // Assert.
+    XCTAssert(waitForPromises(timeout: 10))
+    XCTAssertEqual(count, 3)
+    XCTAssertTrue(promise.error == Test.Error.code42)
+    XCTAssertTrue(promise.value == nil)
+  }
 }

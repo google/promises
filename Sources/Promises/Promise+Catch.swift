@@ -30,4 +30,14 @@ public extension Promise {
     objCPromise.__pendingObjects?.add(promise)
     return promise
   }
+
+  @discardableResult
+    public func `catch`<ErrorType: Error>(on queue: DispatchQueue = .promises, _ reject: @escaping (ErrorType) -> Void) -> Promise {
+    let promise = Promise(objCPromise.__onQueue(queue, catch: {
+      guard let error = $0 as? ErrorType else { return }
+      reject(error)
+    }))
+    objCPromise.__pendingObjects?.add(promise)
+    return promise
+  }
 }
