@@ -1075,7 +1075,7 @@ Objective-C:
 
 ### Any
 
-`any` is similar to `all`, but it fulfills even if some of the promises in the
+`any` is similar to [`all`](#all), but it fulfills even if some of the promises in the
 provided array are rejected. If all promises in the input array are rejected,
 the returned promise rejects with the same error as the last one that was
 rejected.
@@ -1155,6 +1155,87 @@ and
 methods on `NSArray`, which often comes handy, along with other similar
 [functional operators](https://github.com/google/functional-objc) that
 Objective-C lacks.
+
+### Await
+
+Using `await` you can synchronously wait for a promise to get resolved
+on a different thread. That can be useful for situations when you need
+to mix several results from multiple async routines differently, i.e.
+cannot chain them in a clear pipeline using [`then`](#then),
+[`all`](#all), etc., or just want to write async code in a sync style.
+
+Swift:
+
+```swift
+Promise<Int> {
+  let minusFive = try await(calculator.negate(5))
+  let twentyFive = try await(calculator.multiply(minusFive, minusFive))
+  let twenty = try await(calculator.add(twentyFive, minusFive))
+  let five = try await(calculator.subtract(twentyFive, twenty))
+  let zero = try await(calculator.add(minusFive, five))
+  return try await(calculator.multiply(zero, five))
+}.then { result in
+  // ...
+}.catch { error in
+  // ...
+}
+```
+
+Objective-C
+
+```objectivec
+[[[FBLPromise do:^id {
+  NSError *error;
+  NSNumber *minusFive = FBLPromiseAwait([calculator negate:@5], &error);
+  if (error) return error;
+  NSNumber *twentyFive = FBLPromiseAwait([calculator multiply:minusFive by:minusFive], &error);
+  if (error) return error;
+  NSNumber *twenty = FBLPromiseAwait([calculator add:twentyFive to:minusFive], &error);
+  if (error) return error;
+  NSNumber *five = FBLPromiseAwait([calculator subtract:twentyFive from:twenty], &error);
+  if (error) return error;
+  NSNumber *zero = FBLPromiseAwait([calculator add:minusFive to:five], &error);
+  if (error) return error;
+  NSNumber *result = FBLPromiseAwait([calculator multiply:zero by:five], &error);
+  if (error) return error;
+  return result;
+}] then:^id(NSNumber *result) {
+  // ...
+}] catch:^(NSError *error) {
+  // ...
+}];
+```
+
+Note: In the above examples it's assumed that all calculator routines are
+executed asynchronously on a background thread, because the promise work block
+is dispatched on a [default queue](#default-dispatch-queue) since no other is
+specified, and so any blocking `await` would cause a deadlock if it waited for
+a promise that was going to be resolved on the default queue as well. Generally,
+it's usually safer to use `await` from a global concurrent queue only to avoid
+any potential deadlocks. Like so:
+
+```swift
+Promise<Int>(on: .global()) {
+  try await(object.someAsyncRoutine())
+}
+```
+
+Objective-C
+
+```objectivec
+[FBLPromise onQueue:dispatch_queue_create(NULL, DISPATCH_QUEUE_CONCURRENT)
+                 do:^id {
+  NSError *error;
+  id result = FBLPromiseAwait([object someAsyncRoutine], &error);
+  return error ?: result;
+}];
+```
+
+### Delay
+
+`delay` returns a new pending promise that fulfills with the same value as
+`self` after the given delay, or rejects with the same error immediately. It may
+come handy if you want to add an artificial pause to your promises chain.
 
 ### Race
 
