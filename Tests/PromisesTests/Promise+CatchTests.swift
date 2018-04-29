@@ -117,7 +117,7 @@ class PromiseCatchTests: XCTestCase {
 
   func testPromiseCatchesThrownError() {
     // Act.
-    let promise = Promise<AnyObject> {
+    let promise = Promise<Void> {
       throw Test.Error.code42
     }.then { _ in
       XCTFail()
