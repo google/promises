@@ -52,4 +52,3 @@ typedef void (^FBLPromiseAlwaysWorkBlock)(void) NS_SWIFT_UNAVAILABLE("");
 @end
 
 NS_ASSUME_NONNULL_END
-
