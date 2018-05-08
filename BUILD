@@ -126,8 +126,10 @@ swift_library(
     srcs = glob([
         "Tests/PromisesPerformanceTests/*.swift",
     ]),
-    copts = SWIFT_COPTS,
-    swift_version = 4,
+    copts = SWIFT_COPTS + [
+        "-swift-version",
+        "4",
+    ],
     deps = [
         ":FBLPromisesTestHelpers",
         ":PromisesTestHelpers",
