@@ -50,8 +50,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface FBLPromise<Value>(DotSyntax_DelayAdditions)
 
-- (FBLPromise* (^)(NSTimeInterval))delay FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
-- (FBLPromise* (^)(dispatch_queue_t, NSTimeInterval))delayOn FBL_PROMISES_DOT_SYNTAX
+- (FBLPromise * (^)(NSTimeInterval))delay FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
+- (FBLPromise * (^)(dispatch_queue_t, NSTimeInterval))delayOn FBL_PROMISES_DOT_SYNTAX
     NS_SWIFT_UNAVAILABLE("");
 
 @end

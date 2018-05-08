@@ -20,11 +20,11 @@
 
 @implementation FBLPromise (ValidateAdditions)
 
-- (FBLPromise *)validate:(FBLPromiseValidateWorkBlock)predicate {
+- (FBLPromise*)validate:(FBLPromiseValidateWorkBlock)predicate {
   return [self onQueue:FBLPromise.defaultDispatchQueue validate:predicate];
 }
 
-- (FBLPromise *)onQueue:(dispatch_queue_t)queue validate:(FBLPromiseValidateWorkBlock)predicate {
+- (FBLPromise*)onQueue:(dispatch_queue_t)queue validate:(FBLPromiseValidateWorkBlock)predicate {
   NSParameterAssert(queue);
   NSParameterAssert(predicate);
 

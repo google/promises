@@ -50,10 +50,10 @@ typedef BOOL (^FBLPromiseValidateWorkBlock)(Value __nullable value) NS_SWIFT_UNA
  */
 @interface FBLPromise<Value>(DotSyntax_ValidateAdditions)
 
-- (FBLPromise* (^)(FBLPromiseValidateWorkBlock))validate FBL_PROMISES_DOT_SYNTAX
+- (FBLPromise * (^)(FBLPromiseValidateWorkBlock))validate FBL_PROMISES_DOT_SYNTAX
     NS_SWIFT_UNAVAILABLE("");
-- (FBLPromise* (^)(dispatch_queue_t, FBLPromiseValidateWorkBlock))validateOn FBL_PROMISES_DOT_SYNTAX
-    NS_SWIFT_UNAVAILABLE("");
+- (FBLPromise * (^)(dispatch_queue_t, FBLPromiseValidateWorkBlock))validateOn
+    FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
 
 @end
 

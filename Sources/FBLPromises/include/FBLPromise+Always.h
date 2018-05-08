@@ -33,8 +33,8 @@ typedef void (^FBLPromiseAlwaysWorkBlock)(void) NS_SWIFT_UNAVAILABLE("");
  @param work A block that always executes, no matter if the receiver is rejected or fulfilled.
  @return A new pending promise to be resolved with same resolution as the receiver.
  */
-- (FBLPromise *)onQueue:(dispatch_queue_t)queue always:(FBLPromiseAlwaysWorkBlock)work
-    NS_REFINED_FOR_SWIFT;
+- (FBLPromise *)onQueue:(dispatch_queue_t)queue
+                 always:(FBLPromiseAlwaysWorkBlock)work NS_REFINED_FOR_SWIFT;
 
 @end
 

@@ -52,8 +52,8 @@ typedef id __nullable (^FBLPromiseRecoverWorkBlock)(NSError *error) NS_SWIFT_UNA
 
 - (FBLPromise * (^)(FBLPromiseRecoverWorkBlock))recover FBL_PROMISES_DOT_SYNTAX
     NS_SWIFT_UNAVAILABLE("");
-- (FBLPromise * (^)(dispatch_queue_t, FBLPromiseRecoverWorkBlock))recoverOn
-    FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
+- (FBLPromise * (^)(dispatch_queue_t, FBLPromiseRecoverWorkBlock))recoverOn FBL_PROMISES_DOT_SYNTAX
+    NS_SWIFT_UNAVAILABLE("");
 
 @end
 

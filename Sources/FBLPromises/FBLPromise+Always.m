@@ -43,13 +43,13 @@
 
 @implementation FBLPromise (DotSyntax_AlwaysAdditions)
 
-- (FBLPromise* (^)(FBLPromiseAlwaysWorkBlock))always {
+- (FBLPromise * (^)(FBLPromiseAlwaysWorkBlock))always {
   return ^(FBLPromiseAlwaysWorkBlock work) {
     return [self always:work];
   };
 }
 
-- (FBLPromise* (^)(dispatch_queue_t, FBLPromiseAlwaysWorkBlock))alwaysOn {
+- (FBLPromise * (^)(dispatch_queue_t, FBLPromiseAlwaysWorkBlock))alwaysOn {
   return ^(dispatch_queue_t queue, FBLPromiseAlwaysWorkBlock work) {
     return [self onQueue:queue always:work];
   };

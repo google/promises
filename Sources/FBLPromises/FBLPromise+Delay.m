@@ -44,13 +44,13 @@
 
 @implementation FBLPromise (DotSyntax_DelayAdditions)
 
-- (FBLPromise* (^)(NSTimeInterval))delay {
+- (FBLPromise * (^)(NSTimeInterval))delay {
   return ^(NSTimeInterval interval) {
     return [self delay:interval];
   };
 }
 
-- (FBLPromise* (^)(dispatch_queue_t, NSTimeInterval))delayOn {
+- (FBLPromise * (^)(dispatch_queue_t, NSTimeInterval))delayOn {
   return ^(dispatch_queue_t queue, NSTimeInterval interval) {
     return [self onQueue:queue delay:interval];
   };
