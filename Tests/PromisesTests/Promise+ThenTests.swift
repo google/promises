@@ -80,7 +80,7 @@ class PromiseThenTests: XCTestCase {
     var count = 0
 
     // Act.
-    let promise = Promise {
+    let promise = Promise<Int> {
       return 42
     }.then { value in
       XCTAssertEqual(value, 42)
