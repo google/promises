@@ -414,7 +414,7 @@ In your `Package.swift` file, add `Promises` dependency to corresponding targets
 let package = Package(
   // ...
   dependencies: [
-    .package(url: "https://github.com/google/promises.git", from: "1.1.1"),
+    .package(url: "https://github.com/google/promises.git", from: "1.2"),
   ],
   // ...
 )
@@ -443,13 +443,13 @@ Or, the module, if `CLANG_ENABLE_MODULES = YES`:
 To use `Promises` for both Swift and Objective-C, add the following to your `Podfile`:
 
 ```ruby
-pod 'PromisesSwift', '~> 1.1'
+pod 'PromisesSwift', '~> 1.2'
 ```
 
 To use `Promises` for Objective-C only, add the following to your `Podfile`:
 
 ```ruby
-pod 'PromisesObjC', '~> 1.1'
+pod 'PromisesObjC', '~> 1.2'
 ```
 
 Also, don't forget to `use_frameworks!` in your target. Then, run `pod install`.
@@ -579,7 +579,7 @@ Swift:
 
 ```swift
 let promise = Promise<String> { fulfill, reject in
-  // Called asynchronously on the main queue by default.
+  // Called asynchronously on the default queue.
   if success {
     fulfill("Hello world.")
   } else {
@@ -593,7 +593,7 @@ Objective-C:
 ```objectivec
 FBLPromise<NSString *> *promise = [FBLPromise async:^(FBLPromiseFulfillBlock fulfill,
                                                       FBLPromiseRejectBlock reject) {
-  // Called asynchronously on the main queue by default.
+  // Called asynchronously on the default queue.
   if (success) {
     fulfill(@"Hello world.");
   } else {
@@ -604,14 +604,15 @@ FBLPromise<NSString *> *promise = [FBLPromise async:^(FBLPromiseFulfillBlock ful
 
 ##### Do
 
-We can make the above examples even more concise with `do` operator if the block
-of code inside a promise doesn't require async fulfillment:
+We can make the above examples even more concise with the `do` operator
+(which is implemented as a convenience constructor in Swift) if the promise
+work block doesn't require async fulfillment:
 
 Swift:
 
 ```swift
-let promise = Promise<String> {
-  // Called asynchronously on the main queue by default.
+let promise = Promise { () -> String in
+  // Called asynchronously on the default queue.
   guard success else { throw someError }
   return "Hello world"
 }
@@ -621,10 +622,16 @@ Objective-C:
 
 ```objectivec
 FBLPromise<NSString *> *promise = [FBLPromise do:^id {
-  // Called asynchronously on the main queue by default.
+  // Called asynchronously on the default queue.
   return success ? @"Hello world" : someError;
 }];
 ```
+
+Note: In Swift the convenience constructor accepting a work block is overloaded
+and can return either a value or another promise, which is eventually used to
+resolve the newly created promise. In Objective-C the `do` operator return value
+is not strongly typed, so you can return a value, another promise or an error
+and expect the correct behavior.
 
 ##### Pending
 

@@ -19,7 +19,7 @@ import XCTest
 class PromiseAwaitTests: XCTestCase {
   func testPromiseAwaitFulfill() {
     // Act.
-    let promise = Promise<Int>(on: .global()) {
+    let promise = Promise<Int>(on: .global()) { () -> Int in
       let minusFive = try await(Harness.negate(5))
       XCTAssertEqual(minusFive, -5)
       let twentyFive = try await(Harness.multiply(minusFive, minusFive))

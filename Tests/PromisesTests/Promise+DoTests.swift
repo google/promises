@@ -27,6 +27,16 @@ class PromiseDoTests: XCTestCase {
     XCTAssertNil(promise.error)
   }
 
+  func testPromiseDoReturnPromise() {
+    // Arrange & Act.
+    let promise = Promise<Int> { Promise(42) }
+
+    // Assert.
+    XCTAssert(waitForPromises(timeout: 10))
+    XCTAssertEqual(promise.value, 42)
+    XCTAssertNil(promise.error)
+  }
+
   func testPromiseDoReject() {
     // Arrange & Act.
     let promise = Promise<Int> { throw Test.Error.code42 }

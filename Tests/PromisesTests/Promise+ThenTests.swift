@@ -80,7 +80,7 @@ class PromiseThenTests: XCTestCase {
     var count = 0
 
     // Act.
-    let promise = Promise<Int> {
+    let promise = Promise { () -> Int in
       let number = 42
       return number
     }.then { value in

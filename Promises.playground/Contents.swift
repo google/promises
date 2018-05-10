@@ -23,18 +23,14 @@ enum PlaygroundError: Error {
 }
 
 func reverse(string: String) -> Promise<String> {
-  return Promise {
-    Thread.sleep(forTimeInterval: 0.1)
-    return String(string.reversed())
-  }
+  return Promise(String(string.reversed())).delay(0.1)
 }
 
 func number(from string: String) -> Promise<Int> {
-  return Promise {
-    Thread.sleep(forTimeInterval: 0.1)
+  return Promise { () -> Int in
     guard let number = Int(string) else { throw PlaygroundError.invalidNumber }
     return number
-  }
+  }.delay(0.1)
 }
 
 func square(number: Int) -> Int {
