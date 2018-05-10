@@ -627,11 +627,28 @@ FBLPromise<NSString *> *promise = [FBLPromise do:^id {
 }];
 ```
 
-Note: In Swift the convenience constructor accepting a work block is overloaded
+Note: In Swift, the convenience constructor accepting a work block is overloaded
 and can return either a value or another promise, which is eventually used to
-resolve the newly created promise. In Objective-C the `do` operator return value
-is not strongly typed, so you can return a value, another promise or an error
-and expect the correct behavior.
+resolve the newly created promise. In Objective-C, the `do` operator return
+value is not strongly typed, so you can return a value, another promise or an
+error and expect the correct behavior:
+
+```swift
+let promise = Promise { () -> Promise<String> in
+  // Called asynchronously on the default queue.
+  guard success else { throw someError }
+  return someOtherOperation()
+}
+```
+
+Objective-C:
+
+```objectivec
+FBLPromise<NSString *> *promise = [FBLPromise do:^id {
+  // Called asynchronously on the default queue.
+  return success ? [self someOtherOperation] : someError;
+}];
+```
 
 ##### Pending
 
