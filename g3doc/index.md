@@ -633,6 +633,8 @@ resolve the newly created promise. In Objective-C, the `do` operator return
 value is not strongly typed, so you can return a value, another promise or an
 error and expect the correct behavior:
 
+Swift:
+
 ```swift
 let promise = Promise { () -> Promise<String> in
   // Called asynchronously on the default queue.
