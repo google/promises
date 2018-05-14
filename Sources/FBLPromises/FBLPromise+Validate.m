@@ -29,9 +29,10 @@
   NSParameterAssert(predicate);
 
   FBLPromiseChainedFulfillBlock chainedFulfill = ^id(id value) {
-    return predicate(value) ? value : [NSError errorWithDomain:FBLPromiseErrorDomain
-                                                          code:FBLPromiseErrorCodeValidationFailure
-                                                      userInfo:nil];
+    return predicate(value) ? value :
+                              [[NSError alloc] initWithDomain:FBLPromiseErrorDomain
+                                                         code:FBLPromiseErrorCodeValidationFailure
+                                                     userInfo:nil];
   };
   return [self chainOnQueue:queue chainedFulfill:chainedFulfill chainedReject:nil];
 }

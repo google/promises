@@ -37,9 +37,9 @@
       }];
   typeof(self) __weak weakPromise = promise;
   dispatch_after(dispatch_time(0, (int64_t)(interval * NSEC_PER_SEC)), queue, ^{
-    NSError *timedOutError = [NSError errorWithDomain:FBLPromiseErrorDomain
-                                                 code:FBLPromiseErrorCodeTimedOut
-                                             userInfo:nil];
+    NSError *timedOutError = [[NSError alloc] initWithDomain:FBLPromiseErrorDomain
+                                                        code:FBLPromiseErrorCodeTimedOut
+                                                    userInfo:nil];
     [weakPromise reject:timedOutError];
   });
   return promise;
