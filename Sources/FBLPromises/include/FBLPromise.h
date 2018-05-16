@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Promises synchronization construct in Objective-C.
  */
-@interface FBLPromise<Value> : NSObject
+@interface FBLPromise<__covariant Value> : NSObject
 
 /**
  Default dispatch queue used for `FBLPromise`, which is `main` if a queue is not specified.
