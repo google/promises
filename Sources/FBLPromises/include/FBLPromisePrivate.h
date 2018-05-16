@@ -27,6 +27,9 @@ typedef void (^FBLPromiseOnFulfillBlock)(Value __nullable value) NS_SWIFT_UNAVAI
 typedef void (^FBLPromiseOnRejectBlock)(NSError *error) NS_SWIFT_UNAVAILABLE("");
 typedef id __nullable (^__nullable FBLPromiseChainedFulfillBlock)(Value __nullable value)
     NS_SWIFT_UNAVAILABLE("");
+typedef id __nullable (^__nullable FBLPromiseChainedFulfillProgressBlock)(Value __nullable value,
+                                                                          NSProgress *progress)
+    NS_SWIFT_UNAVAILABLE("");
 typedef id __nullable (^__nullable FBLPromiseChainedRejectBlock)(NSError *error)
     NS_SWIFT_UNAVAILABLE("");
 
@@ -59,6 +62,11 @@ typedef id __nullable (^__nullable FBLPromiseChainedRejectBlock)(NSError *error)
  */
 - (FBLPromise *)chainOnQueue:(dispatch_queue_t)queue
               chainedFulfill:(FBLPromiseChainedFulfillBlock)chainedFulfill
+               chainedReject:(FBLPromiseChainedRejectBlock)chainedReject NS_SWIFT_UNAVAILABLE("");
+
+- (FBLPromise *)chainOnQueue:(dispatch_queue_t)queue
+               progressUnits:(int64_t)totalUnitCount
+              chainedFulfill:(FBLPromiseChainedFulfillProgressBlock)chainedFulfill
                chainedReject:(FBLPromiseChainedRejectBlock)chainedReject NS_SWIFT_UNAVAILABLE("");
 
 @end

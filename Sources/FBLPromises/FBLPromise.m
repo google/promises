@@ -15,6 +15,7 @@
  */
 
 #import "FBLPromisePrivate.h"
+#import "FBLPromiseProgressPrivate.h"
 
 /** All states a promise can be in. */
 typedef NS_ENUM(NSInteger, FBLPromiseState) {
@@ -47,6 +48,8 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
   NSError *__nullable _error;
   /** List of observers to notify when the promise gets resolved. */
   NSMutableArray<FBLPromiseObserver> *_observers;
+
+  FBLPromiseProgress *_progress;
 }
 
 + (void)initialize {
@@ -83,6 +86,7 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
   } else {
     @synchronized(self) {
       if (_state == FBLPromiseStatePending) {
+        _progress.completedUnitCount = _progress.totalUnitCount;
         _state = FBLPromiseStateFulfilled;
         _value = value;
         _pendingObjects = nil;
@@ -117,6 +121,10 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
   }
 }
 
+- (void)cancel {
+  [_progress cancel];
+}
+
 #pragma mark - NSObject
 
 - (NSString *)description {
@@ -133,8 +141,18 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
 
 #pragma mark - Private
 
-- (instancetype)initPending {
+- (instancetype)initPrivate {
   self = [super init];
+  if (self) {
+    _progress = [[FBLPromiseProgress alloc] initWithParent:nil userInfo:nil];
+    _progress.promise = self;
+    _progress.totalUnitCount = 1;
+  }
+  return self;
+}
+
+- (instancetype)initPending {
+  self = [self initPrivate];
   if (self) {
     dispatch_group_enter(FBLPromise.dispatchGroup);
   }
@@ -142,7 +160,7 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
 }
 
 - (instancetype)initWithResolution:(nullable id)resolution {
-  self = [super init];
+  self = [self initPrivate];
   if (self) {
     if ([resolution isKindOfClass:[NSError class]]) {
       _state = FBLPromiseStateRejected;
@@ -151,6 +169,7 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
       _state = FBLPromiseStateFulfilled;
       _value = resolution;
     }
+    _progress.completedUnitCount = _progress.totalUnitCount;
   }
   return self;
 }
@@ -256,6 +275,49 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
   __auto_type resolver = ^(id __nullable value) {
     if ([value isKindOfClass:[FBLPromise class]]) {
       [(FBLPromise *)value observeOnQueue:queue
+                                  fulfill:^(id __nullable value) {
+                                    [promise fulfill:value];
+                                  }
+                                   reject:^(NSError *error) {
+                                     [promise reject:error];
+                                   }];
+    } else {
+      [promise fulfill:value];
+    }
+  };
+  [self observeOnQueue:queue
+               fulfill:^(id __nullable value) {
+                 value = chainedFulfill ? chainedFulfill(value) : value;
+                 resolver(value);
+               }
+                reject:^(NSError *error) {
+                  id value = chainedReject ? chainedReject(error) : error;
+                  resolver(value);
+                }];
+  return promise;
+}
+
+- (FBLPromise *)chainOnQueue:(dispatch_queue_t)queue
+               progressUnits:(int64_t)totalUnitCount
+              chainedFulfill:(FBLPromiseChainedFulfillProgressBlock)chainedFulfill
+               chainedReject:(FBLPromiseChainedRejectBlock)chainedReject {
+  NSParameterAssert(queue);
+  NSParameterAssert(totalUnitCount > 0);
+
+  FBLPromise *promise = [[FBLPromise alloc] initPending];
+  promise.progress.totalUnitCount = _progress.totalUnitCount + totalUnitCount;
+
+  FBLPromiseProgress *syncProgress = [[FBLPromiseProgress alloc] initWithParent:nil userInfo:nil];
+  [_progress addSyncProgress:syncProgress];
+  [promise.progress addChild:syncProgress withPendingUnitCount:syncProgress.totalUnitCount];
+
+  FBLPromiseProgress *progress = [[FBLPromiseProgress alloc] initWithParent:nil userInfo:nil];
+  progress.totalUnitCount = totalUnitCount;
+  [promise.progress addChild:progress withPendingUnitCount:totalUnitCount];
+
+  __auto_type resolver = ^(id __nullable value) {
+    if ([value isKindOfClass:[FBLPromise class]]) {
+      [(FBLPromise *)value observeOnQueue:queue
           fulfill:^(id __nullable value) {
             [promise fulfill:value];
           }
@@ -268,7 +330,7 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
   };
   [self observeOnQueue:queue
       fulfill:^(id __nullable value) {
-        value = chainedFulfill ? chainedFulfill(value) : value;
+        value = chainedFulfill ? chainedFulfill(value, progress) : value;
         resolver(value);
       }
       reject:^(NSError *error) {

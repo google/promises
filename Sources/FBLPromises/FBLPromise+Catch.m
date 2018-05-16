@@ -29,9 +29,12 @@
   NSParameterAssert(reject);
 
   return [self chainOnQueue:queue
+              progressUnits:1
              chainedFulfill:nil
               chainedReject:^id(NSError *error) {
-                reject(error);
+                if (!FBLPromiseErrorIsCancelled(error)) {
+                  reject(error);
+                }
                 return error;
               }];
 }

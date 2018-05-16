@@ -21,14 +21,36 @@
 @implementation FBLPromise (ThenAdditions)
 
 - (FBLPromise *)then:(FBLPromiseThenWorkBlock)work {
-  return [self onQueue:FBLPromise.defaultDispatchQueue then:work];
+  return [self onQueue:FBLPromise.defaultDispatchQueue
+         progressUnits:1
+                  then:^id(id value, NSProgress *__unused _) {
+                    return work(value);
+                  }];
 }
 
 - (FBLPromise *)onQueue:(dispatch_queue_t)queue then:(FBLPromiseThenWorkBlock)work {
+  return [self onQueue:queue
+         progressUnits:1
+                  then:^id(id value, NSProgress *__unused _) {
+                    return work(value);
+                  }];
+}
+
+- (FBLPromise *)progressUnits:(int64_t)totalUnitCount then:(FBLPromiseThenProgressWorkBlock)work {
+  return [self onQueue:FBLPromise.defaultDispatchQueue progressUnits:totalUnitCount then:work];
+}
+
+- (FBLPromise *)onQueue:(dispatch_queue_t)queue
+          progressUnits:(int64_t)totalUnitCount
+                   then:(FBLPromiseThenProgressWorkBlock)work {
   NSParameterAssert(queue);
+  NSParameterAssert(totalUnitCount > 0);
   NSParameterAssert(work);
 
-  return [self chainOnQueue:queue chainedFulfill:work chainedReject:nil];
+  return [self chainOnQueue:queue
+              progressUnits:totalUnitCount
+             chainedFulfill:work
+              chainedReject:nil];
 }
 
 @end
@@ -44,6 +66,18 @@
 - (FBLPromise* (^)(dispatch_queue_t, FBLPromiseThenWorkBlock))thenOn {
   return ^(dispatch_queue_t queue, FBLPromiseThenWorkBlock work) {
     return [self onQueue:queue then:work];
+  };
+}
+
+- (FBLPromise* (^)(int64_t, FBLPromiseThenProgressWorkBlock))thenProgress {
+  return ^(int64_t totalUnitCount, FBLPromiseThenProgressWorkBlock work) {
+    return [self progressUnits:totalUnitCount then:work];
+  };
+}
+
+- (FBLPromise* (^)(dispatch_queue_t, int64_t, FBLPromiseThenProgressWorkBlock))thenProgressOn {
+  return ^(dispatch_queue_t queue, int64_t totalUnitCount, FBLPromiseThenProgressWorkBlock work) {
+    return [self onQueue:queue progressUnits:totalUnitCount then:work];
   };
 }
 

@@ -18,6 +18,8 @@ import FBLPromises
 public final class Promise<Value> {
   public typealias ObjCPromise<Value: AnyObject> = FBLPromise<Value>
 
+  public var progress: Progress { return objCPromise.__progress }
+
   /// Creates a new promise with an existing ObjC promise.
   public init<Value>(_ objCPromise: ObjCPromise<Value>) {
     guard let objCPromise = objCPromise as? ObjCPromise<AnyObject> else {
@@ -61,6 +63,10 @@ public final class Promise<Value> {
   /// Rejects `self` with the given `error`.
   public func reject(_ error: Error) {
     objCPromise.__fulfill(error as NSError)
+  }
+
+  public func cancel() {
+    objCPromise.__cancel()
   }
 
   /// Converts `self` into ObjC promise.

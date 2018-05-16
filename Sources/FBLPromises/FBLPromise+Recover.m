@@ -31,7 +31,7 @@
   return [self chainOnQueue:queue
              chainedFulfill:nil
               chainedReject:^id(NSError *error) {
-                return recovery(error);
+                return FBLPromiseErrorIsCancelled(error) ? error : recovery(error);
               }];
 }
 

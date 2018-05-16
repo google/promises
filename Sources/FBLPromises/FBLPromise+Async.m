@@ -21,14 +21,36 @@
 @implementation FBLPromise (AsyncAdditions)
 
 + (instancetype)async:(FBLPromiseAsyncWorkBlock)work {
-  return [self onQueue:self.defaultDispatchQueue async:work];
+  return [self onQueue:self.defaultDispatchQueue
+         progressUnits:1
+                 async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock reject,
+                         NSProgress *__unused _) {
+                   work(fulfill, reject);
+                 }];
 }
 
 + (instancetype)onQueue:(dispatch_queue_t)queue async:(FBLPromiseAsyncWorkBlock)work {
+  return [self onQueue:queue
+         progressUnits:1
+                 async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock reject,
+                         NSProgress *__unused _) {
+                   work(fulfill, reject);
+                 }];
+}
+
++ (instancetype)progressUnits:(int64_t)totalUnitCount async:(FBLPromiseAsyncProgressWorkBlock)work {
+  return [self onQueue:self.defaultDispatchQueue progressUnits:totalUnitCount async:work];
+}
+
++ (instancetype)onQueue:(dispatch_queue_t)queue
+          progressUnits:(int64_t)totalUnitCount
+                  async:(FBLPromiseAsyncProgressWorkBlock)work {
   NSParameterAssert(queue);
+  NSParameterAssert(totalUnitCount > 0);
   NSParameterAssert(work);
 
   FBLPromise *promise = [[FBLPromise alloc] initPending];
+  promise.progress.totalUnitCount = totalUnitCount;
   dispatch_group_async(FBLPromise.dispatchGroup, queue, ^{
     work(
         ^(id __nullable value) {
@@ -46,7 +68,8 @@
         },
         ^(NSError *error) {
           [promise reject:error];
-        });
+        },
+        promise.progress);
   });
   return promise;
 }
@@ -64,6 +87,18 @@
 + (FBLPromise* (^)(dispatch_queue_t, FBLPromiseAsyncWorkBlock))asyncOn {
   return ^(dispatch_queue_t queue, FBLPromiseAsyncWorkBlock work) {
     return [self onQueue:queue async:work];
+  };
+}
+
++ (FBLPromise* (^)(int64_t, FBLPromiseAsyncProgressWorkBlock))asyncProgress {
+  return ^(int64_t totalUnitCount, FBLPromiseAsyncProgressWorkBlock work) {
+    return [self progressUnits:totalUnitCount async:work];
+  };
+}
+
++ (FBLPromise* (^)(dispatch_queue_t, int64_t, FBLPromiseAsyncProgressWorkBlock))asyncProgressOn {
+  return ^(dispatch_queue_t queue, int64_t totalUnitCount, FBLPromiseAsyncProgressWorkBlock work) {
+    return [self onQueue:queue progressUnits:totalUnitCount async:work];
   };
 }
 

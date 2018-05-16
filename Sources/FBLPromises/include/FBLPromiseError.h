@@ -24,11 +24,18 @@ extern NSErrorDomain const FBLPromiseErrorDomain NS_REFINED_FOR_SWIFT;
  Possible error codes in `FBLPromiseErrorDomain`.
  */
 typedef NS_ENUM(NSInteger, FBLPromiseErrorCode) {
+  /** Promise was cancelled. */
+  FBLPromiseErrorCodeCancelled = 1,
   /** Promise failed to resolve in time. */
-  FBLPromiseErrorCodeTimedOut = 1,
+  FBLPromiseErrorCodeTimedOut = 2,
   /** Validation predicate returned false. */
-  FBLPromiseErrorCodeValidationFailure = 2,
+  FBLPromiseErrorCodeValidationFailure = 3,
 } NS_REFINED_FOR_SWIFT;
+
+NS_INLINE BOOL FBLPromiseErrorIsCancelled(NSError *error) NS_SWIFT_UNAVAILABLE("") {
+  return error.domain == FBLPromiseErrorDomain &&
+         error.code == FBLPromiseErrorCodeCancelled;
+}
 
 NS_INLINE BOOL FBLPromiseErrorIsTimedOut(NSError *error) NS_SWIFT_UNAVAILABLE("") {
   return error.domain == FBLPromiseErrorDomain &&

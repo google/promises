@@ -16,6 +16,7 @@ import Foundation
 
 public extension Promise {
   public typealias Then<Result> = (Value) throws -> Result
+  public typealias ThenProgress<Result> = (Value, Progress) throws -> Result
 
   /// Creates a pending promise which eventually gets resolved with the same resolution as the
   /// promise returned from `work` block. The `work` block is executed asynchronously on the given
@@ -29,21 +30,32 @@ public extension Promise {
   @discardableResult
   public func then<Result>(
     on queue: DispatchQueue = .promises,
-    _ work: @escaping Then<Promise<Result>>
+    progressUnits: Int64 = 1,
+    _ work: @escaping ThenProgress<Promise<Result>>
   ) -> Promise<Result> {
-    let promise = Promise<Result>(objCPromise.__onQueue(queue, then: { objCValue in
-      guard let value = Promise<Value>.asValue(objCValue) else {
-        preconditionFailure("Cannot cast \(type(of: objCValue)) to \(Value.self)")
-      }
-      do {
-        return try work(value).objCPromise
-      } catch let error {
-        return error as NSError
-      }
-    }))
+    let promise = Promise<Result>(
+      objCPromise.__onQueue(queue, progressUnits: progressUnits, then: { objCValue, progress in
+        guard let value = Promise<Value>.asValue(objCValue) else {
+          preconditionFailure("Cannot cast \(type(of: objCValue)) to \(Value.self)")
+        }
+        do {
+          return try work(value, progress).objCPromise
+        } catch let error {
+          return error as NSError
+        }
+      })
+    )
     // Keep Swift wrapper alive for chained promise until `ObjCPromise` counterpart is resolved.
     objCPromise.__pendingObjects?.add(promise)
     return promise
+  }
+
+  @discardableResult
+  public func then<Result>(
+    on queue: DispatchQueue = .promises,
+    _ work: @escaping Then<Promise<Result>>
+  ) -> Promise<Result> {
+    return then(on: queue) { value, _ in try work(value) }
   }
 
   /// Creates a pending promise which eventually gets resolved with the value returned from `work`
@@ -56,22 +68,33 @@ public extension Promise {
   @discardableResult
   public func then<Result>(
     on queue: DispatchQueue = .promises,
-    _ work: @escaping Then<Result>
+    progressUnits: Int64 = 1,
+    _ work: @escaping ThenProgress<Result>
   ) -> Promise<Result> {
-    let promise = Promise<Result>(objCPromise.__onQueue(queue, then: { objCValue in
-      guard let value = Promise<Value>.asValue(objCValue) else {
-        preconditionFailure("Cannot cast \(type(of: objCValue)) to \(Value.self)")
-      }
-      do {
-        let value = try work(value)
-        return value as? NSError ?? Promise<Result>.asAnyObject(value)
-      } catch let error {
-        return error as NSError
-      }
-    }))
+    let promise = Promise<Result>(
+      objCPromise.__onQueue(queue, progressUnits: progressUnits, then: { objCValue, progress in
+        guard let value = Promise<Value>.asValue(objCValue) else {
+          preconditionFailure("Cannot cast \(type(of: objCValue)) to \(Value.self)")
+        }
+        do {
+          let value = try work(value, progress)
+          return value as? NSError ?? Promise<Result>.asAnyObject(value)
+        } catch let error {
+          return error as NSError
+        }
+      })
+    )
     // Keep Swift wrapper alive for chained promise until `ObjCPromise` counterpart is resolved.
     objCPromise.__pendingObjects?.add(promise)
     return promise
+  }
+
+  @discardableResult
+  public func then<Result>(
+    on queue: DispatchQueue = .promises,
+    _ work: @escaping Then<Result>
+  ) -> Promise<Result> {
+    return then(on: queue) { value, _ in try work(value) }
   }
 
   /// Creates a pending promise which eventually gets resolved with the same resolution as `self`.
@@ -84,21 +107,32 @@ public extension Promise {
   @discardableResult
   public func then(
     on queue: DispatchQueue = .promises,
-    _ work: @escaping Then<Void>
+    progressUnits: Int64 = 1,
+    _ work: @escaping ThenProgress<Void>
   ) -> Promise {
-    let promise = Promise(objCPromise.__onQueue(queue, then: { objCValue in
-      guard let value = Promise<Value>.asValue(objCValue) else {
-        preconditionFailure("Cannot cast \(type(of: objCValue)) to \(Value.self)")
-      }
-      do {
-        try work(value)
-        return Promise<Value>.asAnyObject(value)
-      } catch let error {
-        return error as NSError
-      }
-    }))
+    let promise = Promise(
+      objCPromise.__onQueue(queue, progressUnits: progressUnits, then: { objCValue, progress in
+        guard let value = Promise<Value>.asValue(objCValue) else {
+          preconditionFailure("Cannot cast \(type(of: objCValue)) to \(Value.self)")
+        }
+        do {
+          try work(value, progress)
+          return Promise<Value>.asAnyObject(value)
+        } catch let error {
+          return error as NSError
+        }
+      })
+    )
     // Keep Swift wrapper alive for chained promise until `ObjCPromise` counterpart is resolved.
     objCPromise.__pendingObjects?.add(promise)
     return promise
+  }
+
+  @discardableResult
+  public func then(
+    on queue: DispatchQueue = .promises,
+    _ work: @escaping Then<Void>
+  ) -> Promise {
+    return then(on: queue) { value, _ in try work(value) }
   }
 }

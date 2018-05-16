@@ -15,14 +15,26 @@
 import Foundation
 
 public extension Promise {
+  public typealias AsyncProgress = (
+    @escaping (Value) -> Void,
+    @escaping (Error) -> Void,
+    Progress
+  ) throws -> Void
   public typealias Async = (@escaping (Value) -> Void, @escaping (Error) -> Void) throws -> Void
 
   /// Creates a pending promise and executes `work` block asynchronously on the given `queue`.
   /// - parameters:
   ///   - queue: A queue to invoke the `work` block on.
   ///   - work: A block to perform any operations needed to resolve the promise.
-  public convenience init(on queue: DispatchQueue = .promises, _ work: @escaping Async) {
-    let objCPromise = ObjCPromise<AnyObject>.__onQueue(queue) { fulfill, reject in
+  public convenience init(
+    on queue: DispatchQueue = .promises,
+    progressUnits: Int64 = 1,
+    _ work: @escaping AsyncProgress
+  ) {
+    let objCPromise = ObjCPromise<AnyObject>.__onQueue(
+      queue,
+      progressUnits: progressUnits
+    ) { fulfill, reject, progress in
       do {
         try work({ value in
           if let error = value as? NSError {
@@ -30,7 +42,7 @@ public extension Promise {
           } else {
             fulfill(Promise<Value>.asAnyObject(value))
           }
-        }, reject)
+        }, reject, progress)
       } catch let error {
         reject(error as NSError)
       }
@@ -38,5 +50,11 @@ public extension Promise {
     self.init(objCPromise)
     // Keep Swift wrapper alive for chained promise until `ObjCPromise` counterpart is resolved.
     objCPromise.__pendingObjects?.add(self)
+  }
+
+  public convenience init(on queue: DispatchQueue = .promises, _ work: @escaping Async) {
+    self.init(on: queue) { fulfill, reject, _ in
+      try work(fulfill, reject)
+    }
   }
 }

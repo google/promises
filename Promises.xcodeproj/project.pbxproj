@@ -104,6 +104,11 @@
 		035D15F520915B550089EF3D /* FBLPromise+AwaitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 035D15F320915B490089EF3D /* FBLPromise+AwaitTests.m */; };
 		035D15F8209220120089EF3D /* FBLPromise+Delay.m in Sources */ = {isa = PBXBuildFile; fileRef = 035D15EE20911AB70089EF3D /* FBLPromise+Delay.m */; };
 		035D15F9209220150089EF3D /* FBLPromise+Await.m in Sources */ = {isa = PBXBuildFile; fileRef = 035D15E6208EF8750089EF3D /* FBLPromise+Await.m */; };
+		038E868E20A81C7800AD1FF7 /* FBLPromise+ProgressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 034D93AA20A808A400289777 /* FBLPromise+ProgressTests.m */; };
+		038E869120A88C0E00AD1FF7 /* FBLPromiseProgress.h in Headers */ = {isa = PBXBuildFile; fileRef = 038E868F20A88C0100AD1FF7 /* FBLPromiseProgress.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		038E869220A88C1A00AD1FF7 /* FBLPromiseProgressPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 038E869020A88C0200AD1FF7 /* FBLPromiseProgressPrivate.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		038E869420A88C2E00AD1FF7 /* FBLPromiseProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 038E869320A88C2E00AD1FF7 /* FBLPromiseProgress.m */; };
+		038E869720A9241300AD1FF7 /* Promise+ProgressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038E869520A9240D00AD1FF7 /* Promise+ProgressTests.swift */; };
 		0391947B2095B73200C40218 /* Promise+DelayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039194792095B72300C40218 /* Promise+DelayTests.swift */; };
 		0391947E2095B9C600C40218 /* FBLPromise+DelayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0391947C2095B9BE00C40218 /* FBLPromise+DelayTests.m */; };
 		OBJ_134 /* PromisesTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::PromisesTestHelpers::Product" /* PromisesTestHelpers.framework */; };
@@ -387,6 +392,7 @@
 		03326C312084642000872827 /* FBLPromise+Reduce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Reduce.m"; sourceTree = "<group>"; };
 		03326C342084643600872827 /* FBLPromise+Reduce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Reduce.h"; sourceTree = "<group>"; };
 		03326C36208464C100872827 /* FBLPromise+ReduceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+ReduceTests.m"; sourceTree = "<group>"; };
+		034D93AA20A808A400289777 /* FBLPromise+ProgressTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+ProgressTests.m"; sourceTree = "<group>"; };
 		035D15DF208EDD460089EF3D /* Promise+Await.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Await.swift"; sourceTree = "<group>"; };
 		035D15E2208EE1F10089EF3D /* Promise+AwaitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+AwaitTests.swift"; sourceTree = "<group>"; };
 		035D15E6208EF8750089EF3D /* FBLPromise+Await.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Await.m"; sourceTree = "<group>"; };
@@ -395,6 +401,10 @@
 		035D15EE20911AB70089EF3D /* FBLPromise+Delay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Delay.m"; sourceTree = "<group>"; };
 		035D15F120911ACA0089EF3D /* FBLPromise+Delay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Delay.h"; sourceTree = "<group>"; };
 		035D15F320915B490089EF3D /* FBLPromise+AwaitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+AwaitTests.m"; sourceTree = "<group>"; };
+		038E868F20A88C0100AD1FF7 /* FBLPromiseProgress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBLPromiseProgress.h; sourceTree = "<group>"; };
+		038E869020A88C0200AD1FF7 /* FBLPromiseProgressPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBLPromiseProgressPrivate.h; sourceTree = "<group>"; };
+		038E869320A88C2E00AD1FF7 /* FBLPromiseProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLPromiseProgress.m; sourceTree = "<group>"; };
+		038E869520A9240D00AD1FF7 /* Promise+ProgressTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+ProgressTests.swift"; sourceTree = "<group>"; };
 		039194792095B72300C40218 /* Promise+DelayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+DelayTests.swift"; sourceTree = "<group>"; };
 		0391947C2095B9BE00C40218 /* FBLPromise+DelayTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+DelayTests.m"; sourceTree = "<group>"; };
 		"Promises::FBLPromises::Product" /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -591,6 +601,7 @@
 				03204070204547D300D2D16C /* FBLPromise+Validate.m */,
 				03204050204547D300D2D16C /* FBLPromise+Wrap.m */,
 				03204066204547D300D2D16C /* FBLPromiseError.m */,
+				038E869320A88C2E00AD1FF7 /* FBLPromiseProgress.m */,
 				03204051204547D300D2D16C /* include */,
 			);
 			path = FBLPromises;
@@ -618,6 +629,8 @@
 				03204061204547D300D2D16C /* FBLPromise+Wrap.h */,
 				0320405D204547D300D2D16C /* FBLPromiseError.h */,
 				0320405A204547D300D2D16C /* FBLPromisePrivate.h */,
+				038E868F20A88C0100AD1FF7 /* FBLPromiseProgress.h */,
+				038E869020A88C0200AD1FF7 /* FBLPromiseProgressPrivate.h */,
 				03204059204547D300D2D16C /* FBLPromises.h */,
 				0320405F204547D300D2D16C /* framework.modulemap */,
 			);
@@ -640,6 +653,7 @@
 		03204073204547D300D2D16C /* PromisesTests */ = {
 			isa = PBXGroup;
 			children = (
+				038E869520A9240D00AD1FF7 /* Promise+ProgressTests.swift */,
 				03204074204547D300D2D16C /* Promise+AllTests.swift */,
 				0320407A204547D300D2D16C /* Promise+AlwaysTests.swift */,
 				03204080204547D400D2D16C /* Promise+AnyTests.swift */,
@@ -688,6 +702,7 @@
 		03204088204547D400D2D16C /* FBLPromisesTests */ = {
 			isa = PBXGroup;
 			children = (
+				034D93AA20A808A400289777 /* FBLPromise+ProgressTests.m */,
 				03204090204547D400D2D16C /* FBLPromise+AllTests.m */,
 				0320408A204547D400D2D16C /* FBLPromise+AlwaysTests.m */,
 				03204089204547D400D2D16C /* FBLPromise+AnyTests.m */,
@@ -750,6 +765,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				038E869120A88C0E00AD1FF7 /* FBLPromiseProgress.h in Headers */,
 				032B80FF204549080097BF12 /* FBLPromise+Race.h in Headers */,
 				035D15F220911AD30089EF3D /* FBLPromise+Delay.h in Headers */,
 				032B8109204549080097BF12 /* FBLPromise+Any.h in Headers */,
@@ -757,6 +773,7 @@
 				032B8100204549080097BF12 /* FBLPromise+Async.h in Headers */,
 				032B80FC204549080097BF12 /* FBLPromise.h in Headers */,
 				032B8106204549080097BF12 /* FBLPromise+Then.h in Headers */,
+				038E869220A88C1A00AD1FF7 /* FBLPromiseProgressPrivate.h in Headers */,
 				032B8108204549080097BF12 /* FBLPromise+Validate.h in Headers */,
 				032B810B204549080097BF12 /* FBLPromisePrivate.h in Headers */,
 				032B80FE204549080097BF12 /* FBLPromise+Always.h in Headers */,
@@ -1026,6 +1043,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				038E869720A9241300AD1FF7 /* Promise+ProgressTests.swift in Sources */,
 				032B813B204549700097BF12 /* Promise+DoTests.swift in Sources */,
 				03326C3020841E4D00872827 /* Promise+ReduceTests.swift in Sources */,
 				032B8141204549700097BF12 /* Promise+AnyTests.swift in Sources */,
@@ -1058,6 +1076,7 @@
 				032B812B204549590097BF12 /* FBLPromise+DoTests.m in Sources */,
 				032B812D204549590097BF12 /* FBLPromise+WrapTests.m in Sources */,
 				032B8127204549590097BF12 /* FBLPromise+AlwaysTests.m in Sources */,
+				038E868E20A81C7800AD1FF7 /* FBLPromise+ProgressTests.m in Sources */,
 				035D15F520915B550089EF3D /* FBLPromise+AwaitTests.m in Sources */,
 				032B8131204549590097BF12 /* FBLPromise+AnyTests.m in Sources */,
 				032B812E204549590097BF12 /* FBLPromise+ThenTests.m in Sources */,
@@ -1139,6 +1158,7 @@
 				035D15F9209220150089EF3D /* FBLPromise+Await.m in Sources */,
 				035D15F8209220120089EF3D /* FBLPromise+Delay.m in Sources */,
 				032B80EE204549000097BF12 /* FBLPromise+All.m in Sources */,
+				038E869420A88C2E00AD1FF7 /* FBLPromiseProgress.m in Sources */,
 				032B80F1204549000097BF12 /* FBLPromise+Async.m in Sources */,
 				032B80F4204549000097BF12 /* FBLPromise+Recover.m in Sources */,
 				032B80F5204549000097BF12 /* FBLPromise+Wrap.m in Sources */,
@@ -1739,8 +1759,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
@@ -1785,8 +1805,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

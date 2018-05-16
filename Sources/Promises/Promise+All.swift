@@ -74,7 +74,7 @@ public func all<A, B>(
     Promise<(A, B)>.ObjCPromise<AnyObject>.__onQueue(
       queue,
       all: promises
-    ).__onQueue(queue, then: { objCValues in
+    ).__onQueue(queue, progressUnits: 1, then: { objCValues, progress in
       guard let values = objCValues as [AnyObject]?,
             let valueA = Promise<A>.asValue(values[0]),
             let valueB = Promise<B>.asValue(values[1])
@@ -116,7 +116,7 @@ public func all<A, B, C>(
     Promise<(A, B, C)>.ObjCPromise<AnyObject>.__onQueue(
       queue,
       all: promises
-    ).__onQueue(queue, then: { objCValues in
+    ).__onQueue(queue, progressUnits: 1, then: { objCValues, progress in
       guard let values = objCValues as [AnyObject]?,
             let valueA = Promise<A>.asValue(values[0]),
             let valueB = Promise<B>.asValue(values[1]),

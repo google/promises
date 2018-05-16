@@ -52,7 +52,7 @@ public func any<Value, Container: Sequence>(
     Promise<[Maybe<Value>]>.ObjCPromise<AnyObject>.__onQueue(
       queue,
       any: promises
-    ).__onQueue(queue, then: { values in
+    ).__onQueue(queue, progressUnits: 1, then: { values, progress in
       guard let values = values as [AnyObject]? else { preconditionFailure() }
       return Promise<[Maybe<Value>]>.asAnyObject(values.map { asMaybe($0) as Maybe<Value> })
     })
@@ -89,7 +89,7 @@ public func any<A, B>(
     Promise<(Maybe<A>, Maybe<B>)>.ObjCPromise<AnyObject>.__onQueue(
       queue,
       any: promises
-    ).__onQueue(queue, then: { objCValues in
+    ).__onQueue(queue, progressUnits: 1, then: { objCValues, progress in
       guard let values = objCValues as [AnyObject]? else { preconditionFailure() }
       let valueA = asMaybe(values[0]) as Maybe<A>
       let valueB = asMaybe(values[1]) as Maybe<B>
@@ -131,7 +131,7 @@ public func any<A, B, C>(
     Promise<(Maybe<A>, Maybe<B>, Maybe<C>)>.ObjCPromise<AnyObject>.__onQueue(
       queue,
       any: promises
-    ).__onQueue(queue, then: { objCValues in
+    ).__onQueue(queue, progressUnits: 1, then: { objCValues, progress in
       guard let values = objCValues as [AnyObject]? else { preconditionFailure() }
       let valueA = asMaybe(values[0]) as Maybe<A>
       let valueB = asMaybe(values[1]) as Maybe<B>

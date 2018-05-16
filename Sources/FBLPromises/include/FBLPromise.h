@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(class) dispatch_queue_t defaultDispatchQueue NS_REFINED_FOR_SWIFT;
 
+@property(nonatomic, readonly) NSProgress *progress NS_REFINED_FOR_SWIFT;
+
 /**
  Creates a pending promise.
  */
@@ -54,6 +56,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param error An error to reject the promise with.
  */
 - (void)reject:(NSError *)error NS_REFINED_FOR_SWIFT;
+
+- (void)cancel NS_REFINED_FOR_SWIFT;
 
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;

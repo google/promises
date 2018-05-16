@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FBLPromise<Value>(ThenAdditions)
 
 typedef id __nullable (^FBLPromiseThenWorkBlock)(Value __nullable value) NS_SWIFT_UNAVAILABLE("");
+typedef id __nullable (^FBLPromiseThenProgressWorkBlock)(Value __nullable value,
+                                                         NSProgress *progress)
+    NS_SWIFT_UNAVAILABLE("");
 
 /**
  Creates a pending promise which eventually gets resolved with resolution returned from `work`
@@ -44,7 +47,14 @@ typedef id __nullable (^FBLPromiseThenWorkBlock)(Value __nullable value) NS_SWIF
  @return A new pending promise to be resolved with resolution returned from the `work` block.
  */
 - (FBLPromise *)onQueue:(dispatch_queue_t)queue
-                   then:(FBLPromiseThenWorkBlock)work NS_REFINED_FOR_SWIFT;
+                   then:(FBLPromiseThenWorkBlock)work NS_SWIFT_UNAVAILABLE("");
+
+- (FBLPromise *)progressUnits:(int64_t)totalUnitCount
+                         then:(FBLPromiseThenProgressWorkBlock)work NS_SWIFT_UNAVAILABLE("");
+
+- (FBLPromise *)onQueue:(dispatch_queue_t)queue
+          progressUnits:(int64_t)totalUnitCount
+                   then:(FBLPromiseThenProgressWorkBlock)work NS_REFINED_FOR_SWIFT;
 
 @end
 
@@ -57,6 +67,10 @@ typedef id __nullable (^FBLPromiseThenWorkBlock)(Value __nullable value) NS_SWIF
 - (FBLPromise* (^)(FBLPromiseThenWorkBlock))then FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
 - (FBLPromise* (^)(dispatch_queue_t, FBLPromiseThenWorkBlock))thenOn FBL_PROMISES_DOT_SYNTAX
     NS_SWIFT_UNAVAILABLE("");
+- (FBLPromise* (^)(int64_t, FBLPromiseThenProgressWorkBlock))thenProgress FBL_PROMISES_DOT_SYNTAX
+    NS_SWIFT_UNAVAILABLE("");
+- (FBLPromise* (^)(dispatch_queue_t, int64_t, FBLPromiseThenProgressWorkBlock))thenProgressOn
+    FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
 
 @end
 

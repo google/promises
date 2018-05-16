@@ -3,6 +3,7 @@ framework module FBLPromises {
 
     header "FBLPromise.h"
     header "FBLPromiseError.h"
+    header "FBLPromiseProgress.h"
     header "FBLPromise+All.h"
     header "FBLPromise+Always.h"
     header "FBLPromise+Any.h"
