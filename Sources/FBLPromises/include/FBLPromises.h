@@ -24,6 +24,7 @@
 #import "FBLPromise+Do.h"
 #import "FBLPromise+Race.h"
 #import "FBLPromise+Recover.h"
+#import "FBLPromise+Reduce.h"
 #import "FBLPromise+Then.h"
 #import "FBLPromise+Timeout.h"
 #import "FBLPromise+Validate.h"
