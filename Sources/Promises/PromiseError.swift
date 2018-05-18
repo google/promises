@@ -28,9 +28,9 @@ extension PromiseError {
     let error = error as NSError
     if error.domain != __FBLPromiseErrorDomain { return nil }
     switch error.code {
-    case __FBLPromiseErrorCode.timedOut.rawValue:
+    case __FBLPromiseError.timedOut.rawValue:
       self = .timedOut
-    case __FBLPromiseErrorCode.validationFailure.rawValue:
+    case __FBLPromiseError.validationFailure.rawValue:
       self = .validationFailure
     default:
       return nil
@@ -46,9 +46,9 @@ extension PromiseError: CustomNSError {
   public var errorCode: Int {
     switch self {
     case .timedOut:
-      return __FBLPromiseErrorCode.timedOut.rawValue
+      return __FBLPromiseError.timedOut.rawValue
     case .validationFailure:
-      return __FBLPromiseErrorCode.validationFailure.rawValue
+      return __FBLPromiseError.validationFailure.rawValue
     }
   }
 

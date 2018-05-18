@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FBLPromise<Value>(CatchAdditions)
 
-typedef void (^FBLPromiseCatchBlock)(NSError *error) NS_SWIFT_UNAVAILABLE("");
+typedef void (^FBLPromiseCatchWorkBlock)(NSError *error) NS_SWIFT_UNAVAILABLE("");
 
 /**
  Creates a pending promise which eventually gets resolved with same resolution as the receiver.
@@ -29,7 +29,7 @@ typedef void (^FBLPromiseCatchBlock)(NSError *error) NS_SWIFT_UNAVAILABLE("");
  @param reject A block to handle the error that receiver was rejected with.
  @return A new pending promise.
  */
-- (FBLPromise *)catch:(FBLPromiseCatchBlock)reject NS_SWIFT_UNAVAILABLE("");
+- (FBLPromise *)catch:(FBLPromiseCatchWorkBlock)reject NS_SWIFT_UNAVAILABLE("");
 
 /**
  Creates a pending promise which eventually gets resolved with same resolution as the receiver.
@@ -40,7 +40,7 @@ typedef void (^FBLPromiseCatchBlock)(NSError *error) NS_SWIFT_UNAVAILABLE("");
  @return A new pending promise.
  */
 - (FBLPromise *)onQueue:(dispatch_queue_t)queue
-                  catch:(FBLPromiseCatchBlock)reject NS_REFINED_FOR_SWIFT;
+                  catch:(FBLPromiseCatchWorkBlock)reject NS_REFINED_FOR_SWIFT;
 
 @end
 
@@ -50,8 +50,8 @@ typedef void (^FBLPromiseCatchBlock)(NSError *error) NS_SWIFT_UNAVAILABLE("");
  */
 @interface FBLPromise<Value>(DotSyntax_CatchAdditions)
 
-- (FBLPromise* (^)(FBLPromiseCatchBlock))catch FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
-- (FBLPromise* (^)(dispatch_queue_t, FBLPromiseCatchBlock))catchOn FBL_PROMISES_DOT_SYNTAX
+- (FBLPromise* (^)(FBLPromiseCatchWorkBlock))catch FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
+- (FBLPromise* (^)(dispatch_queue_t, FBLPromiseCatchWorkBlock))catchOn FBL_PROMISES_DOT_SYNTAX
     NS_SWIFT_UNAVAILABLE("");
 
 @end

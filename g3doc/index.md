@@ -414,7 +414,7 @@ In your `Package.swift` file, add `Promises` dependency to corresponding targets
 let package = Package(
   // ...
   dependencies: [
-    .package(url: "https://github.com/google/promises.git", from: "1.2"),
+    .package(url: "https://github.com/google/promises.git", from: "1.2.1"),
   ],
   // ...
 )
@@ -443,13 +443,13 @@ Or, the module, if `CLANG_ENABLE_MODULES = YES`:
 To use `Promises` for both Swift and Objective-C, add the following to your `Podfile`:
 
 ```ruby
-pod 'PromisesSwift', '~> 1.2'
+pod 'PromisesSwift', '~> 1.2.1'
 ```
 
 To use `Promises` for Objective-C only, add the following to your `Podfile`:
 
 ```ruby
-pod 'PromisesObjC', '~> 1.2'
+pod 'PromisesObjC', '~> 1.2.1'
 ```
 
 Also, don't forget to `use_frameworks!` in your target. Then, run `pod install`.

@@ -16,4 +16,4 @@
 
 #import "FBLPromiseError.h"
 
-NSString *const FBLPromiseErrorDomain = @"com.google.FBLPromises.Error";
+NSErrorDomain const FBLPromiseErrorDomain = @"com.google.FBLPromises.Error";

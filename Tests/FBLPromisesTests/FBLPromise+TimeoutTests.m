@@ -60,14 +60,12 @@
         XCTFail();
         return nil;
       }] catch:^(NSError *error) {
-        XCTAssertEqualObjects(error.domain, FBLPromiseErrorDomain);
-        XCTAssertEqual(error.code, FBLPromiseErrorCodeTimedOut);
+        XCTAssertTrue(FBLPromiseErrorIsTimedOut(error));
       }];
 
   // Assert.
   XCTAssert(FBLWaitForPromisesWithTimeout(10));
-  XCTAssertEqualObjects(promise.error.domain, FBLPromiseErrorDomain);
-  XCTAssertEqual(promise.error.code, FBLPromiseErrorCodeTimedOut);
+  XCTAssertTrue(FBLPromiseErrorIsTimedOut(promise.error));
   XCTAssertNil(promise.value);
 }
 
