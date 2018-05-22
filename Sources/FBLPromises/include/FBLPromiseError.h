@@ -23,7 +23,7 @@ extern NSErrorDomain const FBLPromiseErrorDomain NS_REFINED_FOR_SWIFT;
 /**
  Possible error codes in `FBLPromiseErrorDomain`.
  */
-typedef NS_ERROR_ENUM(FBLPromiseErrorDomain, FBLPromiseErrorCode) {
+typedef NS_ENUM(NSInteger, FBLPromiseErrorCode) {
   /** Promise failed to resolve in time. */
   FBLPromiseErrorCodeTimedOut = 1,
   /** Validation predicate returned false. */
