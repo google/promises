@@ -282,7 +282,7 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
 
 @implementation FBLPromise (DotSyntaxAdditions)
 
-+ (FBLPromise* (^)(id __nullable))resolve {
++ (FBLPromise* (^)(id __nullable))resolved {
   return ^(id resolution) {
     return [self resolvedWith:resolution];
   };
