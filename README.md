@@ -1,6 +1,6 @@
 [![Apache
 License](https://img.shields.io/github/license/google/promises.svg)](LICENSE)
-[![Travis](https://img.shields.io/travis/google/promises.svg)](https://travis-ci.org/google/promises)
+[![Travis](https://api.travis-ci.org/google/promises.svg?branch=master)](https://travis-ci.org/google/promises)
 
 ![Platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20iOS%20%7C%20tvOS%20%7C%20watchOS-blue.svg?longCache=true&style=flat)
 ![Languages](https://img.shields.io/badge/languages-Swift%20%7C%20ObjC-orange.svg?longCache=true&style=flat)
