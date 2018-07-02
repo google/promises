@@ -54,7 +54,7 @@
 - (void)testPromiseReduceReject {
   // Arrange.
   NSArray<NSNumber *> *numbers = @[ @1, @2, @3 ];
-  NSInteger __block count = 0;
+  NSUInteger __block count = 0;
 
   // Act.
   [[[[FBLPromise resolvedWith:@""]
