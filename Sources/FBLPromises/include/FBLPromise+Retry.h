@@ -19,10 +19,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /** The default number of retry attempts is 1. */
-FOUNDATION_EXTERN NSInteger const FBLPromiseRetryDefaultAttempts NS_REFINED_FOR_SWIFT;
+FOUNDATION_EXTERN NSInteger const FBLPromiseRetryDefaultAttemptsCount NS_REFINED_FOR_SWIFT;
 
-/** The default delay before making a retry attempt is 1.0 second. */
-FOUNDATION_EXTERN NSTimeInterval const FBLPromiseRetryDefaultDelay NS_REFINED_FOR_SWIFT;
+/** The default delay interval before making a retry attempt is 1.0 second. */
+FOUNDATION_EXTERN NSTimeInterval const FBLPromiseRetryDefaultDelayInterval NS_REFINED_FOR_SWIFT;
 
 @interface FBLPromise<Value>(RetryAdditions)
 
@@ -32,11 +32,11 @@ typedef BOOL (^FBLPromiseRetryPredicateBlock)(NSInteger, NSError *) NS_SWIFT_UNA
 /**
  Creates a pending promise that fulfills with the same value as the promise returned from `work`
  block, which executes asynchronously, or rejects with the same error after all retry attempts have
- been exhausted. Defaults to one retry attempt on rejection where the `work` block is reattempted
- after a one second delay.
+ been exhausted. Defaults to `FBLPromiseRetryDefaultAttemptsCount` attempt(s) on rejection where the
+ `work` block is retried after a delay of `FBLPromiseRetryDefaultDelayInterval` second(s).
 
- @param work A block that executes asynchronously and returns a value or an error used to resolve
-             the promise.
+ @param work A block that executes asynchronously on the default queue and returns a value or an
+             error used to resolve the promise.
  @return A new pending promise that fulfills with the same value as the promise returned from `work`
          block, or rejects with the same error after all retry attempts have been exhausted.
  */
@@ -45,8 +45,9 @@ typedef BOOL (^FBLPromiseRetryPredicateBlock)(NSInteger, NSError *) NS_SWIFT_UNA
 /**
  Creates a pending promise that fulfills with the same value as the promise returned from `work`
  block, which executes asynchronously on the given `queue`, or rejects with the same error after all
- retry attempts have been exhausted. Defaults to one retry attempt on rejection where the `work`
- block is reattempted on the given `queue` after a one second delay.
+ retry attempts have been exhausted. Defaults to `FBLPromiseRetryDefaultAttemptsCount` attempt(s) on
+ rejection where the `work` block is retried on the given `queue` after a delay of
+ `FBLPromiseRetryDefaultDelayInterval` second(s).
 
  @param queue A queue to invoke the `work` block on.
  @param work A block that executes asynchronously on the given `queue` and returns a value or an
@@ -60,11 +61,44 @@ typedef BOOL (^FBLPromiseRetryPredicateBlock)(NSInteger, NSError *) NS_SWIFT_UNA
 /**
  Creates a pending promise that fulfills with the same value as the promise returned from `work`
  block, which executes asynchronously, or rejects with the same error after all retry attempts have
- been exhausted. On rejection, the `work` block is reattempted after the given `delay` and will
- continue to retry until the number of specified `attempts` have been exhausted or will bail early
- if the given `condition` is not met.
+ been exhausted.
 
- @param count Max number of retry attempts.
+ @param count Max number of retry attempts. The `work` block will be executed once if the specified
+              count is less than or equal to zero.
+ @param work A block that executes asynchronously on the default queue and returns a value or an
+             error used to resolve the promise.
+ @return A new pending promise that fulfills with the same value as the promise returned from `work`
+         block, or rejects with the same error after all retry attempts have been exhausted.
+ */
++ (FBLPromise *)attempts:(NSInteger)count
+                   retry:(FBLPromiseRetryWorkBlock)work NS_SWIFT_UNAVAILABLE("");
+
+/**
+ Creates a pending promise that fulfills with the same value as the promise returned from `work`
+ block, which executes asynchronously on the given `queue`, or rejects with the same error after all
+ retry attempts have been exhausted.
+
+ @param queue A queue to invoke the `work` block on.
+ @param count Max number of retry attempts. The `work` block will be executed once if the specified
+              count is less than or equal to zero.
+ @param work A block that executes asynchronously on the given `queue` and returns a value or an
+             error used to resolve the promise.
+ @return A new pending promise that fulfills with the same value as the promise returned from `work`
+         block, or rejects with the same error after all retry attempts have been exhausted.
+ */
++ (FBLPromise *)onQueue:(dispatch_queue_t)queue
+               attempts:(NSInteger)count
+                  retry:(FBLPromiseRetryWorkBlock)work NS_SWIFT_UNAVAILABLE("");
+
+/**
+ Creates a pending promise that fulfills with the same value as the promise returned from `work`
+ block, which executes asynchronously, or rejects with the same error after all retry attempts have
+ been exhausted. On rejection, the `work` block is retried after the given delay `interval` and will
+ continue to retry until the number of specified attempts have been exhausted or will bail early if
+ the given condition is not met.
+
+ @param count Max number of retry attempts. The `work` block will be executed once if the specified
+              count is less than or equal to zero.
  @param interval Time to wait before the next retry attempt.
  @param predicate Condition to check before the next retry attempt. The predicate block provides the
                   the number of remaining retry attempts and the error that the promise was rejected
@@ -73,7 +107,7 @@ typedef BOOL (^FBLPromiseRetryPredicateBlock)(NSInteger, NSError *) NS_SWIFT_UNA
              error used to resolve the promise.
  @return A new pending promise that fulfills with the same value as the promise returned from `work`
          block, or rejects with the same error after all retry attempts have been exhausted or if
-         the given `condition` is not met.
+         the given condition is not met.
  */
 + (FBLPromise *)attempts:(NSInteger)count
                    delay:(NSTimeInterval)interval
@@ -83,12 +117,13 @@ typedef BOOL (^FBLPromiseRetryPredicateBlock)(NSInteger, NSError *) NS_SWIFT_UNA
 /**
  Creates a pending promise that fulfills with the same value as the promise returned from `work`
  block, which executes asynchronously on the given `queue`, or rejects with the same error after all
- retry attempts have been exhausted. On rejection, the `work` block is reattempted after the given
- `delay` and will continue to retry until the number of specified `attempts` have been exhausted or
- will bail early if the given `condition` is not met.
+ retry attempts have been exhausted. On rejection, the `work` block is retried after the given
+ delay `interval` and will continue to retry until the number of specified attempts have been
+ exhausted or will bail early if the given condition is not met.
 
  @param queue A queue to invoke the `work` block on.
- @param count Max number of retry attempts.
+ @param count Max number of retry attempts. The `work` block will be executed once if the specified
+              count is less than or equal to zero.
  @param interval Time to wait before the next retry attempt.
  @param predicate Condition to check before the next retry attempt. The predicate block provides the
                   the number of remaining retry attempts and the error that the promise was rejected
@@ -97,7 +132,7 @@ typedef BOOL (^FBLPromiseRetryPredicateBlock)(NSInteger, NSError *) NS_SWIFT_UNA
              error used to resolve the promise.
  @return A new pending promise that fulfills with the same value as the promise returned from `work`
          block, or rejects with the same error after all retry attempts have been exhausted or if
-         the given `condition` is not met.
+         the given condition is not met.
  */
 + (FBLPromise *)onQueue:(dispatch_queue_t)queue
                attempts:(NSInteger)count
@@ -108,8 +143,8 @@ typedef BOOL (^FBLPromiseRetryPredicateBlock)(NSInteger, NSError *) NS_SWIFT_UNA
 @end
 
 /**
- Convenience dot-syntax wrappers for `FBLPromise` `retry` operators.
- Usage: FBLPromise.retryOn(queue, ^id { ... })
+ Convenience dot-syntax wrappers for `FBLPromise+Retry` operators.
+ Usage: FBLPromise.retry(^id { ... })
  */
 @interface FBLPromise<Value>(DotSyntax_RetryAdditions)
 

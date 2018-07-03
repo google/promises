@@ -32,7 +32,7 @@
 - (void)testPromiseRetryWithDefaultRetryAttemptAfterInitialReject {
   // Arrange.
   // Initial attempt count plus retry attempts count.
-  NSUInteger __block count = 1 + FBLPromiseRetryDefaultAttempts;
+  NSUInteger __block count = 1 + FBLPromiseRetryDefaultAttemptsCount;
 
   // Act.
   [[[FBLPromise retry:^id {
@@ -52,7 +52,7 @@
 
 - (void)testPromiseRetryNoRetryAttemptOnInitialFulfill {
   // Arrange.
-  NSUInteger __block count = 1 + FBLPromiseRetryDefaultAttempts;
+  NSUInteger __block count = 1 + FBLPromiseRetryDefaultAttemptsCount;
 
   // Act.
   [[[FBLPromise retry:^id {
@@ -67,7 +67,7 @@
 
   // Assert.
   XCTAssert(FBLWaitForPromisesWithTimeout(10.0));
-  XCTAssertEqual(count, FBLPromiseRetryDefaultAttempts);
+  XCTAssertEqual(count, FBLPromiseRetryDefaultAttemptsCount);
 }
 
 - (void)testPromiseRetryExhaustsAllRetryAttemptsBeforeRejection {
@@ -78,8 +78,6 @@
 
   // Act.
   [[[FBLPromise attempts:customAttempts
-                   delay:FBLPromiseRetryDefaultDelay
-               condition:nil
                    retry:^id {
                      count -= 1;
                      return retryError;
@@ -95,7 +93,7 @@
   XCTAssertEqual(count, 0);
 }
 
-- (void)testPromiseRetryDefaultDelayBeforeMakingRetryAttempt {
+- (void)testPromiseRetryAttemptMadeAfterDefaultDelay {
   // Arrange.
   NSInteger customAttempts = 3;
   NSUInteger __block count = 1 + customAttempts;
@@ -103,12 +101,11 @@
 
   // Act.
   [[[FBLPromise attempts:customAttempts
-                   delay:FBLPromiseRetryDefaultDelay
-               condition:nil
                    retry:^id {
-                     if (count == FBLPromiseRetryDefaultAttempts) {
-                       XCTAssertEqual([self roundedTimeIntervalWithStartDate:startDate],
-                                      FBLPromiseRetryDefaultDelay);
+                     if (count <= customAttempts) {
+                       NSTimeInterval timeInterval =
+                           [[NSDate date] timeIntervalSinceDate:startDate];
+                       XCTAssertGreaterThan(timeInterval, FBLPromiseRetryDefaultDelayInterval);
                      }
                      count -= 1;
                      startDate = [NSDate date];
@@ -128,7 +125,7 @@
   XCTAssertEqual(count, 0);
 }
 
-- (void)testPromiseRetryCustomDelayBeforeMakingRetryAttempt {
+- (void)testPromiseRetryAttemptMadeAfterCustomDelay {
   // Arrange.
   NSTimeInterval customDelay = 2.0;
   NSInteger customAttempts = 3;
@@ -141,8 +138,9 @@
           delay:customDelay
       condition:nil
           retry:^id {
-            if (count == FBLPromiseRetryDefaultAttempts) {
-              XCTAssertEqual([self roundedTimeIntervalWithStartDate:startDate], customDelay);
+            if (count <= customAttempts) {
+              NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:startDate];
+              XCTAssertGreaterThan(timeInterval, customDelay);
             }
             count -= 1;
             startDate = [NSDate date];
@@ -170,7 +168,7 @@
 
   // Act.
   [[[FBLPromise attempts:customAttempts
-      delay:FBLPromiseRetryDefaultDelay
+      delay:FBLPromiseRetryDefaultDelayInterval
       condition:^BOOL(NSInteger remainingAttempts, NSError *error) {
         XCTAssertEqual(count, remainingAttempts);
         return error.code == retry42Error.code;
@@ -207,7 +205,7 @@
       return promise;
     }];
     weakExtendedPromise2 = [FBLPromise attempts:customAttempts
-        delay:FBLPromiseRetryDefaultDelay
+        delay:FBLPromiseRetryDefaultDelayInterval
         condition:^BOOL(NSInteger remainingAttempts, NSError *error) {
           XCTAssertEqual(count, remainingAttempts);
           return error.code == retry42Error.code;
@@ -229,13 +227,6 @@
   XCTAssertEqual(count, 1);
   XCTAssertNil(weakExtendedPromise1);
   XCTAssertNil(weakExtendedPromise2);
-}
-
-#pragma mark - Private
-
-/** Returns the time interval from `startDate` to current date rounded to one decimal place. */
-- (NSTimeInterval)roundedTimeIntervalWithStartDate:(NSDate *)startDate {
-  return round([[NSDate date] timeIntervalSinceDate:startDate] * 10 / 10);
 }
 
 @end

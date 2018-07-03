@@ -16,14 +16,17 @@ import FBLPromises
 
 /// Creates a pending promise that fulfills with the same value as the promise returned from `work`
 /// block, which executes asynchronously on the given `queue`, or rejects with the same error after
-/// all retry attempts have been exhausted. On rejection, the `work` block is reattempted after the
-/// given `delay` and will continue to retry until the number of specified `attempts` have been
-/// exhausted or will bail early if the given `condition` is not met.
+/// all retry attempts have been exhausted. On rejection, the `work` block is retried after the
+/// given delay `interval` and will continue to retry until the number of specified attempts have
+/// been exhausted or will bail early if the given condition is not met.
 ///
 /// - parameters:
 ///   - queue: A queue to invoke the `work` block on.
-///   - count: Max number of retry attempts.
-///   - interval: Time to wait before the next retry attempt.
+///   - count: Max number of retry attempts. The `work` block will be executed once if the specified
+///            count is less than or equal to zero. The default is
+///            `__FBLPromiseRetryDefaultAttemptsCount`.
+///   - interval: Time to wait before the next retry attempt. The default is
+///               `__FBLPromiseRetryDefaultDelayInterval`.
 ///   - predicate: Condition to check before the next retry attempt.
 ///     - count: Number of remaining retry attempts.
 ///     - error: The error the promise was rejected with.
@@ -31,11 +34,11 @@ import FBLPromises
 ///           error used to resolve the promise.
 /// - returns: A new pending promise that fulfills with the same value as the promise returned from
 ///            `work` block, or rejects with the same error after all retry attempts have been
-///            exhausted or if the given `condition` is not met.
+///            exhausted or if the given condition is not met.
 public func retry<Value>(
   on queue: DispatchQueue = .promises,
-  attempts count: Int = __FBLPromiseRetryDefaultAttempts,
-  delay interval: TimeInterval = __FBLPromiseRetryDefaultDelay,
+  attempts count: Int = __FBLPromiseRetryDefaultAttemptsCount,
+  delay interval: TimeInterval = __FBLPromiseRetryDefaultDelayInterval,
   condition predicate: ((_ count: Int, _ error: Error) -> Bool)? = nil,
   _ work: @escaping () throws -> Promise<Value>
 ) -> Promise<Value> {

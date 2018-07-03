@@ -18,8 +18,8 @@
 
 #import "FBLPromisePrivate.h"
 
-NSInteger const FBLPromiseRetryDefaultAttempts = 1;
-NSTimeInterval const FBLPromiseRetryDefaultDelay = 1.0;
+NSInteger const FBLPromiseRetryDefaultAttemptsCount = 1;
+NSTimeInterval const FBLPromiseRetryDefaultDelayInterval = 1.0;
 
 static void FBLPromiseRetryAttempt(FBLPromise *promise, dispatch_queue_t queue, NSInteger count,
                                    NSTimeInterval interval, FBLPromiseRetryPredicateBlock predicate,
@@ -52,9 +52,19 @@ static void FBLPromiseRetryAttempt(FBLPromise *promise, dispatch_queue_t queue, 
 }
 
 + (FBLPromise *)onQueue:(dispatch_queue_t)queue retry:(FBLPromiseRetryWorkBlock)work {
+  return [self onQueue:queue attempts:FBLPromiseRetryDefaultAttemptsCount retry:work];
+}
+
++ (FBLPromise *)attempts:(NSInteger)count retry:(FBLPromiseRetryWorkBlock)work {
+  return [self onQueue:FBLPromise.defaultDispatchQueue attempts:count retry:work];
+}
+
++ (FBLPromise *)onQueue:(dispatch_queue_t)queue
+               attempts:(NSInteger)count
+                  retry:(FBLPromiseRetryWorkBlock)work {
   return [self onQueue:queue
-              attempts:FBLPromiseRetryDefaultAttempts
-                 delay:FBLPromiseRetryDefaultDelay
+              attempts:count
+                 delay:FBLPromiseRetryDefaultDelayInterval
              condition:nil
                  retry:work];
 }

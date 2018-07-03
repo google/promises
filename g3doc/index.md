@@ -1381,7 +1381,7 @@ Objective-C:
 ```objectivec
 - (FBLPromise<NSData *, NSURLResponse *> *)fetchWithURL:(NSURL *)url {
   return [FBLPromise wrap2ObjectsOrErrorCompletion:^(FBLPromise2ObjectsOrErrorCompletion handler) {
-    NSURLSession.sharedSession dataTaskWithURL:url completionHandler:handler];
+    [NSURLSession.sharedSession dataTaskWithURL:url completionHandler:handler];
   }];
 }
 

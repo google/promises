@@ -22,7 +22,7 @@ class PromiseRetryTests: XCTestCase {
 
   func testPromiseRetryWithDefaultRetryAttemptAfterInitialReject() {
     // Arrange.
-    var count = PromiseRetryTests.initialAttemptCount + __FBLPromiseRetryDefaultAttempts
+    var count = PromiseRetryTests.initialAttemptCount + __FBLPromiseRetryDefaultAttemptsCount
 
     // Act.
     retry {
@@ -41,7 +41,7 @@ class PromiseRetryTests: XCTestCase {
 
   func testPromiseRetryNoRetryAttemptOnInitialFulfill() {
     // Arrange.
-    var count = PromiseRetryTests.initialAttemptCount + __FBLPromiseRetryDefaultAttempts
+    var count = PromiseRetryTests.initialAttemptCount + __FBLPromiseRetryDefaultAttemptsCount
 
     // Act.
     retry {
@@ -55,7 +55,7 @@ class PromiseRetryTests: XCTestCase {
 
     // Assert.
     XCTAssert(waitForPromises(timeout: 10))
-    XCTAssertEqual(count, __FBLPromiseRetryDefaultAttempts)
+    XCTAssertEqual(count, __FBLPromiseRetryDefaultAttemptsCount)
   }
 
   func testPromiseRetryExhaustsAllRetryAttemptsBeforeRejection() {
@@ -78,7 +78,7 @@ class PromiseRetryTests: XCTestCase {
     XCTAssertEqual(count, 0)
   }
 
-  func testPromiseRetryDefaultDelayBeforeMakingRetryAttempt() {
+  func testPromiseRetryAttemptMadeAfterDefaultDelay() {
     // Arrange.
     let customAttempts = 3
     var count = PromiseRetryTests.initialAttemptCount + customAttempts
@@ -88,7 +88,10 @@ class PromiseRetryTests: XCTestCase {
     retry(attempts: customAttempts) {
       defer { startDate = Date() }
       if count <= customAttempts {
-        XCTAssertEqual(self.roundedTimeInterval(with: startDate), __FBLPromiseRetryDefaultDelay)
+        XCTAssertGreaterThan(
+          Date().timeIntervalSince(startDate),
+          __FBLPromiseRetryDefaultDelayInterval
+        )
       }
       count -= 1
       return count == 0 ? Promise(42) : Promise(Test.Error.code42)
@@ -103,9 +106,9 @@ class PromiseRetryTests: XCTestCase {
     XCTAssertEqual(count, 0)
   }
 
-  func testPromiseRetryCustomDelayBeforeMakingRetryAttempt() {
+  func testPromiseRetryAttemptMadeAfterCustomDelay() {
     // Arrange.
-    let customDelay: TimeInterval = 2.0
+    let customDelay: TimeInterval = 2.345
     let customAttempts = 3
     var count = PromiseRetryTests.initialAttemptCount + customAttempts
     var startDate = Date()
@@ -114,7 +117,7 @@ class PromiseRetryTests: XCTestCase {
     retry(attempts: customAttempts, delay: customDelay) { () -> Promise<Int> in
       defer { startDate = Date() }
       if count <= customAttempts {
-        XCTAssertEqual(self.roundedTimeInterval(with: startDate), customDelay)
+        XCTAssertGreaterThan(Date().timeIntervalSince(startDate), customDelay)
       }
       count -= 1
       return count == 0 ? Promise(42) : Promise(Test.Error.code42)
@@ -187,12 +190,5 @@ class PromiseRetryTests: XCTestCase {
     XCTAssertEqual(count, 1)
     XCTAssertNil(weakExtendedPromise1)
     XCTAssertNil(weakExtendedPromise2)
-  }
-
-  // MARK: - Private
-
-  /// Returns the time interval from `startDate` to current date rounded to one decimal place.
-  private func roundedTimeInterval(with startDate: Date) -> TimeInterval {
-    return TimeInterval(round(Date().timeIntervalSince(startDate) * 10) / 10)
   }
 }
