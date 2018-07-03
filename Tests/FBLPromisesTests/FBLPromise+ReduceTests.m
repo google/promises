@@ -54,6 +54,7 @@
 - (void)testPromiseReduceReject {
   // Arrange.
   NSArray<NSNumber *> *numbers = @[ @1, @2, @3 ];
+  NSUInteger const expectedCount = 2;
   NSUInteger __block count = 0;
 
   // Act.
@@ -75,7 +76,7 @@
 
   // Assert.
   XCTAssert(FBLWaitForPromisesWithTimeout(10));
-  XCTAssertEqual(count, 2);
+  XCTAssertEqual(count, expectedCount);
 }
 
 @end

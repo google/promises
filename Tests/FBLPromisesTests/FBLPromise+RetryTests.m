@@ -33,6 +33,7 @@
   // Arrange.
   // Initial attempt count plus retry attempts count.
   NSUInteger __block count = 1 + FBLPromiseRetryDefaultAttemptsCount;
+  NSUInteger const expectedCount = 0;
 
   // Act.
   [[[FBLPromise retry:^id {
@@ -46,13 +47,14 @@
   }];
 
   // Assert.
-  XCTAssert(FBLWaitForPromisesWithTimeout(10.0));
-  XCTAssertEqual(count, 0);
+  XCTAssert(FBLWaitForPromisesWithTimeout(15.0));
+  XCTAssertEqual(count, expectedCount);
 }
 
 - (void)testPromiseRetryNoRetryAttemptOnInitialFulfill {
   // Arrange.
   NSUInteger __block count = 1 + FBLPromiseRetryDefaultAttemptsCount;
+  NSUInteger const expectedCount = FBLPromiseRetryDefaultAttemptsCount;
 
   // Act.
   [[[FBLPromise retry:^id {
@@ -66,14 +68,15 @@
   }];
 
   // Assert.
-  XCTAssert(FBLWaitForPromisesWithTimeout(10.0));
-  XCTAssertEqual(count, FBLPromiseRetryDefaultAttemptsCount);
+  XCTAssert(FBLWaitForPromisesWithTimeout(15.0));
+  XCTAssertEqual(count, expectedCount);
 }
 
 - (void)testPromiseRetryExhaustsAllRetryAttemptsBeforeRejection {
   // Arrange.
-  NSInteger customAttempts = 3;
+  NSUInteger customAttempts = 3;
   NSUInteger __block count = 1 + customAttempts;
+  NSUInteger const expectedCount = 0;
   NSError *retryError = [NSError errorWithDomain:FBLPromiseErrorDomain code:42 userInfo:nil];
 
   // Act.
@@ -81,7 +84,7 @@
                    retry:^id {
                      count -= 1;
                      return retryError;
-                   }] then:^id(NSNumber *value) {
+                   }] then:^id(NSNumber __unused *_) {
     XCTFail(@"Promise should not be resolved with value.");
     return nil;
   }] catch:^(NSError *error) {
@@ -89,47 +92,47 @@
   }];
 
   // Assert.
-  XCTAssert(FBLWaitForPromisesWithTimeout(10.0));
-  XCTAssertEqual(count, 0);
+  XCTAssert(FBLWaitForPromisesWithTimeout(15.0));
+  XCTAssertEqual(count, expectedCount);
 }
 
 - (void)testPromiseRetryAttemptMadeAfterDefaultDelay {
   // Arrange.
-  NSInteger customAttempts = 3;
+  NSUInteger customAttempts = 3;
   NSUInteger __block count = 1 + customAttempts;
+  NSUInteger const expectedCount = 0;
   NSDate __block *startDate = [NSDate date];
 
   // Act.
-  [[[FBLPromise attempts:customAttempts
-                   retry:^id {
-                     if (count <= customAttempts) {
-                       NSTimeInterval timeInterval =
-                           [[NSDate date] timeIntervalSinceDate:startDate];
-                       XCTAssertGreaterThan(timeInterval, FBLPromiseRetryDefaultDelayInterval);
-                     }
-                     count -= 1;
-                     startDate = [NSDate date];
-                     return count == 0 ? @42
-                                       : [NSError errorWithDomain:FBLPromiseErrorDomain
-                                                             code:42
-                                                         userInfo:nil];
-                   }] then:^id(NSNumber *value) {
+  [[[FBLPromise
+      attempts:customAttempts
+         retry:^id {
+           if (count <= customAttempts) {
+             NSTimeInterval timeInterval = round([[NSDate date] timeIntervalSinceDate:startDate]);
+             XCTAssertGreaterThanOrEqual(timeInterval, FBLPromiseRetryDefaultDelayInterval);
+           }
+           count -= 1;
+           startDate = [NSDate date];
+           return count == 0 ? @42
+                             : [NSError errorWithDomain:FBLPromiseErrorDomain code:42 userInfo:nil];
+         }] then:^id(NSNumber *value) {
     XCTAssertEqual(value, @42);
     return nil;
-  }] catch:^(NSError *error) {
+  }] catch:^(NSError __unused *_) {
     XCTFail(@"Promise should not be resolved with error.");
   }];
 
   // Assert.
-  XCTAssert(FBLWaitForPromisesWithTimeout(10.0));
-  XCTAssertEqual(count, 0);
+  XCTAssert(FBLWaitForPromisesWithTimeout(15.0));
+  XCTAssertEqual(count, expectedCount);
 }
 
 - (void)testPromiseRetryAttemptMadeAfterCustomDelay {
   // Arrange.
   NSTimeInterval customDelay = 2.0;
-  NSInteger customAttempts = 3;
+  NSUInteger customAttempts = 2;
   NSUInteger __block count = 1 + customAttempts;
+  NSUInteger const expectedCount = 0;
   NSDate __block *startDate = [NSDate date];
 
   // Act.
@@ -139,8 +142,8 @@
       condition:nil
           retry:^id {
             if (count <= customAttempts) {
-              NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:startDate];
-              XCTAssertGreaterThan(timeInterval, customDelay);
+              NSTimeInterval timeInterval = round([[NSDate date] timeIntervalSinceDate:startDate]);
+              XCTAssertGreaterThanOrEqual(timeInterval, customDelay);
             }
             count -= 1;
             startDate = [NSDate date];
@@ -150,19 +153,20 @@
           }] then:^id(NSNumber *value) {
     XCTAssertEqual(value, @42);
     return nil;
-  }] catch:^(NSError *error) {
+  }] catch:^(NSError __unused *_) {
     XCTFail(@"Promise should not be resolved with error.");
   }];
 
   // Assert.
-  XCTAssert(FBLWaitForPromisesWithTimeout(10.0));
-  XCTAssertEqual(count, 0);
+  XCTAssert(FBLWaitForPromisesWithTimeout(15.0));
+  XCTAssertEqual(count, expectedCount);
 }
 
 - (void)testPromiseRetryRejectsBeforeRetryAttemptsAreExhaustedIfPredicateIsNotMet {
   // Arrange.
   NSInteger customAttempts = 3;
-  NSUInteger __block count = 1 + customAttempts;
+  NSInteger __block attemptsCount = 1 + customAttempts;
+  NSInteger const expectedCount = 1;
   NSError *retry42Error = [NSError errorWithDomain:FBLPromiseErrorDomain code:42 userInfo:nil];
   NSError *retry13Error = [NSError errorWithDomain:FBLPromiseErrorDomain code:13 userInfo:nil];
 
@@ -170,13 +174,13 @@
   [[[FBLPromise attempts:customAttempts
       delay:FBLPromiseRetryDefaultDelayInterval
       condition:^BOOL(NSInteger remainingAttempts, NSError *error) {
-        XCTAssertEqual(count, remainingAttempts);
+        XCTAssertEqual(attemptsCount, remainingAttempts);
         return error.code == retry42Error.code;
       }
       retry:^id {
-        count -= 1;
-        return count > 1 ? retry42Error : retry13Error;
-      }] then:^id(NSNumber *value) {
+        attemptsCount -= 1;
+        return attemptsCount > 1 ? retry42Error : retry13Error;
+      }] then:^id(NSNumber __unused *_) {
     XCTFail(@"Promise should not be resolved with value.");
     return nil;
   }] catch:^(NSError *error) {
@@ -184,8 +188,8 @@
   }];
 
   // Assert.
-  XCTAssert(FBLWaitForPromisesWithTimeout(10.0));
-  XCTAssertEqual(count, 1);
+  XCTAssert(FBLWaitForPromisesWithTimeout(15.0));
+  XCTAssertEqual(attemptsCount, expectedCount);
 }
 
 - (void)testPromiseRetryNoDeallocUntilResolved {
@@ -194,7 +198,8 @@
   FBLPromise __weak *weakExtendedPromise1;
   FBLPromise __weak *weakExtendedPromise2;
   NSInteger customAttempts = 3;
-  NSUInteger __block count = 1 + customAttempts;
+  NSInteger __block attemptsCount = 1 + customAttempts;
+  NSInteger const expectedCount = 1;
   NSError *retry42Error = [NSError errorWithDomain:FBLPromiseErrorDomain code:42 userInfo:nil];
 
   // Act.
@@ -207,12 +212,12 @@
     weakExtendedPromise2 = [FBLPromise attempts:customAttempts
         delay:FBLPromiseRetryDefaultDelayInterval
         condition:^BOOL(NSInteger remainingAttempts, NSError *error) {
-          XCTAssertEqual(count, remainingAttempts);
+          XCTAssertEqual(attemptsCount, remainingAttempts);
           return error.code == retry42Error.code;
         }
         retry:^id {
-          count -= 1;
-          return count > 1 ? retry42Error : promise;
+          attemptsCount -= 1;
+          return attemptsCount > 1 ? retry42Error : promise;
         }];
     XCTAssertNotNil(weakExtendedPromise1);
     XCTAssertNotNil(weakExtendedPromise2);
@@ -223,8 +228,8 @@
   XCTAssertNotNil(weakExtendedPromise2);
 
   [promise fulfill:@42];
-  XCTAssert(FBLWaitForPromisesWithTimeout(10));
-  XCTAssertEqual(count, 1);
+  XCTAssert(FBLWaitForPromisesWithTimeout(15.0));
+  XCTAssertEqual(attemptsCount, expectedCount);
   XCTAssertNil(weakExtendedPromise1);
   XCTAssertNil(weakExtendedPromise2);
 }

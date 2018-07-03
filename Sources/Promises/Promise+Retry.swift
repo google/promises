@@ -27,7 +27,8 @@ import FBLPromises
 ///            `__FBLPromiseRetryDefaultAttemptsCount`.
 ///   - interval: Time to wait before the next retry attempt. The default is
 ///               `__FBLPromiseRetryDefaultDelayInterval`.
-///   - predicate: Condition to check before the next retry attempt.
+///   - predicate: Condition to check before the next retry attempt. The block takes the following
+///                parameters:
 ///     - count: Number of remaining retry attempts.
 ///     - error: The error the promise was rejected with.
 ///   - work: A block that executes asynchronously on the given `queue` and returns a value or an
@@ -42,11 +43,22 @@ public func retry<Value>(
   condition predicate: ((_ count: Int, _ error: Error) -> Bool)? = nil,
   _ work: @escaping () throws -> Promise<Value>
 ) -> Promise<Value> {
+#if swift(>=4.1)
+  let predicateBlock = predicate
+#else
+  var predicateBlock: ((_ count: Int, _ error: Error) -> ObjCBool)?
+  if predicate != nil {
+    predicateBlock = { count, error -> ObjCBool in
+      guard let predicate = predicate else { return true }
+      return ObjCBool(predicate(count, error))
+    }
+  }
+#endif  // swift(>=4.1)
   let objCPromise = Promise<Value>.ObjCPromise<AnyObject>.__onQueue(
     queue,
     attempts: count,
     delay: interval,
-    condition: predicate
+    condition: predicateBlock
   ) {
     do {
       return try work().objCPromise
