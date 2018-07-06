@@ -106,6 +106,11 @@
 		035D15F9209220150089EF3D /* FBLPromise+Await.m in Sources */ = {isa = PBXBuildFile; fileRef = 035D15E6208EF8750089EF3D /* FBLPromise+Await.m */; };
 		0391947B2095B73200C40218 /* Promise+DelayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039194792095B72300C40218 /* Promise+DelayTests.swift */; };
 		0391947E2095B9C600C40218 /* FBLPromise+DelayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0391947C2095B9BE00C40218 /* FBLPromise+DelayTests.m */; };
+		4ADC8B8C20E54A4E00D10D3D /* FBLPromise+Retry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC8B8B20E54A4E00D10D3D /* FBLPromise+Retry.m */; };
+		4ADC8B8E20E54A5900D10D3D /* FBLPromise+Retry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4ADC8B8D20E54A5900D10D3D /* FBLPromise+Retry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4ADC8B9020E54A7500D10D3D /* Promise+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC8B8F20E54A7500D10D3D /* Promise+Retry.swift */; };
+		4ADC8B9220E54A8800D10D3D /* Promise+RetryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC8B9120E54A8800D10D3D /* Promise+RetryTests.swift */; };
+		4ADC8B9420E54A9E00D10D3D /* FBLPromise+RetryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC8B9320E54A9E00D10D3D /* FBLPromise+RetryTests.m */; };
 		OBJ_134 /* PromisesTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::PromisesTestHelpers::Product" /* PromisesTestHelpers.framework */; };
 		OBJ_135 /* Promises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::Promises::Product" /* Promises.framework */; };
 		OBJ_136 /* FBLPromisesTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::FBLPromisesTestHelpers::Product" /* FBLPromisesTestHelpers.framework */; };
@@ -397,6 +402,11 @@
 		035D15F320915B490089EF3D /* FBLPromise+AwaitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+AwaitTests.m"; sourceTree = "<group>"; };
 		039194792095B72300C40218 /* Promise+DelayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+DelayTests.swift"; sourceTree = "<group>"; };
 		0391947C2095B9BE00C40218 /* FBLPromise+DelayTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+DelayTests.m"; sourceTree = "<group>"; };
+		4ADC8B8B20E54A4E00D10D3D /* FBLPromise+Retry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Retry.m"; sourceTree = "<group>"; };
+		4ADC8B8D20E54A5900D10D3D /* FBLPromise+Retry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Retry.h"; sourceTree = "<group>"; };
+		4ADC8B8F20E54A7500D10D3D /* Promise+Retry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Retry.swift"; sourceTree = "<group>"; };
+		4ADC8B9120E54A8800D10D3D /* Promise+RetryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+RetryTests.swift"; sourceTree = "<group>"; };
+		4ADC8B9320E54A9E00D10D3D /* FBLPromise+RetryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+RetryTests.m"; sourceTree = "<group>"; };
 		"Promises::FBLPromises::Product" /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Promises::FBLPromisesInteroperabilityTests::Product" /* FBLPromisesInteroperabilityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = FBLPromisesInteroperabilityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Promises::FBLPromisesPerformanceTests::Product" /* FBLPromisesPerformanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = FBLPromisesPerformanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -560,6 +570,7 @@
 				03204045204547D300D2D16C /* Promise+Race.swift */,
 				03204040204547D300D2D16C /* Promise+Recover.swift */,
 				03326C2B20838CD200872827 /* Promise+Reduce.swift */,
+				4ADC8B8F20E54A7500D10D3D /* Promise+Retry.swift */,
 				0320403F204547D300D2D16C /* Promise+Testing.swift */,
 				0320404D204547D300D2D16C /* Promise+Then.swift */,
 				03204048204547D300D2D16C /* Promise+Timeout.swift */,
@@ -585,6 +596,7 @@
 				03204068204547D300D2D16C /* FBLPromise+Race.m */,
 				0320406E204547D300D2D16C /* FBLPromise+Recover.m */,
 				03326C312084642000872827 /* FBLPromise+Reduce.m */,
+				4ADC8B8B20E54A4E00D10D3D /* FBLPromise+Retry.m */,
 				0320406C204547D300D2D16C /* FBLPromise+Testing.m */,
 				03204065204547D300D2D16C /* FBLPromise+Then.m */,
 				03204067204547D300D2D16C /* FBLPromise+Timeout.m */,
@@ -611,6 +623,7 @@
 				03204064204547D300D2D16C /* FBLPromise+Race.h */,
 				03204054204547D300D2D16C /* FBLPromise+Recover.h */,
 				03326C342084643600872827 /* FBLPromise+Reduce.h */,
+				4ADC8B8D20E54A5900D10D3D /* FBLPromise+Retry.h */,
 				03204052204547D300D2D16C /* FBLPromise+Testing.h */,
 				0320405E204547D300D2D16C /* FBLPromise+Then.h */,
 				0320405C204547D300D2D16C /* FBLPromise+Timeout.h */,
@@ -651,6 +664,7 @@
 				03204075204547D300D2D16C /* Promise+RaceTests.swift */,
 				03204079204547D300D2D16C /* Promise+RecoverTests.swift */,
 				03326C2E20841E0300872827 /* Promise+ReduceTests.swift */,
+				4ADC8B9120E54A8800D10D3D /* Promise+RetryTests.swift */,
 				0320407F204547D400D2D16C /* Promise+ThenTests.swift */,
 				0320407D204547D300D2D16C /* Promise+TimeoutTests.swift */,
 				03204077204547D300D2D16C /* Promise+ValidateTests.swift */,
@@ -699,6 +713,7 @@
 				0320408D204547D400D2D16C /* FBLPromise+RaceTests.m */,
 				0320408E204547D400D2D16C /* FBLPromise+RecoverTests.m */,
 				03326C36208464C100872827 /* FBLPromise+ReduceTests.m */,
+				4ADC8B9320E54A9E00D10D3D /* FBLPromise+RetryTests.m */,
 				03204094204547D400D2D16C /* FBLPromise+ThenTests.m */,
 				03204095204547D400D2D16C /* FBLPromise+TimeoutTests.m */,
 				03204092204547D400D2D16C /* FBLPromise+ValidateTests.m */,
@@ -762,6 +777,7 @@
 				032B80FE204549080097BF12 /* FBLPromise+Always.h in Headers */,
 				032B80FD204549080097BF12 /* FBLPromise+All.h in Headers */,
 				032B8105204549080097BF12 /* FBLPromise+Testing.h in Headers */,
+				4ADC8B8E20E54A5900D10D3D /* FBLPromise+Retry.h in Headers */,
 				032B8104204549080097BF12 /* FBLPromise+Wrap.h in Headers */,
 				032B8103204549080097BF12 /* FBLPromise+Recover.h in Headers */,
 				035D15EA208EF8A00089EF3D /* FBLPromise+Await.h in Headers */,
@@ -1026,6 +1042,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				4ADC8B9220E54A8800D10D3D /* Promise+RetryTests.swift in Sources */,
 				032B813B204549700097BF12 /* Promise+DoTests.swift in Sources */,
 				03326C3020841E4D00872827 /* Promise+ReduceTests.swift in Sources */,
 				032B8141204549700097BF12 /* Promise+AnyTests.swift in Sources */,
@@ -1054,6 +1071,7 @@
 				0391947E2095B9C600C40218 /* FBLPromise+DelayTests.m in Sources */,
 				032B8129204549590097BF12 /* FBLPromise+AsyncTests.m in Sources */,
 				032B8128204549590097BF12 /* FBLPromise+RaceTests.m in Sources */,
+				4ADC8B9420E54A9E00D10D3D /* FBLPromise+RetryTests.m in Sources */,
 				032B812F204549590097BF12 /* FBLPromise+TimeoutTests.m in Sources */,
 				032B812B204549590097BF12 /* FBLPromise+DoTests.m in Sources */,
 				032B812D204549590097BF12 /* FBLPromise+WrapTests.m in Sources */,
@@ -1109,6 +1127,7 @@
 				035D15E1208EDD4E0089EF3D /* Promise+Await.swift in Sources */,
 				032B81132045493A0097BF12 /* Promise+All.swift in Sources */,
 				032B811E2045493A0097BF12 /* Promise+Validate.swift in Sources */,
+				4ADC8B9020E54A7500D10D3D /* Promise+Retry.swift in Sources */,
 				032B811C2045493A0097BF12 /* Promise+Then.swift in Sources */,
 				032B81162045493A0097BF12 /* Promise+Async.swift in Sources */,
 				032B81182045493A0097BF12 /* Promise+Do.swift in Sources */,
@@ -1143,6 +1162,7 @@
 				032B80F4204549000097BF12 /* FBLPromise+Recover.m in Sources */,
 				032B80F5204549000097BF12 /* FBLPromise+Wrap.m in Sources */,
 				032B80F0204549000097BF12 /* FBLPromise+Race.m in Sources */,
+				4ADC8B8C20E54A4E00D10D3D /* FBLPromise+Retry.m in Sources */,
 				032B80F9204549000097BF12 /* FBLPromise+Validate.m in Sources */,
 				032B80F3204549000097BF12 /* FBLPromise+Do.m in Sources */,
 				032B80EF204549000097BF12 /* FBLPromise+Always.m in Sources */,
@@ -1726,7 +1746,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.2.2;
+				CURRENT_PROJECT_VERSION = 1.2.3;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = YES;
@@ -1775,7 +1795,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 1.2.2;
+				CURRENT_PROJECT_VERSION = 1.2.3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

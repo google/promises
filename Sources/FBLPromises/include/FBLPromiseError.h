@@ -18,7 +18,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-extern NSErrorDomain const FBLPromiseErrorDomain NS_REFINED_FOR_SWIFT;
+FOUNDATION_EXTERN NSErrorDomain const FBLPromiseErrorDomain NS_REFINED_FOR_SWIFT;
 
 /**
  Possible error codes in `FBLPromiseErrorDomain`.

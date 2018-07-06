@@ -414,7 +414,7 @@ In your `Package.swift` file, add `Promises` dependency to corresponding targets
 let package = Package(
   // ...
   dependencies: [
-    .package(url: "https://github.com/google/promises.git", from: "1.2.2"),
+    .package(url: "https://github.com/google/promises.git", from: "1.2.3"),
   ],
   // ...
 )
@@ -443,13 +443,13 @@ Or, the module, if `CLANG_ENABLE_MODULES = YES`:
 To use `Promises` for both Swift and Objective-C, add the following to your `Podfile`:
 
 ```ruby
-pod 'PromisesSwift', '~> 1.2.2'
+pod 'PromisesSwift', '~> 1.2.3'
 ```
 
 To use `Promises` for Objective-C only, add the following to your `Podfile`:
 
 ```ruby
-pod 'PromisesObjC', '~> 1.2.2'
+pod 'PromisesObjC', '~> 1.2.3'
 ```
 
 Also, don't forget to `use_frameworks!` in your target. Then, run `pod install`.
@@ -1261,7 +1261,7 @@ Objective-C
 
 `delay` returns a new pending promise that fulfills with the same value as
 `self` after the given delay, or rejects with the same error immediately. It may
-come handy if you want to add an artificial pause to your promises chain.
+come in handy if you want to add an artificial pause to your promises chain.
 
 ### Race
 
@@ -1330,6 +1330,91 @@ NSArray<NSNumber *> *numbers = @[ @1, @2, @3 ];
   // Final result = 0, 1, 2, 3
   NSLog(@"Final result = %@", string);
   return nil;
+}];
+```
+
+### Retry
+
+`retry` provides the flexibility to reattempt a task if the promise associated
+with that task is initially rejected. By default, the operator makes a single
+retry attempt after the initial rejection with a one second delay before the
+reattempt is made. If the default values do not suffice for your use case, the
+`retry` operator also supports specifying a custom queue to dispatch the work
+block to, the max number of retry attempts, a delay time interval, and an optional
+predicate for bailing early if the given condition is not met.
+
+Swift:
+
+```swift
+func fetch(_ url: URL) -> Promise<(Data?, URLResponse?)> {
+  return wrap { URLSession.shared.dataTask(with: url, completionHandler: $0).resume() }
+}
+
+let url = URL(string: "https://myurl.com")!
+
+// Defaults to one retry attempt after a one second delay.
+retry { fetch(url) }.then { print($0) }.catch { print($0) }
+
+// Specifies a custom queue, 5 retry attempts, 2 second delay, and a predicate.
+let customQueue = DispatchQueue(label: "CustomQueue", qos: .userInitiated)
+retry(
+  on: customQueue
+  attempts: 5,
+  delay: 2,
+  condition: { remainingAttempts, error in
+    (error as NSError).code == URLError.notConnectedToInternet.rawValue
+  }
+) {
+  fetch(url)
+}.then { values in
+  // Will enter `then` block if one of the retry attempts succeeds.
+  print(values)
+}.catch { error in
+  // Will enter `catch` block if all retry attempts have been exhausted or the
+  // given condition was not met.
+  print(error)
+}
+```
+
+Objective-C:
+
+```objectivec
+- (FBLPromise<NSData *, NSURLResponse *> *)fetchWithURL:(NSURL *)url {
+  return [FBLPromise wrap2ObjectsOrErrorCompletion:^(FBLPromise2ObjectsOrErrorCompletion handler) {
+    [NSURLSession.sharedSession dataTaskWithURL:url completionHandler:handler];
+  }];
+}
+
+NSURL *url = [NSURL URLWithString:@"https://myurl.com"];
+
+// Defaults to one retry attempt after a one second delay.
+[[[FBLPromise retry:^id {
+  return [self fetchWithURL:url];
+}] then:^id(NSArray *values) {
+  NSLog(@"%@", values);
+  return nil;
+}] catch:^(NSError *error) {
+  NSLog(@"%@", error);
+}];
+
+// Specifies a custom queue, 5 retry attempts, 2 second delay, and a predicate.
+dispatch_queue_t customQueue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
+[[[FBLPromise onQueue:customQueue
+    attempts:5
+    delay:2.0
+    condition:^BOOL(NSInteger remainingAttempts, NSError *error) {
+      return error.code == NSURLErrorNotConnectedToInternet;
+    }
+    retry:^id {
+      return [self fetchWithURL:url];
+}] then:^id(NSArray *values) {
+  // Will enter `then` block if one of the retry attempts succeeds.
+  NSLog(@"%@", values);
+  return nil;
+}] catch:^(NSError *error) {
+  // Will enter `catch` block if all retry attempts have been exhausted or the
+  // given condition was not met.
+  NSLog(@"%@", error);
 }];
 ```
 

@@ -14,6 +14,7 @@ framework module FBLPromises {
     header "FBLPromise+Race.h"
     header "FBLPromise+Recover.h"
     header "FBLPromise+Reduce.h"
+    header "FBLPromise+Retry.h"
     header "FBLPromise+Testing.h"
     header "FBLPromise+Then.h"
     header "FBLPromise+Timeout.h"

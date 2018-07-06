@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param timeout Maximum time to wait.
  @return YES if all promises blocks have completed before the timeout and NO otherwise.
  */
-FOUNDATION_EXPORT BOOL FBLWaitForPromisesWithTimeout(NSTimeInterval timeout) NS_REFINED_FOR_SWIFT;
+FOUNDATION_EXTERN BOOL FBLWaitForPromisesWithTimeout(NSTimeInterval timeout) NS_REFINED_FOR_SWIFT;
 
 @interface FBLPromise<Value>(TestingAdditions)
 
