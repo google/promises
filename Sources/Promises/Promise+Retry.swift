@@ -43,11 +43,22 @@ public func retry<Value>(
   condition predicate: ((_ count: Int, _ error: Error) -> Bool)? = nil,
   _ work: @escaping () throws -> Promise<Value>
 ) -> Promise<Value> {
+#if (!swift(>=4.1) || (!swift(>=4.0) && swift(>=3.3)))
+  var predicateBlock: (( count: Int,  error: Error) -> ObjCBool)?
+  if predicate != nil {
+    predicateBlock = { count, error -> ObjCBool in
+      guard let predicate = predicate else { return true }
+      return ObjCBool(predicate(count, error))
+    }
+  }
+#else
+  let predicateBlock = predicate
+#endif  // (!swift(>=4.1) || (!swift(>=4.0) && swift(>=3.3)))
   let objCPromise = Promise<Value>.ObjCPromise<AnyObject>.__onQueue(
     queue,
     attempts: count,
     delay: interval,
-    condition: predicate
+    condition: predicateBlock
   ) {
     do {
       return try work().objCPromise
