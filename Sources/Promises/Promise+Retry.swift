@@ -44,7 +44,7 @@ public func retry<Value>(
   _ work: @escaping () throws -> Promise<Value>
 ) -> Promise<Value> {
 #if (!swift(>=4.1) || (!swift(>=4.0) && swift(>=3.3)))
-  var predicateBlock: (( count: Int,  error: Error) -> ObjCBool)?
+  var predicateBlock: ((_ count: Int, _ error: Error) -> ObjCBool)?
   if predicate != nil {
     predicateBlock = { count, error -> ObjCBool in
       guard let predicate = predicate else { return true }
