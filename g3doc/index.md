@@ -1620,7 +1620,7 @@ func testExample() {
   let promise = Promise<Int> { 42 }
 
   // Assert.
-  XCTAssert(waitForPromises(timeout: 1))
+  XCTAssert(waitForPromises(timeout: 2))
   XCTAssertEqual(promise.value, 42)
   XCTAssertNil(promise.error)
 }
