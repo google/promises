@@ -1,6 +1,6 @@
 [![Apache
 License](https://img.shields.io/github/license/google/promises.svg)](LICENSE)
-[![Travis](https://api.travis-ci.org/google/promises.svg?branch=master)](https://travis-ci.org/google/promises)
+[![Travis](https://api.travis-ci.org/google/promises.svg?branch=master)](https://travis-ci.org/google/promises) [![Join the chat at https://gitter.im/google-promises/Lobby](https://badges.gitter.im/google-promises/Lobby.svg)](https://gitter.im/google-promises/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ![Platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20iOS%20%7C%20tvOS%20%7C%20watchOS-blue.svg?longCache=true&style=flat)
 ![Languages](https://img.shields.io/badge/languages-Swift%20%7C%20ObjC-orange.svg?longCache=true&style=flat)
