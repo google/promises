@@ -993,6 +993,23 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0930;
+				TargetAttributes = {
+					"Promises::Promises" = {
+						LastSwiftMigration = 1000;
+					};
+					"Promises::PromisesInteroperabilityTests" = {
+						LastSwiftMigration = 1000;
+					};
+					"Promises::PromisesPerformanceTests" = {
+						LastSwiftMigration = 1000;
+					};
+					"Promises::PromisesTestHelpers" = {
+						LastSwiftMigration = 1000;
+					};
+					"Promises::PromisesTests" = {
+						LastSwiftMigration = 1000;
+					};
+				};
 			};
 			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "Promises" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1401,7 +1418,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.$(PRODUCT_BUNDLE_IDENTIFIER)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGET_NAME = PromisesTests;
 			};
 			name = Debug;
@@ -1418,7 +1435,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.$(PRODUCT_BUNDLE_IDENTIFIER)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGET_NAME = PromisesTests;
 			};
 			name = Release;
@@ -1481,7 +1498,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.$(PRODUCT_BUNDLE_IDENTIFIER)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGET_NAME = PromisesPerformanceTests;
 			};
 			name = Debug;
@@ -1498,7 +1515,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.$(PRODUCT_BUNDLE_IDENTIFIER)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGET_NAME = PromisesPerformanceTests;
 			};
 			name = Release;
@@ -1515,7 +1532,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.$(PRODUCT_BUNDLE_IDENTIFIER)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGET_NAME = PromisesInteroperabilityTests;
 			};
 			name = Debug;
@@ -1532,7 +1549,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.$(PRODUCT_BUNDLE_IDENTIFIER)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGET_NAME = PromisesInteroperabilityTests;
 			};
 			name = Release;
@@ -1552,6 +1569,7 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
 				TARGET_NAME = PromisesTestHelpers;
 			};
 			name = Debug;
@@ -1571,6 +1589,7 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
 				TARGET_NAME = PromisesTestHelpers;
 			};
 			name = Release;
@@ -1591,6 +1610,7 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
 				TARGET_NAME = Promises;
 			};
 			name = Debug;
@@ -1611,6 +1631,7 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
 				TARGET_NAME = Promises;
 			};
 			name = Release;
@@ -1766,7 +1787,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				USE_HEADERMAP = NO;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
@@ -1813,7 +1834,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				USE_HEADERMAP = NO;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
