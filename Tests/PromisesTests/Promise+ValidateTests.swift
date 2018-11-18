@@ -48,11 +48,13 @@ class PromiseValidateTests: XCTestCase {
     }.then { _ in
       XCTFail()
     }.catch { error in
+      XCTAssertTrue(error is PromiseError)
       XCTAssertTrue(error == PromiseError.validationFailure)
     }
 
     // Assert.
     XCTAssert(waitForPromises(timeout: 10))
+    XCTAssertTrue(promise.error is PromiseError)
     XCTAssertTrue(promise.error == PromiseError.validationFailure)
     XCTAssertNil(promise.value)
   }

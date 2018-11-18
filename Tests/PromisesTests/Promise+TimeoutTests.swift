@@ -44,11 +44,13 @@ class PromiseTimeoutTests: XCTestCase {
     }.timeout(0.1).then { _ in
       XCTFail()
     }.catch { error in
+      XCTAssertTrue(error is PromiseError)
       XCTAssertTrue(error == PromiseError.timedOut)
     }
 
     // Assert.
     XCTAssert(waitForPromises(timeout: 10))
+    XCTAssertTrue(promise.error is PromiseError)
     XCTAssertTrue(promise.error == PromiseError.timedOut)
     XCTAssertNil(promise.value)
   }

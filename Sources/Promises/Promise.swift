@@ -91,7 +91,11 @@ public final class Promise<Value> {
     return value
   }
 
-  var error: Error? { return objCPromise.__error }
+  var error: Error? {
+    guard let objCPromiseError = objCPromise.__error else { return nil }
+    // Convert `NSError` to `PromiseError` if applicable.
+    return PromiseError(objCPromiseError) ?? objCPromiseError
+  }
 
   /// Converts generic `Value` to `AnyObject`.
   static func asAnyObject(_ value: Value) -> AnyObject? {

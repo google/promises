@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Dispatch
+import Foundation
 
 public extension Promise {
 
@@ -27,9 +27,17 @@ public extension Promise {
     on queue: DispatchQueue = .promises,
     _ predicate: @escaping (Value) -> Bool
   ) -> Promise {
-    return then { (value: Value) -> Value in
-      guard predicate(value) else { throw PromiseError.validationFailure }
-      return value
-    }
+    let promise = Promise(objCPromise.__onQueue(
+      queue,
+      validate: { objCValue in
+        guard let value = Promise<Value>.asValue(objCValue) else {
+          preconditionFailure("Cannot cast \(type(of: objCValue)) to \(Value.self)")
+        }
+        return predicate(value)
+      }
+    ))
+    // Keep Swift wrapper alive for chained promise until `ObjCPromise` counterpart is resolved.
+    objCPromise.__pendingObjects?.add(promise)
+    return promise
   }
 }
