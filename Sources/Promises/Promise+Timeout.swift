@@ -24,7 +24,15 @@ public extension Promise {
   ///            rejected with `PromiseError.timedOut` error.
   @discardableResult
   public func timeout(on queue: DispatchQueue = .promises, _ interval: TimeInterval) -> Promise {
-    let promise = Promise(objCPromise.__onQueue(queue, timeout: interval))
+    let promise = Promise(
+      objCPromise.__onQueue(
+        queue,
+        timeout: interval
+      ).__onQueue(  // Convert `NSError` to `PromiseError.timedOut` if applicable.
+        queue,
+        recover: { (PromiseError($0) ?? $0) as NSError }
+      )
+    )
     // Keep Swift wrapper alive for chained promise until `ObjCPromise` counterpart is resolved.
     objCPromise.__pendingObjects?.add(promise)
     return promise
