@@ -91,7 +91,11 @@ public final class Promise<Value> {
     return value
   }
 
-  var error: Error? { return objCPromise.__error }
+  var error: Error? {
+    guard let objCPromiseError = objCPromise.__error else { return nil }
+    // Convert `NSError` to `PromiseError`, if applicable.
+    return PromiseError(objCPromiseError) ?? objCPromiseError
+  }
 
   /// Converts generic `Value` to `AnyObject`.
   static func asAnyObject(_ value: Value) -> AnyObject? {
@@ -101,7 +105,7 @@ public final class Promise<Value> {
   /// Converts `AnyObject` to generic `Value`, or `nil` if the conversion is not possible.
   static func asValue(_ value: AnyObject?) -> Value? {
     // Swift nil becomes NSNull during bridging.
-    return value as? Value ?? NSNull() as AnyObject as? Value
+    return (value as? Value) ?? NSNull() as AnyObject as? Value
   }
 
   // MARK: Private
@@ -109,7 +113,7 @@ public final class Promise<Value> {
   /// Checks if generic `Value` is bridged ObjC `nil`.
   private static func isBridgedNil(_ value: Value?) -> Bool {
     // Swift nil becomes NSNull during bridging.
-    return !(value is NSNull) && value as AnyObject is NSNull
+    return !(value is NSNull) && (value as AnyObject is NSNull)
   }
 }
 
