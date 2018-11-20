@@ -952,7 +952,7 @@ func work1(_ string: String) -> Promise<String> {
 }
 
 func work2(_ string: String) -> Promise<Int> {
-  return Promise {
+  return Promise { () -> Int in
     guard let number = Int(string), number > 0 else { throw CustomError() }
     return number
   }
