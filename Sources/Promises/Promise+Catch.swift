@@ -26,10 +26,10 @@ public extension Promise {
   @discardableResult
   public func `catch`(on queue: DispatchQueue = .promises, _ reject: @escaping Catch) -> Promise {
     let promise = Promise(objCPromise.__onQueue(queue, catch: {
-      // Convert `NSError` to `PromiseError` if applicable.
-      let promiseError = PromiseError($0) ?? $0
-      return reject(promiseError as NSError) }
-    ))
+      // Convert `NSError` to `PromiseError`, if applicable.
+      let error = PromiseError($0) ?? $0
+      return reject(error as NSError)
+    }))
     // Keep Swift wrapper alive for chained promise until `ObjCPromise` counterpart is resolved.
     objCPromise.__pendingObjects?.add(promise)
     return promise

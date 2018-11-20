@@ -29,9 +29,9 @@ public extension Promise {
   ) -> Promise {
     let promise = Promise(objCPromise.__onQueue(queue, recover: {
       do {
-        // Convert `NSError` to `PromiseError` if applicable.
-        let promiseError = PromiseError($0) ?? $0
-        return try recovery(promiseError).objCPromise
+        // Convert `NSError` to `PromiseError`, if applicable.
+        let error = PromiseError($0) ?? $0
+        return try recovery(error).objCPromise
       } catch let error {
         return error as NSError
       }
@@ -54,9 +54,9 @@ public extension Promise {
   ) -> Promise {
     let promise = Promise(objCPromise.__onQueue(queue, recover: {
       do {
-        // Convert `NSError` to `PromiseError` if applicable.
-        let promiseError = PromiseError($0) ?? $0
-        return Promise<Value>.asAnyObject(try recovery(promiseError)) as Any
+        // Convert `NSError` to `PromiseError`, if applicable.
+        let error = PromiseError($0) ?? $0
+        return Promise<Value>.asAnyObject(try recovery(error)) as Any
       } catch let error {
         return error as NSError
       }

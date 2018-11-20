@@ -33,7 +33,11 @@ public extension Promise {
         guard let value = Promise<Value>.asValue(objCValue) else {
           preconditionFailure("Cannot cast \(type(of: objCValue)) to \(Value.self)")
         }
+#if (swift(>=4.1) || (!swift(>=4.0) && swift(>=3.3)))
         return predicate(value)
+#else
+        return ObjCBool(predicate(value))
+#endif  // (swift(>=4.1) || (!swift(>=4.0) && swift(>=3.3)))
       }
     ))
     // Keep Swift wrapper alive for chained promise until `ObjCPromise` counterpart is resolved.
