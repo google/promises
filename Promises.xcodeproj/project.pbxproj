@@ -1312,7 +1312,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGET_NAME = FBLPromisesInteroperabilityTests;
 			};
@@ -1337,7 +1337,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGET_NAME = FBLPromisesInteroperabilityTests;
 			};
@@ -1361,7 +1361,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				TARGET_NAME = FBLPromisesPerformanceTests;
 			};
 			name = Debug;
@@ -1384,7 +1384,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				TARGET_NAME = FBLPromisesPerformanceTests;
 			};
 			name = Release;
@@ -1400,7 +1400,7 @@
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesTests_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGET_NAME = PromisesTests;
 			};
@@ -1417,7 +1417,7 @@
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesTests_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGET_NAME = PromisesTests;
 			};
@@ -1441,7 +1441,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				TARGET_NAME = FBLPromisesTests;
 			};
 			name = Debug;
@@ -1464,7 +1464,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				TARGET_NAME = FBLPromisesTests;
 			};
 			name = Release;
@@ -1480,7 +1480,7 @@
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesPerformanceTests_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGET_NAME = PromisesPerformanceTests;
 			};
@@ -1497,7 +1497,7 @@
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesPerformanceTests_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGET_NAME = PromisesPerformanceTests;
 			};
@@ -1514,7 +1514,7 @@
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesInteroperabilityTests_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGET_NAME = PromisesInteroperabilityTests;
 			};
@@ -1531,7 +1531,7 @@
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesInteroperabilityTests_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.google.$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGET_NAME = PromisesInteroperabilityTests;
 			};
@@ -1548,7 +1548,7 @@
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesTestHelpers_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = PromisesTestHelpers;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1567,7 +1567,7 @@
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesTestHelpers_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = PromisesTestHelpers;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1587,7 +1587,7 @@
 				INFOPLIST_FILE = Promises.xcodeproj/Promises_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = Promises;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1607,7 +1607,7 @@
 				INFOPLIST_FILE = Promises.xcodeproj/Promises_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = Promises;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1634,7 +1634,7 @@
 				MODULEMAP_FILE = "$(SRCROOT)/Sources/FBLPromisesTestHelpers/include/framework.modulemap";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = FBLPromisesTestHelpers;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1661,7 +1661,7 @@
 				MODULEMAP_FILE = "$(SRCROOT)/Sources/FBLPromisesTestHelpers/include/framework.modulemap";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = FBLPromisesTestHelpers;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1688,7 +1688,7 @@
 				MODULEMAP_FILE = "$(SRCROOT)/Sources/FBLPromises/include/framework.modulemap";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = FBLPromises;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1715,7 +1715,7 @@
 				MODULEMAP_FILE = "$(SRCROOT)/Sources/FBLPromises/include/framework.modulemap";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = FBLPromises;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
