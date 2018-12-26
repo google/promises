@@ -1022,7 +1022,9 @@ high-level patterns that would also be great to provide out of the box.
 they have, the promise returned from `all` will be fulfilled with the array of
 all fulfilled values. In Swift the `all` operator also allows passing promises
 of heterogeneous types, in which case the resulting promise will be resolved
-with a tuple containing the values of input promises in the same order.
+with a tuple containing the values of input promises in the same order. In 
+case one of the promises fails, the promise returned from `all` will fail as 
+well.
 
 Swift:
 
