@@ -37,19 +37,28 @@
     XCTAssertEqualObjects(value, @42);
     return value;
   }];
+  XCTestExpectation *delayedRejectCleanup = [self expectationWithDescription:@"delayedRejectCleanup"];
   FBLDelay(1, ^{
     [promise reject:[NSError errorWithDomain:FBLPromiseErrorDomain code:42 userInfo:nil]];
+    [delayedRejectCleanup fulfill];
   });
 
   // Assert.
   XCTAssert(FBLWaitForPromisesWithTimeout(10));
   XCTAssertEqualObjects(promise.value, @42);
   XCTAssertNil(promise.error);
+  
+  // Cleanup.
+  [self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
 - (void)testPromiseDelayFail {
   // Act.
   FBLPromise<NSNumber *> *promise = [[FBLPromise resolvedWith:@42] delay:1];
+  XCTestExpectation *delayedResolveCleanup = [self expectationWithDescription:@"delayedResolveCleanup"];
+  FBLDelay(1, ^{
+    [delayedResolveCleanup fulfill];
+  });
   [[promise catch:^(NSError *error) {
     XCTAssertEqualObjects(error.domain, FBLPromiseErrorDomain);
     XCTAssertEqual(error.code, 42);
@@ -66,6 +75,9 @@
   XCTAssertEqualObjects(promise.error.domain, FBLPromiseErrorDomain);
   XCTAssertEqual(promise.error.code, 42);
   XCTAssertNil(promise.value);
+  
+  // Cleanup.
+  [self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
 /**
