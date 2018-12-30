@@ -15,7 +15,7 @@
 import Dispatch
 
 /// Waits until all of the promises have been fulfilled.
-/// If one of the promises is rejected, then the returned promise is rejected with same error.
+/// If one of the promises is rejected, then the returned promise is rejected with the same error.
 /// If any other arbitrary value or `Error` appears in the array instead of `Promise`,
 /// it's implicitly considered a pre-fulfilled or pre-rejected `Promise` correspondingly.
 /// - parameters:
