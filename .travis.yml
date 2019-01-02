@@ -1,5 +1,5 @@
 os: osx
-osx_image: xcode9
+osx_image: xcode10
 language: objective-c
 install: true
 before_install:

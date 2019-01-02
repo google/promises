@@ -1,4 +1,4 @@
-// swift-tools-version:4.0
+// swift-tools-version:4.2
 // swiftlint:disable line_length
 // swiftlint:disable trailing_comma
 
