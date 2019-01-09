@@ -1018,11 +1018,15 @@ high-level patterns that would also be great to provide out of the box.
 
 ### All
 
-`all` class method waits for all the promises you give it to fulfill, and once
-they have, the promise returned from `all` will be fulfilled with the array of
-all fulfilled values. In Swift the `all` operator also allows passing promises
-of heterogeneous types, in which case the resulting promise will be resolved
-with a tuple containing the values of input promises in the same order.
+`all` class method waits for all the provided promises to be fulfilled. Once
+they've been fulfilled, the promise returned from `all` is fulfilled with an
+array of all fulfilled values. If one of the given promises is rejected, then
+the returned promise is rejected with the same error.
+
+In Swift, the `all` operator also allows passing promises of heterogeneous
+types. For this case, the returned promise will be resolved with a tuple
+containing the values of the input promises in the same order they were
+provided.
 
 Swift:
 
