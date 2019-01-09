@@ -1,9 +1,14 @@
 os: osx
-osx_image: xcode9
+osx_image: xcode10.1
 language: objective-c
 install: true
+addons:
+  homebrew:
+    taps: homebrew/cask-versions
+    casks: java8
 before_install:
     - brew update
     - brew install bazel
 script:
-    - bazel --batch test Tests --spawn_strategy=standalone --genrule_strategy=standalone --test_strategy=standalone --noshow_progress --noshow_loading_progress --verbose_failures --test_verbose_timeout_warnings --test_output=errors
+    - bazel shutdown
+    - bazel test Tests --nokeep_state_after_build --spawn_strategy=standalone --genrule_strategy=standalone --test_strategy=standalone --noshow_progress --noshow_loading_progress --verbose_failures --test_verbose_timeout_warnings --test_output=errors
