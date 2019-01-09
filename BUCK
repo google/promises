@@ -1,4 +1,4 @@
-PROJECT_VERSION = '1.2.3'
+PROJECT_VERSION = '1.2.4'
 
 BUNDLE_IDENTIFIER_PREFIX = 'com.google.'
 
@@ -11,7 +11,7 @@ OBJC_COPTS = [
     "-Wdocumentation",
 ]
 
-SWIFT_VERSION = "4"
+SWIFT_VERSION = "4.2"
 
 SWIFT_COPTS = [
     "-wmo",
@@ -106,7 +106,7 @@ apple_test(
         "Tests/PromisesTests/*.swift",
     ]),
     swift_version = SWIFT_VERSION,
-    compiler_flags = SWIFT_COPTS,
+    compiler_flags = [],
     deps = [
         ":PromisesTestHelpers",
     ],
