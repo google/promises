@@ -37,7 +37,7 @@ swift_library(
     srcs = glob([
         "Sources/PromisesTestHelpers/*.swift",
     ]),
-    copts = SWIFT_COPTS,
+    copts = [],
     module_name = "PromisesTestHelpers",
     deps = [
         ":Promises",
