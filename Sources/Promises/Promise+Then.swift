@@ -15,7 +15,7 @@
 import Foundation
 
 public extension Promise {
-  public typealias Then<Result> = (Value) throws -> Result
+  typealias Then<Result> = (Value) throws -> Result
 
   /// Creates a pending promise which eventually gets resolved with the same resolution as the
   /// promise returned from `work` block. The `work` block is executed asynchronously on the given
@@ -27,7 +27,7 @@ public extension Promise {
   /// - returns: A new pending promise to be resolved with the same resolution as the promise
   ///            returned from the `work` block.
   @discardableResult
-  public func then<Result>(
+  func then<Result>(
     on queue: DispatchQueue = .promises,
     _ work: @escaping Then<Promise<Result>>
   ) -> Promise<Result> {
@@ -54,7 +54,7 @@ public extension Promise {
   ///   - work:  A block to handle the value that `self` was fulfilled with.
   /// - returns: A new pending promise to be resolved with the value returned from the `work` block.
   @discardableResult
-  public func then<Result>(
+  func then<Result>(
     on queue: DispatchQueue = .promises,
     _ work: @escaping Then<Result>
   ) -> Promise<Result> {
@@ -82,7 +82,7 @@ public extension Promise {
   ///   - work:  A block to handle the value that `self` was fulfilled with.
   /// - returns: A new pending promise to be resolved with the value passed into the `work` block.
   @discardableResult
-  public func then(
+  func then(
     on queue: DispatchQueue = .promises,
     _ work: @escaping Then<Void>
   ) -> Promise {

@@ -23,7 +23,7 @@ public extension Promise {
   ///   - interval: Time to wait in seconds.
   /// - returns: A new pending promise that fulfills at least `interval` seconds later than `self`,
   ///            or rejects with the same error immediately.
-  public func delay(
+  func delay(
     on queue: DispatchQueue = .promises,
     _ interval: TimeInterval
   ) -> Promise<Value> {
