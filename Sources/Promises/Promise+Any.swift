@@ -256,7 +256,7 @@ public func != <Value: Equatable>(lhs: Maybe<Value?>, rhs: Maybe<Value?>) -> Boo
 
 public func == <Value: Equatable>(lhs: [Maybe<Value>], rhs: [Maybe<Value>]) -> Bool {
   if lhs.count != rhs.count { return false }
-  for (l, r) in zip(lhs, rhs) where l != r { return false }
+  for (lhs, rhs) in zip(lhs, rhs) where lhs != rhs { return false }
   return true
 }
 
@@ -266,7 +266,7 @@ public func != <Value: Equatable>(lhs: [Maybe<Value>], rhs: [Maybe<Value>]) -> B
 
 public func == <Value: Equatable>(lhs: [Maybe<Value?>], rhs: [Maybe<Value?>]) -> Bool {
   if lhs.count != rhs.count { return false }
-  for (l, r) in zip(lhs, rhs) where l != r { return false }
+  for (lhs, rhs) in zip(lhs, rhs) where lhs != rhs { return false }
   return true
 }
 

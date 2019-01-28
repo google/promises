@@ -51,7 +51,7 @@ class PromiseReduceTests: XCTestCase {
       guard partialString.isEmpty else { throw Test.Error.code42 }
       count += 1
       return Promise(partialString + String(nextNumber))
-    }.then { string in
+    }.then { _ in
       XCTFail()
     }.catch { error in
       XCTAssertTrue(error == Test.Error.code42)

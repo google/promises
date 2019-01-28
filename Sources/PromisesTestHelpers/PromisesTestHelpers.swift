@@ -65,7 +65,7 @@ public func != (lhs: Error?, rhs: Error?) -> Bool {
 /// Compare two arrays of the same generic type conforming to `Equatable` protocol.
 public func == <T: Equatable>(lhs: [T?], rhs: [T?]) -> Bool {
   if lhs.count != rhs.count { return false }
-  for (l, r) in zip(lhs, rhs) where l != r { return false }
+  for (lhs, rhs) in zip(lhs, rhs) where lhs != rhs { return false }
   return true
 }
 

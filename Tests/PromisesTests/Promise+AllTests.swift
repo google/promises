@@ -342,7 +342,12 @@ class PromiseAllTests: XCTestCase {
     }
 
     // Act.
-    let combinedPromise = all(promise1, promise2, promise3, promise4).then { number, string, none, double in
+    let combinedPromise = all(
+      promise1,
+      promise2,
+      promise3,
+      promise4
+    ).then { number, string, none, double in
       XCTAssert(number == expectedValues.0)
       XCTAssert(string == expectedValues.1)
       XCTAssert(none == expectedValues.2)

@@ -180,4 +180,3 @@ public func all<A, B, C, D>(
   }
   return promise
 }
-

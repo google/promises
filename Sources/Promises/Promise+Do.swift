@@ -15,6 +15,7 @@
 import Foundation
 
 public extension Promise {
+  // swiftlint:disable:next type_name
   typealias Do<Value> = () throws -> Value
 
   /// Creates a pending promise to be resolved with the return value of `work` block which is

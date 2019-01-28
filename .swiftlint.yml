@@ -1,18 +1,21 @@
 disabled_rules:
+  - multiple_closures_with_trailing_closure
   - xctfail_message
 
-line_length: 100
-function_body_length:
-  warning: 100
-  error: 200
-type_body_length:
-  warning: 500
-  error: 1000
+cyclomatic_complexity: 15
 file_length:
   warning: 1000
   error: 2000
+function_body_length:
+  warning: 100
+  error: 200
+large_tuple:
+  warning: 5
+line_length: 100
 nesting:
   type_level:
     warning: 3
     error: 5
-cyclomatic_complexity: 15
+type_body_length:
+  warning: 500
+  error: 1000
