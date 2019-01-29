@@ -1,8 +1,0 @@
-[apple]
-    xctool_path = /usr/local/bin/xctool
-
-[cxx]
-    default_platform = macosx-x86_64
-
-[project]
-    ide = xcode

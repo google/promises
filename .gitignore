@@ -18,11 +18,6 @@ Packages/
 
 bazel-*
 
-# Buck
-
-buck-out/
-.buckd/
-
 # Other VCS
 
 .hg
