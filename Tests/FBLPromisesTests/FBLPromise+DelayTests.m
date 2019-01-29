@@ -47,7 +47,7 @@
   XCTAssert(FBLWaitForPromisesWithTimeout(10));
   XCTAssertEqualObjects(promise.value, @42);
   XCTAssertNil(promise.error);
-  
+
   // Cleanup.
   [self waitForExpectationsWithTimeout:1 handler:nil];
 }
@@ -75,7 +75,7 @@
   XCTAssertEqualObjects(promise.error.domain, FBLPromiseErrorDomain);
   XCTAssertEqual(promise.error.code, 42);
   XCTAssertNil(promise.value);
-  
+
   // Cleanup.
   [self waitForExpectationsWithTimeout:1 handler:nil];
 }
