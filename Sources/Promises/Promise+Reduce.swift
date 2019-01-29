@@ -15,7 +15,7 @@
 import Dispatch
 
 public extension Promise {
-  public typealias Reducer<Element> = (Value, Element) throws -> Promise<Value>
+  typealias Reducer<Element> = (Value, Element) throws -> Promise<Value>
 
   /// Sequentially reduces a collection of values to a single promise using a given combining block
   /// and the value `self` resolves with as initial value.
@@ -28,7 +28,7 @@ public extension Promise {
   /// - returns: A new pending promise returned from the last `reducer` invocation.
   ///            Or `self` if `items` is empty.
   @discardableResult
-  public func reduce<Element>(
+  func reduce<Element>(
     on queue: DispatchQueue = .promises,
     _ items: Element...,
     combine reducer: @escaping Reducer<Element>
@@ -47,7 +47,7 @@ public extension Promise {
   /// - returns: A new pending promise returned from the last `reducer` invocation.
   ///            Or `self` if `items` is empty.
   @discardableResult
-  public func reduce<Container: Sequence>(
+  func reduce<Container: Sequence>(
     on queue: DispatchQueue = .promises,
     _ items: Container,
     _ reducer: @escaping Reducer<Container.Element>

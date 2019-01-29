@@ -22,7 +22,7 @@ public extension Promise {
   ///   - work: A block that always executes, no matter if `self` is rejected or fulfilled.
   /// - returns: A new pending promise to be resolved with same resolution as `self`.
   @discardableResult
-  public func always(on queue: DispatchQueue = .promises, _ work: @escaping () -> Void) -> Promise {
+  func always(on queue: DispatchQueue = .promises, _ work: @escaping () -> Void) -> Promise {
     let promise = Promise(objCPromise.__onQueue(queue, always: work))
     // Keep Swift wrapper alive for chained promise until `ObjCPromise` counterpart is resolved.
     objCPromise.__pendingObjects?.add(promise)

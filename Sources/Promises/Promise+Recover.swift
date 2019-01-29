@@ -23,7 +23,7 @@ public extension Promise {
   /// - returns: A new pending promise to use instead of the rejected one that gets resolved with
   ///            the same resolution as the promise returned from `recovery` block.
   @discardableResult
-  public func recover(
+  func recover(
     on queue: DispatchQueue = .promises,
     _ recovery: @escaping (Error) throws -> Promise
   ) -> Promise {
@@ -48,7 +48,7 @@ public extension Promise {
   /// - returns: A new pending promise to use instead of the rejected one that gets resolved with
   ///            the value returned from `recovery` block.
   @discardableResult
-  public func recover(
+  func recover(
     on queue: DispatchQueue = .promises,
     _ recovery: @escaping (Error) throws -> Value
   ) -> Promise {

@@ -30,7 +30,7 @@ class PromiseRetryTests: XCTestCase {
       return count == 0 ? Promise(42) : Promise(Test.Error.code42)
     }.then { value in
       XCTAssertEqual(value, 42)
-    }.catch { error in
+    }.catch { _ in
       XCTFail("Promise should not be resolved with error.")
     }
 
@@ -49,7 +49,7 @@ class PromiseRetryTests: XCTestCase {
       return Promise(42)
     }.then { value in
       XCTAssertEqual(value, 42)
-    }.catch { error in
+    }.catch { _ in
       XCTFail("Promise should not be resolved with error.")
     }
 
@@ -67,7 +67,7 @@ class PromiseRetryTests: XCTestCase {
     retry(attempts: customAttempts) { () -> Promise<Int> in
       count -= 1
       return Promise(Test.Error.code42)
-    }.then { value in
+    }.then { _ in
       XCTFail("Promise should not be resolved with value.")
     }.catch { error in
       XCTAssertTrue(error == Test.Error.code42)
@@ -95,7 +95,7 @@ class PromiseRetryTests: XCTestCase {
       return count == 0 ? Promise(42) : Promise(Test.Error.code42)
     }.then { value in
       XCTAssertEqual(value, 42)
-    }.catch { error in
+    }.catch { _ in
       XCTFail("Promise should not be resolved with error.")
     }
 
@@ -122,7 +122,7 @@ class PromiseRetryTests: XCTestCase {
       return count == 0 ? Promise(42) : Promise(Test.Error.code42)
     }.then { value in
       XCTAssertEqual(value, 42)
-    }.catch { error in
+    }.catch { _ in
       XCTFail("Promise should not be resolved with error.")
     }
 
@@ -143,7 +143,7 @@ class PromiseRetryTests: XCTestCase {
     }) { () -> Promise<Int> in
       count -= 1
       return count > 1 ? Promise(Test.Error.code42) : Promise(Test.Error.code13)
-    }.then { value in
+    }.then { _ in
       XCTFail("Promise should not be resolved with value.")
     }.catch { error in
       XCTAssertTrue(error == Test.Error.code13)
