@@ -105,15 +105,21 @@ ios_application(
         "iphone",
         "ipad",
     ],
-    infoplists = ["Promises.xcodeproj/TestHost_Info.plist"],
+    infoplists = [
+        "Promises.xcodeproj/TestHost_Info.plist",
+    ],
     minimum_os_version = MINIMUM_OS_VERSION,
-    deps = [":TestHost"],
+    deps = [
+        ":TestHost",
+    ],
 )
 
 swift_library(
     name = "TestHost",
     testonly = 1,
-    srcs = glob(["Tests/TestHost/*.swift"]),
+    srcs = glob([
+        "Tests/TestHost/*.swift",
+    ]),
     copts = SWIFT_COPTS,
 )
 
