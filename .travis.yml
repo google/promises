@@ -3,8 +3,9 @@ osx_image: xcode10.1
 language: objective-c
 install: true
 before_install:
+    - bazel_version=0.22.0
     - bazel_script=/tmp/bazel.sh
-    - curl -L https://github.com/bazelbuild/bazel/releases/download/0.22.0/bazel-0.22.0-installer-darwin-x86_64.sh -o $bazel_script
+    - curl -L https://github.com/bazelbuild/bazel/releases/download/$bazel_version/bazel-$bazel_version-installer-darwin-x86_64.sh -o $bazel_script
     - chmod +x $bazel_script
     - sh $bazel_script --user
     - export PATH="$PATH:$HOME/bin"
