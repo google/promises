@@ -4,7 +4,7 @@ licenses(["notice"])  # Apache 2.0
 
 exports_files(["LICENSE"])
 
-load("@build_bazel_rules_apple//apple:ios.bzl", "ios_unit_test")
+load("@build_bazel_rules_apple//apple:ios.bzl", "ios_application", "ios_unit_test")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 OBJC_COPTS = [
@@ -18,6 +18,8 @@ OBJC_COPTS = [
 SWIFT_COPTS = [
     "-wmo",
 ]
+
+MINIMUM_OS_VERSION = "8.0"
 
 swift_library(
     name = "Promises",
@@ -83,8 +85,8 @@ objc_library(
 
 ios_unit_test(
     name = "Tests",
-    minimum_os_version = "8.0",
-    test_host = "@build_bazel_rules_apple//apple/testing/default_host/ios",
+    minimum_os_version = MINIMUM_OS_VERSION,
+    test_host = ":TestHostApp",
     deps = [
         ":FBLPromisesInteroperabilityTests",
         ":FBLPromisesPerformanceTests",
@@ -93,6 +95,26 @@ ios_unit_test(
         ":PromisesPerformanceTests",
         ":PromisesTests",
     ],
+)
+
+ios_application(
+    name = "TestHostApp",
+    testonly = 1,
+    bundle_id = "com.google.promises.Tests.TestHost",
+    families = [
+        "iphone",
+        "ipad",
+    ],
+    infoplists = ["Promises.xcodeproj/TestHost_Info.plist"],
+    minimum_os_version = MINIMUM_OS_VERSION,
+    deps = [":TestHost"],
+)
+
+swift_library(
+    name = "TestHost",
+    testonly = 1,
+    srcs = glob(["Tests/TestHost/*.swift"]),
+    copts = SWIFT_COPTS,
 )
 
 swift_library(

@@ -2,13 +2,12 @@ os: osx
 osx_image: xcode10.1
 language: objective-c
 install: true
-addons:
-  homebrew:
-    taps: homebrew/cask-versions
-    casks: java8
 before_install:
-    - brew update
-    - brew install bazel
+    - curl -o ~/tmp/bazel.sh https://github.com/bazelbuild/bazel/releases/download/0.22.0/bazel-0.22.0-installer-darwin-x86_64.sh
+    - chmod +x bazel.sh
+    - ./bazel.sh --user
+    - export PATH="$PATH:$HOME/bin"
 script:
     - bazel shutdown
+    - bazel version
     - bazel test Tests --nokeep_state_after_build --spawn_strategy=standalone --genrule_strategy=standalone --test_strategy=standalone --noshow_progress --noshow_loading_progress --verbose_failures --test_verbose_timeout_warnings --test_output=errors
