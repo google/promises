@@ -1,0 +1,14 @@
+{
+  "configDefaults" : {
+    "optionSet" : {
+      "ProjectPrioritizesSwift" : {
+        "p" : "YES"
+      }
+    }
+  },
+  "projectName" : "Promises",
+  "packages" : [
+    ""
+  ],
+  "workspaceRoot" : ".."
+}
