@@ -21,7 +21,6 @@
   "buildTargets" : [
     "//:FBLPromises",
     "//:Promises",
-    "//:TestHostApp",
     "//:Tests"
   ],
   "projectName" : "Promises",
