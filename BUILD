@@ -100,7 +100,7 @@ ios_unit_test(
 ios_application(
     name = "TestHostApp",
     testonly = 1,
-    bundle_id = "com.google.promises.Tests.TestHost",
+    bundle_id = "com.google.promises.TestHost",
     families = [
         "iphone",
         "ipad",
