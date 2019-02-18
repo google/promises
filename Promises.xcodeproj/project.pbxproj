@@ -1331,7 +1331,6 @@
 					"$(BUILT_PRODUCTS_DIR)/PromisesTestHelpers.framework/Headers",
 				);
 				INFOPLIST_FILE = Promises.xcodeproj/FBLPromisesInteroperabilityTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
@@ -1357,7 +1356,6 @@
 					"$(BUILT_PRODUCTS_DIR)/PromisesTestHelpers.framework/Headers",
 				);
 				INFOPLIST_FILE = Promises.xcodeproj/FBLPromisesInteroperabilityTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
@@ -1382,7 +1380,6 @@
 					"$(SRCROOT)/Sources/FBLPromises/include",
 				);
 				INFOPLIST_FILE = Promises.xcodeproj/FBLPromisesPerformanceTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
@@ -1406,7 +1403,6 @@
 					"$(SRCROOT)/Sources/FBLPromises/include",
 				);
 				INFOPLIST_FILE = Promises.xcodeproj/FBLPromisesPerformanceTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
@@ -1424,7 +1420,6 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1442,7 +1437,6 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1466,7 +1460,6 @@
 					"$(SRCROOT)/Sources/FBLPromises/include",
 				);
 				INFOPLIST_FILE = Promises.xcodeproj/FBLPromisesTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
@@ -1490,7 +1483,6 @@
 					"$(SRCROOT)/Sources/FBLPromises/include",
 				);
 				INFOPLIST_FILE = Promises.xcodeproj/FBLPromisesTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
@@ -1508,7 +1500,6 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesPerformanceTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1526,7 +1517,6 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesPerformanceTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1544,7 +1534,6 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesInteroperabilityTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1562,7 +1551,6 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesInteroperabilityTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1580,7 +1568,6 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesTestHelpers_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -1599,7 +1586,6 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesTestHelpers_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -1619,7 +1605,6 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				INFOPLIST_FILE = Promises.xcodeproj/Promises_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -1640,7 +1625,6 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				INFOPLIST_FILE = Promises.xcodeproj/Promises_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -1666,7 +1650,6 @@
 					"$(SRCROOT)/Sources/FBLPromises/include",
 				);
 				INFOPLIST_FILE = Promises.xcodeproj/FBLPromisesTestHelpers_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				MODULEMAP_FILE = "$(SRCROOT)/Sources/FBLPromisesTestHelpers/include/framework.modulemap";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -1694,7 +1677,6 @@
 					"$(SRCROOT)/Sources/FBLPromises/include",
 				);
 				INFOPLIST_FILE = Promises.xcodeproj/FBLPromisesTestHelpers_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				MODULEMAP_FILE = "$(SRCROOT)/Sources/FBLPromisesTestHelpers/include/framework.modulemap";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -1722,7 +1704,6 @@
 					"$(SRCROOT)/Sources/FBLPromises/include",
 				);
 				INFOPLIST_FILE = Promises.xcodeproj/FBLPromises_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				MODULEMAP_FILE = "$(SRCROOT)/Sources/FBLPromises/include/framework.modulemap";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -1750,7 +1731,6 @@
 					"$(SRCROOT)/Sources/FBLPromises/include",
 				);
 				INFOPLIST_FILE = Promises.xcodeproj/FBLPromises_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				MODULEMAP_FILE = "$(SRCROOT)/Sources/FBLPromises/include/framework.modulemap";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -1801,6 +1781,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1849,6 +1831,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
