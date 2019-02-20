@@ -833,13 +833,13 @@ Swift:
 
 ```swift
 func work1(_ string: String) -> Promise<String> {
-  return Promise {
+  return Promise { () -> String in
     return string
   }
 }
 
 func work2(_ string: String) -> Promise<Int> {
-  return Promise {
+  return Promise { () -> Int in
     return Int(string) ?? 0
   }
 }
@@ -946,7 +946,7 @@ Swift:
 struct CustomError: Error {}
 
 func work1(_ string: String) -> Promise<String> {
-  return Promise {
+  return Promise { () -> String in
     return string
   }
 }
