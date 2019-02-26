@@ -15,10 +15,6 @@ OBJC_COPTS = [
     "-Wdocumentation",
 ]
 
-SWIFT_COPTS = [
-    "-wmo",
-]
-
 MINIMUM_OS_VERSION = "8.0"
 
 swift_library(
@@ -26,7 +22,6 @@ swift_library(
     srcs = glob([
         "Sources/Promises/*.swift",
     ]),
-    copts = SWIFT_COPTS,
     module_name = "Promises",
     deps = [
         ":FBLPromises",
@@ -120,7 +115,6 @@ swift_library(
     srcs = glob([
         "Tests/TestHost/*.swift",
     ]),
-    copts = SWIFT_COPTS,
 )
 
 swift_library(
@@ -129,7 +123,6 @@ swift_library(
     srcs = glob([
         "Tests/PromisesTests/*.swift",
     ]),
-    copts = SWIFT_COPTS,
     deps = [
         ":PromisesTestHelpers",
     ],
@@ -141,7 +134,6 @@ swift_library(
     srcs = glob([
         "Tests/PromisesInteroperabilityTests/*.swift",
     ]),
-    copts = SWIFT_COPTS,
     deps = [
         ":FBLPromisesTestHelpers",
         ":PromisesTestHelpers",
@@ -154,10 +146,6 @@ swift_library(
     srcs = glob([
         "Tests/PromisesPerformanceTests/*.swift",
     ]),
-    copts = SWIFT_COPTS + [
-        "-swift-version",
-        "4",
-    ],
     deps = [
         ":FBLPromisesTestHelpers",
         ":PromisesTestHelpers",
