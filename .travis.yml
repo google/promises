@@ -10,6 +10,6 @@ before_install:
     - sh $bazel_script --user
     - export PATH="$PATH:$HOME/bin"
 script:
-    - bazel shutdown
+    - bazel clean --expunge
     - bazel version
     - bazel test Tests --nokeep_state_after_build --spawn_strategy=standalone --genrule_strategy=standalone --test_strategy=standalone --noshow_progress --noshow_loading_progress --verbose_failures --test_verbose_timeout_warnings --test_output=errors
