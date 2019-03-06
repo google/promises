@@ -1,0 +1,68 @@
+{
+  "sourceFilters" : [
+    "Sources",
+    "Sources/FBLPromises",
+    "Sources/FBLPromises/DotSyntax",
+    "Sources/FBLPromises/include",
+    "Sources/FBLPromises/include/DotSyntax",
+    "Sources/FBLPromisesTestHelpers",
+    "Sources/FBLPromisesTestHelpers/include",
+    "Sources/Promises",
+    "Sources/PromisesTestHelpers",
+    "Tests",
+    "Tests/FBLPromisesInteroperabilityTests",
+    "Tests/FBLPromisesPerformanceTests",
+    "Tests/FBLPromisesTests",
+    "Tests/PromisesInteroperabilityTests",
+    "Tests/PromisesPerformanceTests",
+    "Tests/PromisesTests",
+    "Tests/TestHost"
+  ],
+  "buildTargets" : [
+    "//:FBLPromises",
+    "//:Promises",
+    "//:Tests"
+  ],
+  "projectName" : "Promises",
+  "optionSet" : {
+    "BazelBuildOptionsDebug" : {
+      "p" : "$(inherited)"
+    },
+    "BazelBuildStartupOptionsRelease" : {
+      "p" : "$(inherited)"
+    },
+    "LaunchActionPreActionScript" : {
+      "p" : "$(inherited)"
+    },
+    "BazelBuildOptionsRelease" : {
+      "p" : "$(inherited)"
+    },
+    "EnvironmentVariables" : {
+      "p" : "$(inherited)"
+    },
+    "BuildActionPreActionScript" : {
+      "p" : "$(inherited)"
+    },
+    "CommandlineArguments" : {
+      "p" : "$(inherited)"
+    },
+    "TestActionPreActionScript" : {
+      "p" : "$(inherited)"
+    },
+    "TestActionPostActionScript" : {
+      "p" : "$(inherited)"
+    },
+    "BuildActionPostActionScript" : {
+      "p" : "$(inherited)"
+    },
+    "BazelBuildStartupOptionsDebug" : {
+      "p" : "$(inherited)"
+    },
+    "LaunchActionPostActionScript" : {
+      "p" : "$(inherited)"
+    }
+  },
+  "additionalFilePaths" : [
+    "BUILD"
+  ]
+}
