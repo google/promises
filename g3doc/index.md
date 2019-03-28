@@ -776,22 +776,22 @@ Objective-C:
 FBLPromise<NSNumber *> *numberPromise = [FBLPromise resolvedWith:@42];
 
 // Return another promise.
-FBLPromise<NSString *> chainedStringPromise = [numberPromise then:^id(NSNumber *number) {
+FBLPromise<NSString *> *chainedStringPromise = [numberPromise then:^id(NSNumber *number) {
   return [self stringFromNumber:number];
 }];
 
 // Return any value.
-FBLPromise<NSString *> chainedStringPromise = [numberPromise then:^id(NSNumber *number) {
+FBLPromise<NSString *> *chainedStringPromise = [numberPromise then:^id(NSNumber *number) {
   return [number stringValue];
 }];
 
 // Return an error.
-FBLPromise<NSString *> chainedStringPromise = [numberPromise then:^id(NSNumber *number) {
+FBLPromise<NSString *> *chainedStringPromise = [numberPromise then:^id(NSNumber *number) {
   return [NSError errorWithDomain:@"" code:0 userInfo:nil];
 }];
 
 // Fake void return.
-FBLPromise<NSString *> chainedStringPromise = [numberPromise then:^id(NSNumber *number) {
+FBLPromise<NSString *> *chainedStringPromise = [numberPromise then:^id(NSNumber *number) {
   NSLog(@"%@", number);
   return nil;
   // OR
