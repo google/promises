@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param value An arbitrary value to fulfill the promise with, including `nil`.
  */
-- (void)fulfill:(nullable id)value NS_REFINED_FOR_SWIFT;
+- (void)fulfill:(nullable Value)value NS_REFINED_FOR_SWIFT;
 
 /**
  Synchronously rejects the promise with an error.
@@ -70,9 +70,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Convenience dot-syntax wrappers for FBLPromise.
- Usage: FBLPromise.resolved(value)
+ Usage: FBLPromise.pending()
+        FBLPromise.resolved(value)
+
  */
-+ (FBLPromise* (^)(id __nullable))resolved FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
++ (instancetype (^)(void))pending FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
++ (instancetype (^)(id __nullable))resolved FBL_PROMISES_DOT_SYNTAX NS_SWIFT_UNAVAILABLE("");
 
 @end
 

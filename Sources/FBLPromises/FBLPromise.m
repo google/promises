@@ -282,7 +282,13 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
 
 @implementation FBLPromise (DotSyntaxAdditions)
 
-+ (FBLPromise* (^)(id __nullable))resolved {
++ (instancetype (^)(void))pending {
+  return ^(void) {
+    return [self pendingPromise];
+  };
+}
+
++ (instancetype (^)(id __nullable))resolved {
   return ^(id resolution) {
     return [self resolvedWith:resolution];
   };

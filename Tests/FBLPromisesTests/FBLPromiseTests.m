@@ -28,7 +28,7 @@
  */
 - (void)testPromiseConstructorPending {
   // Arrange & Act.
-  FBLPromise *promise = [FBLPromise pendingPromise];
+  FBLPromise<NSNumber *> *promise = [FBLPromise pendingPromise];
 
   // Assert.
   XCTAssertTrue(promise.isPending);
@@ -44,7 +44,7 @@
  */
 - (void)testPromiseConstructorResolvedWithValue {
   // Arrange & Act.
-  FBLPromise *promise = [FBLPromise resolvedWith:@42];
+  FBLPromise<NSNumber *> *promise = [FBLPromise resolvedWith:@42];
 
   // Assert.
   XCTAssertFalse(promise.isPending);
@@ -61,7 +61,7 @@
 - (void)testPromiseConstructorResolvedWithError {
   // Arrange & Act.
   NSError *error = [NSError errorWithDomain:FBLPromiseErrorDomain code:42 userInfo:nil];
-  FBLPromise *promise = [FBLPromise resolvedWith:error];
+  FBLPromise<NSNumber *> *promise = [FBLPromise resolvedWith:error];
 
   // Assert.
   XCTAssertFalse(promise.isPending);
@@ -120,7 +120,7 @@
   FBLPromise<NSNumber *> *promise = [FBLPromise pendingPromise];
 
   // Act.
-  [promise fulfill:[NSError errorWithDomain:FBLPromiseErrorDomain code:42 userInfo:nil]];
+  [promise fulfill:(id)[NSError errorWithDomain:FBLPromiseErrorDomain code:42 userInfo:nil]];
 
   // Assert.
   XCTAssertFalse(promise.isPending);
