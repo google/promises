@@ -414,7 +414,7 @@ In your `Package.swift` file, add `Promises` dependency to corresponding targets
 let package = Package(
   // ...
   dependencies: [
-    .package(url: "https://github.com/google/promises.git", from: "1.2.7"),
+    .package(url: "https://github.com/google/promises.git", from: "1.2.8"),
   ],
   // ...
 )
@@ -443,16 +443,18 @@ Or, the module, if `CLANG_ENABLE_MODULES = YES`:
 To use `Promises` for both Swift and Objective-C, add the following to your `Podfile`:
 
 ```ruby
-pod 'PromisesSwift', '~> 1.2.7'
+pod 'PromisesSwift'
 ```
 
 To use `Promises` for Objective-C only, add the following to your `Podfile`:
 
 ```ruby
-pod 'PromisesObjC', '~> 1.2.7'
+pod 'PromisesObjC'
 ```
 
-Also, don't forget to `use_frameworks!` in your target. Then, run `pod install`.
+Also, don't forget to add `use_frameworks!` to your target. Then, run
+`pod install` if installing `Promises` for the first time or `pod update` to
+update to the latest version.
 
 For Swift, import the module:
 
@@ -460,16 +462,16 @@ For Swift, import the module:
 import Promises
 ```
 
-For Objective-C, import the umbrella header:
-
-```objectivec
-#import <FBLPromises/FBLPromises.h>
-```
-
-Or, the module:
+For Objective-C, import the module:
 
 ```objectivec
 @import FBLPromises;
+```
+
+Or, the umbrella header:
+
+```objectivec
+#import <FBLPromises/FBLPromises.h>
 ```
 
 #### Carthage
