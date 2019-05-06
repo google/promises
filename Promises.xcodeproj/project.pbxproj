@@ -993,11 +993,28 @@
 		OBJ_1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1020;
+				TargetAttributes = {
+					"Promises::Promises" = {
+						LastSwiftMigration = 1020;
+					};
+					"Promises::PromisesInteroperabilityTests" = {
+						LastSwiftMigration = 1020;
+					};
+					"Promises::PromisesPerformanceTests" = {
+						LastSwiftMigration = 1020;
+					};
+					"Promises::PromisesTestHelpers" = {
+						LastSwiftMigration = 1020;
+					};
+					"Promises::PromisesTests" = {
+						LastSwiftMigration = 1020;
+					};
+				};
 			};
 			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "Promises" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -1418,7 +1435,7 @@
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesTests_Info.plist;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = PromisesTests;
 			};
 			name = Debug;
@@ -1434,7 +1451,7 @@
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesTests_Info.plist;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = PromisesTests;
 			};
 			name = Release;
@@ -1494,7 +1511,7 @@
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesPerformanceTests_Info.plist;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = PromisesPerformanceTests;
 			};
 			name = Debug;
@@ -1510,7 +1527,7 @@
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesPerformanceTests_Info.plist;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = PromisesPerformanceTests;
 			};
 			name = Release;
@@ -1526,7 +1543,7 @@
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesInteroperabilityTests_Info.plist;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = PromisesInteroperabilityTests;
 			};
 			name = Debug;
@@ -1542,7 +1559,7 @@
 				INFOPLIST_FILE = Promises.xcodeproj/PromisesInteroperabilityTests_Info.plist;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = PromisesInteroperabilityTests;
 			};
 			name = Release;
@@ -1561,6 +1578,7 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = PromisesTestHelpers;
 			};
 			name = Debug;
@@ -1579,6 +1597,7 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = PromisesTestHelpers;
 			};
 			name = Release;
@@ -1598,6 +1617,7 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = Promises;
 			};
 			name = Debug;
@@ -1617,6 +1637,7 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = Promises;
 			};
 			name = Release;
@@ -1728,6 +1749,7 @@
 		OBJ_3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -1780,6 +1802,7 @@
 		OBJ_4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
