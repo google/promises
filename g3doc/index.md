@@ -877,7 +877,7 @@ Objective-C:
   }];
 }
 
-- (FBLPromise<NSNumber *>)work2:(NSString *)string {
+- (FBLPromise<NSNumber *> *)work2:(NSString *)string {
   return [FBLPromise do:^id {
     return @(string.integerValue);
   }];
@@ -889,7 +889,7 @@ Objective-C:
 
 [[[[self work1:@"10"] then:^id(NSString *string) {
   return [self work2:string];
-}] then:^id(NSNumber *)number {
+}] then:^id(NSNumber* number) {
   return [self work3:number];
 }] then:^id(NSNumber* number) {
   NSLog(@"%@", number);  // 100
@@ -984,7 +984,7 @@ Objective-C:
   }];
 }
 
-- (FBLPromise<NSNumber *>)work2:(NSString *)string {
+- (FBLPromise<NSNumber *> *)work2:(NSString *)string {
   return [FBLPromise do:^id {
     NSInteger number = string.integerValue;
     return number > 0 ? @(number) : [NSError errorWithDomain:@"" code:0 userInfo:nil];
@@ -997,7 +997,7 @@ Objective-C:
 
 [[[[[self work1:@"abc"] then:^id(NSString *string) {
   return [self work2:string];
-}] then:^id(NSNumber *)number {
+}] then:^id(NSNumber* number) {
   return [self work3:number];  // Never executed.
 }] then:^id(NSNumber* number) {
   NSLog(@"%@", number);  // Never executed.
