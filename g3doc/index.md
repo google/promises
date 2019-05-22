@@ -889,9 +889,9 @@ Objective-C:
 
 [[[[self work1:@"10"] then:^id(NSString *string) {
   return [self work2:string];
-}] then:^id(NSNumber* number) {
+}] then:^id(NSNumber *number) {
   return [self work3:number];
-}] then:^id(NSNumber* number) {
+}] then:^id(NSNumber *number) {
   NSLog(@"%@", number);  // 100
   return number;
 }];
@@ -997,9 +997,9 @@ Objective-C:
 
 [[[[[self work1:@"abc"] then:^id(NSString *string) {
   return [self work2:string];
-}] then:^id(NSNumber* number) {
+}] then:^id(NSNumber *number) {
   return [self work3:number];  // Never executed.
-}] then:^id(NSNumber* number) {
+}] then:^id(NSNumber *number) {
   NSLog(@"%@", number);  // Never executed.
   return number;
 }] catch:^(NSError *error) {
