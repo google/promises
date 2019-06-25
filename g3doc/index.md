@@ -1072,6 +1072,19 @@ method on `NSArray`, which often comes handy, along with other similar
 [functional operators](https://github.com/google/functional-objc) that
 Objective-C lacks.
 
+
+Note: The number of promises `all` can handle is 4. If you need more than 4,
+you can break the promises down into separate `all` then and group them together.
+For example:
+
+Swift:
+```swift
+all(all(p1, p2, p3), all(p4, p5, p6)).then { results in
+  let ((a1, a2, a3), (a4, a5, a6)) = results
+  print(a1, a2, a3, a4, a5, a6)
+}
+```
+
 Also, see how `all` helps to avoid [nested promises](#nested-promises).
 
 ### Always
