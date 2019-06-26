@@ -1073,7 +1073,7 @@ method on `NSArray`, which often comes handy, along with other similar
 Objective-C lacks.
 
 
-Note: The number of promises `all` can handle is 4. If you need more than 4,
+Note: In Swift, the number of promises of heterogeneous types that `all` can handle is 4. If you need more than 4,
 you can break the promises down into separate `all` then and group them together.
 For example:
 
@@ -1200,6 +1200,8 @@ and
 methods on `NSArray`, which often comes handy, along with other similar
 [functional operators](https://github.com/google/functional-objc) that
 Objective-C lacks.
+
+Note: The number of promises that `any` can handle is 3.
 
 ### Await
 
