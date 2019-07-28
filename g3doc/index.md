@@ -1074,7 +1074,7 @@ Objective-C lacks.
 
 
 Note: In Swift, the number of promises of heterogeneous types that `all` can handle is 4. If you need more than 4,
-you can break the promises down into separate `all` then and group them together.
+you can break the promises down into separate `all` and then group them together.
 For example:
 
 Swift:
