@@ -1201,7 +1201,16 @@ methods on `NSArray`, which often comes handy, along with other similar
 [functional operators](https://github.com/google/functional-objc) that
 Objective-C lacks.
 
-Note: The number of promises that `any` can handle is 3.
+Note: In Swift, the number of promises of heterogeneous types that `any` can handle is 3. If you need more than 3,
+you can break the promises down into separate `any` and then group them together. It is similar to what you can do with [`all`](#all).
+
+For example:
+
+```Swift
+any( any(p1, p2), any(p3, p4)).then { results in
+  dump(results) // a tuple containing two MayBe's. each contains their respective MayBe values
+}
+```
 
 ### Await
 
