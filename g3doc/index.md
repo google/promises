@@ -1072,6 +1072,19 @@ method on `NSArray`, which often comes handy, along with other similar
 [functional operators](https://github.com/google/functional-objc) that
 Objective-C lacks.
 
+
+Note: In Swift, the number of promises of heterogeneous types that `all` can handle is 4. If you need more than 4,
+you can break the promises down into separate `all` and then group them together.
+For example:
+
+Swift:
+```swift
+all(all(p1, p2, p3), all(p4, p5, p6)).then { results in
+  let ((a1, a2, a3), (a4, a5, a6)) = results
+  print(a1, a2, a3, a4, a5, a6)
+}
+```
+
 Also, see how `all` helps to avoid [nested promises](#nested-promises).
 
 ### Always
@@ -1187,6 +1200,17 @@ and
 methods on `NSArray`, which often comes handy, along with other similar
 [functional operators](https://github.com/google/functional-objc) that
 Objective-C lacks.
+
+Note: In Swift, the number of promises of heterogeneous types that `any` can handle is 3. If you need more than 3,
+you can break the promises down into separate `any` and then group them together. It is similar to what you can do with [`all`](#all).
+
+For example:
+
+```Swift
+any( any(p1, p2), any(p3, p4)).then { results in
+  dump(results) // a tuple containing two MayBe's. each contains their respective MayBe values
+}
+```
 
 ### Await
 
