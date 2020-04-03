@@ -1913,7 +1913,7 @@ Objective-C:
 
 ### "Unexpected non-void return value in void function" error
 
-Like all Swift closures, when a `then` operator's closure contains just one expression, Swift's "implicit returns from single-expression closures" means the closure's return type can be omitted.
+Swift is able to infer the return type for enclosures with just one expression.
 
 ```swift
 .then { number in
@@ -1921,11 +1921,11 @@ Like all Swift closures, when a `then` operator's closure contains just one expr
 }
 ```
 
-If the closure contains more than a single expression, the compiler will throw the error "Unexpected non-void return value in void function". In this case the return type must be explicitly stated:
+If the closure contains more than a single expression, and the return type was not expected, the compiler will throw the error "Unexpected non-void return value in void function". In this case the return type must be explicitly stated:
 
 ```swift
-.then { number -> Int in
+.then { number -> String in
   print("five")
-  return 5
+  return "five"
 }
 ```
