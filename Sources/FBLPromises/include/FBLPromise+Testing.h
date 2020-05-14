@@ -47,6 +47,11 @@ FOUNDATION_EXTERN BOOL FBLWaitForPromisesWithTimeout(NSTimeInterval timeout) NS_
 @property(nonatomic, readonly, nullable) NSMutableSet *pendingObjects NS_REFINED_FOR_SWIFT;
 
 /**
+ Add an object to the set of pending objects to keep strongly while the promise is pending.
+ */
+- (void)addToPendingObjects:(id)object NS_REFINED_FOR_SWIFT;
+
+/**
  Value the promise was fulfilled with.
  Can be nil if the promise is still pending, was resolved with nil or after it has been rejected.
  */

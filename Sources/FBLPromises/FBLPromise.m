@@ -202,6 +202,16 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
   }
 }
 
+- (void)addToPendingObjects:(id)object {
+  NSMutableSet *set = [self pendingObjects];
+
+  if (set) {
+    @synchronized(set) {
+      [set addObject:object];
+    }
+  }
+}
+
 - (void)observeOnQueue:(dispatch_queue_t)queue
                fulfill:(FBLPromiseOnFulfillBlock)onFulfill
                 reject:(FBLPromiseOnRejectBlock)onReject {
