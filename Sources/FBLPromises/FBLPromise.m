@@ -191,23 +191,13 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
   }
 }
 
-- (NSMutableSet *__nullable)pendingObjects {
+- (void)__addPendingObject:(id)object {
   @synchronized(self) {
     if (_state == FBLPromiseStatePending) {
       if (!_pendingObjects) {
         _pendingObjects = [[NSMutableSet alloc] init];
       }
-    }
-    return _pendingObjects;
-  }
-}
-
-- (void)addToPendingObjects:(id)object {
-  NSMutableSet *set = [self pendingObjects];
-
-  if (set) {
-    @synchronized(set) {
-      [set addObject:object];
+      [_pendingObjects addObject:object];
     }
   }
 }
