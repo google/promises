@@ -191,7 +191,7 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
   }
 }
 
-- (void)__addPendingObject:(id)object {
+- (void)addPendingObject:(id)object {
   @synchronized(self) {
     if (_state == FBLPromiseStatePending) {
       if (!_pendingObjects) {
