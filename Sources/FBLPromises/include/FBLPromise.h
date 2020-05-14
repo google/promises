@@ -58,6 +58,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
 
+/**
+ Add an object to the set of pending objects to keep strongly while the promise is pending.
+ */
+- (void)addToPendingObjects:(id)object NS_REFINED_FOR_SWIFT;
+
 @end
 
 #ifdef FBL_PROMISES_DOT_SYNTAX_IS_DEPRECATED
