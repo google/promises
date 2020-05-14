@@ -204,6 +204,16 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
   }
 }
 
+- (BOOL)isPendingObjectsEmpty {
+  @synchronized(self) {
+    if (_state == FBLPromiseStatePending && _pendingObjects) {
+      return [_pendingObjects count] == 0;
+    }
+
+    return TRUE;
+  }
+}
+
 - (void)observeOnQueue:(dispatch_queue_t)queue
                fulfill:(FBLPromiseOnFulfillBlock)onFulfill
                 reject:(FBLPromiseOnRejectBlock)onReject {
