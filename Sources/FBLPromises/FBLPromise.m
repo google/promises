@@ -192,6 +192,8 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
 }
 
 - (void)addPendingObject:(id)object {
+  NSParameterAssert(object);
+  
   @synchronized(self) {
     if (_state == FBLPromiseStatePending) {
       if (!_pendingObjects) {
