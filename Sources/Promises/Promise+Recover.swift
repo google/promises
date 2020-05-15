@@ -37,7 +37,7 @@ public extension Promise {
       }
     }))
     // Keep Swift wrapper alive for chained promise until `ObjCPromise` counterpart is resolved.
-    objCPromise.__pendingObjects?.add(promise)
+    objCPromise.__addPendingObject(promise)
     return promise
   }
 
@@ -62,7 +62,7 @@ public extension Promise {
       }
     }))
     // Keep Swift wrapper alive for chained promise until `ObjCPromise` counterpart is resolved.
-    objCPromise.__pendingObjects?.add(promise)
+    objCPromise.__addPendingObject(promise)
     return promise
   }
 }

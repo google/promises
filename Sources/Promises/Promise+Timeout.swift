@@ -26,7 +26,7 @@ public extension Promise {
   func timeout(on queue: DispatchQueue = .promises, _ interval: TimeInterval) -> Promise {
     let promise = Promise(objCPromise.__onQueue(queue, timeout: interval))
     // Keep Swift wrapper alive for chained promise until `ObjCPromise` counterpart is resolved.
-    objCPromise.__pendingObjects?.add(promise)
+    objCPromise.__addPendingObject(promise)
     return promise
   }
 }

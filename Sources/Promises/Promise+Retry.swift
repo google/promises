@@ -68,6 +68,6 @@ public func retry<Value>(
   }
   let promise = Promise<Value>(objCPromise)
   // Keep Swift wrapper alive for chained promise until `ObjCPromise` counterpart is resolved.
-  objCPromise.__pendingObjects?.add(promise)
+  objCPromise.__addPendingObject(promise)
   return promise
 }

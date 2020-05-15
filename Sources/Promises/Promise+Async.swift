@@ -37,6 +37,6 @@ public extension Promise {
     }
     self.init(objCPromise)
     // Keep Swift wrapper alive for chained promise until `ObjCPromise` counterpart is resolved.
-    objCPromise.__pendingObjects?.add(self)
+    objCPromise.__addPendingObject(self)
   }
 }

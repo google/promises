@@ -34,7 +34,6 @@
   XCTAssertTrue(promise.isPending);
   XCTAssertFalse(promise.isFulfilled);
   XCTAssertFalse(promise.isRejected);
-  XCTAssertNotNil(promise.pendingObjects);
   XCTAssertNil(promise.value);
   XCTAssertNil(promise.error);
 }
@@ -50,7 +49,6 @@
   XCTAssertFalse(promise.isPending);
   XCTAssertTrue(promise.isFulfilled);
   XCTAssertFalse(promise.isRejected);
-  XCTAssertNil(promise.pendingObjects);
   XCTAssertEqualObjects(promise.value, @42);
   XCTAssertNil(promise.error);
 }
@@ -67,7 +65,6 @@
   XCTAssertFalse(promise.isPending);
   XCTAssertFalse(promise.isFulfilled);
   XCTAssertTrue(promise.isRejected);
-  XCTAssertNil(promise.pendingObjects);
   XCTAssertNil(promise.value);
   XCTAssertEqualObjects(promise.error.domain, FBLPromiseErrorDomain);
   XCTAssertEqual(promise.error.code, 42);
@@ -87,7 +84,6 @@
   XCTAssertFalse(promise.isPending);
   XCTAssertTrue(promise.isFulfilled);
   XCTAssertFalse(promise.isRejected);
-  XCTAssertNil(promise.pendingObjects);
   XCTAssertEqualObjects(promise.value, @42);
   XCTAssertNil(promise.error);
 }
@@ -107,7 +103,6 @@
   XCTAssertFalse(promise.isPending);
   XCTAssertTrue(promise.isFulfilled);
   XCTAssertFalse(promise.isRejected);
-  XCTAssertNil(promise.pendingObjects);
   XCTAssertEqualObjects(promise.value, @42);
   XCTAssertNil(promise.error);
 }
@@ -126,7 +121,6 @@
   XCTAssertFalse(promise.isPending);
   XCTAssertFalse(promise.isFulfilled);
   XCTAssertTrue(promise.isRejected);
-  XCTAssertNil(promise.pendingObjects);
   XCTAssertNil(promise.value);
   XCTAssertEqualObjects(promise.error.domain, FBLPromiseErrorDomain);
   XCTAssertEqual(promise.error.code, 42);
@@ -146,7 +140,6 @@
   XCTAssertFalse(promise.isPending);
   XCTAssertFalse(promise.isFulfilled);
   XCTAssertTrue(promise.isRejected);
-  XCTAssertNil(promise.pendingObjects);
   XCTAssertNil(promise.value);
   XCTAssertEqualObjects(promise.error.domain, FBLPromiseErrorDomain);
   XCTAssertEqual(promise.error.code, 42);
@@ -167,7 +160,6 @@
   XCTAssertFalse(promise.isPending);
   XCTAssertFalse(promise.isFulfilled);
   XCTAssertTrue(promise.isRejected);
-  XCTAssertNil(promise.pendingObjects);
   XCTAssertNil(promise.value);
   XCTAssertEqualObjects(promise.error.domain, FBLPromiseErrorDomain);
   XCTAssertEqual(promise.error.code, 42);
@@ -188,7 +180,6 @@
   XCTAssertFalse(promise.isPending);
   XCTAssertTrue(promise.isFulfilled);
   XCTAssertFalse(promise.isRejected);
-  XCTAssertNil(promise.pendingObjects);
   XCTAssertEqualObjects(promise.value, @42);
   XCTAssertNil(promise.error);
 }
@@ -208,7 +199,6 @@
   XCTAssertFalse(promise.isPending);
   XCTAssertFalse(promise.isFulfilled);
   XCTAssertTrue(promise.isRejected);
-  XCTAssertNil(promise.pendingObjects);
   XCTAssertNil(promise.value);
   XCTAssertEqualObjects(promise.error.domain, FBLPromiseErrorDomain);
   XCTAssertEqual(promise.error.code, 42);

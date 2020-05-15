@@ -59,7 +59,7 @@ public func any<Value, Container: Sequence>(
   )
   // Keep Swift wrapper alive for chained promises until `ObjCPromise` counterpart is resolved.
   promises.forEach {
-    $0.__pendingObjects?.add(promise)
+    $0.__addPendingObject(promise)
   }
   return promise
 }
@@ -98,7 +98,7 @@ public func any<A, B>(
   )
   // Keep Swift wrapper alive for chained promises until `ObjCPromise` counterpart is resolved.
   promises.forEach {
-    $0.__pendingObjects?.add(promise)
+    $0.__addPendingObject(promise)
   }
   return promise
 }
@@ -141,7 +141,7 @@ public func any<A, B, C>(
   )
   // Keep Swift wrapper alive for chained promises until `ObjCPromise` counterpart is resolved.
   promises.forEach {
-    $0.__pendingObjects?.add(promise)
+    $0.__addPendingObject(promise)
   }
   return promise
 }

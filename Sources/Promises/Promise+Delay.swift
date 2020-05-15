@@ -29,7 +29,7 @@ public extension Promise {
   ) -> Promise<Value> {
     let promise = Promise(objCPromise.__onQueue(queue, delay: interval))
     // Keep Swift wrapper alive for chained promise until `ObjCPromise` counterpart is resolved.
-    objCPromise.__pendingObjects?.add(promise)
+    objCPromise.__addPendingObject(promise)
     return promise
   }
 }

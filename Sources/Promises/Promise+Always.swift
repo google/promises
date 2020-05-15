@@ -25,7 +25,7 @@ public extension Promise {
   func always(on queue: DispatchQueue = .promises, _ work: @escaping () -> Void) -> Promise {
     let promise = Promise(objCPromise.__onQueue(queue, always: work))
     // Keep Swift wrapper alive for chained promise until `ObjCPromise` counterpart is resolved.
-    objCPromise.__pendingObjects?.add(promise)
+    objCPromise.__addPendingObject(promise)
     return promise
   }
 }

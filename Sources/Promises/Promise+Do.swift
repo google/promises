@@ -34,7 +34,7 @@ public extension Promise {
     }
     self.init(objCPromise)
     // Keep Swift wrapper alive for chained promise until `ObjCPromise` counterpart is resolved.
-    objCPromise.__pendingObjects?.add(self)
+    objCPromise.__addPendingObject(self)
   }
 
   /// Creates a pending promise to be resolved with the same resolution as the promise returned from
@@ -55,6 +55,6 @@ public extension Promise {
     }
     self.init(objCPromise)
     // Keep Swift wrapper alive for chained promise until `ObjCPromise` counterpart is resolved.
-    objCPromise.__pendingObjects?.add(self)
+    objCPromise.__addPendingObject(self)
   }
 }
