@@ -39,7 +39,6 @@ FOUNDATION_EXTERN BOOL FBLWaitForPromisesWithTimeout(NSTimeInterval timeout) NS_
 @property(nonatomic, readonly) BOOL isPending NS_REFINED_FOR_SWIFT;
 @property(nonatomic, readonly) BOOL isFulfilled NS_REFINED_FOR_SWIFT;
 @property(nonatomic, readonly) BOOL isRejected NS_REFINED_FOR_SWIFT;
-@property(nonatomic, readonly) BOOL isPendingObjectsEmpty NS_REFINED_FOR_SWIFT;
 
 /**
  Value the promise was fulfilled with.
