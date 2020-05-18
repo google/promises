@@ -46,7 +46,7 @@
     }];
   }];
   typedef NSArray<NSNumber *> * (^BlockPromise)(NSNumber *);
-  FBLPromise<BlockPromise> *blockPromise = [stringPromise then:^id(NSNumber *value) {
+  FBLPromise<BlockPromise> *blockPromise = [stringPromise then:^id(NSString *value) {
     ++count;
     return [FBLPromise async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock __unused _) {
       fulfill(^(NSNumber *number) {
@@ -220,7 +220,7 @@
     return value.stringValue;
   }];
   typedef NSArray<NSNumber *> * (^BlockPromise)(NSNumber *);
-  FBLPromise<BlockPromise> *blockPromise = [stringPromise then:^id(NSNumber *value) {
+  FBLPromise<BlockPromise> *blockPromise = [stringPromise then:^id(NSString *value) {
     ++count;
     return ^(NSNumber *number) {
       return @[ @(number.integerValue + value.integerValue) ];
