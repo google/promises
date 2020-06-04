@@ -28,10 +28,12 @@ Pod::Spec.new do |s|
   }
 
   s.test_spec 'Tests' do |ts|
+    ts.platforms = {:ios => '8.0', :osx => '10.10', :tvos => '9.0'}
     ts.source_files = "Tests/#{s.module_name}Tests/*.m",
                       "Sources/#{s.module_name}TestHelpers/include/#{s.module_name}TestHelpers.h"
   end
   s.test_spec 'PerformanceTests' do |ts|
+    ts.platforms = {:ios => '8.0', :osx => '10.10', :tvos => '9.0'}
     ts.source_files = "Tests/#{s.module_name}PerformanceTests/*.m",
                       "Sources/#{s.module_name}TestHelpers/include/#{s.module_name}TestHelpers.h"
   end
