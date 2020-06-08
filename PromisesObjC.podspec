@@ -28,10 +28,16 @@ Pod::Spec.new do |s|
   }
 
   s.test_spec 'Tests' do |ts|
+    # Note: Omits watchOS as a workaround since XCTest is not available to watchOS for now.
+    # Reference: https://github.com/CocoaPods/CocoaPods/issues/8283, https://github.com/CocoaPods/CocoaPods/issues/4185.
+    ts.platforms = {:ios => nil, :osx => nil, :tvos => nil}
     ts.source_files = "Tests/#{s.module_name}Tests/*.m",
                       "Sources/#{s.module_name}TestHelpers/include/#{s.module_name}TestHelpers.h"
   end
   s.test_spec 'PerformanceTests' do |ts|
+    # Note: Omits watchOS as a workaround since XCTest is not available to watchOS for now.
+    # Reference: https://github.com/CocoaPods/CocoaPods/issues/8283, https://github.com/CocoaPods/CocoaPods/issues/4185.
+    ts.platforms = {:ios => nil, :osx => nil, :tvos => nil}
     ts.source_files = "Tests/#{s.module_name}PerformanceTests/*.m",
                       "Sources/#{s.module_name}TestHelpers/include/#{s.module_name}TestHelpers.h"
   end
