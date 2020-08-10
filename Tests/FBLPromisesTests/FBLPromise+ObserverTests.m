@@ -7,6 +7,7 @@
 
 #import <XCTest/XCTest.h>
 
+#import "FBLPromise+Async.h"
 #import "FBLPromise+Observer.h"
 #import "FBLPromisesTestHelpers.h"
 
