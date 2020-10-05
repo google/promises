@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   Objective-C to facilitate writing asynchronous code.
                      DESC
 
-  s.ios.deployment_target  = '8.0'
+  s.ios.deployment_target  = '9.0'
   s.osx.deployment_target  = '10.10'
   s.tvos.deployment_target = '9.0'
   s.watchos.deployment_target = '2.0'
