@@ -1908,3 +1908,24 @@ Objective-C:
   }];
 }
 ```
+
+## Troubleshooting
+
+### "Unexpected non-void return value in void function" error
+
+Swift is able to infer the return type for enclosures with just one expression.
+
+```swift
+.then { number in
+  return 5
+}
+```
+
+If the closure contains more than a single expression, and the return type was not expected, the compiler will throw the error "Unexpected non-void return value in void function". In this case the return type must be explicitly stated:
+
+```swift
+.then { number -> String in
+  print("five")
+  return "five"
+}
+```
