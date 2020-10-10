@@ -1025,6 +1025,12 @@ they've been fulfilled, the promise returned from `all` is fulfilled with an
 array of all fulfilled values. If one of the given promises is rejected, then
 the returned promise is rejected with the same error.
 
+Note that `all` does not control when each contained promise task starts
+(a promise task starts when that promise is created), nor when each promise
+is resolved (this depends on the length of the task). However, it does
+guarantee that the order of promises in the output array is identical to the
+order of promises passed to it in the input array.
+
 In Swift, the `all` operator also allows passing promises of heterogeneous
 types. For this case, the returned promise will be resolved with a tuple
 containing the values of the input promises in the same order they were
