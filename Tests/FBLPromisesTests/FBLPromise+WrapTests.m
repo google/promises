@@ -220,7 +220,7 @@
 
 - (void)testPromiseWrap2ObjectsOrErrorCompletionFulfillsOnValueReturned {
   // Arrange.
-  NSArray<NSObject *> *expectedValues = @[ @42, [NSNull null] ];
+  NSArray *expectedValues = @[ @42, [NSNull null] ];
 
   // Act.
   FBLPromise<NSArray *> *promise =
