@@ -133,7 +133,7 @@
                      if (error) {
                        reject(error);
                      } else {
-                       fulfill(@[ value1 ?:[NSNull null], value2 ?: [NSNull null] ]);
+                       fulfill(@[ value1 ?: [NSNull null], value2 ?: [NSNull null] ]);
                      }
                    });
                  }];
