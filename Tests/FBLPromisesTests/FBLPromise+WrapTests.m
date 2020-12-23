@@ -220,13 +220,13 @@
 
 - (void)testPromiseWrap2ObjectsOrErrorCompletionFulfillsOnValueReturned {
   // Arrange.
-  NSArray<NSNumber *> *expectedValues = @[ @42, @13 ];
+  NSArray *expectedValues = @[ @42, [NSNull null] ];
 
   // Act.
   FBLPromise<NSArray *> *promise =
   [FBLPromise wrap2ObjectsOrErrorCompletion:^(FBLPromise2ObjectsOrErrorCompletion handler) {
     FBLDelay(0.1, ^{
-      [self wrapHarnessWithObject:@42 object:@13 error:nil completion:handler];
+      [self wrapHarnessWithObject:@42 object:nil error:nil completion:handler];
     });
   }];
 
