@@ -30,3 +30,4 @@
 #import "FBLPromise+Timeout.h"
 #import "FBLPromise+Validate.h"
 #import "FBLPromise+Wrap.h"
+#import "FBLPromise+Observer.h"

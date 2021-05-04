@@ -106,11 +106,15 @@
 		035D15F9209220150089EF3D /* FBLPromise+Await.m in Sources */ = {isa = PBXBuildFile; fileRef = 035D15E6208EF8750089EF3D /* FBLPromise+Await.m */; };
 		0391947B2095B73200C40218 /* Promise+DelayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039194792095B72300C40218 /* Promise+DelayTests.swift */; };
 		0391947E2095B9C600C40218 /* FBLPromise+DelayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0391947C2095B9BE00C40218 /* FBLPromise+DelayTests.m */; };
+		07CA416524DC21B900DF147C /* FBLPromise+Observer.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CA416424DC21B900DF147C /* FBLPromise+Observer.m */; };
+		07CA416624DC220900DF147C /* FBLPromise+Observer.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CA416424DC21B900DF147C /* FBLPromise+Observer.m */; };
+		07CA416724DC221900DF147C /* FBLPromise+Observer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07CA416324DC21AD00DF147C /* FBLPromise+Observer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4ADC8B8C20E54A4E00D10D3D /* FBLPromise+Retry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC8B8B20E54A4E00D10D3D /* FBLPromise+Retry.m */; };
 		4ADC8B8E20E54A5900D10D3D /* FBLPromise+Retry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4ADC8B8D20E54A5900D10D3D /* FBLPromise+Retry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4ADC8B9020E54A7500D10D3D /* Promise+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC8B8F20E54A7500D10D3D /* Promise+Retry.swift */; };
 		4ADC8B9220E54A8800D10D3D /* Promise+RetryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC8B9120E54A8800D10D3D /* Promise+RetryTests.swift */; };
 		4ADC8B9420E54A9E00D10D3D /* FBLPromise+RetryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC8B9320E54A9E00D10D3D /* FBLPromise+RetryTests.m */; };
+		5A93506224E030F8009E1AB8 /* FBLPromise+ObserverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A93506124E030F8009E1AB8 /* FBLPromise+ObserverTests.m */; };
 		OBJ_134 /* PromisesTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::PromisesTestHelpers::Product" /* PromisesTestHelpers.framework */; };
 		OBJ_135 /* Promises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::Promises::Product" /* Promises.framework */; };
 		OBJ_136 /* FBLPromisesTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::FBLPromisesTestHelpers::Product" /* FBLPromisesTestHelpers.framework */; };
@@ -402,11 +406,14 @@
 		035D15F320915B490089EF3D /* FBLPromise+AwaitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+AwaitTests.m"; sourceTree = "<group>"; };
 		039194792095B72300C40218 /* Promise+DelayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+DelayTests.swift"; sourceTree = "<group>"; };
 		0391947C2095B9BE00C40218 /* FBLPromise+DelayTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+DelayTests.m"; sourceTree = "<group>"; };
+		07CA416324DC21AD00DF147C /* FBLPromise+Observer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Observer.h"; sourceTree = "<group>"; };
+		07CA416424DC21B900DF147C /* FBLPromise+Observer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Observer.m"; sourceTree = "<group>"; };
 		4ADC8B8B20E54A4E00D10D3D /* FBLPromise+Retry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+Retry.m"; sourceTree = "<group>"; };
 		4ADC8B8D20E54A5900D10D3D /* FBLPromise+Retry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBLPromise+Retry.h"; sourceTree = "<group>"; };
 		4ADC8B8F20E54A7500D10D3D /* Promise+Retry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Retry.swift"; sourceTree = "<group>"; };
 		4ADC8B9120E54A8800D10D3D /* Promise+RetryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+RetryTests.swift"; sourceTree = "<group>"; };
 		4ADC8B9320E54A9E00D10D3D /* FBLPromise+RetryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+RetryTests.m"; sourceTree = "<group>"; };
+		5A93506124E030F8009E1AB8 /* FBLPromise+ObserverTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+ObserverTests.m"; sourceTree = "<group>"; };
 		"Promises::FBLPromises::Product" /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Promises::FBLPromisesInteroperabilityTests::Product" /* FBLPromisesInteroperabilityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = FBLPromisesInteroperabilityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Promises::FBLPromisesPerformanceTests::Product" /* FBLPromisesPerformanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = FBLPromisesPerformanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -593,6 +600,7 @@
 				0320406B204547D300D2D16C /* FBLPromise+Catch.m */,
 				035D15EE20911AB70089EF3D /* FBLPromise+Delay.m */,
 				0320404F204547D300D2D16C /* FBLPromise+Do.m */,
+				07CA416424DC21B900DF147C /* FBLPromise+Observer.m */,
 				03204068204547D300D2D16C /* FBLPromise+Race.m */,
 				0320406E204547D300D2D16C /* FBLPromise+Recover.m */,
 				03326C312084642000872827 /* FBLPromise+Reduce.m */,
@@ -620,6 +628,7 @@
 				03204053204547D300D2D16C /* FBLPromise+Catch.h */,
 				035D15F120911ACA0089EF3D /* FBLPromise+Delay.h */,
 				0320405B204547D300D2D16C /* FBLPromise+Do.h */,
+				07CA416324DC21AD00DF147C /* FBLPromise+Observer.h */,
 				03204064204547D300D2D16C /* FBLPromise+Race.h */,
 				03204054204547D300D2D16C /* FBLPromise+Recover.h */,
 				03326C342084643600872827 /* FBLPromise+Reduce.h */,
@@ -704,6 +713,7 @@
 			children = (
 				03204090204547D400D2D16C /* FBLPromise+AllTests.m */,
 				0320408A204547D400D2D16C /* FBLPromise+AlwaysTests.m */,
+				5A93506124E030F8009E1AB8 /* FBLPromise+ObserverTests.m */,
 				03204089204547D400D2D16C /* FBLPromise+AnyTests.m */,
 				03204093204547D400D2D16C /* FBLPromise+AsyncTests.m */,
 				035D15F320915B490089EF3D /* FBLPromise+AwaitTests.m */,
@@ -769,6 +779,7 @@
 				035D15F220911AD30089EF3D /* FBLPromise+Delay.h in Headers */,
 				032B8109204549080097BF12 /* FBLPromise+Any.h in Headers */,
 				032B8102204549080097BF12 /* FBLPromise+Do.h in Headers */,
+				07CA416724DC221900DF147C /* FBLPromise+Observer.h in Headers */,
 				032B8100204549080097BF12 /* FBLPromise+Async.h in Headers */,
 				032B80FC204549080097BF12 /* FBLPromise.h in Headers */,
 				032B8106204549080097BF12 /* FBLPromise+Then.h in Headers */,
@@ -1064,7 +1075,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				07CA416524DC21B900DF147C /* FBLPromise+Observer.m in Sources */,
 				032B81242045494B0097BF12 /* FBLPromise+ThenInteroperabilityTests.m in Sources */,
+				5A93506224E030F8009E1AB8 /* FBLPromise+ObserverTests.m in Sources */,
 				032B81232045494B0097BF12 /* FBLPromise+CatchInteroperabilityTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1189,6 +1202,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				07CA416624DC220900DF147C /* FBLPromise+Observer.m in Sources */,
 				032B80F8204549000097BF12 /* FBLPromise+Timeout.m in Sources */,
 				032B80F7204549000097BF12 /* FBLPromise+Then.m in Sources */,
 				032B80F2204549000097BF12 /* FBLPromise+Catch.m in Sources */,
