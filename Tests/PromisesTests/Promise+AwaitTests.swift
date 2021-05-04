@@ -20,17 +20,17 @@ class PromiseAwaitTests: XCTestCase {
   func testPromiseAwaitFulfill() {
     // Act.
     let promise = Promise<Int>(on: .global()) { () -> Int in
-      let minusFive = try await(Harness.negate(5))
+      let minusFive = try awaitPromise(Harness.negate(5))
       XCTAssertEqual(minusFive, -5)
-      let twentyFive = try await(Harness.multiply(minusFive, minusFive))
+      let twentyFive = try awaitPromise(Harness.multiply(minusFive, minusFive))
       XCTAssertEqual(twentyFive, 25)
-      let twenty = try await(Harness.add(twentyFive, minusFive))
+      let twenty = try awaitPromise(Harness.add(twentyFive, minusFive))
       XCTAssertEqual(twenty, 20)
-      let five = try await(Harness.subtract(twentyFive, twenty))
+      let five = try awaitPromise(Harness.subtract(twentyFive, twenty))
       XCTAssertEqual(five, 5)
-      let zero = try await(Harness.add(minusFive, five))
+      let zero = try awaitPromise(Harness.add(minusFive, five))
       XCTAssertEqual(zero, 0)
-      return try await(Harness.multiply(zero, five))
+      return try awaitPromise(Harness.multiply(zero, five))
     }
 
     // Assert.
@@ -42,7 +42,7 @@ class PromiseAwaitTests: XCTestCase {
   func testPromiseAwaitReject() {
     // Arrange & Act.
     let promise = Promise<Int>(on: .global()) {
-      return try await(Harness.fail(Test.Error.code42))
+      return try awaitPromise(Harness.fail(Test.Error.code42))
     }
 
     // Assert.
