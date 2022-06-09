@@ -35,7 +35,7 @@
       reject:^(NSError *error) {
         [promise reject:error];
       }];
-  typeof(self) __weak weakPromise = promise;
+  FBLPromise* __weak weakPromise = promise;
   dispatch_after(dispatch_time(0, (int64_t)(interval * NSEC_PER_SEC)), queue, ^{
     NSError *timedOutError = [[NSError alloc] initWithDomain:FBLPromiseErrorDomain
                                                         code:FBLPromiseErrorCodeTimedOut
