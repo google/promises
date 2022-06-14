@@ -64,7 +64,7 @@ public extension Promise {
       }
       do {
         let value = try work(value)
-        return value as? NSError ?? Promise<Result>.asAnyObject(value)
+        return type(of: value) is NSError.Type ? value as! NSError : Promise<Result>.asAnyObject(value)
       } catch let error {
         return error as NSError
       }

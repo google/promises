@@ -25,8 +25,8 @@ public extension Promise {
     let objCPromise = ObjCPromise<AnyObject>.__onQueue(queue) { fulfill, reject in
       do {
         try work({ value in
-          if let error = value as? NSError {
-            reject(error)
+          if type(of: value) is NSError.Type {
+            reject(value as! NSError)
           } else {
             fulfill(Promise<Value>.asAnyObject(value))
           }
