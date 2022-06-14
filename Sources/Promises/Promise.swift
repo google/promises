@@ -40,14 +40,14 @@ public final class Promise<Value> {
   public convenience init(_ work: @autoclosure () throws -> Value) {
     do {
       let resolution = try work()
-      if type(of: resolution) is NSError.Type {
-          let error = resolution as! NSError
-          self.init(error)
-      } else if type(of: resolution) is ObjCPromise<AnyObject>.Type {
-          let objCPromise = resolution as! ObjCPromise<AnyObject>
-          self.init(objCPromise)
-      } else { self.init(ObjCPromise<AnyObject>.__resolved(with: Promise<Value>.asAnyObject(resolution))) }
-     
+      switch resolution {
+      case let error as NSError:
+        self.init(error)
+      case let objCPromise as ObjCPromise<AnyObject>:
+        self.init(objCPromise)
+      default:
+        self.init(ObjCPromise<AnyObject>.__resolved(with: Promise<Value>.asAnyObject(resolution)))
+      }
     } catch let error {
       self.init(error as NSError)
     }
