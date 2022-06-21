@@ -43,9 +43,8 @@ public final class Promise<Value> {
       if type(of: resolution) is NSError.Type {
         let error = resolution as! NSError
         self.init(error)
-      } else if type(of: resolution) is ObjCPromise<AnyObject>.Type {
-        let objCPromise = resolution as! ObjCPromise<AnyObject>
-        self.init(objCPromise)
+      } else if let objCPromise = resolution as? ObjCPromise<AnyObject> {
+          self.init(objCPromise)
       } else { self.init(ObjCPromise<AnyObject>.__resolved(with: Promise<Value>.asAnyObject(resolution))) }
     } catch let error {
       self.init(error as NSError)
