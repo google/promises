@@ -197,10 +197,9 @@ public extension Maybe {
 
 /// Helper function to wrap the results of `ObjCPromise.any` with the safe `Maybe` enum.
 public func asMaybe<Value>(_ value: AnyObject) -> Maybe<Value> {
-  switch value {
-  case let error as NSError:
-    return .error(error)
-  case let value:
+  if type(of: value) is NSError.Type {
+      return .error(value as! NSError)
+  } else {
     guard let value = Promise<Value>.asValue(value) else { preconditionFailure() }
     return .value(value)
   }

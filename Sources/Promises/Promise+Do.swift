@@ -27,7 +27,8 @@ public extension Promise {
     let objCPromise = ObjCPromise<AnyObject>.__onQueue(queue) {
       do {
         let resolution = try work()
-        return resolution as? NSError ?? Promise<Value>.asAnyObject(resolution)
+        return type(of: resolution) is NSError.Type
+          ? resolution as! NSError : Promise<Value>.asAnyObject(resolution)
       } catch let error {
         return error as NSError
       }

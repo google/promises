@@ -111,6 +111,7 @@
 		4ADC8B9020E54A7500D10D3D /* Promise+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC8B8F20E54A7500D10D3D /* Promise+Retry.swift */; };
 		4ADC8B9220E54A8800D10D3D /* Promise+RetryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC8B9120E54A8800D10D3D /* Promise+RetryTests.swift */; };
 		4ADC8B9420E54A9E00D10D3D /* FBLPromise+RetryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC8B9320E54A9E00D10D3D /* FBLPromise+RetryTests.m */; };
+		F0F2F7CD28616563005C38B4 /* Promise+StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F2F7CC28616563005C38B4 /* Promise+StringTests.swift */; };
 		OBJ_134 /* PromisesTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::PromisesTestHelpers::Product" /* PromisesTestHelpers.framework */; };
 		OBJ_135 /* Promises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::Promises::Product" /* Promises.framework */; };
 		OBJ_136 /* FBLPromisesTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::FBLPromisesTestHelpers::Product" /* FBLPromisesTestHelpers.framework */; };
@@ -407,6 +408,7 @@
 		4ADC8B8F20E54A7500D10D3D /* Promise+Retry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Retry.swift"; sourceTree = "<group>"; };
 		4ADC8B9120E54A8800D10D3D /* Promise+RetryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+RetryTests.swift"; sourceTree = "<group>"; };
 		4ADC8B9320E54A9E00D10D3D /* FBLPromise+RetryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+RetryTests.m"; sourceTree = "<group>"; };
+		F0F2F7CC28616563005C38B4 /* Promise+StringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = "Promise+StringTests.swift"; sourceTree = "<group>"; tabWidth = 2; };
 		"Promises::FBLPromises::Product" /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Promises::FBLPromisesInteroperabilityTests::Product" /* FBLPromisesInteroperabilityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = FBLPromisesInteroperabilityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Promises::FBLPromisesPerformanceTests::Product" /* FBLPromisesPerformanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = FBLPromisesPerformanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -665,6 +667,7 @@
 				03204079204547D300D2D16C /* Promise+RecoverTests.swift */,
 				03326C2E20841E0300872827 /* Promise+ReduceTests.swift */,
 				4ADC8B9120E54A8800D10D3D /* Promise+RetryTests.swift */,
+				F0F2F7CC28616563005C38B4 /* Promise+StringTests.swift */,
 				0320407F204547D400D2D16C /* Promise+ThenTests.swift */,
 				0320407D204547D300D2D16C /* Promise+TimeoutTests.swift */,
 				03204077204547D300D2D16C /* Promise+ValidateTests.swift */,
@@ -1089,6 +1092,7 @@
 				032B813E204549700097BF12 /* Promise+ThenTests.swift in Sources */,
 				032B813F204549700097BF12 /* Promise+TimeoutTests.swift in Sources */,
 				035D15E5208EE3D70089EF3D /* Promise+AwaitTests.swift in Sources */,
+				F0F2F7CD28616563005C38B4 /* Promise+StringTests.swift in Sources */,
 				032B813D204549700097BF12 /* Promise+WrapTests.swift in Sources */,
 				032B8142204549700097BF12 /* PromiseTests.swift in Sources */,
 				032B813C204549700097BF12 /* Promise+RecoverTests.swift in Sources */,
