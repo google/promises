@@ -16,6 +16,10 @@ import PromisesTestHelpers
 import XCTest
 @testable import Promises
 
+/// This extension exists to ensure that String Promises correctly identify errors even
+/// when a String can be cast to Error. This same concept could be applied to other types;
+/// String was chosen for these tests as it was the first to manifest issues related to
+/// Error extensions.
 extension String: Error {}
 
 class PromiseStringTests: XCTestCase {
@@ -62,6 +66,7 @@ class PromiseStringTests: XCTestCase {
   }
 
   func testPromiseVec2() {
+    /// A 2D vector.
     struct Vec2 {
       let x: String, y: String
     }
@@ -77,6 +82,5 @@ class PromiseStringTests: XCTestCase {
     XCTAssert(waitForPromises(timeout: 3))
     XCTAssertEqual(promise2.value?.x, "42")
     XCTAssertEqual(promise1.value?.x, "42")
-    
   }
 }
