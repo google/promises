@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = 'PromisesSwift'
-  s.version     = '2.1.0'
+  s.version     = '2.1.1'
   s.authors     = 'Google Inc.'
   s.license     = { :type => 'Apache', :file => 'LICENSE' }
   s.homepage    = 'https://github.com/google/promises'
