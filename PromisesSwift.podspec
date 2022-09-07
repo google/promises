@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name        = 'PromisesSwift'
   s.version     = '2.1.1'
   s.authors     = 'Google Inc.'
-  s.license     = { :type => 'Apache', :file => 'LICENSE' }
+  s.license     = { :type => 'Apache-2.0', :file => 'LICENSE' }
   s.homepage    = 'https://github.com/google/promises'
   s.source      = { :git => 'https://github.com/google/promises.git', :tag => s.version }
   s.summary     = 'Synchronization construct for Swift'
