@@ -198,7 +198,7 @@ public extension Maybe {
 /// Helper function to wrap the results of `ObjCPromise.any` with the safe `Maybe` enum.
 public func asMaybe<Value>(_ value: AnyObject) -> Maybe<Value> {
   if type(of: value) is NSError.Type {
-      return .error(value as! NSError)
+      return .error(value as! NSError) // swiftlint:disable:this force_cast
   } else {
     guard let value = Promise<Value>.asValue(value) else { preconditionFailure() }
     return .value(value)

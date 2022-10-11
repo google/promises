@@ -41,7 +41,7 @@ public final class Promise<Value> {
     do {
       let resolution = try work()
       if type(of: resolution) is NSError.Type {
-        let error = resolution as! NSError
+        let error = resolution as! NSError // swiftlint:disable:this force_cast
         self.init(error)
       } else if let objCPromise = resolution as? ObjCPromise<AnyObject> {
           self.init(objCPromise)

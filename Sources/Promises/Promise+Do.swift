@@ -28,7 +28,7 @@ public extension Promise {
       do {
         let resolution = try work()
         return type(of: resolution) is NSError.Type
-          ? resolution as! NSError : Promise<Value>.asAnyObject(resolution)
+          ? resolution as! NSError : Promise<Value>.asAnyObject(resolution) // swiftlint:disable:this force_cast
       } catch let error {
         return error as NSError
       }
