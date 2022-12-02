@@ -31,6 +31,19 @@ typedef id __nullable (^__nullable FBLPromiseChainedRejectBlock)(NSError *error)
     NS_SWIFT_UNAVAILABLE("");
 
 /**
+ Dispatches an asynchronous work block on the given queue. Same semantics as @c dispatch_async or
+ @c dispatch_group_async.
+ */
++ (void)dispatchOnQueue:(dispatch_queue_t)queue block:(dispatch_block_t)block;
+
+/**
+ Dispatches an asynchronous work block at a given time. Same semantics as @c dispatch_after.
+ */
++ (void)dispatchAfter:(dispatch_time_t)when
+                queue:(dispatch_queue_t)queue
+                block:(dispatch_block_t)block;
+
+/**
  Creates a pending promise.
  */
 - (instancetype)initPending NS_SWIFT_UNAVAILABLE("");

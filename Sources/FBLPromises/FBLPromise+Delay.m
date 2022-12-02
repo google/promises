@@ -27,12 +27,15 @@
 - (FBLPromise *)onQueue:(dispatch_queue_t)queue delay:(NSTimeInterval)interval {
   NSParameterAssert(queue);
 
-  FBLPromise *promise = [[FBLPromise alloc] initPending];
+  FBLPromise *promise = [[[self class] alloc] initPending];
+  Class class = [self class];
   [self observeOnQueue:queue
       fulfill:^(id __nullable value) {
-        dispatch_after(dispatch_time(0, (int64_t)(interval * NSEC_PER_SEC)), queue, ^{
+        [class dispatchAfter:dispatch_time(0, (int64_t)(interval * NSEC_PER_SEC))
+                       queue:queue
+                       block:^{
           [promise fulfill:value];
-        });
+        }];
       }
       reject:^(NSError *error) {
         [promise reject:error];

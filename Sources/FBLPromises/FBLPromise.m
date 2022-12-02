@@ -77,6 +77,17 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
   return [[self alloc] initWithResolution:resolution];
 }
 
+
++ (void)dispatchOnQueue:(dispatch_queue_t)queue block:(dispatch_block_t)block {
+  dispatch_group_async(FBLPromise.dispatchGroup, queue, block);
+}
+
++ (void)dispatchAfter:(dispatch_time_t)when
+                queue:(dispatch_queue_t)queue
+                block:(dispatch_block_t)block {
+  dispatch_after(when, queue, block);
+}
+
 - (void)fulfill:(nullable id)value {
   if ([value isKindOfClass:[NSError class]]) {
     [self reject:(NSError *)value];
@@ -193,7 +204,7 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
 
 - (void)addPendingObject:(id)object {
   NSParameterAssert(object);
-  
+
   @synchronized(self) {
     if (_state == FBLPromiseStatePending) {
       if (!_pendingObjects) {
@@ -217,8 +228,9 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
         if (!_observers) {
           _observers = [[NSMutableArray alloc] init];
         }
+        Class class = [self class];
         [_observers addObject:^(FBLPromiseState state, id __nullable resolution) {
-          dispatch_group_async(FBLPromise.dispatchGroup, queue, ^{
+          [class dispatchOnQueue:queue block:^{
             switch (state) {
               case FBLPromiseStatePending:
                 break;
@@ -229,20 +241,20 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
                 onReject(resolution);
                 break;
             }
-          });
+          }];
         }];
         break;
       }
       case FBLPromiseStateFulfilled: {
-        dispatch_group_async(FBLPromise.dispatchGroup, queue, ^{
+        [[self class] dispatchOnQueue:queue block:^{
           onFulfill(self->_value);
-        });
+        }];
         break;
       }
       case FBLPromiseStateRejected: {
-        dispatch_group_async(FBLPromise.dispatchGroup, queue, ^{
+        [[self class] dispatchOnQueue:queue block:^{
           onReject(self->_error);
-        });
+        }];
         break;
       }
     }
@@ -254,7 +266,7 @@ static dispatch_queue_t gFBLPromiseDefaultDispatchQueue;
                chainedReject:(FBLPromiseChainedRejectBlock)chainedReject {
   NSParameterAssert(queue);
 
-  FBLPromise *promise = [[FBLPromise alloc] initPending];
+  FBLPromise *promise = [[[self class] alloc] initPending];
   __auto_type resolver = ^(id __nullable value) {
     if ([value isKindOfClass:[FBLPromise class]]) {
       [(FBLPromise *)value observeOnQueue:queue

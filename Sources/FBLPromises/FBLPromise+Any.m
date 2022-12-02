@@ -46,19 +46,19 @@ static NSArray *FBLPromiseCombineValuesAndErrors(NSArray<FBLPromise *> *promises
   NSParameterAssert(anyPromises);
 
   if (anyPromises.count == 0) {
-    return [[FBLPromise alloc] initWithResolution:@[]];
+    return [[self alloc] initWithResolution:@[]];
   }
   NSMutableArray *promises = [anyPromises mutableCopy];
-  return [FBLPromise
+  return [self
       onQueue:queue
         async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock reject) {
           for (NSUInteger i = 0; i < promises.count; ++i) {
             id promise = promises[i];
-            if ([promise isKindOfClass:self]) {
+            if ([promise isKindOfClass:[FBLPromise class]]) {
               continue;
             } else {
               [promises replaceObjectAtIndex:i
-                                  withObject:[[FBLPromise alloc] initWithResolution:promise]];
+                                  withObject:[[self alloc] initWithResolution:promise]];
             }
           }
           for (FBLPromise *promise in promises) {

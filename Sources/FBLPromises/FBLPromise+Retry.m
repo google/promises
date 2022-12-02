@@ -29,9 +29,11 @@ static void FBLPromiseRetryAttempt(FBLPromise *promise, dispatch_queue_t queue, 
       if (count <= 0 || (predicate && !predicate(count, value))) {
         [promise reject:value];
       } else {
-        dispatch_after(dispatch_time(0, (int64_t)(interval * NSEC_PER_SEC)), queue, ^{
+        [[promise class] dispatchAfter:dispatch_time(0, (int64_t)(interval * NSEC_PER_SEC))
+                                 queue:queue
+                                 block:^{
           FBLPromiseRetryAttempt(promise, queue, count - 1, interval, predicate, work);
-        });
+        }];
       }
     } else {
       [promise fulfill:value];
@@ -88,7 +90,7 @@ static void FBLPromiseRetryAttempt(FBLPromise *promise, dispatch_queue_t queue, 
   NSParameterAssert(queue);
   NSParameterAssert(work);
 
-  FBLPromise *promise = [[FBLPromise alloc] initPending];
+  FBLPromise *promise = [[self alloc] initPending];
   FBLPromiseRetryAttempt(promise, queue, count, interval, predicate, work);
   return promise;
 }

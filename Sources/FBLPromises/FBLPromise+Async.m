@@ -28,8 +28,8 @@
   NSParameterAssert(queue);
   NSParameterAssert(work);
 
-  FBLPromise *promise = [[FBLPromise alloc] initPending];
-  dispatch_group_async(FBLPromise.dispatchGroup, queue, ^{
+  FBLPromise *promise = [[self alloc] initPending];
+  [self dispatchOnQueue:queue block:^{
     work(
         ^(id __nullable value) {
           if ([value isKindOfClass:[FBLPromise class]]) {
@@ -47,7 +47,7 @@
         ^(NSError *error) {
           [promise reject:error];
         });
-  });
+  }];
   return promise;
 }
 

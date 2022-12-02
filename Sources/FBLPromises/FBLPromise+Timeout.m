@@ -27,7 +27,7 @@
 - (FBLPromise *)onQueue:(dispatch_queue_t)queue timeout:(NSTimeInterval)interval {
   NSParameterAssert(queue);
 
-  FBLPromise *promise = [[FBLPromise alloc] initPending];
+  FBLPromise *promise = [[[self class] alloc] initPending];
   [self observeOnQueue:queue
       fulfill:^(id __nullable value) {
         [promise fulfill:value];
@@ -36,12 +36,14 @@
         [promise reject:error];
       }];
   FBLPromise* __weak weakPromise = promise;
-  dispatch_after(dispatch_time(0, (int64_t)(interval * NSEC_PER_SEC)), queue, ^{
+  [[self class] dispatchAfter:dispatch_time(0, (int64_t)(interval * NSEC_PER_SEC))
+                        queue:queue
+                        block:^{
     NSError *timedOutError = [[NSError alloc] initWithDomain:FBLPromiseErrorDomain
                                                         code:FBLPromiseErrorCodeTimedOut
                                                     userInfo:nil];
     [weakPromise reject:timedOutError];
-  });
+  }];
   return promise;
 }
 
