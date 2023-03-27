@@ -40,3 +40,51 @@ public extension Promise {
     objCPromise.__addPendingObject(self)
   }
 }
+
+#if swift(>=5.5)
+#if canImport(_Concurrency)
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+public extension Promise {
+	func async() async throws -> Value {
+		try await withCheckedThrowingContinuation { continuation in
+			then { value in
+				continuation.resume(returning: value)
+			}.catch { error in
+				continuation.resume(throwing: error)
+			}
+		}
+	}
+}
+
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+public extension Promise {
+	typealias SwiftAsync = (@escaping (Value) -> Void, @escaping (Error) -> Void) async throws -> Void
+	
+	/// Creates a pending promise and executes `work` block asynchronously on the given `queue`.
+	/// - parameters:
+	///   - queue: A queue to invoke the `work` block on.
+	///   - work: A block to perform any operations needed to resolve the promise.
+	convenience init(on queue: DispatchQueue = .promises, _ work: @escaping SwiftAsync) {
+		let objCPromise = ObjCPromise<AnyObject>.__onQueue(queue) { fulfill, reject in
+			Task {
+				do {
+					try await work({ value in
+						if type(of: value) is NSError.Type {
+							reject(value as! NSError)
+						} else {
+							fulfill(Promise<Value>.asAnyObject(value))
+						}
+					}, reject)
+				} catch let error {
+					reject(error as NSError)
+				}
+			}
+		}
+		self.init(objCPromise)
+		// Keep Swift wrapper alive for chained promise until `ObjCPromise` counterpart is resolved.
+		objCPromise.__addPendingObject(self)
+	}
+}
+
+#endif
+#endif
