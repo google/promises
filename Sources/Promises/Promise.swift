@@ -76,11 +76,11 @@ public final class Promise<Value> {
   /// Underlying ObjC counterpart.
   let objCPromise: ObjCPromise<AnyObject>
 
-  var isPending: Bool { return objCPromise.__isPending }
+  public var isPending: Bool { return objCPromise.__isPending }
 
-  var isFulfilled: Bool { return objCPromise.__isFulfilled }
+  public var isFulfilled: Bool { return objCPromise.__isFulfilled }
 
-  var isRejected: Bool { return objCPromise.__isRejected }
+  public var isRejected: Bool { return objCPromise.__isRejected }
 
   var value: Value? {
     let objCValue = objCPromise.__value
