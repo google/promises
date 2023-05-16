@@ -56,6 +56,14 @@ public extension Promise {
 	}
 }
 
+public extension Task {
+	func asPromise() -> Promise<Success> {
+		Promise<Success> { fulfill, reject in
+			fulfill(try await self.value)
+		}
+	}
+}
+
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public extension Promise {
 	typealias SwiftAsync = (@escaping (Value) -> Void, @escaping (Error) -> Void) async throws -> Void
