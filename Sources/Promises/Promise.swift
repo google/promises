@@ -31,6 +31,11 @@ public final class Promise<Value> {
     return Promise<Value>.init(ObjCPromise<AnyObject>.__pending())
   }
 
+  /// Creates a new pending promise.
+  public convenience init() {
+    self.init(ObjCPromise<AnyObject>.__pending())
+  }
+
   /// Creates a new promise rejected with the given `error`.
   public convenience init(_ error: Error) {
     self.init(ObjCPromise<AnyObject>.__resolved(with: error as NSError))
