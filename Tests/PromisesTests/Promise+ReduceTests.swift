@@ -50,7 +50,11 @@ class PromiseReduceTests: XCTestCase {
     Promise("").reduce(1, 2, 3) { partialString, nextNumber in
       guard partialString.isEmpty else { throw Test.Error.code42 }
       count += 1
-      return Promise(partialString + String(nextNumber))
+      return Promise { fulfill, _ in
+        Test.delay(0.1) {
+          fulfill(partialString + String(nextNumber))
+        }
+      }
     }.then { _ in
       XCTFail()
     }.catch { error in
