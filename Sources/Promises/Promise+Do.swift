@@ -16,19 +16,19 @@ import Foundation
 
 public extension Promise {
   // swiftlint:disable:next type_name
-  typealias Do<Value> = () throws -> Value
+  typealias Do<T> = () throws -> T
 
   /// Creates a pending promise to be resolved with the return value of `work` block which is
   /// executed asynchronously on the given `queue`.
   /// - parameters:
   ///   - queue: A queue to invoke the `work` block on.
   ///   - work: A block that returns a value used to resolve the new promise.
-  convenience init<Value>(on queue: DispatchQueue = .promises, _ work: @escaping Do<Value>) {
+  convenience init<T>(on queue: DispatchQueue = .promises, _ work: @escaping Do<T>) {
     let objCPromise = ObjCPromise<AnyObject>.__onQueue(queue) {
       do {
         let resolution = try work()
         return type(of: resolution) is NSError.Type
-          ? resolution as! NSError : Promise<Value>.asAnyObject(resolution)
+          ? resolution as! NSError : Promise<T>.asAnyObject(resolution)
       } catch let error {
         return error as NSError
       }
@@ -43,9 +43,9 @@ public extension Promise {
   /// - parameters:
   ///   - queue: A queue to invoke the `work` block on.
   ///   - work: A block that returns a promise used to resolve the new promise.
-  convenience init<Value>(
+  convenience init<T>(
     on queue: DispatchQueue = .promises,
-    _ work: @escaping Do<Promise<Value>>
+    _ work: @escaping Do<Promise<T>>
   ) {
     let objCPromise = ObjCPromise<AnyObject>.__onQueue(queue) {
       do {
