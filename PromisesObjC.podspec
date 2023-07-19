@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = 'PromisesObjC'
-  s.version     = '2.2.0'
+  s.version     = '2.2.1'
   s.authors     = 'Google Inc.'
   s.license     = { :type => 'Apache-2.0', :file => 'LICENSE' }
   s.homepage    = 'https://github.com/google/promises'
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   Objective-C to facilitate writing asynchronous code.
                      DESC
 
-  s.ios.deployment_target  = '9.0'
+  s.ios.deployment_target  = '13.0'
   s.osx.deployment_target  = '10.10'
   s.tvos.deployment_target = '9.0'
   s.watchos.deployment_target = '2.0'
