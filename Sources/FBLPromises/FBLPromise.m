@@ -298,6 +298,7 @@ extern void FBLIncludeThenCategory(void);
 extern void FBLIncludeTimeoutCategory(void);
 extern void FBLIncludeValidateCategory(void);
 extern void FBLIncludeWrapCategory(void);
+extern void FBLIncludeTestingCategory(void);
 
 /**
  Does nothing when called, and not meant to be called.
@@ -323,6 +324,7 @@ extern void FBLIncludeWrapCategory(void);
   FBLIncludeTimeoutCategory();
   FBLIncludeValidateCategory();
   FBLIncludeWrapCategory();
+  FBLIncludeTestingCategory();
 }
 
 @end
