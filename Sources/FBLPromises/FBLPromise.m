@@ -294,11 +294,11 @@ extern void FBLIncludeRaceCategory(void);
 extern void FBLIncludeRecoverCategory(void);
 extern void FBLIncludeReduceCategory(void);
 extern void FBLIncludeRetryCategory(void);
+extern void FBLIncludeTestingCategory(void);
 extern void FBLIncludeThenCategory(void);
 extern void FBLIncludeTimeoutCategory(void);
 extern void FBLIncludeValidateCategory(void);
 extern void FBLIncludeWrapCategory(void);
-extern void FBLIncludeTestingCategory(void);
 
 /**
  Does nothing when called, and not meant to be called.
@@ -320,11 +320,11 @@ extern void FBLIncludeTestingCategory(void);
   FBLIncludeRecoverCategory();
   FBLIncludeReduceCategory();
   FBLIncludeRetryCategory();
+  FBLIncludeTestingCategory();
   FBLIncludeThenCategory();
   FBLIncludeTimeoutCategory();
   FBLIncludeValidateCategory();
   FBLIncludeWrapCategory();
-  FBLIncludeTestingCategory();
 }
 
 @end
