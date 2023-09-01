@@ -1025,6 +1025,9 @@ they've been fulfilled, the promise returned from `all` is fulfilled with an
 array of all fulfilled values. If one of the given promises is rejected, then
 the returned promise is rejected with the same error.
 
+Note that `all` and other extensions do not control the order in which the 
+promises get resolved.
+
 In Swift, the `all` operator also allows passing promises of heterogeneous
 types. For this case, the returned promise will be resolved with a tuple
 containing the values of the input promises in the same order they were
