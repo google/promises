@@ -51,7 +51,9 @@ class PromiseReduceTests: XCTestCase {
       guard partialString.isEmpty else { throw Test.Error.code42 }
       count += 1
       return Promise { fulfill, _ in
-        fulfill(partialString + String(nextNumber))
+        Test.delay(0.1) {
+          fulfill(partialString + String(nextNumber))
+        }
       }
     }.then { _ in
       XCTFail()

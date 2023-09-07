@@ -30,7 +30,7 @@
   NSAssert(racePromises.count > 0, @"No promises to observe");
 
   NSArray *promises = [racePromises copy];
-  return [FBLPromise onQueue:queue
+  return [self onQueue:queue
                        async:^(FBLPromiseFulfillBlock fulfill, FBLPromiseRejectBlock reject) {
                          for (id promise in promises) {
                            if (![promise isKindOfClass:self]) {
@@ -63,3 +63,6 @@
 }
 
 @end
+
+/** Stub used to force the linker to include the categories in this file. */
+void FBLIncludeRaceCategory(void) {}

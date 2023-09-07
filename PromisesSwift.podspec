@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = 'PromisesSwift'
-  s.version     = '2.1.1'
+  s.version     = '2.3.1'
   s.authors     = 'Google Inc.'
   s.license     = { :type => 'Apache-2.0', :file => 'LICENSE' }
   s.homepage    = 'https://github.com/google/promises'
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
                      DESC
 
   s.ios.deployment_target  = '9.0'
-  s.osx.deployment_target  = '10.10'
+  s.osx.deployment_target  = '10.11'
   s.tvos.deployment_target = '9.0'
   s.watchos.deployment_target = '2.0'
   s.swift_versions = ['5.0', '5.2']

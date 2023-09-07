@@ -16,12 +16,12 @@ import FBLPromises
 
 /// Promises synchronization construct in Swift. Leverages ObjC implementation internally.
 public final class Promise<Value> {
-  public typealias ObjCPromise<Value: AnyObject> = FBLPromise<Value>
+  public typealias ObjCPromise<T: AnyObject> = FBLPromise<T>
 
   /// Creates a new promise with an existing ObjC promise.
-  public init<Value>(_ objCPromise: ObjCPromise<Value>) {
+  public init<T>(_ objCPromise: ObjCPromise<T>) {
     guard let objCPromise = objCPromise as? ObjCPromise<AnyObject> else {
-      preconditionFailure("Cannot cast \(Value.self) to \(AnyObject.self)")
+      preconditionFailure("Cannot cast \(T.self) to \(AnyObject.self)")
     }
     self.objCPromise = objCPromise
   }
@@ -29,6 +29,11 @@ public final class Promise<Value> {
   /// Creates a new pending promise.
   public static func pending() -> Promise<Value> {
     return Promise<Value>.init(ObjCPromise<AnyObject>.__pending())
+  }
+
+  /// Creates a new pending promise.
+  public convenience init() {
+    self.init(ObjCPromise<AnyObject>.__pending())
   }
 
   /// Creates a new promise rejected with the given `error`.
@@ -64,9 +69,9 @@ public final class Promise<Value> {
   }
 
   /// Converts `self` into ObjC promise.
-  public func asObjCPromise<Value>() -> ObjCPromise<Value> {
-    guard let objCPromise = objCPromise as? ObjCPromise<Value> else {
-      preconditionFailure("Cannot cast \(AnyObject.self) to \(Value.self)")
+  public func asObjCPromise<T>() -> ObjCPromise<T> {
+    guard let objCPromise = objCPromise as? ObjCPromise<T> else {
+      preconditionFailure("Cannot cast \(AnyObject.self) to \(T.self)")
     }
     return objCPromise
   }
