@@ -65,7 +65,7 @@ public extension Promise {
       do {
         let value = try work(value)
         return type(of: value) is NSError.Type
-          ? value as! NSError : Promise<Result>.asAnyObject(value)
+          ? value as! NSError : Promise<Result>.asAnyObject(value) // swiftlint:disable:this force_cast
       } catch let error {
         return error as NSError
       }

@@ -68,7 +68,7 @@ class PromiseStringTests: XCTestCase {
   func testPromiseVec2() {
     /// A 2D vector.
     struct Vec2 {
-      let x: String, y: String
+      let x: String, y: String // swiftlint:disable:this identifier_name
     }
     func work1(_ value: Vec2) -> Promise<Vec2> {
       return Promise { value }
