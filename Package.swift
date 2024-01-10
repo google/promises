@@ -85,6 +85,9 @@ let package = Package(
       name: "Promises",
       dependencies: [
         "FBLPromises",
+      ],
+      resources: [
+        .process("Sources/Resources/PrivacyInfo.xcprivacy")
       ]
     ),
     .target(
