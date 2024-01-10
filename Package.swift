@@ -51,7 +51,10 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "FBLPromises"
+      name: "FBLPromises",
+      resources: [
+        .copy("Sources/Resources/PrivacyInfo.xcprivacy")
+      ]
     ),
     .target(
       name: "FBLPromisesTestHelpers",

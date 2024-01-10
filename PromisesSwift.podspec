@@ -20,5 +20,6 @@ Pod::Spec.new do |s|
 
   s.module_name = 'Promises'
   s.source_files = "Sources/#{s.module_name}/*.{swift}"
+  s.resource = "Sources/Resources/PrivacyInfo.xcprivacy"
   s.dependency 'PromisesObjC', "#{s.version}"
 end
