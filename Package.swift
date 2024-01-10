@@ -53,7 +53,7 @@ let package = Package(
     .target(
       name: "FBLPromises",
       resources: [
-        .copy("Sources/Resources/PrivacyInfo.xcprivacy")
+        .process("Sources/Resources/PrivacyInfo.xcprivacy")
       ]
     ),
     .target(
