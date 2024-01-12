@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   s.private_header_files = "Sources/#{s.module_name}/include/FBLPromisePrivate.h"
   s.source_files = "Sources/#{s.module_name}/**/*.{h,m}"
   s.resource_bundle = {
-    "#{s.name}_Privacy" => 'Sources/Resources/PrivacyInfo.xcprivacy'
+    "#{s.module_name}_Privacy" => "Sources/#{s.module_name}/Resources/PrivacyInfo.xcprivacy"
   }
   s.pod_target_xcconfig = {
     'DEFINES_MODULE' => 'YES'
