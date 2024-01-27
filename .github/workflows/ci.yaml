@@ -1,0 +1,28 @@
+name: ci
+
+on:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  spm:
+    runs-on: macOS-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build
+      run: swift build
+
+  cocoapods:
+      strategy:
+          matrix:
+            podspec: [PromisesObjC.podspec,  PromisesSwift.podspec]
+            platform: [ios, tvos, macos, watchos]
+      runs-on: macOS-latest
+      steps:
+      - uses: actions/checkout@v4
+      - name: Lint
+        run: |
+          pod lib lint ${{ matrix.podspec }} --platforms=${{ matrix.platform }}
