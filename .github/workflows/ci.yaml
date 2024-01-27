@@ -11,17 +11,19 @@ jobs:
   spm:
     runs-on: macOS-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Build
-      run: swift build
+      - uses: actions/checkout@v4
+      - name: Build
+        run: swift build
+      - name: Test
+        run: swift test
 
   cocoapods:
-      strategy:
-          matrix:
-            podspec: [PromisesObjC.podspec,  PromisesSwift.podspec]
-            platform: [ios, tvos, macos, watchos]
-      runs-on: macOS-latest
-      steps:
+    strategy:
+      matrix:
+        podspec: [PromisesObjC.podspec, PromisesSwift.podspec]
+        platform: [ios, tvos, macos, watchos]
+    runs-on: macOS-latest
+    steps:
       - uses: actions/checkout@v4
       - name: Lint
         run: |
