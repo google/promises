@@ -23,8 +23,6 @@ class PromiseResolveTests: XCTestCase {
       Harness.async(completion: handler)
     }.catch { _ in
       XCTFail()
-    }.then { value in
-      XCTAssertNil(value)
     }
 
     // Assert.
@@ -57,8 +55,6 @@ class PromiseResolveTests: XCTestCase {
       Harness.async(value: nil, completion: handler)
     }.catch { _ in
       XCTFail()
-    }.then { value in
-      XCTAssertNil(value)
     }
 
     // Assert.
@@ -107,8 +103,6 @@ class PromiseResolveTests: XCTestCase {
       Harness.async(value: nil, error: nil, completion: handler)
     }.catch { _ in
       XCTFail()
-    }.then { value in
-      XCTAssertNil(value)
     }
     // Assert.
     XCTAssert(waitForPromises(timeout: 10))
@@ -118,21 +112,15 @@ class PromiseResolveTests: XCTestCase {
   }
 
   func testPromiseWrapErrorOrObjectCompletionFulfillsWithNilValue() {
-    // Arrange.
-    let expectation = self.expectation(description: "")
-
     // Act.
     let promise = wrap { (handler: @escaping (Error?, Any?) -> Void) in
       Harness.async(error: nil, value: nil, completion: handler)
     }.catch { _ in
       XCTFail()
-    }.then { value in
-      XCTAssertNil(value)
-      expectation.fulfill()
     }
 
     // Assert.
-    waitForExpectations(timeout: 10)
+    XCTAssert(waitForPromises(timeout: 10))
     XCTAssertTrue(promise.isFulfilled)
     XCTAssert(promise.value == nil)
     XCTAssertNil(promise.error)
