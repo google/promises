@@ -20,7 +20,8 @@
 
 #import "FBLPromise+Testing.h"
 #import "FBLPromisesTestHelpers.h"
-#import "PromisesTestHelpers-Swift.h"
+
+@import PromisesTestHelpers;
 
 @interface FBLPromiseCatchInteroperabilityTests : XCTestCase
 @end

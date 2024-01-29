@@ -59,6 +59,23 @@ class PromiseThenTests: XCTestCase {
     XCTAssertNil(postFinalPromise.error)
   }
 
+  func testPromiseWhenNilBridgesToNSNullInThenChain() {
+    // Act.
+    let promise = Promise<Any?> { fulfill, _ in
+      fulfill(nil)
+    }.catch { _ in
+      XCTFail()
+    }.then { value in
+      XCTAssert(value is NSNull)
+    }
+
+    // Assert.
+    XCTAssert(waitForPromises(timeout: 10))
+    XCTAssertTrue(promise.isFulfilled)
+    XCTAssert(promise.value is NSNull)
+    XCTAssertNil(promise.error)
+  }
+
   func testPromiseAsyncFulfill() {
     // Act.
     let promise = Promise { fulfill, _ in
