@@ -12,6 +12,10 @@ Pod::Spec.new do |s|
   Objective-C to facilitate writing asynchronous code.
                      DESC
 
+  # Ensure developers won't hit CocoaPods/CocoaPods#11402 with the resource
+  # bundle for the privacy manifest.
+  s.cocoapods_version = '>= 1.12.0'
+
   s.ios.deployment_target  = '9.0'
   s.osx.deployment_target  = '10.11'
   s.tvos.deployment_target = '9.0'
