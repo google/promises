@@ -30,6 +30,11 @@ public final class Promise<Value> {
   public static func pending() -> Promise<Value> {
     return Promise<Value>.init(ObjCPromise<AnyObject>.__pending())
   }
+  
+  /// Creates a new pending promise.
+  public convenience init() {
+    self.init(ObjCPromise<AnyObject>.__pending())
+  }
 
   /// Creates a new pending promise.
   public convenience init() {
