@@ -1,4 +1,4 @@
-// swift-tools-version:4.2
+// swift-tools-version:5.3
 // swiftlint:disable line_length
 // swiftlint:disable trailing_comma
 
@@ -51,7 +51,10 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "FBLPromises"
+      name: "FBLPromises",
+      resources: [
+        .process("Resources/PrivacyInfo.xcprivacy")
+      ]
     ),
     .target(
       name: "FBLPromisesTestHelpers",
@@ -82,6 +85,9 @@ let package = Package(
       name: "Promises",
       dependencies: [
         "FBLPromises",
+      ],
+      resources: [
+        .process("Resources/PrivacyInfo.xcprivacy")
       ]
     ),
     .target(
