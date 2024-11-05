@@ -17,6 +17,7 @@ import Dispatch
 /// Provides a convenient way to convert methods that use common callback patterns into `Promise`s.
 
 /// Creates a new promise to be resolved when completion handler gets invoked.
+/// - parameter queue: A queue to dispatch on.
 /// - parameter work: A block to execute asynchronously to invoke some API that requires
 ///                   a completion handler with no arguments.
 /// - returns: A new pending promise to be resolved with `nil` when completion handler finishes.
@@ -30,6 +31,7 @@ public func wrap(
 }
 
 /// Creates a new promise to be resolved when completion handler gets invoked.
+/// - parameter queue: A queue to dispatch on.
 /// - parameter work: A block to execute asynchronously to invoke some API that requires
 ///                   a completion handler with one argument of generic `Value` type.
 /// - returns: A new pending promise to be resolved with the value provided by completion handler
@@ -44,6 +46,7 @@ public func wrap<Value>(
 }
 
 /// Creates a new promise to be resolved when completion handler gets invoked.
+/// - parameter queue: A queue to dispatch on.
 /// - parameter work: A block to execute asynchronously to invoke some API that requires
 ///                   a completion handler with one argument of optional generic `Value` type.
 /// - returns: A new pending promise to be resolved with the value or error provided by completion
@@ -58,6 +61,7 @@ public func wrap<Value>(
 }
 
 /// Creates a new promise to be resolved when completion handler gets invoked.
+/// - parameter queue: A queue to dispatch on.
 /// - parameter work: A block to execute asynchronously to invoke some API that requires
 ///                   a completion handler with two arguments: a generic of `Value` type and
 ///                   an optional `Error`.
@@ -79,6 +83,7 @@ public func wrap<Value>(
 }
 
 /// Creates a new promise to be resolved when completion handler gets invoked.
+/// - parameter queue: A queue to dispatch on.
 /// - parameter work: A block to execute asynchronously to invoke some API that requires
 ///                   a completion handler with two arguments: an optional `Error` and a generic of
 ///                   `Value` type.
@@ -100,6 +105,7 @@ public func wrap<Value>(
 }
 
 /// Creates a new promise to be resolved when completion handler gets invoked.
+/// - parameter queue: A queue to dispatch on.
 /// - parameter work: A block to execute asynchronously to invoke some API that requires
 ///                   a completion handler with two arguments: an optional generic of `Value` type
 ///                   and an optional `Error`.
@@ -121,6 +127,7 @@ public func wrap<Value>(
 }
 
 /// Creates a new promise to be resolved when completion handler gets invoked.
+/// - parameter queue: A queue to dispatch on.
 /// - parameter work: A block to execute asynchronously to invoke some API that requires
 ///                   a completion handler with two arguments: an optional `Error` and an optional
 ///                   generic of `Value` type.
@@ -142,6 +149,7 @@ public func wrap<Value>(
 }
 
 /// Creates a new promise to be resolved when completion handler gets invoked.
+/// - parameter queue: A queue to dispatch on.
 /// - parameter work: A block to execute asynchronously to invoke some API that requires
 ///                   a completion handler with three arguments: two optionals of `Any` type
 ///                   and an optional `Error`.
