@@ -14,6 +14,10 @@
  limitations under the License.
  */
 
+// Currently this test does not work with Bazel.
+// See https://github.com/bazelbuild/rules_apple/issues/2690 for more details.
+#if defined(COCOAPODS) || defined(SWIFT_PACKAGE)
+
 #import "FBLPromise+Catch.h"
 
 #import <XCTest/XCTest.h>
@@ -65,3 +69,5 @@
 }
 
 @end
+
+#endif
