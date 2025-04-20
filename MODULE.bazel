@@ -1,0 +1,12 @@
+module(name = "promises", version = "2.4.0")
+
+bazel_dep(name = "rules_cc", version = "0.1.1")
+bazel_dep(name = "rules_apple", version = "3.20.1", repo_name = "build_bazel_rules_apple")
+bazel_dep(name = "rules_swift", version = "2.7.0", repo_name = "build_bazel_rules_swift")
+bazel_dep(name = "platforms", version = "0.0.11")
+bazel_dep(name = "apple_support", version = "1.20.0")
+
+apple_cc_configure = use_extension("@apple_support//crosstool:setup.bzl", "apple_cc_configure_extension")
+use_repo(apple_cc_configure, "local_config_apple_cc", "local_config_apple_cc_toolchains")
+
+register_toolchains("@local_config_apple_cc_toolchains//:all")
