@@ -17,6 +17,28 @@ jobs:
       - name: Test
         run: swift test
 
+  bazel:
+    runs-on: macOS-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        MODE: [ "dbg", "opt" ]
+    env:
+      USE_BAZEL_VERSION: 8.x
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bazel-contrib/setup-bazel@0.14.0
+        with:
+          bazelisk-cache: true
+          repository-cache: true
+      - name: bazel build
+        run:  |
+          bazelisk build --enable_bzlmod -c "${{ matrix.MODE }}" //...
+      - name: bazel test
+        if: ${{ matrix.MODE == 'dbg' }}
+        run:  |
+          bazelisk test --enable_bzlmod --build_tests_only -c "${{ matrix.MODE }}"  --test_output=all --verbose_failures //...
+
   cocoapods:
     strategy:
       matrix:
