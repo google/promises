@@ -111,6 +111,8 @@
 		4ADC8B9020E54A7500D10D3D /* Promise+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC8B8F20E54A7500D10D3D /* Promise+Retry.swift */; };
 		4ADC8B9220E54A8800D10D3D /* Promise+RetryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC8B9120E54A8800D10D3D /* Promise+RetryTests.swift */; };
 		4ADC8B9420E54A9E00D10D3D /* FBLPromise+RetryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC8B9320E54A9E00D10D3D /* FBLPromise+RetryTests.m */; };
+		6D7DC0A42BAAD6F900AD33E0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 6D7DC0A32BAAD6F900AD33E0 /* PrivacyInfo.xcprivacy */; };
+		6D7DC0A72BAAD71F00AD33E0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 6D7DC0A52BAAD70800AD33E0 /* PrivacyInfo.xcprivacy */; };
 		F0F2F7CD28616563005C38B4 /* Promise+StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F2F7CC28616563005C38B4 /* Promise+StringTests.swift */; };
 		OBJ_134 /* PromisesTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::PromisesTestHelpers::Product" /* PromisesTestHelpers.framework */; };
 		OBJ_135 /* Promises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Promises::Promises::Product" /* Promises.framework */; };
@@ -408,6 +410,8 @@
 		4ADC8B8F20E54A7500D10D3D /* Promise+Retry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+Retry.swift"; sourceTree = "<group>"; };
 		4ADC8B9120E54A8800D10D3D /* Promise+RetryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+RetryTests.swift"; sourceTree = "<group>"; };
 		4ADC8B9320E54A9E00D10D3D /* FBLPromise+RetryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBLPromise+RetryTests.m"; sourceTree = "<group>"; };
+		6D7DC0A32BAAD6F900AD33E0 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		6D7DC0A52BAAD70800AD33E0 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		F0F2F7CC28616563005C38B4 /* Promise+StringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = "Promise+StringTests.swift"; sourceTree = "<group>"; tabWidth = 2; };
 		"Promises::FBLPromises::Product" /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Promises::FBLPromisesInteroperabilityTests::Product" /* FBLPromisesInteroperabilityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = FBLPromisesInteroperabilityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -560,6 +564,7 @@
 		0320403E204547D300D2D16C /* Promises */ = {
 			isa = PBXGroup;
 			children = (
+				6D7DC0A22BAAD6CE00AD33E0 /* Resources */,
 				0320404B204547D300D2D16C /* Promise.swift */,
 				0320404A204547D300D2D16C /* Promise+All.swift */,
 				03204047204547D300D2D16C /* Promise+Always.swift */,
@@ -586,6 +591,7 @@
 		0320404E204547D300D2D16C /* FBLPromises */ = {
 			isa = PBXGroup;
 			children = (
+				6D7DC0A12BAAD6BF00AD33E0 /* Resources */,
 				03204071204547D300D2D16C /* FBLPromise.m */,
 				0320406F204547D300D2D16C /* FBLPromise+All.m */,
 				0320406A204547D300D2D16C /* FBLPromise+Always.m */,
@@ -735,6 +741,22 @@
 			path = PromisesInteroperabilityTests;
 			sourceTree = "<group>";
 		};
+		6D7DC0A12BAAD6BF00AD33E0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6D7DC0A32BAAD6F900AD33E0 /* PrivacyInfo.xcprivacy */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6D7DC0A22BAAD6CE00AD33E0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6D7DC0A52BAAD70800AD33E0 /* PrivacyInfo.xcprivacy */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		OBJ_109 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -811,6 +833,7 @@
 				OBJ_280 /* Sources */,
 				OBJ_296 /* Frameworks */,
 				03C7655B20453515008F08C9 /* Headers */,
+				6D7DC0972BAAD53600AD33E0 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -901,6 +924,7 @@
 			buildPhases = (
 				OBJ_250 /* Sources */,
 				OBJ_266 /* Frameworks */,
+				6D7DC0982BAAD53D00AD33E0 /* Resources */,
 				031D2CA721FEABB60028E3D1 /* ShellScript */,
 			);
 			buildRules = (
@@ -1041,6 +1065,25 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6D7DC0972BAAD53600AD33E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D7DC0A42BAAD6F900AD33E0 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D7DC0982BAAD53D00AD33E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D7DC0A72BAAD71F00AD33E0 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		031D2CA721FEABB60028E3D1 /* ShellScript */ = {
