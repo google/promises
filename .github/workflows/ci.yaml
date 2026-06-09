@@ -17,14 +17,25 @@ jobs:
       - name: Test
         run: swift test
 
-  cocoapods:
+  cocoapods-objc:
     strategy:
       matrix:
-        podspec: [PromisesObjC.podspec, PromisesSwift.podspec]
         platform: [ios, tvos, macos, watchos]
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v4
       - name: Lint
         run: |
-          pod lib lint ${{ matrix.podspec }} --platforms=${{ matrix.platform }}
+          pod lib lint PromisesObjC.podspec --platforms=${{ matrix.platform }}
+
+
+  cocoapods-swift:
+    strategy:
+      matrix:
+        platform: [ios, tvos, macos, watchos]
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint
+        run: |
+          pod lib lint PromisesSwift.podspec --platforms=${{ matrix.platform }} --include-podspecs=PromisesObjC.podspec
